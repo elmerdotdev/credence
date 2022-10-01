@@ -20,7 +20,7 @@ Client Calendar and Scheduling System for WMDD Project 2
 ## Team
 
 * Danika Enad (Project Manager) - Full Stack Developer
-* Giancarlo Cochella (Design Lead) - Full Stack Developer
+* Giancarlo Cochella (Design Lead) - Designer
 * Herlan Wijaya - Designer
 * Joanne Kyugeun Cho - Designer
 * Yuen Ki Hung - Designer
