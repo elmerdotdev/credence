@@ -1,5 +1,9 @@
 # Credence
 
+Client Calendar and Scheduling System for WMDD Project 2
+
+---
+
 ## Installation
 
 1. Run **npm install** in root folder
