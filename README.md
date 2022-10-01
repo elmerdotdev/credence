@@ -16,3 +16,14 @@ Client Calendar and Scheduling System for WMDD Project 2
 2. Run **npm run credence**
 
 ---
+
+## Team
+
+* Danika Enad (Project Manager) - Full Stack Developer
+* Giancarlo Cochella (Design Lead) - Full Stack Developer
+* Herlan Wijaya - Designer
+* Joanne Kyugeun Cho - Designer
+* Yuen Ki Hung - Designer
+* Elmer Balbin (Technical Lead) - Full Stack Developer
+* Keiko Shimizu - Full Stack Developer
+* Iris Chen - Full Stack Developer
