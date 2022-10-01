@@ -1,0 +1,8 @@
+{
+  "devDependencies": {
+    "concurrently": "^7.4.0"
+  },
+  "scripts": {
+    "forrest": "concurrently \"cd backend && npm run dev\" \"cd frontend && npm start\" "
+  }
+}
