@@ -3,6 +3,7 @@
     "concurrently": "^7.4.0"
   },
   "scripts": {
-    "credence": "concurrently \"cd backend && npm run dev\" \"cd frontend && npm start\" "
+    "credence": "concurrently \"cd backend && npm run dev\" \"cd frontend && npm start\" ",
+    "watch": "cd frontend && npm run watch-scss"
   }
 }
