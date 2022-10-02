@@ -8,7 +8,7 @@ Client Calendar and Scheduling System for WMDD Project 2
 
 1. Open a terminal
 2. Run **npm install** in root folder
-3. Run **npm install** inside *frontend* folder
+3. Run **npm install** inside *client* folder
 
 ## How to run on localhost
 
