@@ -16,7 +16,7 @@ Client Calendar and Scheduling System for WMDD Project 2
 
 1. Go to root folder
 2. Run **npm run credence** on terminal
-3. Wait until *webpack compiled successfully* message appears
+3. Wait until *"webpack compiled successfully"* message appears
 
 ### Watch for SCSS changes
 
