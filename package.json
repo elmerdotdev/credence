@@ -12,7 +12,9 @@
   "scripts": {
     "start": "node server.js",
     "dev": "nodemon server.js",
-    "credence": "concurrently \"npm run dev\" \"cd frontend && npm start\" ",
-    "watch": "cd frontend && npm run watch-scss"
+    "client": "npm start --prefix client",
+    "credence": "concurrently \"npm run dev\" \"npm run client\" ",
+    "watch": "cd frontend && npm run watch-scss",
+    "render-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   }
 }
