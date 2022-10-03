@@ -27,6 +27,14 @@ Client Calendar and Scheduling System for WMDD Project 2
 
 ---
 
+## Git commands
+
+* git switch branchname -  New way of writing *git checkout branch*
+* git pull - Pull commits and changes of current branch from remote
+* git pull origin branchname - Pull commits and changes from another branch from remote
+
+---
+
 ## Team
 
 * Danika Enad (Project Manager) - Full Stack Developer
