@@ -2,7 +2,7 @@ import React from 'react'
 
 const Connections = () => {
   return (
-    <div>Connections</div>
+    <section className="page-connections">Connections</section>
   )
 }
 
