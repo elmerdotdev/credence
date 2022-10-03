@@ -1,9 +1,38 @@
-const express = require('express');
-const app = express();
+require('dotenv').config({ path: '../.env' })
 
-app.use(express.json({ limit: '50mb' }));
+const express = require('express')
+const mongoose = require('mongoose')
 
-const port = process.env.PORT || 5000;
-app.listen(port, () => {
-    console.log(`Listening on port ${port}`);
+const activityRoutes = require('./routes/activity')
+const clientRoutes = require('./routes/client')
+const noteRoutes = require('./routes/note')
+const userRoutes = require('./routes/user')
+
+// Express App
+const app = express()
+
+// Middleware
+app.use(express.json())
+
+app.use((req, res, next) => {
+    console.log(req.path, req.method)
+    next()
 })
+
+// Routes
+app.use('/api/activities', activityRoutes)
+app.use('/api/clients', clientRoutes)
+app.use('/api/notes', noteRoutes)
+app.use('/api/users', userRoutes)
+
+// Connect to db
+mongoose.connect(process.env.MONGO_URI)
+    .then(() => {
+        // Listen for requests
+        app.listen(process.env.PORT, () => {
+            console.log('Listening on port', process.env.PORT)
+        })
+    })
+    .catch((error) => {
+        console.log(error)
+    })
