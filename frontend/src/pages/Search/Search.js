@@ -2,7 +2,7 @@ import React from 'react'
 
 const Search = () => {
   return (
-    <div>Search</div>
+    <section className="page-search">Search</section>
   )
 }
 

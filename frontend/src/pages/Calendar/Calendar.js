@@ -2,7 +2,7 @@ import React from 'react'
 
 const Calendar = () => {
   return (
-    <div>Calendar</div>
+    <section className="page-calendar">Calendar</section>
   )
 }
 
