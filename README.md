@@ -13,8 +13,7 @@ Client Calendar and Scheduling System for WMDD Project 2
 
 ## How to run on localhost
 
-Make sure you have nodemon installed first. To install nodemon globally, run **npm install -g nodemon** on a terminal.
-You only need to do this ONCE!
+Make sure you have nodemon installed first. To install nodemon globally, run **npm install -g nodemon** on a terminal. You only need to do this ONCE.
 
 ### Node server and React app
 
