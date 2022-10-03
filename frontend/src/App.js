@@ -1,9 +1,9 @@
 // Pages
-import Dashboard from './pages/Dashboard';
-import Calendar from './pages/Calendar';
-import Connections from './pages/Connections';
-import Search from './pages/Search';
-import Settings from './pages/Settings';
+import Dashboard from './pages/Dashboard/Dashboard';
+import Calendar from './pages/Calendar/Calendar';
+import Connections from './pages/Connections/Connections';
+import Search from './pages/Search/Search';
+import Settings from './pages/Settings/Settings';
 
 import './App.css';
 
