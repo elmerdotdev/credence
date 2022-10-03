@@ -6,7 +6,7 @@
     "start": "npm start --prefix backend",
     "dev": "npm run dev --prefix backend",
     "react": "npm start --prefix frontend",
-    "credence": "concurrently \"npm run dev\" \"npm run react\" ",
+    "credence": "npm run build-scss && concurrently \"npm run dev\" \"npm run react\" ",
     "build-scss": "npm run build-scss --prefix frontend",
     "watch-scss": "npm run watch-scss --prefix frontend",
     "render-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix frontend && npm run build-scss && npm run build --prefix frontend"
