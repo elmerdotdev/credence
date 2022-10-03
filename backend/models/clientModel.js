@@ -11,6 +11,9 @@ const clientSchema = new Schema({
         type: String,
         required: true
     },
+    position: {
+        type: String
+    },
     company: {
         type: String
     },
@@ -31,6 +34,13 @@ const clientSchema = new Schema({
     active: {
         type: Boolean,
         default: true
+    },
+    pinned: {
+        type: Boolean,
+        default: false
+    },
+    labels: {
+        type: Array
     },
     photo: {
         type: String
