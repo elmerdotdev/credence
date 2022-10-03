@@ -1,8 +1,9 @@
-import Dashboard from './components/Dashboard/Dashboard';
-import Calendar from './components/Calendar/Calendar';
-import Connections from './components/Connections/Connections';
-import Search from './components/Search/Search';
-import Settings from './components/Settings/Settings';
+// Pages
+import Dashboard from './pages/Dashboard';
+import Calendar from './pages/Calendar';
+import Connections from './pages/Connections';
+import Search from './pages/Search';
+import Settings from './pages/Settings';
 
 import './App.css';
 
