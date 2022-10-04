@@ -12,8 +12,7 @@ const getActivities = async (req, res) => {
 
 // Get a single activity
 const getActivity = async (req, res) => {
-    const { userid } = req.params
-    const { id } = req.params
+    const { userid, id } = req.params
 
     if (!mongoose.Types.ObjectId.isValid(id)) {
         return res.status(404).json({ error: 'No such activity' })
