@@ -3,20 +3,23 @@ const mongoose = require('mongoose')
 
 // Get all clients
 const getClients = async (req, res) => {
-    const clients = await Client.find({}).sort({createdAt: -1})
+    const { userid } = req.params
+
+    const clients = await Client.find({ user_id: userid }).sort({createdAt: -1})
 
     res.status(200).json(clients)
 }
 
 // Get a single client
 const getClient = async (req, res) => {
+    const { userid } = req.params
     const { id } = req.params
 
     if (!mongoose.Types.ObjectId.isValid(id)) {
         return res.status(404).json({ error: 'No such client' })
     }
 
-    const client = await Client.findById(id)
+    const client = await Client.findOne({ user_id: userid, _id: id })
 
     if (!client) {
         return res.status(404).json({ error: 'No such client' })

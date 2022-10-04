@@ -11,10 +11,10 @@ const {
 const router = express.Router()
 
 // Get all clients
-router.get('/', getClients)
+router.get('/:userid', getClients)
 
 // Get single client
-router.get('/:id', getClient)
+router.get('/:userid/:id', getClient)
 
 // Post a new client
 router.post('/', createClient)
