@@ -3,20 +3,22 @@ const mongoose = require('mongoose')
 
 // Get all activities
 const getActivities = async (req, res) => {
-    const activities = await Activity.find({}).sort({createdAt: -1})
+    const { userid } = req.params
+
+    const activities = await Activity.find({ user_id: userid }).sort({createdAt: -1})
 
     res.status(200).json(activities)
 }
 
 // Get a single activity
 const getActivity = async (req, res) => {
-    const { id } = req.params
+    const { userid, id } = req.params
 
     if (!mongoose.Types.ObjectId.isValid(id)) {
         return res.status(404).json({ error: 'No such activity' })
     }
 
-    const activity = await Activity.findById(id)
+    const activity = await Activity.findOne({ user_id: userid, _id: id })
 
     if (!activity) {
         return res.status(404).json({ error: 'No such activity' })
