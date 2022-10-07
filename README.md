@@ -32,7 +32,7 @@ Make sure you have nodemon installed first. To install nodemon globally, run **n
 ## Git commands
 
 * **git switch branchname** -  Better way of writing *git checkout branch*
-* **git pull** - Pull commits and changes of current branch from remote
+* **git pull --rebase** - Pull commits and changes of current branch from remote
 * **git pull origin branchname** - Pull commits and changes from another branch from remote
 
 ---
