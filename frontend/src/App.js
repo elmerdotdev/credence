@@ -6,6 +6,9 @@ import Calendar from './pages/Calendar/Calendar';
 import Connections from './pages/Connections/Connections';
 import Search from './pages/Search/Search';
 import Settings from './pages/Settings/Settings';
+import Notes from './pages/Notes/Notes';
+import Login from './pages/Login/Login';
+import Signup from './pages/Signup/Signup';
 
 import './App.css';
 
@@ -19,6 +22,9 @@ function App() {
                 <Route path="/connections" element={<Connections />} />
                 <Route path="/search" element={<Search />} />
                 <Route path="/settings" element={<Settings />} />
+                <Route path="/notes" element={<Notes />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/signup" element={<Signup />} />
             </Routes>
         </div>
         </BrowserRouter>
