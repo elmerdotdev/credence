@@ -1,3 +1,5 @@
+import { BrowserRouter, Routes, Route } from 'react-router-dom'; 
+
 // Pages
 import Dashboard from './pages/Dashboard/Dashboard';
 import Calendar from './pages/Calendar/Calendar';
@@ -9,13 +11,17 @@ import './App.css';
 
 function App() {
     return (
+        <BrowserRouter>
         <div className="App">
-            <Dashboard />
-            <Calendar />
-            <Connections />
-            <Search />
-            <Settings />
+            <Routes>
+                <Route path="/" element={<Dashboard />} />
+                <Route path="/calendar" element={<Calendar />} />
+                <Route path="/connections" element={<Connections />} />
+                <Route path="/search" element={<Search />} />
+                <Route path="/settings" element={<Settings />} />
+            </Routes>
         </div>
+        </BrowserRouter>
     );
 }
 
