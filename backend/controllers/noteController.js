@@ -12,13 +12,14 @@ const getNotes = async (req, res) => {
 
 // Get a single note
 const getNote = async (req, res) => {
-    const { userid, id } = req.params
+    const { id, client_id } = req.params
 
     if (!mongoose.Types.ObjectId.isValid(id)) {
         return res.status(404).json({ error: 'No such note' })
     }
 
-    const note = await Note.findOne({ user_id: userid, _id:id })
+    // const note = await Note.findById(id)
+    const note = await Note.find({user_id: id, client_id: client_id})
 
     if (!note) {
         return res.status(404).json({ error: 'No such note' })

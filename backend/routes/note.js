@@ -11,10 +11,10 @@ const {
 const router = express.Router()
 
 // Get all notes
-router.get('/:userid', getNotes)
+router.get('/:id', getNotes)
 
 // Get single note
-router.get('/:userid/:id', getNote)
+router.get('/:id/:client_id', getNote)
 
 // Post a new note
 router.post('/', createNote)

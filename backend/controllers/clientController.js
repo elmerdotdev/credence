@@ -18,7 +18,8 @@ const getClient = async (req, res) => {
         return res.status(404).json({ error: 'No such client' })
     }
 
-    const client = await Client.findOne({ user_id: userid, _id: id })
+    // const client = await Client.findById(id)
+    const client = await Client.find({user_id: id})
 
     if (!client) {
         return res.status(404).json({ error: 'No such client' })
