@@ -1,61 +1,65 @@
 import React from 'react'
 import { useState } from 'react';
 import {Routes, Route } from "react-router-dom"
+import { Link } from 'react-router-dom';
+import { useSignup } from './hooks/useSignup';
+import Confirm from './Confirm';
 
 const Signup = () => {
   
   //USER NAME
-  const [userName, setUserName] = useState(""); 
+  const [userName, setUserName] = useState(''); 
   //EMAIL
-  const [email, setEmail] = useState("");
-  //PADDWORD
-  const [password, setPassword] = useState("");
-  //PASSWORD hide or display
-  const [pwDisplay, setPwDisplay] = useState(false);
+  const [email, setEmail] = useState('');
+  //PASSWORD
+  const [password, setPassword] = useState('');
+  //PASSWORD hide or show
+  const [pwShow, setPwShow] = useState(true);
 
+  const {signup, error, isLoading} = useSignup()
+
+  //Submit action
+  const handleSubmit = async (e) => {
+    e.prevebtDefault()
+
+    await signup(userName, email, password)
+  }
   
   return (
     <>
     <section className="page-signup">Signup</section>
-    <form action="submit">
+    <h1>Sign in to your <img src="" alt="credence-logo" />account</h1>
+    
+    <form className="signup-form" onSubmit={handleSubmit}>
       <label  for="name">Name</label>
       <input  type="text" 
               for="name" 
               value={userName}
+              onChange={(e) => setUserName(e.target.value)}
       />
       
       <label  for="email" name="email" >Email</label>
-      <input  type="text" 
+      <input  type="email" 
               for="email"
               value={email}
+              onChange={(e) => setEmail(e.target.value)}
       />
       
       <label  for="password">Password</label>
-      <input  type={ pwDisplay ? "text": "password"} 
+      <input  type={ pwShow ? "text": "password"} 
               for="password" 
               value={password}
+              onChange={(e) => setPassword(e.target.value)}
       />
 
-      <button type="submit" >Sign Up</button>
+      <button type="submit" disabled={isLoading} ><Link to="/confirm" >Sign Up</Link></button>
+      {error && <div className='error'>{error}</div>}
       <div>OR</div>
       <button >Sign in with Google</button>
     </form>
     
     <Routes>
-      <Route path='/'>
-        <div className='page-signup-confirm-page'>
-          <p>We have sent a confirmation email to {email}. Please check your inbox to complete your registration.</p>
-          <img src="" alt="" />
-          <button>Next</button>
-        </div>
-      </Route>
-      <Route>
-        <div className='page-signup-complete-page'>
-          <p>Welcome to <img src="" alt="logo credence" /></p>
-          <p>Thank you for taking the time to sign up. Keep up the good work!</p>
-          <button>Next</button>
-        </div>
-      </Route>
+      <Route path='/confirm' element={<Confirm email={email}/>}/>
     </Routes>
     
     
