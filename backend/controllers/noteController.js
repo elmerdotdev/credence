@@ -10,15 +10,28 @@ const getNotes = async (req, res) => {
     res.status(200).json(notes)
 }
 
+// Get notes of client
+const getClientNotes = async (req, res) => {
+    const { userid, clientid } = req.params
+
+    const notes = await Note.find({ user_id: userid, client_id: clientid }).sort({createdAt: -1})
+
+    if (!notes) {
+        return res.status(404).json({ error: 'No notes' })
+    }
+
+    res.status(200).json(notes)
+}
+
 // Get a single note
 const getNote = async (req, res) => {
-    const { userid, id } = req.params
+    const { userid, clientid, id } = req.params
 
     if (!mongoose.Types.ObjectId.isValid(id)) {
         return res.status(404).json({ error: 'No such note' })
     }
 
-    const note = await Note.findOne({ user_id: userid, _id:id })
+    const note = await Note.findOne({ user_id: userid, client_id: clientid, _id:id })
 
     if (!note) {
         return res.status(404).json({ error: 'No such note' })
@@ -77,6 +90,7 @@ const updateNote = async (req, res) => {
 
 module.exports = {
     getNotes,
+    getClientNotes,
     getNote,
     createNote,
     deleteNote,
