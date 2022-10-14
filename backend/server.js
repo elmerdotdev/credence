@@ -28,7 +28,7 @@ app.use('/api/activities', activityRoutes)
 app.use('/api/clients', clientRoutes)
 app.use('/api/notes', noteRoutes)
 app.use('/api/users', userRoutes)
-app.get('/healthCheck', (req, res) => {
+app.get('/', (req, res) => {
     res.status(200).send('OK');
 });
 
