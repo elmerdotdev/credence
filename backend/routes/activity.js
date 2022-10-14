@@ -11,15 +11,15 @@ const {
 const router = express.Router()
 
 // Get all activities
-router.get('/', getActivities)
+router.get('/:userid', getActivities)
 
 // Get single activity
-router.get('/:id', getActivity)
+router.get('/:userid/:id', getActivity)
 
 // Post a new activity
 router.post('/', createActivity)
 
-// Delete a activity
+// Delete an activity
 router.delete('/:id', deleteActivity)
 
 // Update an activity (specific properties)
