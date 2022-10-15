@@ -12,8 +12,11 @@ import Modal from 'react-modal'
     bottom: 'auto',
     marginRight: '-50%',
     transform: 'translate(-50%, -50%',
+    borderRadius: '15px'
   },
 };
+
+Modal.setAppElement("body");
 
 const Notes = () => {
   const [clients, setClients] = useState(null)
@@ -66,22 +69,19 @@ const Notes = () => {
   }
 
  
-
-
-
   return (
     <div className="clients">
       {clients && clients.map((clients) => (
         <button key={clients._id} onClick={openModal}>{clients.firstname} {clients.lastname}</button>
       ))}
-      <div className="notes">
+      <div className="notes" id='notes'>
         <Modal
           isOpen={modalIsOpen}
           viewModal={viewModal} 
           closeModal={closeModal}
           style={customStyles} 
         >
-          <NoteDetails />
+          <NoteDetails close={closeModal}/>
         </Modal>
       </div>
     </div>
