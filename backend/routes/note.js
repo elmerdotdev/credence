@@ -2,6 +2,7 @@ const express = require('express')
 
 const {
     getNotes,
+    getClientNotes,
     getNote,
     createNote,
     deleteNote,
@@ -11,10 +12,13 @@ const {
 const router = express.Router()
 
 // Get all notes
-router.get('/', getNotes)
+router.get('/:userid', getNotes)
+
+// Get all notes of client
+router.get('/:userid/:clientid', getClientNotes)
 
 // Get single note
-router.get('/:id', getNote)
+router.get('/:userid/:clientid/:id', getNote)
 
 // Post a new note
 router.post('/', createNote)
