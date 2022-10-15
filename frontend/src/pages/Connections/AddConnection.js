@@ -1,47 +1,33 @@
-//完善表格： 添加client照片、职位、地点等
-
 import React from 'react';
-import { useState } from 'react';
+import { useState } from 'react'
 
-const AddConnection = ({ onAdd }) => {
+const AddConnection = ( { addClient }) => {
 
   const [firstname, setFirstname] = useState('');
   const [lastname, setLastname] = useState('');
-  const [position, setPosition] = useState('');
-  const [company, setCompany] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [active, setActive] = useState(false);
-  const [user_id, setUserId] = useState('633b6a81145c9d79405c54ea');
-//   const [modalIsOpen, setIsOpen] = React.useState(false);
+  const [user_id, setUserId] = useState('633e29fe0f75b027fc7434e8');
 
 
 const onSubmit = (e) => {
   e.preventDefault();
 
-  onAdd({ firstname, lastname, company, position, email, phone, active, user_id});
+  addClient({ firstname, lastname, email, phone, active, user_id});
 
   setFirstname('');
   setLastname('');
-  setPosition('');
-  setCompany('');
   setEmail('');
   setPhone('');
   setActive(false);
 };
 
-  //Close Modal 
-//   const closeModal = () => {
-//     setIsOpen(false);
-//   }
-
   return (
     <div>
-    <h3 className="modal-title">New Connection</h3>
-   
     <form className="add-form" onSubmit={onSubmit}>
       <div className="form-control">
-        <label>First Name / Nickname</label>
+        <label></label>
         <input
           type="text"
           placeholder="First name"
@@ -50,7 +36,7 @@ const onSubmit = (e) => {
         />
       </div>
       <div className="form-control">
-        <label>Last Name</label>
+        <label></label>
         <input
           type="text"
           placeholder="Last name"
@@ -58,9 +44,8 @@ const onSubmit = (e) => {
           onChange={(e) => setLastname(e.target.value)}
         />
       </div>
-      <h4>Contact Information</h4>
       <div className="form-control">
-        <label>Email</label>
+        <label></label>
         <input
           type="text"
           placeholder="Email"
@@ -69,31 +54,12 @@ const onSubmit = (e) => {
         />
       </div>
       <div className="form-control">
-        <label>Phone Number</label>
+        <label></label>
         <input
           type="text"
           placeholder="Phone"
           value={phone}
           onChange={(e) => setPhone(e.target.value)}
-        />
-      </div>
-      <h4>Work</h4>
-      <div className="form-control">
-        <label>Organization</label>
-        <input
-          type="text"
-          placeholder="Organization"
-          value={company}
-          onChange={(e) => setCompany(e.target.value)}
-        />
-      </div>
-      <div className="form-control">
-        <label>Position</label>
-        <input
-          type="text"
-          placeholder="Position"
-          value={position}
-          onChange={(e) => setPosition(e.target.value)}
         />
       </div>
       <div className="form-control form-control-check">
@@ -107,9 +73,10 @@ const onSubmit = (e) => {
         />
       </div>
 
-      <input type="submit" value="Save Connection" className="btn btn-block" />
+      <input type="submit" value="Save Client" className="btn btn-block" />
     </form>
   
+
 
     </div>
   )

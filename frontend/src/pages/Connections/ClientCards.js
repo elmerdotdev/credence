@@ -1,13 +1,9 @@
 import ClientCard from './ClientCard'
 
-const ClientCards = ({ connections, onToggle }) => {
+const ClientCards = ({ task }) => {
     return (
        
-        <>
-        {connections.map((connection) => (
-            <ClientCard key={connection._id} connection={connection} onToggle={onToggle(connection._id)} />
-        ))}
-        </>
+        <ClientCard  />
 
     )
 }

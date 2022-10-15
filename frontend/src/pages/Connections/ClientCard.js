@@ -1,13 +1,13 @@
-const ClientCard = ({ connection, onToggle }) => {
+const ClientCard = ({ firstname, lastname, phone, email, active }) => {
     return (
-      <div onClick = {() => onToggle(connection._id)}>
+      <div>
         <h3>
-        {connection.firstname}{' '}
-        {connection.lastname}{' '}
+        {firstname}{' '}
+        {lastname}{' '}
         </h3>
-        <p>{connection.position}</p>
-        <p>{connection.company}</p>
-        <p>{connection.active}</p>
+        <p>{phone}</p>
+        <p>{email}</p>
+        <p>{active}</p>
   
       </div>
     );
