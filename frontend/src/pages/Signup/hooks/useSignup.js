@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useAuthContext } from './useAuthContext' 
+import { useAuthContext } from './useAuthContext'
 
 export const useSignup = () => {
     const [ error, setError ] = useState(null)
@@ -22,7 +22,7 @@ export const useSignup = () => {
             setError(json.error)
         }
         if(res.ok){
-            //save the user to local storage
+            //save the user in local storage
             localStorage.setItem('user', JSON.stringify(json))
 
             //update the auth context

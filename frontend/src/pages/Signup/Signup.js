@@ -1,14 +1,16 @@
 import React from 'react'
 import { useState } from 'react';
 import {Routes, Route } from "react-router-dom"
-import { Link } from 'react-router-dom';
-import { useSignup } from './hooks/useSignup';
+import { Link } from 'react-router-dom'
+import { useSignup } from '../hooks/useSignup'
 import Confirm from './Confirm';
 
 const Signup = () => {
   
-  //USER NAME
-  const [userName, setUserName] = useState(''); 
+  //FIRST NAME
+  const [firstName, setFirstName] = useState(''); 
+  //LAST NAME
+  const [lastName, setLastName] = useState(''); 
   //EMAIL
   const [email, setEmail] = useState('');
   //PASSWORD
@@ -22,7 +24,7 @@ const Signup = () => {
   const handleSubmit = async (e) => {
     e.prevebtDefault()
 
-    await signup(userName, email, password)
+    await signup(firstName, lastName, email, password)
   }
   
   return (
@@ -31,23 +33,30 @@ const Signup = () => {
     <h1>Sign in to your <img src="" alt="credence-logo" />account</h1>
     
     <form className="signup-form" onSubmit={handleSubmit}>
-      <label  for="name">Name</label>
+      <label  htmlFor="firstname">First Name</label>
       <input  type="text" 
-              for="name" 
-              value={userName}
-              onChange={(e) => setUserName(e.target.value)}
+              htmlFor="firstname" 
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
       />
       
-      <label  for="email" name="email" >Email</label>
+      <label  htmlFor="lastname">Last Name</label>
+      <input  type="text" 
+              htmlFor="lastname" 
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
+      />
+
+      <label  htmlFor="email" name="email" >Email</label>
       <input  type="email" 
-              for="email"
+              htmlFor="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
       />
       
-      <label  for="password">Password</label>
+      <label  htmlFor="password">Password</label>
       <input  type={ pwShow ? "text": "password"} 
-              for="password" 
+              htmlFor="password" 
               value={password}
               onChange={(e) => setPassword(e.target.value)}
       />
