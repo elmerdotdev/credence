@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react';
 import {Routes, Route } from "react-router-dom"
 import { Link } from 'react-router-dom'
-import { useSignup } from '../hooks/useSignup'
+import { useSignup } from './hooks/useSignup'
 import Confirm from './Confirm';
 
 const Signup = () => {
