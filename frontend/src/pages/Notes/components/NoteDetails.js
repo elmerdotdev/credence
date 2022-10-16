@@ -1,7 +1,7 @@
 import React from 'react'
 import { useEffect, useState } from 'react'
 
-const NoteDetails = () => {
+const NoteDetails = ({close}) => {
     const [notes, setNotes] = useState(null)
 
     useEffect(() => {
@@ -30,8 +30,11 @@ const NoteDetails = () => {
 
     return (
         <div className="note-details">
-            {notes && notes.map((notes) => (
-                <p key={notes._id}>{notes.content}</p>
+            {notes && notes.map((notes, i) => (
+                <div key={i}>
+                <button onClick={() => close()}>Close</button>
+                <p>{notes.content}</p>
+                </div>
             ))}
         </div>
 
