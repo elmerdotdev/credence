@@ -1,13 +1,13 @@
-const ClientCard = ({ firstname, lastname, phone, email, active }) => {
+const ClientCard = ({ connection }) => {
     return (
       <div>
         <h3>
-        {firstname}{' '}
-        {lastname}{' '}
+        {connection.firstname}{' '}
+        {connection.lastname}{' '}
         </h3>
-        <p>{phone}</p>
-        <p>{email}</p>
-        <p>{active}</p>
+        <p>{connection.phone}</p>
+        <p>{connection.email}</p>
+        <p>{connection.active}</p>
   
       </div>
     );

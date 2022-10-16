@@ -1,11 +1,15 @@
-import ClientCard from './ClientCard'
+// import ClientCard from './ClientCard'
 
-const ClientCards = ({ task }) => {
-    return (
+// const ClientCards = ({ connections }) => {
+//     return (
        
-        <ClientCard  />
+//         <>
+//         {connections.map((connection) => (
+//             <ClientCard key={connection._id} connection={connection}  />
+//         ))}
+//         </>
 
-    )
-}
+//     )
+// }
 
-export default ClientCards
+// export default ClientCards

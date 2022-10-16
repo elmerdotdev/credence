@@ -1,7 +1,7 @@
 import React from 'react';
-import { useState } from 'react'
+import { useState } from 'react';
 
-const AddConnection = ( { addClient }) => {
+const AddConnection = () => {
 
   const [firstname, setFirstname] = useState('');
   const [lastname, setLastname] = useState('');
@@ -9,12 +9,26 @@ const AddConnection = ( { addClient }) => {
   const [phone, setPhone] = useState('');
   const [active, setActive] = useState(false);
   const [user_id, setUserId] = useState('633e29fe0f75b027fc7434e8');
+//   const [modalIsOpen, setIsOpen] = React.useState(false);
 
+
+  // Add Connection
+const addConnection = async (newClient) => {
+    const res = await fetch('http://localhost:5002/api/clients', {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify(newClient),
+    });
+  
+    const data = await res.json();
+  };
 
 const onSubmit = (e) => {
   e.preventDefault();
 
-  addClient({ firstname, lastname, email, phone, active, user_id});
+  addConnection({ firstname, lastname, email, phone, active, user_id});
 
   setFirstname('');
   setLastname('');
@@ -23,8 +37,15 @@ const onSubmit = (e) => {
   setActive(false);
 };
 
+  //Close Modal 
+//   const closeModal = () => {
+//     setIsOpen(false);
+//   }
+
   return (
     <div>
+    <h3 className="modal-title">New Connection</h3>
+   
     <form className="add-form" onSubmit={onSubmit}>
       <div className="form-control">
         <label></label>
@@ -76,7 +97,6 @@ const onSubmit = (e) => {
       <input type="submit" value="Save Client" className="btn btn-block" />
     </form>
   
-
 
     </div>
   )
