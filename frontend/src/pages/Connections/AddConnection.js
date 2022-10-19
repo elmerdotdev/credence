@@ -1,10 +1,14 @@
+//完善表格： 添加client照片、职位、地点等
+
 import React from 'react';
 import { useState } from 'react';
 
-const AddConnection = () => {
+const AddConnection = ({ onAdd }) => {
 
   const [firstname, setFirstname] = useState('');
   const [lastname, setLastname] = useState('');
+  const [title, setTitle] = useState('');
+  const [company, setCompany] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [active, setActive] = useState(false);
@@ -12,26 +16,15 @@ const AddConnection = () => {
 //   const [modalIsOpen, setIsOpen] = React.useState(false);
 
 
-  // Add Connection
-const addConnection = async (newClient) => {
-    const res = await fetch('http://localhost:5002/api/clients', {
-      method: 'POST',
-      headers: {
-        'Content-type': 'application/json',
-      },
-      body: JSON.stringify(newClient),
-    });
-  
-    const data = await res.json();
-  };
-
 const onSubmit = (e) => {
   e.preventDefault();
 
-  addConnection({ firstname, lastname, email, phone, active, user_id});
+  onAdd({ firstname, lastname, company, title, email, phone, active, user_id});
 
   setFirstname('');
   setLastname('');
+  setTitle('');
+  setCompany('');
   setEmail('');
   setPhone('');
   setActive(false);
@@ -72,6 +65,24 @@ const onSubmit = (e) => {
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+        />
+      </div>
+      <div className="form-control">
+        <label></label>
+        <input
+          type="text"
+          placeholder="Company"
+          value={company}
+          onChange={(e) => setCompany(e.target.value)}
+        />
+      </div>
+      <div className="form-control">
+        <label></label>
+        <input
+          type="text"
+          placeholder="Title"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
         />
       </div>
       <div className="form-control">

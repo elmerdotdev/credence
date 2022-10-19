@@ -1,4 +1,5 @@
 const ClientCard = ({ connection }) => {
+  console.log(connection.company)
     return (
       <div>
         <h3>
@@ -7,6 +8,8 @@ const ClientCard = ({ connection }) => {
         </h3>
         <p>{connection.phone}</p>
         <p>{connection.email}</p>
+        <p>{connection.title}</p>
+        <p>{connection.company}</p>
         <p>{connection.active}</p>
   
       </div>
