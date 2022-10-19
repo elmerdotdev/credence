@@ -1,7 +1,9 @@
 import React from 'react'
 import { useEffect, useState } from 'react'
+import AddNote from './AddNote'
 
-const NoteDetails = ({close}) => {
+
+const NoteDetails = ({close, onAdd}) => {
     const [notes, setNotes] = useState(null)
 
     useEffect(() => {
@@ -29,13 +31,21 @@ const NoteDetails = ({close}) => {
     // }
 
     return (
-        <div className="note-details">
-            {notes && notes.map((notes, i) => (
-                <div key={i}>
-                <button onClick={() => close()}>Close</button>
-                <p>{notes.content}</p>
-                </div>
-            ))}
+        <div>
+            <button onClick={() => close()}>Close</button>
+            <section className = "add-note">
+                <AddNote 
+                    onAdd = {onAdd}
+                />
+            </section>
+            <section className="note-details">
+                {notes && notes.map((notes, i) => (
+                    <div key={i}>
+                    <h2>{notes.title}</h2>
+                    <p>{notes.content}</p>
+                    </div>
+                ))}
+            </section>
         </div>
 
     )
