@@ -1,13 +1,17 @@
-// 显示所有clients
-// 用modal打开添加client表格 用cancel button关闭表格
-// insert一个新的client进database
+// 【✅】显示所有clients
+// 【✅】用modal打开添加client表格 用cancel button关闭表格
+// 【✅】insert一个新的client进database
+//  client card只显示姓名/title/organization
+//  点开每个client显示详情，包括姓名/title/organization/email/phone/active/industry
+//  用modal增加edit client功能
 
 import React from 'react';
 import { useState, useEffect } from 'react';
 import ClientCard from './ClientCard';
 import AddConnection from './AddConnection';
 // import Modal from './Modal';
-import Modal from 'react-modal'
+import Modal from 'react-modal';
+import { Link } from 'react-router-dom';
 
  //Modal Style
  const customStyles = {
@@ -60,37 +64,29 @@ const closeModal = () => {
 }
 
 // Add Connection
-// const addConnection = async (newClient) => {
-//   const res = await fetch('http://localhost:5002/api/clients', {
-//     method: 'POST',
-//     headers: {
-//       'Content-type': 'application/json',
-//     },
-//     body: JSON.stringify(newClient),
-//   });
+const addConnection = async (newClient) => {
+  const res = await fetch('http://localhost:5002/api/clients', {
+    method: 'POST',
+    headers: {
+      'Content-type': 'application/json',
+    },
+    body: JSON.stringify(newClient),
+  });
 
-//   const data = await res.json();
-//   setConnections([...connections, data]);
-// };
+  const data = await res.json();
+  setConnections([...connections, data]);
+};
 
-// const deleteConnection = async () => {
-
-//   const res = await fetch('http://localhost:5002/api/clients/6348a9d86a8ff1e1f8253d67', {
-//     method: 'DELETE'
-//   });
-
-// };
-
-// const[openModal,setOpenModal] = useState(false)
 
   return (
 
     <div className="clients">
       <section className="page-connections " >Connections</section>
       <button className="openModalBtn" onClick={openModal}>Add New Client</button>
-      {connections && connections.map((connection)=> (
-     <ClientCard key={connection._id} connection={connection}/>
-    ))}
+      {connections && connections.map((connection)=> ( 
+     <ClientCard  key={connection._id} connection={connection}/>
+    ))
+    }
 
       <Modal
         isOpen={modalIsOpen}
@@ -98,8 +94,10 @@ const closeModal = () => {
         closeModal={closeModal}
         style={customStyles} 
       >
-        <AddConnection />
-        <button onClick={closeModal}>cancel</button>
+        <AddConnection 
+        onAdd= {addConnection}
+        />
+        <button onClick={closeModal}>cancel</button> 
       </Modal>
   </div>
     // <div className="page-connections-background">
