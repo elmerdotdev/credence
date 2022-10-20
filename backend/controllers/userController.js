@@ -3,12 +3,12 @@ const User = require('../models/userModel')
 const jwt = require('jsonwebtoken')
 const { create } = require('../models/userModel')
 
-//signupUser とloginUser  で　functionを使えるようにする
-//payloadのためにIDをPassする
-//jwt.sign({_id}, '')ふたつ目のparametersecret tokenをpassingするけど、codeをGithubにあげるとバレてしまうので、env内のコードを入れる
-//user can login for 3days'3d' then will expired
-const createToken = (user_id) => {
-    return jwt.sign({user_id}, process.env.SECRET,{expiresIn: '3d'})
+// //signupUserとloginUserでfunctionを使えるようにする
+// //payloadのためにIDをPassする
+// //jwt.sign({_id}, '')ふたつ目のparametersecret tokenをpassingするけど、codeをGithubにあげるとバレてしまうので、env内のコードを入れる
+// //user can login for 3days'3d' then will expired
+const createToken = (_id) => {
+    return jwt.sign({_id}, process.env.SECRET,{expiresIn: '3d'})
 }
 
 
@@ -21,13 +21,13 @@ const loginUser = async (req, res) => {
         const user = await User.login(email, password)
 
         //create a token
-        const token = createToken(user.user_id)
+        const token = createToken(user._id)
 
 
         //tokenはencodepayload, encodeheader, encodesignitureを　一つでまとめている
         res.states(200).json({email, token})
     } catch (error) {
-        res.states(400).json({error:error.message})
+        res.states(404).json({error:error.message})
     }
 }
 
@@ -51,13 +51,13 @@ const signupUser = async (req, res) => {
         const user = await User.signup(firstname, lastname, email, password)
 
         //create a token
-        const token = createToken(user.user_id)
+        const token = createToken(user._id)
 
 
         //tokenはencodepayload, encodeheader, encodesignitureを　一つでまとめている
         res.states(200).json({email, token})
     } catch (error) {
-        res.states(400).json({error:error.message})
+        res.states(404).json({error:error.message})
     }
     
 }
