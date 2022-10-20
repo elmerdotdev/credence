@@ -17,7 +17,8 @@ export const authReducer = (state, action) => {
 export const AuthContextProvider = ({ children }) => {
     const [state, dispatch] = useReducer(authReducer, {
         user: null
-    })
+       
+    },  console.log("logout"))
 
     //Localstrageを最初のRender時にReactに確認させる・もしUserがあれば、JSONのものをJS仕様に変える。Userがlocal strageになければNullを返す
     //let React check local strage at first render. if User info exist, show dashboard.

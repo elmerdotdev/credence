@@ -1,6 +1,8 @@
 import React from 'react'
 import { useState } from 'react'
 import { useSignup } from './hooks/useSignup'
+import { Link } from 'react-router-dom'
+
 
 const Signup = () => {
   
@@ -13,18 +15,21 @@ const Signup = () => {
   //PASSWORD
   const [password, setPassword] = useState('')
   //PASSWORD hide or show
-  const [pwShow, setPwShow] = useState(true)
+  const [pwShow, setPwShow] = useState(false)
 
   const {signup, error, isLoading} = useSignup()
 
   //Submit action
   const handleSubmit = async (e) => {
-    e.prevebtDefault()
-
+    e.preventDefault()
+    console.log(firstName, lastName, email, password)
     await signup(firstName, lastName, email, password)
+    
   }
   
-  
+ 
+
+
   return (
     <>
       <section className="page-signup">
@@ -53,17 +58,22 @@ const Signup = () => {
           />
 
           <label  htmlFor="password">Password</label>
-          <input  type={ pwShow ? "text": "password"} 
+          <input  type={ pwShow ?  "text" : "password" } 
                   htmlFor="password" 
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
+                  
           />
+          
+          <button onClick={() =>setPwShow(true) }>See PW</button>
+          <button onClick={() =>setPwShow(false)}>Hide PW</button>
+
 
           {/* <button type="submit" disabled={isLoading} ><Link to="/confirm" >Sign Up</Link></button> */}
-          <button type="submit" disabled={isLoading} >Signup</button>
+          <button>Signup</button>
           {error && <div className='error'>{error}</div>}
         </form>
-
+       
         <div>OR</div>
         <button >Sign in with Google</button>
       </section>

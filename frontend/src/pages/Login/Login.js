@@ -19,6 +19,7 @@ const Login = () => {
     e.prevebtDefault()
 
     await login(email, password)
+    console.log(email, password)
   }
   
   return (
