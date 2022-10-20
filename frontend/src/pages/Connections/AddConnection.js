@@ -7,7 +7,7 @@ const AddConnection = ({ onAdd }) => {
 
   const [firstname, setFirstname] = useState('');
   const [lastname, setLastname] = useState('');
-  const [title, setTitle] = useState('');
+  const [position, setPosition] = useState('');
   const [company, setCompany] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
@@ -19,11 +19,11 @@ const AddConnection = ({ onAdd }) => {
 const onSubmit = (e) => {
   e.preventDefault();
 
-  onAdd({ firstname, lastname, company, title, email, phone, active, user_id});
+  onAdd({ firstname, lastname, company, position, email, phone, active, user_id});
 
   setFirstname('');
   setLastname('');
-  setTitle('');
+  setPosition('');
   setCompany('');
   setEmail('');
   setPhone('');
@@ -41,7 +41,7 @@ const onSubmit = (e) => {
    
     <form className="add-form" onSubmit={onSubmit}>
       <div className="form-control">
-        <label></label>
+        <label>First Name / Nickname</label>
         <input
           type="text"
           placeholder="First name"
@@ -50,7 +50,7 @@ const onSubmit = (e) => {
         />
       </div>
       <div className="form-control">
-        <label></label>
+        <label>Last Name</label>
         <input
           type="text"
           placeholder="Last name"
@@ -58,8 +58,9 @@ const onSubmit = (e) => {
           onChange={(e) => setLastname(e.target.value)}
         />
       </div>
+      <h4>Contact Information</h4>
       <div className="form-control">
-        <label></label>
+        <label>Email</label>
         <input
           type="text"
           placeholder="Email"
@@ -68,30 +69,31 @@ const onSubmit = (e) => {
         />
       </div>
       <div className="form-control">
-        <label></label>
-        <input
-          type="text"
-          placeholder="Company"
-          value={company}
-          onChange={(e) => setCompany(e.target.value)}
-        />
-      </div>
-      <div className="form-control">
-        <label></label>
-        <input
-          type="text"
-          placeholder="Title"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-        />
-      </div>
-      <div className="form-control">
-        <label></label>
+        <label>Phone Number</label>
         <input
           type="text"
           placeholder="Phone"
           value={phone}
           onChange={(e) => setPhone(e.target.value)}
+        />
+      </div>
+      <h4>Work</h4>
+      <div className="form-control">
+        <label>Organization</label>
+        <input
+          type="text"
+          placeholder="Organization"
+          value={company}
+          onChange={(e) => setCompany(e.target.value)}
+        />
+      </div>
+      <div className="form-control">
+        <label>Position</label>
+        <input
+          type="text"
+          placeholder="Position"
+          value={position}
+          onChange={(e) => setPosition(e.target.value)}
         />
       </div>
       <div className="form-control form-control-check">
@@ -105,7 +107,7 @@ const onSubmit = (e) => {
         />
       </div>
 
-      <input type="submit" value="Save Client" className="btn btn-block" />
+      <input type="submit" value="Save Connection" className="btn btn-block" />
     </form>
   
 

@@ -1,15 +1,15 @@
-// import ClientCard from './ClientCard'
+import ClientCard from './ClientCard'
 
-// const ClientCards = ({ connections }) => {
-//     return (
+const ClientCards = ({ connections, onToggle }) => {
+    return (
        
-//         <>
-//         {connections.map((connection) => (
-//             <ClientCard key={connection._id} connection={connection}  />
-//         ))}
-//         </>
+        <>
+        {connections.map((connection) => (
+            <ClientCard key={connection._id} connection={connection} onToggle={onToggle} />
+        ))}
+        </>
 
-//     )
-// }
+    )
+}
 
-// export default ClientCards
+export default ClientCards

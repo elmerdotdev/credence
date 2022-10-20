@@ -1,14 +1,12 @@
-const ClientCard = ({ connection }) => {
+const ClientCard = ({ connection, onToggle }) => {
   console.log(connection.company)
     return (
-      <div>
+      <div onClick = {() => onToggle(connection._id)}>
         <h3>
         {connection.firstname}{' '}
         {connection.lastname}{' '}
         </h3>
-        <p>{connection.phone}</p>
-        <p>{connection.email}</p>
-        <p>{connection.title}</p>
+        <p>{connection.position}</p>
         <p>{connection.company}</p>
         <p>{connection.active}</p>
   
