@@ -1,9 +1,10 @@
 // 【✅】显示所有clients
 // 【✅】用modal打开添加client表格 用cancel button关闭表格
 // 【✅】insert一个新的client进database
-//  client card只显示姓名/title/organization
+// 【✅】client card只显示姓名/title/organization
 //  点开每个client显示详情，包括姓名/title/organization/email/phone/active/industry
-//  用modal增加edit client功能
+//  在client details中用modal增加edit client功能
+//  edit client modal内按钮 - pin edct delete
 
 import React from 'react';
 import { useState, useEffect } from 'react';
@@ -11,7 +12,7 @@ import ClientCard from './ClientCard';
 import AddConnection from './AddConnection';
 // import Modal from './Modal';
 import Modal from 'react-modal';
-import { Link } from 'react-router-dom';
+import ClientCards from './ClientCards'
 
  //Modal Style
  const customStyles = {
@@ -25,11 +26,22 @@ import { Link } from 'react-router-dom';
   },
 };
 
+const ConnectionDetailsModal = props => {
+  const { isOpen } = props;
+  // If we only put the modal in the render tree when it's open, multiple modals
+  // will open in the expected order
+  return isOpen ? <Modal {...props} /> : null;
+};
+
 
 const Connections = () => {
 
   const [connections, setConnections] = useState([]);
   const [modalIsOpen, setIsOpen] = React.useState(false);
+  const [useConnectionDetailsModal, setConnectionDetailsModal] = React.useState(false);
+  const [showModal1, setShowModal1] = React.useState(false);
+  const [showModal2, setShowModal2] = React.useState(false);
+  const ModalComponent = useConnectionDetailsModal ? ConnectionDetailsModal : Modal;
   let subtitle;
 
   useEffect(() => {
@@ -83,10 +95,30 @@ const addConnection = async (newClient) => {
     <div className="clients">
       <section className="page-connections " >Connections</section>
       <button className="openModalBtn" onClick={openModal}>Add New Client</button>
-      {connections && connections.map((connection)=> ( 
-     <ClientCard  key={connection._id} connection={connection}/>
+      <button onClick = {() => setShowModal2(true)}>Open Modal 2</button>
+      <ModalComponent
+        isOpen={showModal2}
+        onRequestClose={() => setShowModal2(false)}
+      >
+        <button onClick={() => setShowModal2(false)}>X</button>
+        <button>Pin</button>
+        <button onClick={() => setShowModal1(true)}>Edit</button>
+        <button>Delete</button>
+       
+      </ModalComponent>
+      <ModalComponent
+        isOpen={showModal1}
+        onRequestClose={() => setShowModal1(false)}
+      >
+        <div>Modal 1</div>
+        <button onClick = {() => setShowModal1(false)}>Close</button>
+      </ModalComponent>
+      {/* {connections && connections.map((connection)=> ( 
+       <div key={connection._id} onClick = {() => setShowModal2(true)}>
+       <ClientCard  key={connection._id} connection={connection}/>
+       </div>
     ))
-    }
+    } */}
 
       <Modal
         isOpen={modalIsOpen}
@@ -95,10 +127,18 @@ const addConnection = async (newClient) => {
         style={customStyles} 
       >
         <AddConnection 
-        onAdd= {addConnection}
-        />
+        onAdd= {addConnection}  
+        />     
         <button onClick={closeModal}>cancel</button> 
       </Modal>
+      {connections.length > 0 ? (<ClientCards
+        connections={connections}  onToggle = {() => setShowModal2(true)}
+        />
+        ) : (
+          <p className="error-message">
+            <button>Add a new connection</button>
+          </p>
+        )}
   </div>
     // <div className="page-connections-background">
     //   <section className="page-connections " style={background_styles}>Connections</section>
