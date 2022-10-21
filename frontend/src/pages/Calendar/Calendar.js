@@ -52,10 +52,24 @@ const Calendar = () => {
     setMonthLastDay(moment(arg.end).subtract(1, "days").format("YYYY-MM-DD"))
   }
 
+  // Calendar update test
+  const updateCalendar = () => {
+    const novemberEvents = [
+      {id: 123, title: "Elmer Test 1", start: new Date("2022-10-02").toISOString(), end: new Date("2022-10-07").toISOString()},
+      {id: 456, title: "Elmer Test 2", start: new Date("2022-10-22").toISOString(), end: new Date("2022-10-23").toISOString()}
+    ]
+
+    console.log(novemberEvents)
+
+    setEvents(novemberEvents)
+  }
+
   return (
     <section className="page-calendar">
 
       <div className="page-calendar-view">
+        <button onClick={() => updateCalendar()}>Add Events</button>
+
       <FullCalendar
         plugins={[ dayGridPlugin, interactionPlugin ]}
         initialView="dayGridMonth"
