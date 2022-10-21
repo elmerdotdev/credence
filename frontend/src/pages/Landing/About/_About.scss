@@ -1,3 +1,13 @@
-.page-about {
+.page-calendar {
+    display: flex;
     font-size: 1rem;
+
+    &-view {
+        flex: 1;
+    }
+
+    &-widget {
+        flex-basis: 300px;
+        padding: 0 2rem;
+    }
 }
