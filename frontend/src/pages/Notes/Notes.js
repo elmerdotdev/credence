@@ -31,6 +31,12 @@ const Notes = () => {
       setClients(res)
     };
 
+    const getNotes = async () => {
+      const res = await fetchNotes();
+      setNotes(res)
+  }
+
+    getNotes();
     getClients();
   }, [])
 
@@ -43,6 +49,25 @@ const Notes = () => {
       return data
     }
   }
+
+    //Fetch All Notes
+    const fetchNotes = async () => {
+      const response = await fetch('http://localhost:5002/api/notes/633b6a81145c9d79405c54ea')
+      const data = await response.json()
+
+      if (response.ok) {
+          return data
+      }
+    }
+
+    //Fetch Note
+    const fetchNote= async (id) => {
+      const response = await fetch(`http://localhost:5002/api/notes/633b6a81145c9d79405c54ea/${notes.client_id}/${notes.id}`);
+      
+      const data = await response.json();
+
+      return data;
+    };
 
   //Fetch Client
   // const fetchClient = async (_id) => {
@@ -85,25 +110,45 @@ const addNote = async (note) => {
   setNotes([...notes, data])
 }
 
+// Edite Note
+const editNote = async(id, title, content) => {
+  const noteToEdit = await fetchNote(id);
+  const updNote = {
+    ...noteToEdit,
+    title: title,
+    content: content,
+  }
+
+  await fetch(`http://localhost:5002/api/notes/633b6a81145c9d79405c54ea/${notes.client_id}/${notes.id}`, {
+    method: 'PUT',
+    headers: {
+      'Content-type' : 'application/json'
+    },
+    body: JSON.stringify(updNote),
+  })
+}
+
  
   return (
     <div className="clients">
       {clients && clients.map((clients) => (
-        <button key={clients._id} onClick={openModal}>{clients.firstname} {clients.lastname}</button>
+      <button key={clients._id} onClick={openModal}>{clients.firstname} {clients.lastname}</button>
       ))}
-      <div className="notes" id='notes'>
-        <Modal
-          isOpen={modalIsOpen}
-          viewModal={viewModal} 
-          closeModal={closeModal}
-          style={customStyles} 
-        >
-          <NoteDetails 
-            close={closeModal}
-            onAdd={addNote} 
-          />
-        </Modal>
-      </div>
+    <div className="notes" id='notes'>
+      <Modal
+        isOpen={modalIsOpen}
+        viewModal={viewModal} 
+        closeModal={closeModal}
+        style={customStyles} 
+      >
+        <NoteDetails
+          close={closeModal}
+          onAdd={addNote}
+          notes = {notes}
+          onEdit = {editNote}
+        />
+      </Modal>
+    </div>
     </div>
   )
 }

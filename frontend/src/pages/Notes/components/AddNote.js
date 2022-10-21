@@ -37,7 +37,7 @@ const AddNote = ({ onAdd }) => {
             </div>
             <div className="note-form">
                 <label>Content</label>
-                <input 
+                <textarea
                     type="text"
                     placeholder = "Your Note Content Here"
                     value={content}
