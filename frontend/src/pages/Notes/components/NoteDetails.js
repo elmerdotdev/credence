@@ -1,24 +1,42 @@
 import React from 'react'
 import AddNote from './AddNote'
-import NoteList from './NoteList'
 import Modal from 'react-modal'
+import ViewNote from './ViewNote'
+import { Link } from 'react-router-dom'
 
  //Modal Style
-//  const customStyles = {
-//     content: {
-//       top: '50%',
-//       left: '50%',
-//       right: 'auto',
-//       bottom: 'auto',
-//       marginRight: '-50%',
-//       transform: 'translate(-50%, -50%',
-//       borderRadius: '15px'
-//     },
-//   };
+ const customStyles = {
+    content: {
+      top: '50%',
+      left: '50%',
+      right: 'auto',
+      bottom: 'auto',
+      marginRight: '-50%',
+      transform: 'translate(-50%, -50%',
+      borderRadius: '15px',
+      backgroundColor: 'rgba(255, 255, 255)'
+    },
+  };
 
-Modal.setAppElement("body");
 
-const NoteDetails = ({ notes, modalOpen, toggle, onAdd, viewNote, noteId }) => {
+const NoteDetails = ({ notes, close, onAdd, onEdit }) => {
+    let subtitle;
+    const [modalIsOpen, setIsOpen] = React.useState(false)
+
+     //Open Modal
+    const openModal = () => {
+        setIsOpen(true)
+    }
+
+    //Modal Style 
+    const viewModal = () => {
+        subtitle.style.color = '#f00';
+    }
+
+   //Close Modal 
+    const closeModal = () => {
+        setIsOpen(false);
+    }
    
     return (
         <div>
@@ -33,15 +51,32 @@ const NoteDetails = ({ notes, modalOpen, toggle, onAdd, viewNote, noteId }) => {
             </section>
             <section className="note-details" >
             {notes && notes.map((notes, i) => (
-                    <NoteList 
-                        key={i} 
-                        notes = {notes}
-                        viewNote = {viewNote}
-                        nodeId = {noteId}
-                    />
+                <Link to={`/notes/${notes.client_id}/${notes._id}`}
+                    onClick={openModal} 
+                    style={{cursor:'pointer'}}
+                >
+                        <div key={i}>
+                        <h2>{notes.title}</h2>
+                        <p>{notes.content}</p>
+                        <p>{notes.client_id}</p>
+                        </div>
+                    
+                </Link>
                 ))}
             </section>
-            </Modal>
+            <div className = "single-note">
+                <Modal
+                    isOpen={modalIsOpen}
+                    viewModal={viewModal} 
+                    closeModal={closeModal}
+                    style={customStyles} 
+                >
+                    <ViewNote 
+                        close={closeModal}
+                        onEdit={onEdit}
+                    />
+                </Modal>
+            </div>
         </div>
 
     )

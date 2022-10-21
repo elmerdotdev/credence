@@ -50,45 +50,29 @@ const Notes = () => {
       }
     }
 
-    //Fetch Note
-    const fetchNote= async (id) => {
-      const response = await fetch(`http://localhost:5002/api/notes/633b6a81145c9d79405c54ea/${notes.client_id}/${notes.id}`);
-      
-    //   const data = await response.json();
-
-    //   return data;
-    // };
-
+    //Fetch All Notes
+    const fetchNotes = async () => {
+      const response = await fetch('http://localhost:5002/api/notes/633b6a81145c9d79405c54ea')
+      const data = await response.json()
 
       if (response.ok) {
           return data
       }
     }
 
-    Fetch Note
+    //Fetch Note
     const fetchNote= async (id) => {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/notes/633b6a81145c9d79405c54ea/${notes.client_id}/${notes.id}`);
+      const response = await fetch(`http://localhost:5002/api/notes/633b6a81145c9d79405c54ea/${notes.client_id}/${notes.id}`);
       
       const data = await response.json();
 
       return data;
     };
 
-
-      if (response.ok) {
-          return data
-      }
-    }
-
-    //Fetch Note
-    // const fetchNote= async (id) => {
-    //   const response = await fetch(`${process.env.REACT_APP_API_URL}/api/notes/633b6a81145c9d79405c54ea/${notes.client_id}/${notes.id}`);
-      
-    //   const data = await response.json();
-
-    //   return data;
-    // };
-
+  //Fetch Client
+  // const fetchClient = async (_id) => {
+  //   const response = await fetch(`/api/clients/633b6a81145c9d79405c54ea/${_id}}`)
+  //   const data = await response.json()
 
   //Note Details Modal
   const toggleNoteDetailsModal = (status) => {
@@ -142,12 +126,13 @@ const addNote = async (note) => {
 const editNote = async(id, title, content) => {
   const noteToEdit = await fetchNote(id);
   const updNote = {
+    ...noteToEdit,
     title: title,
     content: content,
   }
 
   await fetch(`http://localhost:5002/api/notes/633b6a81145c9d79405c54ea/${notes.client_id}/${notes.id}`, {
-    method: 'PATCH',
+    method: 'PUT',
     headers: {
       'Content-type' : 'application/json'
     },
@@ -155,48 +140,28 @@ const editNote = async(id, title, content) => {
   })
 }
 
-//Delete Note
-const deleteNote = async (id) => {
-  await fetch(`${process.env.REACT_APP_API_URL}/api/notes/${singleNoteId}`, {
-    method: 'DELETE',
-  });
-
-  setViewNoteIsOpen(false)
-  setNotes(notes.filter((note) => note.id !== id ))
-  // setNotes(notes)
-}
-
  
   return (
     <section className="clients">
       {clients && clients.map((clients) => (
-      <button key={clients._id} onClick={() => toggleNoteDetailsModal(true)}>{clients.firstname} {clients.lastname}</button>
+      <button key={clients._id} onClick={openModal}>{clients.firstname} {clients.lastname}</button>
       ))}
-
-      <div className="notes">
+    <div className="notes" id='notes'>
+      <Modal
+        isOpen={modalIsOpen}
+        viewModal={viewModal} 
+        closeModal={closeModal}
+        style={customStyles} 
+      >
         <NoteDetails
-          modalOpen = {noteDetailsIsOpen}
-          toggle={toggleNoteDetailsModal}
-          viewNote = {viewNote}
+          close={closeModal}
+          onAdd={addNote}
           notes = {notes}
-          onAdd = {addNote}
-        />
-
-        <ViewNote
-          notes = {notes}
-          modalOpen = {viewNoteIsOpen}
-          toggle = {toggleViewNoteModal}
-          noteId = {singleNoteId}
-          clientId = {pullClientId}
-        />
-
-        <EditNote
-          modalOpen = {editNoteIsOpen}
-          openModal = {openEditNoteModal}
           onEdit = {editNote}
         />
-      </div>
-    </section>
+      </Modal>
+    </div>
+    </div>
   )
 }
 
