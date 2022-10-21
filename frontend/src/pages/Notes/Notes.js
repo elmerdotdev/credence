@@ -110,7 +110,7 @@ const addNote = async (note) => {
   setNotes([...notes, data])
 }
 
-// Edite Note
+// Edit Note
 const editNote = async(id, title, content) => {
   const noteToEdit = await fetchNote(id);
   const updNote = {
@@ -126,6 +126,15 @@ const editNote = async(id, title, content) => {
     },
     body: JSON.stringify(updNote),
   })
+}
+
+//Delete Note
+const deleteNote = async (id) => {
+  await fetch(`http://localhost:5002/api/notes/633b6a81145c9d79405c54ea/${notes.client_id}/${notes.id}`, {
+    method: 'DELETE',
+  });
+
+  setNotes(notes.filter((note) => note.id !==id ))
 }
 
  
@@ -146,6 +155,7 @@ const editNote = async(id, title, content) => {
           onAdd={addNote}
           notes = {notes}
           onEdit = {editNote}
+          onDelete = {deleteNote}
         />
       </Modal>
     </div>

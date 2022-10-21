@@ -2,7 +2,7 @@ import React from 'react'
 import { useEffect, useState } from 'react'
 import { Link, useParams, useNavigate } from 'react-router-dom'
 
-const ViewNote = () => {
+const ViewNote = ({ onEdit, onDelete }) => {
     const [note, setNote] = useState({})
 
     const params = useParams();
@@ -26,9 +26,9 @@ const ViewNote = () => {
                 <Link to={`/notes/edit/${params.client_id}/${params.id}`}>
                     <button>Edit</button>
                 </Link>
-                <button>Delete</button>
+                <button onClick={() => onDelete(params.id)} >Delete</button>
             </div>
-            <p>{note.title}</p>
+            <h2>{note.title}</h2>
             <p>{note.content}</p>
         </div>
     )
