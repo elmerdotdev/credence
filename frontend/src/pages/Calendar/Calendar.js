@@ -11,6 +11,8 @@ import EventsWidget from './components/EventsWidget'
 const Calendar = () => {
   const [events, setEvents] = useState([])
   const [currentMonth, setCurrentMonth] = useState('')
+  const [monthFirstDay, setMonthFirstDay] = useState()
+  const [monthLastDay, setMonthLastDay] = useState()
 
   const userID = '633b6a81145c9d79405c54ea'
 
@@ -45,8 +47,9 @@ const Calendar = () => {
 
   // Run when Calendar View loads or changes
   const handleCalendarLoad = (arg) => {
-    const month = moment(arg.start).format("MMMM")
-    setCurrentMonth(month)
+    setCurrentMonth(moment(arg.start).format("MMMM YYYY"))
+    setMonthFirstDay(moment(arg.start).format("YYYY-MM-DD"))
+    setMonthLastDay(moment(arg.end).subtract(1, "days").format("YYYY-MM-DD"))
   }
 
   return (
@@ -73,7 +76,7 @@ const Calendar = () => {
       />
       </div>
 
-      <EventsWidget currMonth={currentMonth} events={events} />
+      <EventsWidget events={events} currMonth={currentMonth} firstDay={monthFirstDay} lastDay={monthLastDay} />
 
     </section>
   )
