@@ -18,18 +18,16 @@ Modal.setAppElement('body');
 const AddEvent = (props) => {
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
-    const [start, setStart] = useState()
-    const [end, setEnd] = useState()
+    const [start, setStart] = useState('')
+    const [end, setEnd] = useState('')
     const [type, setType] = useState('')
     const [clients, setClients] = useState([])
-    const [clientId, setClientId] = useState()
+    const [clientId, setClientId] = useState('')
     
     useEffect(() => {
         const getClients = async () => {
             const res = await fetch(`http://localhost:5000/api/clients/${props.userId}`)
             const data = await res.json()
-
-            console.log(data)
 
             setClients(data)
         }
@@ -37,17 +35,35 @@ const AddEvent = (props) => {
         getClients()
     }, [ props.userId, props.modalOpen ])
 
-    // const fetchClients = async () => {
-    //     const res = await fetch(`http://localhost:5000/api/clients/${props.userId}`)
-    //     const data = await res.json()
-
-    //     return data
-    // }
-
     const submitForm = (event) => {
         event.preventDefault()
 
-        console.log(title, description, start, end, type, clientId)
+        const eventToAdd = {
+            title: title,
+            description: description || '',
+            start_date: start,
+            end_date: end,
+            type: type,
+            client_id: clientId || '',
+            user_id: props.userId
+        }
+
+        addEventToDB(eventToAdd)
+    }
+
+    const addEventToDB = async (event) => {
+        console.log(event)
+        const res = await fetch(`http://localhost:5000/api/activities`, {
+            method: 'POST',
+            headers: {
+                'Content-type': 'application/json'
+            },
+            body: JSON.stringify(event)
+        })
+
+        const data = await res.json()
+
+        props.onAddState(data)
     }
 
     return (
@@ -63,7 +79,7 @@ const AddEvent = (props) => {
                 <form className="addEventForm" onSubmit={submitForm}>
                     <div className="input-wrapper">
                         <label htmlFor="title">Event name</label>
-                        <input id="title" type="text" value={title} onChange={e => setTitle(e.target.value)} />
+                        <input id="title" type="text" value={title} onChange={e => setTitle(e.target.value)} required />
                     </div>
                     <div className="input-wrapper">
                         <label htmlFor="description">Description</label>
@@ -71,15 +87,15 @@ const AddEvent = (props) => {
                     </div>
                     <div className="input-wrapper">
                         <label htmlFor="startdate">Start</label>
-                        <Datetime initialValue={props.onDateClick} onChange={date => setStart(date)} />
+                        <Datetime initialValue={props.onDateClick} onChange={date => setStart(date)} required />
                     </div>
                     <div className="input-wrapper">
                         <label htmlFor="enddate">End</label>
-                        <Datetime value={end} onChange={date => setEnd(date)} />
+                        <Datetime value={end} onChange={date => setEnd(date)} required />
                     </div>
                     <div className="input-wrapper">
                         <label htmlFor="eventtype">Event Type</label>
-                        <select id="eventtype" defaultValue={type || ''} onChange={e => setType(e.target.value) || ''}>
+                        <select id="eventtype" required defaultValue={type || ''} onChange={e => setType(e.target.value) || ''}>
                             <option value=""></option>
                             <option value="meeting">Meeting</option>
                             <option value="birthday">Birthday</option>

@@ -5,6 +5,13 @@
     &-view {
         flex: 1;
         z-index: 0;
+
+        .fc-day:not(.fc-day-disabled) .fc-daygrid-day-frame {
+            &:hover {
+                background-color: #c5ffc2;
+                cursor: pointer;
+            }
+        }
     }
 
     &-widget {
