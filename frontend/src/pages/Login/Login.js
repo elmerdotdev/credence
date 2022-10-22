@@ -5,18 +5,18 @@ import { useLogout } from '../Signup/hooks/useLogout'
  
 
 const Login = () => {
-   //EMAIL
+   //Email
    const [email, setEmail] = useState('');
-   //PASSWORD
+   //Password
    const [password, setPassword] = useState('');
-   //PASSWORD hide or show
+   //Password display( hide or show )
    const [pwShow, setPwShow] = useState(true);
    //Error checker
    const {login, error, isLoading} = useLogin();
  
   //Login submit action
   const handleSubmit = async (e) => {
-    e.prevebtDefault()
+    e.preventDefault()
 
     await login(email, password)
     console.log(email, password)
@@ -31,7 +31,7 @@ const Login = () => {
   return (
     <>
     <section className="page-login">
-      <h1>Log in to your <img src="" alt="credence-logo" />account</h1>
+      <h1>Login to your <img src="" alt="credence-logo" />account</h1>
 
       <form className="login-form" onSubmit={handleSubmit}>
 
@@ -49,11 +49,12 @@ const Login = () => {
                 onChange={(e) => setPassword(e.target.value)}
         />
 
-        <button disabled={isLoading} type={"submit"}>Login</button>
+        <button type={"submit"}>Login</button>
           {error && <div className='error'>{error}</div>} 
       </form>
+      
       <div>OR</div>
-      <button >Log in with Google</button> 
+      <button >Login with Google</button> 
       
       <button onClick={handleLogout} type={"submit"}>logout</button>
     </section>
