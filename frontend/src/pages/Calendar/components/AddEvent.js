@@ -86,6 +86,7 @@ const AddEvent = (props) => {
         const data = await res.json()
 
         props.onAddState(data)
+        props.onToggle(false)
     }
 
     return (
