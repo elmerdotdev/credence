@@ -58,6 +58,16 @@ const ViewEvent = (props) => {
                                 )}
                             </td>
                         </tr>
+                        <tr>
+                            <th>Client</th>
+                            <td>{event.client}</td>
+                        </tr>
+                        <tr>
+                            <th colSpan="2">Description</th>
+                        </tr>
+                        <tr>
+                            <td colSpan="2">{event.description}</td>
+                        </tr>
                     </tbody>
                 </table>
             </Modal>

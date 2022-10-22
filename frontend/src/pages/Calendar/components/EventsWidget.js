@@ -42,36 +42,32 @@ const EventsWidget = (props) => {
                 <button>Add Your First Event</button>
             ) : (
                 <div className="monthlyEvents">
-                    {groupedEvents.map((day, i) => {
-                        return dayListItem(day, i)
-                    })}
+                    {groupedEvents.map((day, i) => (
+                        <div className="dateEvents" key={i}>
+                        <h3>{moment(day.date).format("DD")}</h3>
+                        {day.events.map((event, i) => (
+                            <div className="eventRow" key={i} onClick={() => props.onEventClick({event: {_def: {publicId: event._id}}})}>
+
+                                {moment(event.start_date).format("hh:mm") !== moment(event.end_date).format("hh:mm") ? (
+                                    <div className="datesStartEnd">
+                                        <strong>{moment(event.start_date).format("hh:mm A")}</strong>
+                                        <span>{moment(event.end_date).format("hh:mm A")}</span>
+                                    </div>
+                                ) : (
+                                    <div className="datesStartEnd">
+                                        <strong>{moment(event.start_date).format("hh:mm A")}</strong>
+                                    </div>
+                                )}
+
+                                <div>
+                                    <h4>{event.title}</h4>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                    ))}
                 </div>
             )}
-        </div>
-    )
-}
-
-const dayListItem = (day, i) => {
-    return (
-        <div className="dateEvents" key={i}>
-            <h3>{moment(day.date).format("DD")}</h3>
-            {day.events.map((event, i) => (
-                <div className="eventRow" key={i}>
-                    {moment(event.start_date).format("hh:mm") !== moment(event.end_date).format("hh:mm") ? (
-                        <div className="datesStartEnd">
-                            <strong>{moment(event.start_date).format("hh:mm A")}</strong>
-                            <span>{moment(event.end_date).format("hh:mm A")}</span>
-                        </div>
-                    ) : (
-                        <div className="datesStartEnd">
-                            <strong>{moment(event.start_date).format("hh:mm A")}</strong>
-                        </div>
-                    )}
-                    <div>
-                        <h4>{event.title}</h4>
-                    </div>
-                </div>
-            ))}
         </div>
     )
 }

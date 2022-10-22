@@ -31,6 +31,11 @@
             background: #E5E9EF;
             border-radius: 12px;
 
+            &:hover {
+                background: #B4D1FD;
+                cursor: pointer;
+            }
+
             .datesStartEnd {
                 display: flex;
                 flex-direction: column;
