@@ -20,6 +20,7 @@ Modal.setAppElement("body");
 
 const Notes = () => {
   const [clients, setClients] = useState(null)
+  const [notes, setNotes] = useState(null)
   let subtitle;
   const [modalIsOpen, setIsOpen] = React.useState(false)
   
@@ -53,6 +54,7 @@ const Notes = () => {
   //   }
   // }
 
+
   //Open Modal
   const openModal = () => {
     setIsOpen(true)
@@ -68,6 +70,21 @@ const Notes = () => {
     setIsOpen(false);
   }
 
+//Add Note
+const addNote = async (note) => {
+  const response = await fetch('http://localhost:5002/api/notes', {
+    method: 'POST',
+    headers: {
+      'Content-type':'application/json'
+    },
+    body: JSON.stringify(note)
+  })
+
+  const data = await response.json()
+
+  setNotes([...notes, data])
+}
+
  
   return (
     <div className="clients">
@@ -81,7 +98,10 @@ const Notes = () => {
           closeModal={closeModal}
           style={customStyles} 
         >
-          <NoteDetails close={closeModal}/>
+          <NoteDetails 
+            close={closeModal}
+            onAdd={addNote} 
+          />
         </Modal>
       </div>
     </div>
