@@ -51,7 +51,7 @@ const ViewEvent = (props) => {
                     </div>
                     <div>
                         <button>Edit</button>
-                        <button>Delete</button>
+                        <button onClick={() => props.onDelete(props.eventId)}>Delete</button>
                     </div>
                 </div>
                 <h2>{event.title}</h2>

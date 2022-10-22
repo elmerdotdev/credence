@@ -45,6 +45,16 @@ const Calendar = () => {
     return data
   }
 
+  // Delete activity/event
+  const deleteEvent = async (id) => {
+    await fetch(`http://localhost:5000/api/activities/${id}`, {
+      method: 'DELETE'
+    })
+
+    setEvents(events.filter(event => event._id !== id))
+    toggleViewModal(false)
+  }
+
   // Toggle Add modal
   const toggleAddModal = (status) => {
     setModalAddOpen(status)
@@ -110,7 +120,7 @@ const Calendar = () => {
 
       <AddEvent modalOpen={modalAddOpen} onToggle={toggleAddModal} onDateClick={addDate} onAddState={addToEventsState} userId={userID} />
 
-      <ViewEvent modalOpen={modalViewOpen} onToggle={toggleViewModal} userId={userID} eventId={viewEventId} />
+      <ViewEvent modalOpen={modalViewOpen} onToggle={toggleViewModal} onDelete={deleteEvent} userId={userID} eventId={viewEventId} />
 
     </section>
   )
