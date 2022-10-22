@@ -19,24 +19,21 @@ const Signup = () => {
 
   const {signup, error, isLoading} = useSignup()
 
-  //Submit action
+  //Signup submit action
   const handleSubmit = async (e) => {
     e.preventDefault()
-    console.log(firstName, lastName, email, password)
-    await signup(firstName, lastName, email, password)
-    
+
+    await signup(firstName, lastName, email, password)  
+    console.log(firstName, lastName, email, password)  
   }
   
- 
-
-
   return (
     <>
       <section className="page-signup">
         <h1>Sign up to your <img src="" alt="credence-logo" />account</h1>
 
         <form className="signup-form" onSubmit={handleSubmit}>
-          <label  htmlFor="firstname">First Name/Nick name</label>
+          <label  htmlFor="firstname">First name/Nick name</label>
           <input  type="text" 
                   htmlFor="firstname" 
                   value={firstName}
@@ -61,8 +58,7 @@ const Signup = () => {
           <input  type={ pwShow ?  "text" : "password" } 
                   htmlFor="password" 
                   value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  
+                  onChange={(e) => setPassword(e.target.value)}      
           />
           
           <button onClick={() =>setPwShow(true) }>See PW</button>
@@ -70,12 +66,12 @@ const Signup = () => {
 
 
           {/* <button type="submit" disabled={isLoading} ><Link to="/confirm" >Sign Up</Link></button> */}
-          <button>Signup</button>
+          <button type={"submit"}>Signup</button>
           {error && <div className='error'>{error}</div>}
         </form>
        
         <div>OR</div>
-        <button >Sign in with Google</button>
+        <button>Sign in with Google</button>
       </section>
     </>
   )
