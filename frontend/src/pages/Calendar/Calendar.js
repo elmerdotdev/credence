@@ -68,12 +68,9 @@ const Calendar = () => {
     setModalAddOpen(status)
   }
 
-  // Calendar update test
-  const updateCalendar = () => {
-    const newEvent = { id: 123, title: "Elmer Test 1", start: new Date("2022-10-02").toISOString(), end: new Date("2022-10-07").toISOString()}
-    
-    let calendarApi = calendarRef.current.getApi()
-    calendarApi.addEvent(newEvent)
+  // Add New Event to events state
+  const addToEventsState = (event) => {
+    setEvents(current => [...current, event])
   }
 
   return (
@@ -105,7 +102,7 @@ const Calendar = () => {
 
       <EventsWidget events={events} currMonth={currentMonth} firstDay={monthFirstDay} lastDay={monthLastDay} />
 
-      <AddEvent modalOpen={modalAddOpen} onToggle={toggleAddModal} onDateClick={addDate} userId={userID} />
+      <AddEvent modalOpen={modalAddOpen} onToggle={toggleAddModal} onDateClick={addDate} onAddState={addToEventsState} userId={userID} />
 
     </section>
   )
