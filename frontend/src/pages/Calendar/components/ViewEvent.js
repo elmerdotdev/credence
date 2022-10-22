@@ -37,7 +37,15 @@ const ViewEvent = (props) => {
                 style={customStyles}
                 contentLabel="View Event"
             >
-                <button onClick={() => props.onToggle(false)}>Close</button>
+                <div className="viewModalButtons">
+                    <div>
+                        <button onClick={() => props.onToggle(false)}>Close</button>
+                    </div>
+                    <div>
+                        <button>Edit</button>
+                        <button>Delete</button>
+                    </div>
+                </div>
                 <h2>{event.title}</h2>
                 <table className="viewModalTable">
                     <tbody>
