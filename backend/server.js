@@ -1,7 +1,9 @@
-require('dotenv').config({ path: '../.env' })
+require('dotenv').config()
 
 const express = require('express')
 const mongoose = require('mongoose')
+const cors = require('cors')
+const responseTime = require('response-time')
 
 const activityRoutes = require('./routes/activity')
 const clientRoutes = require('./routes/client')
@@ -13,6 +15,8 @@ const app = express()
 
 // Middleware
 app.use(express.json())
+app.use(cors())
+app.use(responseTime())
 
 app.use((req, res, next) => {
     console.log(req.path, req.method)
@@ -24,6 +28,9 @@ app.use('/api/activities', activityRoutes)
 app.use('/api/clients', clientRoutes)
 app.use('/api/notes', noteRoutes)
 app.use('/api/users', userRoutes)
+app.get('/', (req, res) => {
+    res.status(200).send('OK');
+});
 
 // Connect to db
 mongoose.connect(process.env.MONGO_URI)
