@@ -8,6 +8,7 @@ import "react-datetime/css/react-datetime.css";
 // Components
 import EventsWidget from './components/EventsWidget'
 import AddEvent from './components/AddEvent'
+import ViewEvent from './components/ViewEvent'
 
 const Calendar = () => {
   const [events, setEvents] = useState([])
@@ -15,6 +16,7 @@ const Calendar = () => {
   const [monthFirstDay, setMonthFirstDay] = useState()
   const [monthLastDay, setMonthLastDay] = useState()
   const [addDate, setAddDate] = useState()
+  const [viewEventId, setViewEventId] = useState('')
 
   // Modal states
   const [modalAddOpen, setModalAddOpen] = useState(false)
@@ -42,18 +44,27 @@ const Calendar = () => {
 
     return data
   }
+
+  // Toggle Add modal
+  const toggleAddModal = (status) => {
+    setModalAddOpen(status)
+  }
+
+  // Toggle View modal
+  const toggleViewModal = (status) => {
+    setModalViewOpen(status)
+  }
   
   // On Date Cell Click
   const handleDateClick = (element) => {
-    console.log(element)
-    setModalAddOpen(true)
+    toggleAddModal(true)
     setAddDate(element.date)
   }
 
   // On Event Click
   const handleEventClick = (element) => {
-    console.log(element)
-    console.log(element.event._def.title)
+    toggleViewModal(true)
+    setViewEventId(element.event._def.publicId)
   }
 
   // Run when Calendar View loads or changes
@@ -61,11 +72,6 @@ const Calendar = () => {
     setCurrentMonth(moment(arg.start).format("MMMM YYYY"))
     setMonthFirstDay(moment(arg.start).format("YYYY-MM-DD"))
     setMonthLastDay(moment(arg.end).subtract(1, "days").format("YYYY-MM-DD"))
-  }
-
-  // Toggle Add modal
-  const toggleAddModal = (status) => {
-    setModalAddOpen(status)
   }
 
   // Add New Event to events state
@@ -103,6 +109,8 @@ const Calendar = () => {
       <EventsWidget events={events} currMonth={currentMonth} firstDay={monthFirstDay} lastDay={monthLastDay} />
 
       <AddEvent modalOpen={modalAddOpen} onToggle={toggleAddModal} onDateClick={addDate} onAddState={addToEventsState} userId={userID} />
+
+      <ViewEvent modalOpen={modalViewOpen} onToggle={toggleViewModal} userId={userID} eventId={viewEventId} />
 
     </section>
   )

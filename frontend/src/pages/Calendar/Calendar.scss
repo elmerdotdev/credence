@@ -67,3 +67,17 @@
         grid-column: 1 / -1;
     }
 }
+
+.viewModalTable {
+    width: 500px;
+
+    th, td {
+        text-align: left;
+        vertical-align: top;
+    }
+
+    .viewEventDates {
+        display: flex;
+        flex-direction: column;
+    }
+}
