@@ -18,12 +18,18 @@ const Signup = () => {
   //Error checker
   const {signup, error, isLoading} = useSignup()
 
+
   //Signup submit action
   const handleSubmit = async (e) => {
     e.preventDefault()
 
     await signup(firstName, lastName, email, password)  
     console.log(firstName, lastName, email, password)  
+    
+    setFirstName('')
+    setLastName('')
+    setEmail('')
+    setPassword('')
   }
   
   return (
