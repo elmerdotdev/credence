@@ -17,10 +17,36 @@
     &-widget {
         flex-basis: 300px;
         padding: 0 2rem;
+
+        .eventRow {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: .75rem;
+            padding: .5rem;
+            background: #E5E9EF;
+            border-radius: 12px;
+
+            .datesStartEnd {
+                display: flex;
+                flex-direction: column;
+                flex-basis: 100px;
+                text-align: center;
+                border-right: 1px solid #bbb;
+            }
+
+            h4 {
+                margin: 0;
+            }
+        }
     }
 }
 
 .addEventForm {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 1rem;
+
     .input-wrapper {
         display: flex;
         flex-direction: column;
@@ -31,9 +57,9 @@
         select {
             border: 1px solid #000;
         }
+    }
 
-        input[type="submit"] {
-            margin-top: 1rem;
-        }
+    .submit-btn-wrapper {
+        grid-column: 1 / -1;
     }
 }
