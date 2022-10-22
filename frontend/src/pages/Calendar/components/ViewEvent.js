@@ -17,6 +17,7 @@ Modal.setAppElement('body');
 
 const ViewEvent = (props) => {
     const [event, setEvent] = useState({})
+    const [clientName, setClientName] = useState('')
 
     useEffect(() => {
         const fetchEvent = async () => {
@@ -24,6 +25,13 @@ const ViewEvent = (props) => {
             const data = await res.json()
 
             setEvent(data)
+
+            if (data.client_id) {
+                const resClient = await fetch(`http://localhost:5000/api/clients/${props.userId}/${data.client_id}`)
+                const dataClient = await resClient.json()
+
+                setClientName(`${dataClient.firstname || 'None'} ${dataClient.lastname || ''}`)
+            }
         }
 
         fetchEvent()
@@ -68,7 +76,7 @@ const ViewEvent = (props) => {
                         </tr>
                         <tr>
                             <th>Client</th>
-                            <td>{event.client}</td>
+                            <td>{clientName}</td>
                         </tr>
                         <tr>
                             <th colSpan="2">Description</th>
