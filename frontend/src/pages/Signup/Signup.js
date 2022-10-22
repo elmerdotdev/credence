@@ -1,22 +1,21 @@
 import React from 'react'
 import { useState } from 'react'
 import { useSignup } from './hooks/useSignup'
-import { Link } from 'react-router-dom'
 
 
 const Signup = () => {
   
-  //FIRST NAME
+  //First name
   const [firstName, setFirstName] = useState('')
-  //LAST NAME
+  //Last name
   const [lastName, setLastName] = useState('')
-  //EMAIL
+  //Email
   const [email, setEmail] = useState('')
-  //PASSWORD
+  //Password
   const [password, setPassword] = useState('')
-  //PASSWORD hide or show
+  //Password display( hide or show )
   const [pwShow, setPwShow] = useState(false)
-
+  //Error checker
   const {signup, error, isLoading} = useSignup()
 
   //Signup submit action
@@ -33,6 +32,7 @@ const Signup = () => {
         <h1>Sign up to your <img src="" alt="credence-logo" />account</h1>
 
         <form className="signup-form" onSubmit={handleSubmit}>
+          
           <label  htmlFor="firstname">First name/Nick name</label>
           <input  type="text" 
                   htmlFor="firstname" 
@@ -61,11 +61,9 @@ const Signup = () => {
                   onChange={(e) => setPassword(e.target.value)}      
           />
           
-          <button onClick={() =>setPwShow(true) }>See PW</button>
-          <button onClick={() =>setPwShow(false)}>Hide PW</button>
+          {/* <button onClick={() =>setPwShow(true) }>See PW</button>
+          <button onClick={() =>setPwShow(false)}>Hide PW</button> */}
 
-
-          {/* <button type="submit" disabled={isLoading} ><Link to="/confirm" >Sign Up</Link></button> */}
           <button type={"submit"}>Signup</button>
           {error && <div className='error'>{error}</div>}
         </form>

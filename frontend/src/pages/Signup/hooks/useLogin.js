@@ -10,7 +10,7 @@ export const useLogin = () => {
         setIsLoading(true)
         setError(null)
 
-        const res = await fetch('http://localhost:5000/api/users/login', {
+        const res = await fetch('http://localhost:5000/api/users/login',{
             method:'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({email, password})
@@ -22,7 +22,7 @@ export const useLogin = () => {
             setError(json.error)
         }
         if(res.ok){
-            //save the user to local storage
+            //save login user to local storage
             localStorage.setItem('user', JSON.stringify(json))
 
             //update the auth context

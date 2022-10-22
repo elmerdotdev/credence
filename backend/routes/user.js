@@ -12,10 +12,10 @@ const router = express.Router()
 // Get single user
 router.get('/:id', getUser)
 
-// Post login user
+// Post login user (login)
 router.post('/login', loginUser)
 
-// Post a new userss
+// Post a new userss (Signin)
 router.post('/register', createUser)
 
 // Update a user (specific properties)

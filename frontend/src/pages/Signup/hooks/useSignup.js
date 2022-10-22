@@ -22,7 +22,7 @@ export const useSignup = () => {
             setError(json.error)
         }
         if(res.ok){
-            //save the user to local storage
+            //save signup user to local storage with json format
             localStorage.setItem('user', JSON.stringify(json))
 
             //update the auth context
