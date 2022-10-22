@@ -23,6 +23,12 @@ const AddEvent = (props) => {
     const [type, setType] = useState('')
     const [clients, setClients] = useState([])
     const [clientId, setClientId] = useState('')
+
+    const alertMsgs = {
+        invalid: "Enter a valid start/end date",
+        pastDate: "Start date must not be in the past",
+        futureDate: "End date must be after start date"
+    }
     
     useEffect(() => {
         const getClients = async () => {
@@ -33,10 +39,26 @@ const AddEvent = (props) => {
         }
 
         getClients()
-    }, [ props.userId, props.modalOpen ])
+        setStart(props.onDateClick)
+    }, [ props.userId, props.modalOpen, props.onDateClick ])
 
-    const submitForm = (event) => {
-        event.preventDefault()
+    const submitForm = (e) => {
+        e.preventDefault()
+
+        if (!start || !end) {
+            alert(alertMsgs.invalid)
+            return false
+        }
+
+        if (start < new Date()) {
+            alert(alertMsgs.pastDate)
+            return false
+        }
+
+        if (end < start) {
+            alert(alertMsgs.futureDate)
+            return false
+        }
 
         const eventToAdd = {
             title: title,
@@ -77,40 +99,44 @@ const AddEvent = (props) => {
                 <button onClick={() => props.onToggle(false)}>Close</button>
                 <h2>Add Event</h2>
                 <form className="addEventForm" onSubmit={submitForm}>
-                    <div className="input-wrapper">
-                        <label htmlFor="title">Event name</label>
-                        <input id="title" type="text" value={title} onChange={e => setTitle(e.target.value)} required />
+                    <div className="column">
+                        <div className="input-wrapper">
+                            <label htmlFor="title">Event name</label>
+                            <input id="title" type="text" value={title} onChange={e => setTitle(e.target.value)} required />
+                        </div>
+                        <div className="input-wrapper">
+                            <label htmlFor="description">Description</label>
+                            <textarea id="description" cols="30" rows="15" value={description} onChange={e => setDescription(e.target.value)} />
+                        </div>
                     </div>
-                    <div className="input-wrapper">
-                        <label htmlFor="description">Description</label>
-                        <textarea id="description" cols="30" rows="10" value={description} onChange={e => setDescription(e.target.value)} />
+                    <div className="column">
+                        <div className="input-wrapper">
+                            <label htmlFor="startdate">Start</label>
+                            <Datetime initialValue={props.onDateClick || start} onChange={date => setStart(date)} />
+                        </div>
+                        <div className="input-wrapper">
+                            <label htmlFor="enddate">End</label>
+                            <Datetime value={end} onChange={date => setEnd(date)} />
+                        </div>
+                        <div className="input-wrapper">
+                            <label htmlFor="eventtype">Event Type</label>
+                            <select id="eventtype" required defaultValue={type || ''} onChange={e => setType(e.target.value) || ''}>
+                                <option value=""></option>
+                                <option value="meeting">Meeting</option>
+                                <option value="birthday">Birthday</option>
+                            </select>
+                        </div>
+                        <div className="input-wrapper">
+                            <label htmlFor="clientlist">Client</label>
+                            <select id="clientlist" value={clientId || ''} onChange={e => setClientId(e.target.value) || ''}>
+                                <option value=""></option>
+                                {clients.map((client, i) => (
+                                    <option key={i} value={client._id}>{client.firstname} {client.lastname}</option>
+                                ))}
+                            </select>
+                        </div>
                     </div>
-                    <div className="input-wrapper">
-                        <label htmlFor="startdate">Start</label>
-                        <Datetime initialValue={props.onDateClick} onChange={date => setStart(date)} required />
-                    </div>
-                    <div className="input-wrapper">
-                        <label htmlFor="enddate">End</label>
-                        <Datetime value={end} onChange={date => setEnd(date)} required />
-                    </div>
-                    <div className="input-wrapper">
-                        <label htmlFor="eventtype">Event Type</label>
-                        <select id="eventtype" required defaultValue={type || ''} onChange={e => setType(e.target.value) || ''}>
-                            <option value=""></option>
-                            <option value="meeting">Meeting</option>
-                            <option value="birthday">Birthday</option>
-                        </select>
-                    </div>
-                    <div className="input-wrapper">
-                        <label htmlFor="clientlist">Client</label>
-                        <select id="clientlist" value={clientId || ''} onChange={e => setClientId(e.target.value) || ''}>
-                            <option value=""></option>
-                            {clients.map((client, i) => (
-                                <option key={i} value={client._id}>{client.firstname} {client.lastname}</option>
-                            ))}
-                        </select>
-                    </div>
-                    <div className="input-wrapper">
+                    <div className="input-wrapper submit-btn-wrapper">
                         <input type="submit" value="Add New Event" />
                     </div>
                 </form>
