@@ -14,12 +14,16 @@ const Login = () => {
    //Error checker
    const {login, error, isLoading} = useLogin();
  
+
   //Login submit action
   const handleSubmit = async (e) => {
     e.preventDefault()
 
     await login(email, password)
     console.log(email, password)
+
+    setEmail('')
+    setPassword('')
   }
   
   //Logout submit action
@@ -50,7 +54,7 @@ const Login = () => {
         />
 
         <button type={"submit"}>Login</button>
-          {error && <div className='error'>{error}</div>} 
+        {error && <div className='error'>{error}</div>} 
       </form>
       
       <div>OR</div>
