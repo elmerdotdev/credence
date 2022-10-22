@@ -10,19 +10,17 @@ export const authReducer = (state, action) => {
             return { user: null }
         default:
             return state
-
     }
 }
 
 export const AuthContextProvider = ({ children }) => {
     const [state, dispatch] = useReducer(authReducer, {
-        user: null
-       
-    },  console.log("logout"))
+        user: null  
+    })
 
     //Localstrageを最初のRender時にReactに確認させる・もしUserがあれば、JSONのものをJS仕様に変える。Userがlocal strageになければNullを返す
     //let React check local strage at first render. if User info exist, show dashboard.
-    //if use is not exist into localstrage, return Null.
+    //if user is not exist into localstrage, return Null.
     useEffect(() => {
         const user = JSON.parse(localStorage.getItem('user'))
 
@@ -30,7 +28,7 @@ export const AuthContextProvider = ({ children }) => {
             dispatch({ type: 'LOGIN', payload: user })
         }
     },[])
-    console.log('AuthContext state: ', state )
+    console.log('AuthContext state:', state )
 
     return (
         <AuthContext.Provider value={{...state, dispatch}}>

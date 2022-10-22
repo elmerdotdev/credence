@@ -1,20 +1,20 @@
 import React from 'react'
 import { useState } from 'react';
 import { useLogin } from '../Signup/hooks/useLogin';
+import { useLogout } from '../Signup/hooks/useLogout' 
  
 
 const Login = () => {
-  
    //EMAIL
    const [email, setEmail] = useState('');
    //PASSWORD
    const [password, setPassword] = useState('');
-   // //PASSWORD hide or show
+   //PASSWORD hide or show
    const [pwShow, setPwShow] = useState(true);
    //Error checker
    const {login, error, isLoading} = useLogin();
  
-  //Submit action
+  //Login submit action
   const handleSubmit = async (e) => {
     e.prevebtDefault()
 
@@ -22,33 +22,41 @@ const Login = () => {
     console.log(email, password)
   }
   
+  //Logout submit action
+  const { logout } = useLogout()
+  const handleLogout = () => {
+      logout()
+  }
+
   return (
     <>
-    <section className="page-login">Login</section>
-    <h1>Log in to your <img src="" alt="credence-logo" />account</h1>
-    
-    <form className="login-form" onSubmit={handleSubmit}>
-     
-      <label  htmlFor="email" name="email" >Email</label>
-      <input  type="email" 
-              htmlFor="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-      />
-      
-      <label  htmlFor="password">Password</label>
-      <input  type={ pwShow ? "text": "password"} 
-              htmlFor="password" 
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-      />
+    <section className="page-login">
+      <h1>Log in to your <img src="" alt="credence-logo" />account</h1>
 
-      <button disabled={isLoading} type="submit"  >Login</button>
-        {error && <div className='error'>{error}</div>} 
+      <form className="login-form" onSubmit={handleSubmit}>
+
+        <label  htmlFor="email" name="email" >Email</label>
+        <input  type="email" 
+                htmlFor="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+        />
+
+        <label  htmlFor="password">Password</label>
+        <input  type={ pwShow ? "text": "password"} 
+                htmlFor="password" 
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+        />
+
+        <button disabled={isLoading} type={"submit"}>Login</button>
+          {error && <div className='error'>{error}</div>} 
+      </form>
       <div>OR</div>
       <button >Log in with Google</button> 
-    </form>
-
+      
+      <button onClick={handleLogout} type={"submit"}>logout</button>
+    </section>
     </>
   )
 }
