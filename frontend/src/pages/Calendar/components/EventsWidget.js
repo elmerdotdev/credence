@@ -42,9 +42,6 @@ const EventsWidget = (props) => {
                 <button>Add Your First Event</button>
             ) : (
                 <div className="monthlyEvents">
-                    {/* {events.map(event => {
-                        return eventListItem(event)
-                    })} */}
                     {groupedEvents.map((day, i) => {
                         return dayListItem(day, i)
                     })}
@@ -75,9 +72,6 @@ const dayListItem = (day, i) => {
                     </div>
                 </div>
             ))}
-            {/* <div>{event.title}</div>
-            <div>Start: {moment(event.start_date).format("hh:mm A")}</div>
-            <div>End: {moment(event.end_date).format("hh:mm A")}</div> */}
         </div>
     )
 }
