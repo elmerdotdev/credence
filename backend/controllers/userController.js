@@ -59,19 +59,8 @@ const loginUser = async (req, res) => {
             res.status(404).json({error:error.message})
         }
     }
-
-    // const {email, password} = req.body
-    
-    // try {
-    //     const user = await User.login(email, password)
-
-    //     //create a token
-    //     const token = createToken(user._id)
-    //     res.states(200).json({email, token})
-    // } catch (error) {
-    //     res.states(404).json({error:error.message})
-    // }
 }
+//200 ok/ 201 create success/400 bad request error/ 403 forbitten/ 404 not found
 
 // Create new user
 const createUser = async (req, res) => {
@@ -81,19 +70,16 @@ const createUser = async (req, res) => {
     const user = await User.create({ firstname, lastname, email, password:hash, photo, lastLoggedIn })
     if(user) {
         res.status(201).json({
-            id: user._id
+            _id: user._id,
+            firstname: user.firstname,
+            lastname: user.lastname,
+            email: user.email,
+            photo: user.photo,
+            lastLoggedIn: user.lastLoggedIn
         })
     } else {
         res.status(400).json({ error: error.message })
     }
-    // try {
-    //     const user = await User.create({ firstname, lastname, email, password:hash, photo, lastLoggedIn })
-    //     res.status(201).json({
-    //         id: user._id
-    //     })
-    // } catch (error) {
-    //     res.status(400).json({ error: error.message })
-    // }
 }
 
 // Update a user
