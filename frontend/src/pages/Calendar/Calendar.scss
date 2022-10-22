@@ -19,8 +19,14 @@
         flex-direction: column;
         padding: 5px 0;
 
-        input[type="text"], textarea {
+        input[type="text"],
+        textarea,
+        select {
             border: 1px solid #000;
+        }
+
+        input[type="submit"] {
+            margin-top: 1rem;
         }
     }
 }
