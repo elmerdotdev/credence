@@ -1,3 +1,39 @@
 .page-calendar {
+    display: flex;
     font-size: 1rem;
+
+    &-view {
+        flex: 1;
+        z-index: 0;
+
+        .fc-day:not(.fc-day-disabled) .fc-daygrid-day-frame {
+            &:hover {
+                background-color: #c5ffc2;
+                cursor: pointer;
+            }
+        }
+    }
+
+    &-widget {
+        flex-basis: 300px;
+        padding: 0 2rem;
+    }
+}
+
+.addEventForm {
+    .input-wrapper {
+        display: flex;
+        flex-direction: column;
+        padding: 5px 0;
+
+        input[type="text"],
+        textarea,
+        select {
+            border: 1px solid #000;
+        }
+
+        input[type="submit"] {
+            margin-top: 1rem;
+        }
+    }
 }
