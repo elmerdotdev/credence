@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import moment from 'moment'
+import EventsWidgetRow from './EventsWidgetRow'
 
 const EventsWidget = (props) => {
     const [ events, setEvents ] = useState([])
@@ -31,8 +32,7 @@ const EventsWidget = (props) => {
         });
 
         setGroupedEvents(groupArrays)
-        console.log(groupArrays)
-    }, [ props.events, props.firstDay, props.lastDay ])
+    }, [ props.events, props.firstDay, props.lastDay])
 
     return (
         <div className="page-calendar-widget">
@@ -46,23 +46,7 @@ const EventsWidget = (props) => {
                         <div className="dateEvents" key={i}>
                         <h3>{moment(day.date).format("DD")}</h3>
                         {day.events.map((event, i) => (
-                            <div className="eventRow" key={i} onClick={() => props.onEventClick({event: {_def: {publicId: event._id}}})}>
-
-                                {moment(event.start_date).format("hh:mm") !== moment(event.end_date).format("hh:mm") ? (
-                                    <div className="datesStartEnd">
-                                        <strong>{moment(event.start_date).format("hh:mm A")}</strong>
-                                        <span>{moment(event.end_date).format("hh:mm A")}</span>
-                                    </div>
-                                ) : (
-                                    <div className="datesStartEnd">
-                                        <strong>{moment(event.start_date).format("hh:mm A")}</strong>
-                                    </div>
-                                )}
-
-                                <div>
-                                    <h4>{event.title}</h4>
-                                </div>
-                            </div>
+                            <EventsWidgetRow event={event} key={i} onEventClick={props.onEventClick} fetchClient={props.fetchClient} />
                         ))}
                     </div>
                     ))}

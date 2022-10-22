@@ -55,6 +55,14 @@ const Calendar = () => {
     toggleViewModal(false)
   }
 
+  // Get client
+  const fetchClient = async (id) => {
+    const res = await fetch(`http://localhost:5000/api/clients/${userID}/${id}`)
+    const data = await res.json()
+
+    return data
+  }
+
   // Toggle Add modal
   const toggleAddModal = (status) => {
     setModalAddOpen(status)
@@ -116,11 +124,11 @@ const Calendar = () => {
       />
       </div>
 
-      <EventsWidget events={events} currMonth={currentMonth} firstDay={monthFirstDay} lastDay={monthLastDay} onEventClick={handleEventClick} />
+      <EventsWidget events={events} currMonth={currentMonth} firstDay={monthFirstDay} lastDay={monthLastDay} onEventClick={handleEventClick} fetchClient={fetchClient} />
 
       <AddEvent modalOpen={modalAddOpen} onToggle={toggleAddModal} onDateClick={addDate} onAddState={addToEventsState} userId={userID} />
 
-      <ViewEvent modalOpen={modalViewOpen} onToggle={toggleViewModal} onDelete={deleteEvent} userId={userID} eventId={viewEventId} />
+      <ViewEvent modalOpen={modalViewOpen} onToggle={toggleViewModal} onDelete={deleteEvent} userId={userID} eventId={viewEventId} fetchClient={fetchClient} />
 
     </section>
   )
