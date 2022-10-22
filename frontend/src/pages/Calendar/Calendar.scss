@@ -4,10 +4,23 @@
 
     &-view {
         flex: 1;
+        z-index: 0;
     }
 
     &-widget {
         flex-basis: 300px;
         padding: 0 2rem;
+    }
+}
+
+.addEventForm {
+    .input-wrapper {
+        display: flex;
+        flex-direction: column;
+        padding: 5px 0;
+
+        input[type="text"], textarea {
+            border: 1px solid #000;
+        }
     }
 }

@@ -2,17 +2,26 @@ import React, { useState, useEffect } from 'react'
 import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import interactionPlugin from '@fullcalendar/interaction'
-import Modal from 'react-modal'
 import moment from 'moment'
+import "react-datetime/css/react-datetime.css";
 
 // Components
 import EventsWidget from './components/EventsWidget'
+import AddEvent from './components/AddEvent'
 
 const Calendar = () => {
   const [events, setEvents] = useState([])
   const [currentMonth, setCurrentMonth] = useState('')
   const [monthFirstDay, setMonthFirstDay] = useState()
   const [monthLastDay, setMonthLastDay] = useState()
+  const [addDate, setAddDate] = useState()
+
+  // Modal states
+  const [modalAddOpen, setModalAddOpen] = useState(false)
+  const [modalEditOpen, setModalEditOpen] = useState(false)
+  const [modalViewOpen, setModalViewOpen] = useState(false)
+
+  const calendarRef = React.useRef()
 
   const userID = '633b6a81145c9d79405c54ea'
 
@@ -37,6 +46,8 @@ const Calendar = () => {
   // On Date Cell Click
   const handleDateClick = (element) => {
     console.log(element)
+    setModalAddOpen(true)
+    setAddDate(element.date)
   }
 
   // On Event Click
@@ -52,25 +63,27 @@ const Calendar = () => {
     setMonthLastDay(moment(arg.end).subtract(1, "days").format("YYYY-MM-DD"))
   }
 
+  // Toggle Add modal
+  const toggleAddModal = (status) => {
+    setModalAddOpen(status)
+  }
+
   // Calendar update test
   const updateCalendar = () => {
-    const novemberEvents = [
-      {id: 123, title: "Elmer Test 1", start: new Date("2022-10-02").toISOString(), end: new Date("2022-10-07").toISOString()},
-      {id: 456, title: "Elmer Test 2", start: new Date("2022-10-22").toISOString(), end: new Date("2022-10-23").toISOString()}
-    ]
-
-    console.log(novemberEvents)
-
-    setEvents(novemberEvents)
+    const newEvent = { id: 123, title: "Elmer Test 1", start: new Date("2022-10-02").toISOString(), end: new Date("2022-10-07").toISOString()}
+    
+    let calendarApi = calendarRef.current.getApi()
+    calendarApi.addEvent(newEvent)
   }
 
   return (
     <section className="page-calendar">
 
       <div className="page-calendar-view">
-        <button onClick={() => updateCalendar()}>Add Events</button>
+        <button onClick={() => toggleAddModal(true)}>Add Event</button>
 
       <FullCalendar
+        ref={calendarRef}
         plugins={[ dayGridPlugin, interactionPlugin ]}
         initialView="dayGridMonth"
         events={
@@ -91,6 +104,8 @@ const Calendar = () => {
       </div>
 
       <EventsWidget events={events} currMonth={currentMonth} firstDay={monthFirstDay} lastDay={monthLastDay} />
+
+      <AddEvent modalOpen={modalAddOpen} onToggle={toggleAddModal} onDateClick={addDate} userId={userID} />
 
     </section>
   )
