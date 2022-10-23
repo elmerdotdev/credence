@@ -1,28 +1,18 @@
 import React from 'react'
 import { useEffect, useState } from 'react'
 import NoteDetails from './components/NoteDetails'
-import Modal from 'react-modal'
-
- //Modal Style
- const customStyles = {
-  content: {
-    top: '50%',
-    left: '50%',
-    right: 'auto',
-    bottom: 'auto',
-    marginRight: '-50%',
-    transform: 'translate(-50%, -50%',
-    borderRadius: '15px'
-  },
-};
-
-Modal.setAppElement("body");
+import ViewNote from './components/ViewNote'
+import EditNote from './components/EditNote'
 
 const Notes = () => {
   const [clients, setClients] = useState(null)
   const [notes, setNotes] = useState(null)
   let subtitle;
-  const [modalIsOpen, setIsOpen] = React.useState(false)
+  const [noteDetailsIsOpen, setNoteDetailsIsOpen] = useState(false)
+  const [viewNoteIsOpen, setViewNoteIsOpen] = useState(false)
+  const [editNoteIsOpen, setEditNoteIsOpen] = useState(false)
+  const [singleNoteId, setSingleNoteId] = useState('')
+  const [clientId, setClientId] = useState('')
   
 
   useEffect(() => {
@@ -69,30 +59,38 @@ const Notes = () => {
       return data;
     };
 
-  //Fetch Client
-  // const fetchClient = async (_id) => {
-  //   const response = await fetch(`/api/clients/633b6a81145c9d79405c54ea/${_id}}`)
-  //   const data = await response.json()
 
-  //   if (response.ok){
-  //     return data
-  //   }
-  // }
-
-
-  //Open Modal
-  const openModal = () => {
-    setIsOpen(true)
+  //Note Details Modal
+  const toggleNoteDetailsModal = (status) => {
+    setNoteDetailsIsOpen(status)
   }
+
+//View Single Note Modal
+  const toggleViewNoteModal = (status) => {
+    setViewNoteIsOpen(status)
+  }
+
+//Edit Note Modal
+  const openEditNoteModal = (status) => {
+    setEditNoteIsOpen(status)
+  }
+
+//View Single Note
+const viewNote = (id, client_id) => {
+  toggleViewNoteModal(true);
+  setSingleNoteId(id);
+  console.log(id)
+  pullClientId(client_id)
+}
+
+//Client ID
+const pullClientId = (client_id) => {
+  setClientId(client_id);
+}
 
   //Modal Style 
   const viewModal = () => {
     subtitle.style.color = '#f00';
-  }
-
-  //Close Modal 
-  const closeModal = () => {
-    setIsOpen(false);
   }
 
 //Add Note
@@ -111,16 +109,14 @@ const addNote = async (note) => {
 }
 
 // Edit Note
-const editNote = async(id, title, content) => {
-  const noteToEdit = await fetchNote(id);
+const editNote = async( title, content) => {
   const updNote = {
-    ...noteToEdit,
     title: title,
     content: content,
   }
 
   await fetch(`http://localhost:5002/api/notes/633b6a81145c9d79405c54ea/${notes.client_id}/${notes.id}`, {
-    method: 'PUT',
+    method: 'PATCH',
     headers: {
       'Content-type' : 'application/json'
     },
@@ -139,27 +135,36 @@ const deleteNote = async (id) => {
 
  
   return (
-    <div className="clients">
+    <section className="clients">
       {clients && clients.map((clients) => (
-      <button key={clients._id} onClick={openModal}>{clients.firstname} {clients.lastname}</button>
+      <button key={clients._id} onClick={() => toggleNoteDetailsModal(true)}>{clients.firstname} {clients.lastname}</button>
       ))}
-    <div className="notes" id='notes'>
-      <Modal
-        isOpen={modalIsOpen}
-        viewModal={viewModal} 
-        closeModal={closeModal}
-        style={customStyles} 
-      >
+
+      <div className="notes">
         <NoteDetails
-          close={closeModal}
-          onAdd={addNote}
+          modalOpen = {noteDetailsIsOpen}
+          toggle={toggleNoteDetailsModal}
+          viewNote = {viewNote}
           notes = {notes}
-          onEdit = {editNote}
-          onDelete = {deleteNote}
+          onAdd = {addNote}
         />
-      </Modal>
-    </div>
-    </div>
+
+        <ViewNote
+          notes = {notes}
+          modalOpen = {viewNoteIsOpen}
+          toggle = {toggleViewNoteModal}
+          noteId = {singleNoteId}
+          clientId = {pullClientId}
+        />
+
+        <EditNote
+          modalOpen = {editNoteIsOpen}
+          openModal = {openEditNoteModal}
+          onEdit = {editNote}
+          onDelte = {deleteNote}
+        />
+      </div>
+    </section>
   )
 }
 

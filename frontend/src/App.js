@@ -25,8 +25,6 @@ function App() {
                 <Route path="/search" element={<Search />} />
                 <Route path="/settings" element={<Settings />} />
                 <Route path="/notes" element={<Notes />} />
-                <Route path ="/notes/:client_id/:id" element={<ViewNote />} />
-                <Route path = "notes/edit/:client_id/:id" element={<EditNote />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/signup" element={<Signup />} />
             </Routes>
