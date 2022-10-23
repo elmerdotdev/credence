@@ -59,10 +59,6 @@ const Notes = () => {
       return data;
     };
 
-  //Fetch Client
-  // const fetchClient = async (_id) => {
-  //   const response = await fetch(`/api/clients/633b6a81145c9d79405c54ea/${_id}}`)
-  //   const data = await response.json()
 
       if (response.ok) {
           return data
@@ -131,13 +127,12 @@ const addNote = async (note) => {
 const editNote = async(id, title, content) => {
   const noteToEdit = await fetchNote(id);
   const updNote = {
-    ...noteToEdit,
     title: title,
     content: content,
   }
 
   await fetch(`http://localhost:5002/api/notes/633b6a81145c9d79405c54ea/${notes.client_id}/${notes.id}`, {
-    method: 'PUT',
+    method: 'PATCH',
     headers: {
       'Content-type' : 'application/json'
     },
@@ -149,24 +144,33 @@ const editNote = async(id, title, content) => {
   return (
     <section className="clients">
       {clients && clients.map((clients) => (
-      <button key={clients._id} onClick={openModal}>{clients.firstname} {clients.lastname}</button>
+      <button key={clients._id} onClick={() => toggleNoteDetailsModal(true)}>{clients.firstname} {clients.lastname}</button>
       ))}
-    <div className="notes" id='notes'>
-      <Modal
-        isOpen={modalIsOpen}
-        viewModal={viewModal} 
-        closeModal={closeModal}
-        style={customStyles} 
-      >
+
+      <div className="notes">
         <NoteDetails
-          close={closeModal}
-          onAdd={addNote}
+          modalOpen = {noteDetailsIsOpen}
+          toggle={toggleNoteDetailsModal}
+          viewNote = {viewNote}
           notes = {notes}
+          onAdd = {addNote}
+        />
+
+        <ViewNote
+          notes = {notes}
+          modalOpen = {viewNoteIsOpen}
+          toggle = {toggleViewNoteModal}
+          noteId = {singleNoteId}
+          clientId = {pullClientId}
+        />
+
+        <EditNote
+          modalOpen = {editNoteIsOpen}
+          openModal = {openEditNoteModal}
           onEdit = {editNote}
         />
-      </Modal>
-    </div>
-    </div>
+      </div>
+    </section>
   )
 }
 
