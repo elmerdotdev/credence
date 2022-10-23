@@ -29,6 +29,7 @@ function App() {
     return (
         <BrowserRouter>
         <div className="App">
+<<<<<<< HEAD
             <Header />
             <section className="container">
                 <aside>
@@ -63,6 +64,18 @@ function App() {
                     </Routes>
                 </div>
             </section>
+=======
+            <Routes>
+                <Route path="/" element={<Dashboard />} />
+                <Route path="/calendar" element={<Calendar />} />
+                <Route path="/connections" element={<Connections />} />
+                <Route path="/search" element={<Search />} />
+                <Route path="/settings" element={<Settings />} />
+                <Route path="/notes" element={<Notes />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/signup" element={<Signup />} />
+            </Routes>
+>>>>>>> 29a4359 (added modals for notes)
         </div>
         </BrowserRouter>
     );
