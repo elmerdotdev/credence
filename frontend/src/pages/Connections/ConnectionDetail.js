@@ -1,17 +1,16 @@
-import { useState, useEffect } from 'react';
 
 
-const ConnectionDetail = ({connection}) => {
 
-  useEffect(() => {
-    console.log(connection);
+const ConnectionDetail = ({connection, onEdit}) => {
 
-  }, []);
 
 
   return (
     <div>
       <div>
+      <button>Pin</button>
+      <button onClick={() => onEdit(connection)}>Edit</button>
+      <button>Delete</button>
         <h3>
         {connection && connection.firstname}{' '}
         {connection && connection.lastname}{' '}
