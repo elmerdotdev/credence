@@ -63,20 +63,19 @@ const Connections = () => {
 const updateConnectionDataState = async (connection_id) => {
   const connectionData = await fetchConnection(connection_id);
   setConnection(connectionData);
-  console.log(connectionData);
   setShowModal2(true);
 };
 
 // Fetch Connections
 const fetchConnections = async () => {
-  const res = await fetch('http://localhost:5002/api/clients/633e29fe0f75b027fc7434e8');
+  const res = await fetch('https://credence-server.onrender.com/api/clients/633b6a81145c9d79405c54ea');
   const data = await res.json();
   return data;
 };
 
 // Fetch Connection
 const fetchConnection = async (dllm) => {
-  const res = await fetch(`http://localhost:5002/api/clients/633e29fe0f75b027fc7434e8/${dllm}`);
+  const res = await fetch(`https://credence-server.onrender.com/api/clients/633b6a81145c9d79405c54ea/${dllm}`);
   const data = await res.json();
   return data;
 };
@@ -98,7 +97,7 @@ const closeModal = () => {
 
 // Add Connection
 const addConnection = async (newClient) => {
-  const res = await fetch('http://localhost:5002/api/clients', {
+  const res = await fetch('https://credence-server.onrender.com/api/clients', {
     method: 'POST',
     headers: {
       'Content-type': 'application/json',
@@ -111,13 +110,13 @@ const addConnection = async (newClient) => {
 };
 
  // Edit Connection
- const editConnection = async (_id) => {
-  const connectionToEdit = await fetchConnection(_id);
+ const editConnection = async (connection_id) => {
+  const connectionToEdit = await fetchConnection(connection_id);
   const updConnection = {
     ...connectionToEdit
   };
 
-  await fetch('http://localhost:5002/api/clients/633e29fe0f75b027fc7434e8/:6350631f4a8bf2d3a539368e', {
+  await fetch('https://credence-server.onrender.com/api/clients/633b6a81145c9d79405c54ea', {
     method: 'PUT',
     headers: {
       'Content-type': 'application/json',
