@@ -11,6 +11,9 @@ import Login from './pages/Login/Login';
 import Signup from './pages/Signup/Signup';
 
 import './App.css';
+import ConfirmSignup from './pages/Signup/ConfirmSignup';
+import SuccessSignup from './pages/Signup/SuccessSignup';
+import SelectPlan from './pages/Signup/SelectPlan';
 
 function App() {
     return (
@@ -25,6 +28,10 @@ function App() {
                 <Route path="/notes" element={<Notes />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/signup" element={<Signup />} />
+                <Route path="/confirmsignup" element={<ConfirmSignup />} />
+                <Route path="/successsignup" element={<SuccessSignup/>} />
+                <Route path="/selectplan" element={<SelectPlan />} />
+                
             </Routes>
         </div>
         </BrowserRouter>
