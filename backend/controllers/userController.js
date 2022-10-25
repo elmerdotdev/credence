@@ -2,6 +2,8 @@ const User = require('../models/userModel')
 const mongoose = require('mongoose')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
+const dotenv = require('dotenv')
+const { OAuth2Client } = require('google-auth-library')
 
 // Get a single user
 const getUser = async (req, res) => {
@@ -98,10 +100,26 @@ const updateUser = async (req, res) => {
     res.status(200).json(user)
 }
 
+//Google login user (Login)
+const googleLogin = async (req, res) => {
+   //これは多分server.jsに入れないといけないから確認すること
+    const user = new OAuth2Client(process.env.GOOGLE_LOGIN_ID)
+
+    const { token } = req.bodyconst 
+    const ticket = await user.verifyIdToken({
+        idToken: token,
+        audience: process.env.CLIENT_ID
+    })
+    const {name, email, picture } = ticket.getPayload()
+    
+    
+}
+
 module.exports = {
     // getUsers,
     getUser,
     loginUser,
+    googleLogin,
     createUser,
     // deleteUser,
     updateUser
