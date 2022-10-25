@@ -1,6 +1,8 @@
 import React from 'react'
-import { useState } from 'react';
-import { useLogin } from '../Signup/hooks/useLogin';
+import { useState } from 'react'
+import { Link } from 'react-router-dom'
+import GoogleLoginButton from '../../components/GoogleLoginButton'
+import { useLogin } from '../Signup/hooks/useLogin'
 import { useLogout } from '../Signup/hooks/useLogout' 
  
 
@@ -53,12 +55,16 @@ const Login = () => {
                 onChange={(e) => setPassword(e.target.value)}
         />
 
-        <button type={"submit"}>Login</button>
         {error && <div className='error'>{error}</div>} 
+        <Link to='/'><input type="submit" value="Login" className="submit-btn" /></Link>
+        
       </form>
       
+      <Link>Forgotten your password?</Link>
       <div>OR</div>
-      <button >Login with Google</button> 
+      <GoogleLoginButton/>
+
+      <p>Don't have an account? <Link to='/signup'>Sign up here</Link></p>
       
       <button onClick={handleLogout} type={"submit"}>logout</button>
     </section>

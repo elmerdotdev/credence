@@ -1,9 +1,8 @@
 import React from 'react'
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { useSignup } from './hooks/useSignup'
 import GoogleLoginButton from '../../components/GoogleLoginButton'
-
-
 
 
 const Signup = () => {
@@ -38,11 +37,11 @@ const Signup = () => {
   return (
     <>
       <section className="page-signup">
-        <h1>Sign up to your <img src="" alt="credence-logo" />account</h1>
+        <h1>Create <img src="" alt="credence-logo" />account</h1>
 
         <form className="signup-form" onSubmit={handleSubmit}>
           
-          <label  htmlFor="firstname">First name/Nick name</label>
+          <label  htmlFor="firstname">First Name / Nickname</label>
           <input  type="text" 
                   htmlFor="firstname" 
                   value={firstName}
@@ -72,9 +71,10 @@ const Signup = () => {
           
           {/* <button onClick={() =>setPwShow(true) }>See PW</button>
           <button onClick={() =>setPwShow(false)}>Hide PW</button> */}
-
-          <button type={"submit"}>Signup</button>
           {error && <div className='error'>{error}</div>}
+          {/* <Link to='/confirmsignup'><input type="submit" value="Sign Up" className="submit-btn" /></Link> */}
+      <input type="submit" value="Sign Up" className="submit-btn" />
+          
         </form>
        
         <div>OR</div>
