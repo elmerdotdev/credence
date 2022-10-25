@@ -1,6 +1,9 @@
 import React from 'react'
 import { useState } from 'react'
 import { useSignup } from './hooks/useSignup'
+import GoogleLoginButton from '../../components/GoogleLoginButton'
+
+
 
 
 const Signup = () => {
@@ -75,10 +78,32 @@ const Signup = () => {
         </form>
        
         <div>OR</div>
-        <button>Sign in with Google</button>
+        <GoogleLoginButton/>
       </section>
     </>
   )
 }
 
 export default Signup
+
+
+
+
+
+
+
+
+
+
+//===Signup====
+//passwordのHide and SeekのIconを入れて切り替え可能にする
+//ページをつなげてflowを作る
+//Google Loginの機能
+//confirmation emailの機能
+//set google console & google authentication
+//===Login====
+//Google Loginの機能
+//passwordのHide and SeekのIconを入れて切り替え可能にする
+//Login後dashboardへ繋げる
+//==Logout===
+//NavigationにLogoutのTagをつける
