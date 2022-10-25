@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-// import GoogleLoginButton from '../../components/GoogleLoginButton'
+import React from 'react'
+import { useState } from 'react'
+import { Link } from 'react-router-dom'
+import GoogleLoginButton from '../../components/GoogleLoginButton'
 import { useLogin } from '../Signup/hooks/useLogin'
 import { useLogout } from '../Signup/hooks/useLogout' 
 // import setLastLoggedIn from '../Signup/Signup'
@@ -81,21 +82,19 @@ const Login = () => {
           />
           <button onClick={togglePw} type="button">show password</button>
 
-          {error && <div className='error'>{error}</div>} 
+        {error && <div className='error'>{error}</div>} 
+        <Link to='/'><input type="submit" value="Login" className="submit-btn" /></Link>
+        
+      </form>
+      
+      <Link>Forgotten your password?</Link>
+      <div>OR</div>
+      <GoogleLoginButton/>
 
-          <input type="submit" value="Login" className="submit-login-btn" />
-        </form>
-
-        <span className="forget-pw-link">
-          <Link>Forgotten your password?</Link>
-        </span>
-        {/* <div>OR</div> */}
-        {/* <GoogleLoginButton/> */}
-
-        <p className="move-to-signup-link">Don't have an account? <Link to='/signup'>Sign up here</Link></p>
-
-        <button onClick={handleLogout} type={"submit"}>logout</button>
-      </section>
+      <p>Don't have an account? <Link to='/signup'>Sign up here</Link></p>
+      
+      <button onClick={handleLogout} type={"submit"}>logout</button>
+    </section>
     </>
   )
 }

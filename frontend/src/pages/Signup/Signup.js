@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react'
-import { useNavigate  } from 'react-router-dom'
+import React from 'react'
+import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { useSignup } from './hooks/useSignup'
-// import GoogleLoginButton from '../../components/GoogleLoginButton'
+import GoogleLoginButton from '../../components/GoogleLoginButton'
 
 
 const Signup = () => {
@@ -67,44 +68,48 @@ const Signup = () => {
   return (
     <>
       <section className="page-signup">
-        <h3>Create a<img src="" alt="credence-logo"  className='credence-logo'/>Account</h3>
+        <h1>Create <img src="" alt="credence-logo" />account</h1>
 
         <div className="grid-for-desktop">
           <img src="" alt="signup-img" className='signup-img'/>
           <div className="signup-form">
             <form className="signup-form" onSubmit={handleSubmit}>
           
-              <label  htmlFor="firstname">First Name / Nickname<span className="required-star">*</span></label>
-              <input  type="text"
-                      htmlFor="firstname"
-                      value={firstName}
-                      onChange={(e) => setFirstName(e.target.value)}
-              />
-              <label  htmlFor="lastname">Last Name</label>
-              <input  type="text"
-                      htmlFor="lastname"
-                      value={lastName}
-                      onChange={(e) => setLastName(e.target.value)}
-              />
-              <label  htmlFor="email" name="email" >Email<span className="required-star">*</span></label>
-              <input  type="email"
-                      htmlFor="email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-              />
-              <label  htmlFor="password">Password<span className="required-star">*</span></label>
-              <input  type={ pwShow ? "text" :"password"}
-                      htmlFor="password"
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-              />
-              <button onClick={togglePw} type="button">show password</button>
+          <label  htmlFor="firstname">First Name / Nickname</label>
+          <input  type="text" 
+                  htmlFor="firstname" 
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
+          />
+
+          <label  htmlFor="lastname">Last Name</label>
+          <input  type="text" 
+                  htmlFor="lastname" 
+                  value={lastName}
+                  onChange={(e) => setLastName(e.target.value)}
+          />
+
+          <label  htmlFor="email" name="email" >Email</label>
+          <input  type="email" 
+                  htmlFor="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+          />
+
+          <label  htmlFor="password">Password</label>
+          <input  type={ pwShow ?  "text" : "password" } 
+                  htmlFor="password" 
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}      
+          />
           
-              <button type="submit" className="submit-signup-btn">Sign Up</button>
-              {error && <div className='error'>{error}</div>}
-            </form>
-          </div>
-        </div>
+          {/* <button onClick={() =>setPwShow(true) }>See PW</button>
+          <button onClick={() =>setPwShow(false)}>Hide PW</button> */}
+          {error && <div className='error'>{error}</div>}
+          {/* <Link to='/confirmsignup'><input type="submit" value="Sign Up" className="submit-btn" /></Link> */}
+      <input type="submit" value="Sign Up" className="submit-btn" />
+          
+        </form>
        
         {/* <div>OR</div> */}
         {/* <GoogleLoginButton/> */}
