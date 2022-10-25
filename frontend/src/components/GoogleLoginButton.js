@@ -32,7 +32,7 @@ const GoogleLoginButton = () => {
     const handleLogin = async (googleData) => {
         console.log('Google login success',googleData)
 
-        const res = await fetch('http://localhost:5000/api/users/googlelogin', {
+        const res = await fetch('http://localhost:5002/api/users/googlelogin', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
