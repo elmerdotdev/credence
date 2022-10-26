@@ -20,7 +20,7 @@ router.post('/login', loginUser)
 router.post('/googlelogin', googleLogin)
 
 // Post a new userss (Signin)
-router.post('/register', createUser)
+router.post('/signup', createUser)
 
 // Update a user (specific properties)
 router.patch('/:id', updateUser)

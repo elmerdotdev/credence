@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useNavigate  } from 'react-router-dom'
 import { useSignup } from './hooks/useSignup'
 import GoogleLoginButton from '../../components/GoogleLoginButton'
 
@@ -22,6 +22,7 @@ const Signup = () => {
 
 
   //Signup submit action
+  const navigate = useNavigate()
   const handleSubmit = async (e) => {
     e.preventDefault()
 
@@ -32,6 +33,18 @@ const Signup = () => {
     setLastName('')
     setEmail('')
     setPassword('')
+
+    if (localStorage.getItem('user')){
+      console.log('Success Signup!')
+      navigate('/confirmsignup')
+    }else{
+      console.log(' no user into localstorage')
+    }
+  }
+
+  //Password Toggle
+  const togglePw = () => {
+    setPwShow(!pwShow)
   }
   
   return (
@@ -63,18 +76,15 @@ const Signup = () => {
           />
 
           <label  htmlFor="password">Password</label>
-          <input  type={ pwShow ?  "text" : "password" } 
+          <input  type={ pwShow ? "text" :"password"} 
                   htmlFor="password" 
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}      
           />
+          <button onClick={togglePw}>show password</button>
           
-          {/* <button onClick={() =>setPwShow(true) }>See PW</button>
-          <button onClick={() =>setPwShow(false)}>Hide PW</button> */}
+          <button type="submit" className="submit-signup-btn">Sign Up</button>
           {error && <div className='error'>{error}</div>}
-          {/* <Link to='/confirmsignup'><input type="submit" value="Sign Up" className="submit-btn" /></Link> */}
-      <input type="submit" value="Sign Up" className="submit-btn" />
-          
         </form>
        
         <div>OR</div>
@@ -96,14 +106,13 @@ export default Signup
 
 
 //===Signup====
-//passwordのHide and SeekのIconを入れて切り替え可能にする
-//ページをつなげてflowを作る
+
 //Google Loginの機能
 //confirmation emailの機能
 //set google console & google authentication
 //===Login====
 //Google Loginの機能
-//passwordのHide and SeekのIconを入れて切り替え可能にする
-//Login後dashboardへ繋げる
+
+
 //==Logout===
 //NavigationにLogoutのTagをつける
