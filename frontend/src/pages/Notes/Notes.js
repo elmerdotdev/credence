@@ -80,7 +80,7 @@ const viewNote = (id, client_id) => {
   toggleViewNoteModal(true);
   setSingleNoteId(id);
   console.log(id)
-  pullClientId(client_id)
+  pullClientId(client_id);
 }
 
 //Client ID
@@ -149,13 +149,16 @@ const deleteNote = async (id) => {
           onAdd = {addNote}
         />
 
+        {viewNoteIsOpen &&
         <ViewNote
           notes = {notes}
           modalOpen = {viewNoteIsOpen}
           toggle = {toggleViewNoteModal}
+          clientId = {clientId}
           noteId = {singleNoteId}
-          clientId = {pullClientId}
+          onEdit = {editNote}
         />
+        }
 
         <EditNote
           modalOpen = {editNoteIsOpen}

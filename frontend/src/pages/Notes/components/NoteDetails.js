@@ -18,7 +18,7 @@ import Modal from 'react-modal'
 
 Modal.setAppElement("body");
 
-const NoteDetails = ({ notes, modalOpen, toggle, onAdd, viewNote }) => {
+const NoteDetails = ({ notes, modalOpen, toggle, onAdd, viewNote, noteId }) => {
    
     return (
         <div>
@@ -37,6 +37,7 @@ const NoteDetails = ({ notes, modalOpen, toggle, onAdd, viewNote }) => {
                         key={i} 
                         notes = {notes}
                         viewNote = {viewNote}
+                        nodeId = {noteId}
                     />
                 ))}
             </section>

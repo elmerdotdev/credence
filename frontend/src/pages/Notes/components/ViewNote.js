@@ -1,5 +1,4 @@
-import React from 'react'
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Modal from 'react-modal'
 
  //Modal Style
@@ -17,12 +16,14 @@ import Modal from 'react-modal'
 
 Modal.setAppElement("body");
 
-const ViewNote = ({ notes, modalOpen, onEdit, onDelete, toggle, singleNoteId, clientId }) => {
+const ViewNote = ({ notes, modalOpen, onEdit, onDelete, toggle, clientId, noteId }) => {
     const [note, setNote] = useState({})
+    // console.log(noteId);
+    console.log(clientId);
 
     useEffect(() => {
         const fetchNote = async () => {
-            const res = await fetch(`${process.env.REACT_APP_API_URL}/api/notes/633b6a81145c9d79405c54ea/${clientId}/${singleNoteId}`);
+            const res = await fetch(`${process.env.REACT_APP_API_URL}/api/notes/633b6a81145c9d79405c54ea/${clientId}/${noteId}`);
             const data = await res.json();
 
             setNote(data);
