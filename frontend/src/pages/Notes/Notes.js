@@ -51,19 +51,42 @@ const Notes = () => {
     }
 
     //Fetch Note
-    // const fetchNote= async (id) => {
-    //   const response = await fetch(`${process.env.REACT_APP_API_URL}/api/notes/633b6a81145c9d79405c54ea/${notes.client_id}/${notes.id}`);
+    const fetchNote= async (id) => {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/notes/633b6a81145c9d79405c54ea/${notes.client_id}/${notes.id}`);
       
-    //   const data = await response.json();
+      const data = await response.json();
 
-    //   return data;
-    // };
+      return data;
+    };
 
 
   //Note Details Modal
   const toggleNoteDetailsModal = (status) => {
     setNoteDetailsIsOpen(status)
   }
+
+//View Single Note Modal
+  const toggleViewNoteModal = (status) => {
+    setViewNoteIsOpen(status)
+  }
+
+//Edit Note Modal
+  const openEditNoteModal = (status) => {
+    setEditNoteIsOpen(status)
+  }
+
+//View Single Note
+const viewNote = (id, client_id) => {
+  toggleViewNoteModal(true);
+  setSingleNoteId(id);
+  console.log(id)
+  pullClientId(client_id)
+}
+
+//Client ID
+const pullClientId = (client_id) => {
+  setClientId(client_id);
+}
 
 //View Single Note Modal
   const toggleViewNoteModal = (status) => {
@@ -114,7 +137,7 @@ const editNote = async( title, content) => {
     content: content,
   }
 
-  await fetch(`${process.env.REACT_APP_API_URL}/api/notes/${singleNoteId}`, {
+  await fetch(`${process.env.REACT_APP_API_URL}/api/notes/633b6a81145c9d79405c54ea/${notes.client_id}/${notes.id}`, {
     method: 'PATCH',
     headers: {
       'Content-type' : 'application/json'
@@ -125,13 +148,11 @@ const editNote = async( title, content) => {
 
 //Delete Note
 const deleteNote = async (id) => {
-  await fetch(`${process.env.REACT_APP_API_URL}/api/notes/${singleNoteId}`, {
+  await fetch(`${process.env.REACT_APP_API_URL}/api/notes/633b6a81145c9d79405c54ea/${notes.client_id}/${notes.id}`, {
     method: 'DELETE',
   });
 
-  setViewNoteIsOpen(false)
-  setNotes(notes.filter((note) => note.id !== id ))
-  // setNotes(notes)
+  setNotes(notes.filter((note) => note.id !==id ))
 }
 
  
