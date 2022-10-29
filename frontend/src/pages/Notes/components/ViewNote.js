@@ -22,7 +22,7 @@ const ViewNote = ({ notes, modalOpen, onEdit, onDelete, toggle, singleNoteId, cl
 
     useEffect(() => {
         const fetchNote = async () => {
-            const res = await fetch(`http://localhost:5002/api/notes/633b6a81145c9d79405c54ea/${clientId}/${singleNoteId}`);
+            const res = await fetch(`${process.env.REACT_APP_API_URL}/api/notes/633b6a81145c9d79405c54ea/${clientId}/${singleNoteId}`);
             const data = await res.json();
 
             setNote(data);

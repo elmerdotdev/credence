@@ -32,7 +32,7 @@ const Notes = () => {
 
   //Fetch Clients
   const fetchClients = async () => {
-    const response = await fetch('http://localhost:5002/api/clients/633b6a81145c9d79405c54ea')
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/api/clients/633b6a81145c9d79405c54ea`)
     const data = await response.json()
 
     if (response.ok) {
@@ -42,7 +42,7 @@ const Notes = () => {
 
     //Fetch All Notes
     const fetchNotes = async () => {
-      const response = await fetch('http://localhost:5002/api/notes/633b6a81145c9d79405c54ea')
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/notes/633b6a81145c9d79405c54ea`)
       const data = await response.json()
 
       if (response.ok) {
@@ -52,7 +52,7 @@ const Notes = () => {
 
     //Fetch Note
     const fetchNote= async (id) => {
-      const response = await fetch(`http://localhost:5002/api/notes/633b6a81145c9d79405c54ea/${notes.client_id}/${notes.id}`);
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/notes/633b6a81145c9d79405c54ea/${notes.client_id}/${notes.id}`);
       
       const data = await response.json();
 
@@ -95,7 +95,7 @@ const pullClientId = (client_id) => {
 
 //Add Note
 const addNote = async (note) => {
-  const response = await fetch('http://localhost:5002/api/notes', {
+  const response = await fetch(`${process.env.REACT_APP_API_URL}/api/notes`, {
     method: 'POST',
     headers: {
       'Content-type':'application/json'
@@ -115,7 +115,7 @@ const editNote = async( title, content) => {
     content: content,
   }
 
-  await fetch(`http://localhost:5002/api/notes/633b6a81145c9d79405c54ea/${notes.client_id}/${notes.id}`, {
+  await fetch(`${process.env.REACT_APP_API_URL}/api/notes/633b6a81145c9d79405c54ea/${notes.client_id}/${notes.id}`, {
     method: 'PATCH',
     headers: {
       'Content-type' : 'application/json'
@@ -126,7 +126,7 @@ const editNote = async( title, content) => {
 
 //Delete Note
 const deleteNote = async (id) => {
-  await fetch(`http://localhost:5002/api/notes/633b6a81145c9d79405c54ea/${notes.client_id}/${notes.id}`, {
+  await fetch(`${process.env.REACT_APP_API_URL}/api/notes/633b6a81145c9d79405c54ea/${notes.client_id}/${notes.id}`, {
     method: 'DELETE',
   });
 
