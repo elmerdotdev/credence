@@ -18,6 +18,8 @@ Modal.setAppElement("body");
 
 const ViewNote = ({ notes, modalOpen, onDelete, toggle, clientId, noteId, toggleEdit }) => {
     const [note, setNote] = useState({})
+    // console.log(noteId);
+    console.log(clientId);
 
     useEffect(() => {
         const fetchNote = async () => {

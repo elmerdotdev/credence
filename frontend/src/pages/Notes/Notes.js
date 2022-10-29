@@ -80,28 +80,6 @@ const viewNote = (id, client_id) => {
   toggleViewNoteModal(true);
   setSingleNoteId(id);
   console.log(id)
-  pullClientId(client_id)
-}
-
-//Client ID
-const pullClientId = (client_id) => {
-  setClientId(client_id);
-}
-
-//View Single Note Modal
-  const toggleViewNoteModal = (status) => {
-    setViewNoteIsOpen(status)
-  }
-
-//Edit Note Modal
-  const toggleEditNoteModal = (status) => {
-    setEditNoteIsOpen(status)
-  }
-
-//View Single Note
-const viewNote = (id, client_id) => {
-  toggleViewNoteModal(true);
-  setSingleNoteId(id);
   pullClientId(client_id);
 }
 
@@ -110,10 +88,10 @@ const pullClientId = (client_id) => {
   setClientId(client_id);
 }
 
-//Modal Style 
-// const viewModal = () => {
-//   subtitle.style.color = '#f00';
-// }
+//Client ID
+const pullClientId = (client_id) => {
+  setClientId(client_id);
+}
 
 //Add Note
 const addNote = async (note) => {
