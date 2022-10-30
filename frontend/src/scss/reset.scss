@@ -1,0 +1,19 @@
+body {
+    font-family: $font-family;
+    font-size: 1rem;
+}
+
+@media screen and (min-width: 768px) {
+    .container {
+        display: flex;
+        gap: 1rem;
+
+        > aside {
+            flex-basis: 300px;
+        }
+        
+        .App-body {
+            flex: 1;
+        }
+    }
+}

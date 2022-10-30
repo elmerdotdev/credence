@@ -1,7 +1,11 @@
+@import './scss/variables';
+@import './scss/reset';
+
 @import './pages/Dashboard/Dashboard';
 @import './pages/Connections/Connections';
 @import './pages/Calendar/Calendar';
 @import './pages/Search/Search';
+@import './pages/Profile/Profile';
 @import './pages/Settings/Settings';
 @import './pages/Login/Login';
 @import './pages/Signup/Signup';
