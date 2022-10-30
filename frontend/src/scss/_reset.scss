@@ -28,6 +28,22 @@ ul {
     padding: 0;
 }
 
+input,
+textarea,
+select,
+button {
+    font-family: $font;
+    font-size: 1rem;
+}
+
+input[type="text"] {
+    font-size: 1rem;
+}
+
+button {
+    cursor: pointer;
+}
+
 .visually-hidden {
     clip: rect(0 0 0 0);
     clip-path: inset(50%);
@@ -36,42 +52,6 @@ ul {
     position: absolute;
     white-space: nowrap;
     width: 1px;
-}
-
-header {
-    display: flex;
-    height: 50px;
-
-    @media screen and (min-width: $screen-desktop) {
-        height: 75px;
-    }
-
-    .logo {
-        display: flex;
-        justify-content: center;
-        flex: 1 0 100%;
-
-        @media screen and (min-width: $screen-desktop) {
-            flex: 0 1 285px;
-        }
-
-        img {
-            max-width: 155px;
-
-            @media screen and (min-width: $screen-desktop) {
-                max-width: 200px;
-            }
-        }
-    }
-
-    .search {
-        display: none;
-
-        @media screen and (min-width: $screen-desktop) {
-            display: block;
-            margin: auto;
-        }
-    }
 }
 
 .no-sidebar {
