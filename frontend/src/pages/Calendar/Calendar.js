@@ -39,7 +39,7 @@ const Calendar = () => {
 
   // Get all activities/events
   const fetchActivities = async () => {
-    const res = await fetch(`http://localhost:5000/api/activities/${userID}`)
+    const res = await fetch(`${process.env.REACT_APP_API_URL}/api/activities/${userID}`)
     const data = await res.json()
 
     return data
@@ -47,7 +47,7 @@ const Calendar = () => {
 
   // Delete activity/event
   const deleteEvent = async (id) => {
-    await fetch(`http://localhost:5000/api/activities/${id}`, {
+    await fetch(`${process.env.REACT_APP_API_URL}/api/activities/${id}`, {
       method: 'DELETE'
     })
 
@@ -57,7 +57,7 @@ const Calendar = () => {
 
   // Get client
   const fetchClient = async (id) => {
-    const res = await fetch(`http://localhost:5000/api/clients/${userID}/${id}`)
+    const res = await fetch(`${process.env.REACT_APP_API_URL}/api/clients/${userID}/${id}`)
     const data = await res.json()
 
     return data
