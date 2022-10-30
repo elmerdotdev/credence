@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
-import GoogleLoginButton from '../../components/GoogleLoginButton'
+import { Link, useNavigate } from 'react-router-dom'
+// import GoogleLoginButton from '../../components/GoogleLoginButton'
 import { useLogin } from '../Signup/hooks/useLogin'
 import { useLogout } from '../Signup/hooks/useLogout' 
 // import setLastLoggedIn from '../Signup/Signup'
@@ -61,9 +61,7 @@ const Login = () => {
   return (
     <>
       <section className="page-login">
-        <h3>Sign into your <br/><img src="" alt="credence-logo" className='credence-logo'/>account</h3>
-
-        <img src="" alt="login-img" className='login-img'/>
+        <h1>Login to your <img src="" alt="credence-logo" />account</h1>
 
         <form className="login-form" onSubmit={handleSubmit}>
 
@@ -82,19 +80,19 @@ const Login = () => {
           />
           <button onClick={togglePw} type="button">show password</button>
 
-        {error && <div className='error'>{error}</div>} 
-        <Link to='/'><input type="submit" value="Login" className="submit-btn" /></Link>
-        
-      </form>
-      
-      <Link>Forgotten your password?</Link>
-      <div>OR</div>
-      <GoogleLoginButton/>
+          {error && <div className='error'>{error}</div>} 
 
-      <p>Don't have an account? <Link to='/signup'>Sign up here</Link></p>
-      
-      <button onClick={handleLogout} type={"submit"}>logout</button>
-    </section>
+          <input type="submit" value="Login" className="submit-login-btn" />
+        </form>
+
+        <Link>Forgotten your password?</Link>
+        {/* <div>OR</div> */}
+        {/* <GoogleLoginButton/> */}
+
+        <p>Don't have an account? <Link to='/signup'>Sign up here</Link></p>
+
+        <button onClick={handleLogout} type={"submit"}>logout</button>
+      </section>
     </>
   )
 }

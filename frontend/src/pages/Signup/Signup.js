@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useSignup } from './hooks/useSignup'
-import GoogleLoginButton from '../../components/GoogleLoginButton'
+// import GoogleLoginButton from '../../components/GoogleLoginButton'
 
 
 const Signup = () => {
@@ -75,7 +75,7 @@ const Signup = () => {
           <div className="signup-form">
             <form className="signup-form" onSubmit={handleSubmit}>
           
-          <label  htmlFor="firstname">First Name / Nickname</label>
+          <label  htmlFor="firstname">First Name / Nickname<span className="required-star">*</span></label>
           <input  type="text" 
                   htmlFor="firstname" 
                   value={firstName}
@@ -89,19 +89,20 @@ const Signup = () => {
                   onChange={(e) => setLastName(e.target.value)}
           />
 
-          <label  htmlFor="email" name="email" >Email</label>
+          <label  htmlFor="email" name="email" >Email<span className="required-star">*</span></label>
           <input  type="email" 
                   htmlFor="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
           />
 
-          <label  htmlFor="password">Password</label>
-          <input  type={ pwShow ?  "text" : "password" } 
+          <label  htmlFor="password">Password<span className="required-star">*</span></label>
+          <input  type={ pwShow ? "text" :"password"} 
                   htmlFor="password" 
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}      
           />
+          <button onClick={togglePw} type="button">show password</button>
           
           {/* <button onClick={() =>setPwShow(true) }>See PW</button>
           <button onClick={() =>setPwShow(false)}>Hide PW</button> */}
