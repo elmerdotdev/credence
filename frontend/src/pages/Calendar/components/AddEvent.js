@@ -32,7 +32,7 @@ const AddEvent = (props) => {
     
     useEffect(() => {
         const getClients = async () => {
-            const res = await fetch(`http://localhost:5000/api/clients/${props.userId}`)
+            const res = await fetch(`${process.env.REACT_APP_API_URL}/api/clients/${props.userId}`)
             const data = await res.json()
 
             setClients(data)
@@ -75,7 +75,7 @@ const AddEvent = (props) => {
 
     const addEventToDB = async (event) => {
         console.log(event)
-        const res = await fetch(`http://localhost:5000/api/activities`, {
+        const res = await fetch(`${process.env.REACT_APP_API_URL}/api/activities`, {
             method: 'POST',
             headers: {
                 'Content-type': 'application/json'
