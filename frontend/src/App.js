@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, NavLink } from 'react-router-dom';
 
 // App pages
 import Dashboard from './pages/Dashboard/Dashboard';
@@ -37,14 +37,14 @@ function App() {
                 <aside>
                     <nav className="App-navigation">
                         <ul>
-                            <li><Link to="/dashboard">Dashboard</Link></li>
-                            <li><Link to="/connections">Connection</Link></li>
-                            <li><Link to="/calendar">Calendar</Link></li>
-                            <li><Link to="/profile">Profile</Link></li>
+                            <li><NavLink to="/dashboard">Dashboard</NavLink></li>
+                            <li><NavLink to="/connections">Connection</NavLink></li>
+                            <li><NavLink to="/calendar">Calendar</NavLink></li>
+                            <li><NavLink to="/profile">Profile</NavLink></li>
                         </ul>
                         <ul>
-                            <li><Link to="/settings">Settings</Link></li>
-                            <li><Link to="/logout">Log Out</Link></li>
+                            <li><NavLink to="/settings">Settings</NavLink></li>
+                            <li><NavLink to="/logout">Log Out</NavLink></li>
                         </ul>
                     </nav>
                 </aside>
