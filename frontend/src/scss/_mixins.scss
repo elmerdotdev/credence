@@ -1,0 +1,3 @@
+@mixin fontSize($fs) {
+    font-size: calc((#{$fs} * .1) * (1rem * .625));
+}
