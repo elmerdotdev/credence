@@ -11,8 +11,6 @@ import Notes from './pages/Notes/Notes';
 import Profile from './pages/Profile/Profile';
 import Login from './pages/Login/Login';
 import Signup from './pages/Signup/Signup';
-import ViewNote from './pages/Notes/components/ViewNote';
-import EditNote from './pages/Notes/components/EditNote'
 
 // Landing Pages
 import Home from './pages/Landing/Home/Home';
