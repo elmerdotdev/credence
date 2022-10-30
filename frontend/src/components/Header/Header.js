@@ -12,8 +12,15 @@ const Header = () => {
                 <img src={logo} alt="Credence Logo" />
             </NavLink>
         </div>
+
         <div className="search">
             <HeaderSearch />
+        </div>
+
+        <div className="mobile-menu">
+            <span></span>
+            <span></span>
+            <span></span>
         </div>
     </header>
   )
