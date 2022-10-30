@@ -18,24 +18,18 @@ import Features from './pages/Landing/Features/Features';
 import Pricing from './pages/Landing/Pricing/Pricing';
 import About from './pages/Landing/About/About';
 
+// Components
+import Header from './components/Header/Header';
+
+// CSS and scripts
 import './fontello/css/credence.css';
 import './App.css';
-import logo from './images/logo.svg';
 
 function App() {
     return (
         <BrowserRouter>
         <div className="App">
-            <header>
-                <div className="logo">
-                    <NavLink to="/dashboard">
-                        <img src={logo} alt="Credence Logo" />
-                    </NavLink>
-                </div>
-                <div className="search">
-                    <span>Search</span>
-                </div>
-            </header>
+            <Header />
             <section className="container">
                 <aside>
                     <nav className="App-navigation">
