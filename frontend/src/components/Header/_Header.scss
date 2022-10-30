@@ -35,4 +35,10 @@ header {
             margin: auto;
         }
     }
+
+    .mobile-menu {
+        @media screen and (min-width: $screen-desktop) {
+            display: none;
+        }
+    }
 }
