@@ -13,9 +13,4 @@
 @import './pages/Settings/Settings';
 @import './pages/Login/Login';
 @import './pages/Signup/Signup';
-
-/* Landing pages */
-@import './pages/Landing/Home/Home';
-@import './pages/Landing/Features/Features';
-@import './pages/Landing/Pricing/Pricing';
-@import './pages/Landing/About/About';
+@import './pages/Signup/SuccessSignup.scss';
