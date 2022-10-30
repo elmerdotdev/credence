@@ -21,13 +21,13 @@ const ViewEvent = (props) => {
 
     useEffect(() => {
         const fetchEvent = async () => {
-            const res = await fetch(`http://localhost:5000/api/activities/${props.userId}/${props.eventId}`)
+            const res = await fetch(`${process.env.REACT_APP_API_URL}/api/activities/${props.userId}/${props.eventId}`)
             const data = await res.json()
 
             setEvent(data)
 
             if (data.client_id) {
-                const resClient = await fetch(`http://localhost:5000/api/clients/${props.userId}/${data.client_id}`)
+                const resClient = await fetch(`${process.env.REACT_APP_API_URL}/api/clients/${props.userId}/${data.client_id}`)
                 const dataClient = await resClient.json()
 
                 setClientName(`${dataClient.firstname || 'None'} ${dataClient.lastname || ''}`)

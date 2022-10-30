@@ -6,19 +6,19 @@
 //  将active status改成可以one click更改状态的button加入ui
 //  新增connection表格中加入industry，且显示在ui
 // 【✅】在client details中用modal增加edit client功能
-//  edit button打开edit function modal
-//  edit function
+// 【✅】edit button打开edit function modal
+// 【✅】edit function
 //  delete funtion
 //  将pin button改成one click更改状态
 
 import React from 'react';
 import { useState, useEffect } from 'react';
-import ClientCard from './ClientCard';
 import AddConnection from './AddConnection';
 // import Modal from './Modal';
 import Modal from 'react-modal';
 import ClientCards from './ClientCards';
 import ConnectionDetail from './ConnectionDetail';
+import EditConnection from './EditConnection';
 
  //Modal Style
  const customStyles = {
@@ -44,10 +44,10 @@ const Connections = () => {
 
   const [connections, setConnections] = useState([]);
   const [connection, setConnection] = useState(null);
-  const [modalIsOpen, setIsOpen] = React.useState(false);
-  const [useConnectionDetailsModal, setConnectionDetailsModal] = React.useState(false);
-  const [showModal1, setShowModal1] = React.useState(false);
-  const [showModal2, setShowModal2] = React.useState(false);
+  const [modalIsOpen, setIsOpen] = useState(false);
+  const [useConnectionDetailsModal, setConnectionDetailsModal] = useState(false);
+  const [showModal1, setShowModal1] = useState(false);
+  const [showModal2, setShowModal2] = useState(false);
   const ModalComponent = useConnectionDetailsModal ? ConnectionDetailsModal : Modal;
   let subtitle;
 
@@ -63,20 +63,43 @@ const Connections = () => {
 const updateConnectionDataState = async (connection_id) => {
   const connectionData = await fetchConnection(connection_id);
   setConnection(connectionData);
-  console.log(connectionData);
   setShowModal2(true);
+};
+
+const editConnection = async (connection) => {
+  const getConnectionRes = await fetch('https://credence-server.onrender.com/api/clients/633b6a81145c9d79405c54ea/635492b0a0f2782a7d5c30d5')
+  setShowModal1(true)
+  const connectionToEdit = await getConnectionRes.json()
+  const updConnection = {
+    ...connection,
+
+  };
+
+ 
+    // TODO: use the above _id in url as parameter
+  // await fetch(`https://credence-server.onrender.com/api/clients/${connectionToEdit._id}`, {
+  await fetch('https://credence-server.onrender.com/api/clients/635492b0a0f2782a7d5c30d5', {
+    method: 'PATCH',
+    headers: {
+      'Content-type': 'application/json',
+    },
+    body: JSON.stringify(updConnection),
+  });
+
+  const res = await fetchConnections();
+  setConnections(res);
 };
 
 // Fetch Connections
 const fetchConnections = async () => {
-  const res = await fetch('http://localhost:5002/api/clients/633e29fe0f75b027fc7434e8');
+  const res = await fetch('https://credence-server.onrender.com/api/clients/633b6a81145c9d79405c54ea');
   const data = await res.json();
   return data;
 };
 
 // Fetch Connection
-const fetchConnection = async (dllm) => {
-  const res = await fetch(`http://localhost:5002/api/clients/633e29fe0f75b027fc7434e8/${dllm}`);
+const fetchConnection = async (id) => {
+  const res = await fetch(`https://credence-server.onrender.com/api/clients/633b6a81145c9d79405c54ea/${id}`);
   const data = await res.json();
   return data;
 };
@@ -98,7 +121,7 @@ const closeModal = () => {
 
 // Add Connection
 const addConnection = async (newClient) => {
-  const res = await fetch('http://localhost:5002/api/clients', {
+  const res = await fetch('https://credence-server.onrender.com/api/clients', {
     method: 'POST',
     headers: {
       'Content-type': 'application/json',
@@ -110,24 +133,6 @@ const addConnection = async (newClient) => {
   setConnections([...connections, data]);
 };
 
- // Edit Connection
- const editConnection = async (_id) => {
-  const connectionToEdit = await fetchConnection(_id);
-  const updConnection = {
-    ...connectionToEdit
-  };
-
-  await fetch('http://localhost:5002/api/clients/633e29fe0f75b027fc7434e8/:6350631f4a8bf2d3a539368e', {
-    method: 'PUT',
-    headers: {
-      'Content-type': 'application/json',
-    },
-    body: JSON.stringify(updConnection),
-  });
-
-  const res = await fetchConnections();
-  setConnections(res);
-};
 
   return (
 
@@ -139,18 +144,23 @@ const addConnection = async (newClient) => {
         onRequestClose={() => setShowModal2(false)}
       >
         <button onClick={() => setShowModal2(false)}>X</button>
-        <button>Pin</button>
-        <button onClick={() => setShowModal1(true)}>Edit</button>
-        <button>Delete</button>
-        <ConnectionDetail connection={connection}/>
+      
+        
+        <ConnectionDetail 
+        connection={connection} onEdit={editConnection}
+        />
        
       </ModalComponent>
       <ModalComponent
         isOpen={showModal1}
         onRequestClose={() => setShowModal1(false)}
       >
-        <div>Modal 1</div>
-        <button onClick = {() => setShowModal1(false)}>Close</button>
+        <button onClick = {() => setShowModal1(false)}>X</button>
+        <EditConnection 
+        connection={connection} 
+        onEdit={editConnection}
+        />
+       
       </ModalComponent>
 
       <Modal

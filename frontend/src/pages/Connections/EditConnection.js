@@ -1,10 +1,7 @@
-//完善表格： 添加client照片、职位、地点等
-
-import React from 'react';
 import { useState } from 'react';
 
-const AddConnection = ({ onAdd }) => {
-
+const EditConnection = ({ onEdit }) => {
+//   const [connection, setConnection] = useState({});
   const [firstname, setFirstname] = useState('');
   const [lastname, setLastname] = useState('');
   const [position, setPosition] = useState('');
@@ -13,33 +10,22 @@ const AddConnection = ({ onAdd }) => {
   const [phone, setPhone] = useState('');
   const [active, setActive] = useState(false);
   const [user_id, setUserId] = useState('633b6a81145c9d79405c54ea');
-//   const [modalIsOpen, setIsOpen] = React.useState(false);
 
 
-const onSubmit = (e) => {
-  e.preventDefault();
 
-  onAdd({ firstname, lastname, company, position, email, phone, active, user_id});
+  const onSubmit = (e) => {
+    e.preventDefault();
 
-  setFirstname('');
-  setLastname('');
-  setPosition('');
-  setCompany('');
-  setEmail('');
-  setPhone('');
-  setActive(false);
-};
 
-  //Close Modal 
-//   const closeModal = () => {
-//     setIsOpen(false);
-//   }
+    onEdit({firstname, lastname, company, position, email, phone, active, user_id});
+
+  };
 
   return (
     <div>
-    <h3 className="modal-title">New Connection</h3>
+    <h3 className="modal-title">Edit Connection</h3>
    
-    <form className="add-form" onSubmit={onSubmit}>
+    <form className="edit-form" onSubmit={onSubmit}>
       <div className="form-control">
         <label>First Name / Nickname</label>
         <input
@@ -107,13 +93,12 @@ const onSubmit = (e) => {
         />
       </div>
 
-      <input type="submit" value="Save Connection" className="btn btn-block" />
+      <input type="submit" value="Update" className="btn btn-block" />
     </form>
   
 
     </div>
-  )
-}
+  );
+};
 
-
-export default AddConnection
+export default EditConnection;
