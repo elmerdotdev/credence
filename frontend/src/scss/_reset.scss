@@ -127,15 +127,26 @@ aside {
             position: relative;
             font-weight: 600;
 
+            &::before {
+                content: '';
+                width: 0;
+                height: 5px;
+                background: #0468BF;
+                position: absolute;
+                bottom: -4px;
+                border-radius: 4px;
+                transition: width .3s linear;
+            }
+
+            &:hover {
+                &::before {
+                    width: 100%;
+                }
+            }
+
             &.active {
                 &::before {
-                    content: '';
                     width: 100%;
-                    height: 5px;
-                    background: #0468BF;
-                    position: absolute;
-                    bottom: -3px;
-                    border-radius: 4px;
                 }
             }
         }
