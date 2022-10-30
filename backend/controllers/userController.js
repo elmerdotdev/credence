@@ -49,12 +49,6 @@ const loginUser = async (req, res) => {
     } else {
             res.status(200).json({
                 _id: user._id,
-                firstname: user.firstname,
-                lastname: user.lastname,
-                email: user.email,
-                password: user.password,
-                photo: user.photo,
-                lastLoggedIn: user.lastLoggedIn
             })
     }
 }
@@ -64,20 +58,17 @@ const createUser = async (req, res) => {
     const { firstname, lastname, email, password, photo, lastLoggedIn } = req.body;
     const salt = await bcrypt.genSalt(10)
     const hash = await bcrypt.hash(password, salt)
+    const userEmail = await User.findOne({email})
+    if(userEmail) {
+        return res.status(404).json({error:'This Email is already registered.'})
+    }
     const user = await User.create({ firstname, lastname, email, password:hash, photo, lastLoggedIn })
-    
+   
+    //if you success signup, status:200 store in local storage and move to next page!
     if(user) {
-        res.status(201).json({
-            _id: user._id,
-            firstname: user.firstname,
-            lastname: user.lastname,
-            email: user.email,
-            password: user.password,
-            photo: user.photo,
-            lastLoggedIn: user.lastLoggedIn
-        })
-    } else {
-        res.status(400).json({ error: error.message })
+        res.status(200).json({ status:200 })
+    } else if(!user) {
+        res.status(400).json({ error: error.message })    
     }
 }
 
