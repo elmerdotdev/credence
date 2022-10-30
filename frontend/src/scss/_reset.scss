@@ -28,6 +28,22 @@ ul {
     padding: 0;
 }
 
+input,
+textarea,
+select,
+button {
+    font-family: $font;
+    font-size: 1rem;
+}
+
+input[type="text"] {
+    font-size: 1rem;
+}
+
+button {
+    cursor: pointer;
+}
+
 .visually-hidden {
     clip: rect(0 0 0 0);
     clip-path: inset(50%);
@@ -36,42 +52,6 @@ ul {
     position: absolute;
     white-space: nowrap;
     width: 1px;
-}
-
-header {
-    display: flex;
-    height: 50px;
-
-    @media screen and (min-width: 768px) {
-        height: 75px;
-    }
-
-    .logo {
-        display: flex;
-        justify-content: center;
-        flex: 1 0 100%;
-
-        @media screen and (min-width: 768px) {
-            flex: 0 1 270px;
-        }
-
-        img {
-            max-width: 155px;
-
-            @media screen and (min-width: 768px) {
-                max-width: 200px;
-            }
-        }
-    }
-
-    .search {
-        display: none;
-
-        @media screen and (min-width: 768px) {
-            display: block;
-            margin: auto;
-        }
-    }
 }
 
 .no-sidebar {
@@ -92,7 +72,7 @@ aside {
     background: $color-white-lilac;
     z-index: 999;
 
-    @media screen and (min-width: 768px) {
+    @media screen and (min-width: $screen-desktop) {
         position: static;
         height: calc(100vh - 75px);
         z-index: 0;
@@ -104,13 +84,11 @@ aside {
     flex-direction: column;
     flex: 1;
     padding: 0 3rem;
-    text-align: center;
 
-    @media screen and (min-width: 768px) {
+    @media screen and (min-width: $screen-desktop) {
         justify-content: space-between;
         height: 100%;
         padding: 5rem 3rem 2rem;
-        text-align: left;
     }
 
     ul {
@@ -118,8 +96,18 @@ aside {
         flex-direction: column;
 
         li {
-            display: inline-block;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             margin: 1rem 0;
+
+            @media screen and (min-width: $screen-desktop) {
+                justify-content: start;
+            }
+
+            i {
+                font-size: 2rem;
+            }
         }
 
         a {
@@ -131,11 +119,11 @@ aside {
                 content: '';
                 width: 0;
                 height: 5px;
-                background: #0468BF;
+                background: $color-science-blue;
                 position: absolute;
                 bottom: -4px;
                 border-radius: 4px;
-                transition: width .3s linear;
+                transition: width .2s linear;
             }
 
             &:hover {
@@ -158,11 +146,11 @@ aside {
     gap: 1rem;
 
     > aside {
-        @media screen and (min-width: 768px) {
+        @media screen and (min-width: $screen-desktop) {
             flex-basis: 285px;
         }
     }
-    
+
     .App-body {
         flex: 1;
         margin: 0 .5rem .5rem 0;
@@ -170,5 +158,10 @@ aside {
         background-color: $color-white;
         border: 1px solid $color-dusty-gray;
         border-radius: 16px;
+
+        .no-sidebar & {
+            background-color: transparent;
+            border: none;
+        }
     }
 }

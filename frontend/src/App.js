@@ -18,33 +18,30 @@ import Features from './pages/Landing/Features/Features';
 import Pricing from './pages/Landing/Pricing/Pricing';
 import About from './pages/Landing/About/About';
 
+// Components
+import Header from './components/Header/Header';
+
+// CSS and scripts
+import './fontello/css/credence.css';
 import './App.css';
-import logo from './images/logo.svg';
 
 function App() {
     return (
         <BrowserRouter>
         <div className="App">
-            <header>
-                <div className="logo">
-                    <img src={logo} alt="Credence Logo" />
-                </div>
-                <div className="search">
-                    <span>Search</span>
-                </div>
-            </header>
+            <Header />
             <section className="container">
                 <aside>
                     <nav className="App-navigation">
                         <ul>
-                            <li><NavLink to="/dashboard">Dashboard</NavLink></li>
-                            <li><NavLink to="/connections">Connection</NavLink></li>
-                            <li><NavLink to="/calendar">Calendar</NavLink></li>
-                            <li><NavLink to="/profile">Profile</NavLink></li>
+                            <li><i className="icon-dashboard"></i> <NavLink to="/dashboard">Dashboard</NavLink></li>
+                            <li><i className="icon-connection"></i> <NavLink to="/connections">Connection</NavLink></li>
+                            <li><i className="icon-calendar"></i> <NavLink to="/calendar">Calendar</NavLink></li>
+                            <li><i className="icon-profile"></i> <NavLink to="/profile">Profile</NavLink></li>
                         </ul>
                         <ul>
-                            <li><NavLink to="/settings">Settings</NavLink></li>
-                            <li><NavLink to="/logout">Log Out</NavLink></li>
+                            <li><i className="icon-settings"></i> <NavLink to="/settings">Settings</NavLink></li>
+                            <li><i className="icon-logout"></i> <NavLink to="/logout">Log Out</NavLink></li>
                         </ul>
                     </nav>
                 </aside>
