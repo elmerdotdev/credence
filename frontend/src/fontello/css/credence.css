@@ -1,11 +1,11 @@
 @font-face {
   font-family: 'credence';
-  src: url('../font/credence.eot?90405606');
-  src: url('../font/credence.eot?90405606#iefix') format('embedded-opentype'),
-       url('../font/credence.woff2?90405606') format('woff2'),
-       url('../font/credence.woff?90405606') format('woff'),
-       url('../font/credence.ttf?90405606') format('truetype'),
-       url('../font/credence.svg?90405606#credence') format('svg');
+  src: url('../font/credence.eot?58981812');
+  src: url('../font/credence.eot?58981812#iefix') format('embedded-opentype'),
+       url('../font/credence.woff2?58981812') format('woff2'),
+       url('../font/credence.woff?58981812') format('woff'),
+       url('../font/credence.ttf?58981812') format('truetype'),
+       url('../font/credence.svg?58981812#credence') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -15,7 +15,7 @@
 @media screen and (-webkit-min-device-pixel-ratio:0) {
   @font-face {
     font-family: 'credence';
-    src: url('../font/credence.svg?90405606#credence') format('svg');
+    src: url('../font/credence.svg?58981812#credence') format('svg');
   }
 }
 */
@@ -77,3 +77,4 @@
 .icon-profile:before { content: '\e814'; } /* '' */
 .icon-connection:before { content: '\e815'; } /* '' */
 .icon-dashboard:before { content: '\e816'; } /* '' */
+.icon-search:before { content: '\e817'; } /* '' */
