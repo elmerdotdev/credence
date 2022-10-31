@@ -54,6 +54,21 @@ const Notes = () => {
     const fetchNote= async (id) => {
       const response = await fetch(`http://localhost:5002/api/notes/633b6a81145c9d79405c54ea/${notes.client_id}/${notes.id}`);
       
+    //   const data = await response.json();
+
+    //   return data;
+    // };
+
+
+      if (response.ok) {
+          return data
+      }
+    }
+
+    Fetch Note
+    const fetchNote= async (id) => {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/notes/633b6a81145c9d79405c54ea/${notes.client_id}/${notes.id}`);
+      
       const data = await response.json();
 
       return data;
@@ -138,6 +153,17 @@ const editNote = async(id, title, content) => {
     },
     body: JSON.stringify(updNote),
   })
+}
+
+//Delete Note
+const deleteNote = async (id) => {
+  await fetch(`${process.env.REACT_APP_API_URL}/api/notes/${singleNoteId}`, {
+    method: 'DELETE',
+  });
+
+  setViewNoteIsOpen(false)
+  setNotes(notes.filter((note) => note.id !== id ))
+  // setNotes(notes)
 }
 
  
