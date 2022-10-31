@@ -55,6 +55,7 @@ const Login = () => {
   const { logout } = useLogout()
   const handleLogout = () => {
       logout()
+      navigate('/login')
   }
 
   return (
