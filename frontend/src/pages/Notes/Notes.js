@@ -51,13 +51,13 @@ const Notes = () => {
     }
 
     //Fetch Note
-    const fetchNote= async (id) => {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/notes/633b6a81145c9d79405c54ea/${notes.client_id}/${notes.id}`);
+    // const fetchNote= async (id) => {
+    //   const response = await fetch(`${process.env.REACT_APP_API_URL}/api/notes/633b6a81145c9d79405c54ea/${notes.client_id}/${notes.id}`);
       
-      const data = await response.json();
+    //   const data = await response.json();
 
-      return data;
-    };
+    //   return data;
+    // };
 
 
   //Note Details Modal
@@ -87,10 +87,11 @@ const pullClientId = (client_id) => {
   setClientId(client_id);
 }
 
-//Client ID
-const pullClientId = (client_id) => {
-  setClientId(client_id);
-}
+//Modal Style 
+// const viewModal = () => {
+//   subtitle.style.color = '#f00';
+// }
+
 
 //Add Note
 const addNote = async (note) => {
@@ -130,8 +131,8 @@ const deleteNote = async (id) => {
   });
 
   setViewNoteIsOpen(false)
-  setNotes(notes.filter((note) => note.id !==id ))
-
+  setNotes(notes.filter((note) => note.id !== id ))
+  // setNotes(notes)
 }
 
  
