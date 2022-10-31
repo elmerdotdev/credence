@@ -71,7 +71,7 @@ const Notes = () => {
   }
 
 //Edit Note Modal
-  const openEditNoteModal = (status) => {
+  const toggleEditNoteModal = (status) => {
     setEditNoteIsOpen(status)
   }
 
@@ -88,10 +88,10 @@ const pullClientId = (client_id) => {
   setClientId(client_id);
 }
 
-  //Modal Style 
-  const viewModal = () => {
-    subtitle.style.color = '#f00';
-  }
+//Modal Style 
+const viewModal = () => {
+  subtitle.style.color = '#f00';
+}
 
 //Add Note
 const addNote = async (note) => {
@@ -161,10 +161,10 @@ const deleteNote = async (id) => {
         }
 
         <EditNote
+          toggle = {toggleEditNoteModal}
           modalOpen = {editNoteIsOpen}
-          openModal = {openEditNoteModal}
           onEdit = {editNote}
-          onDelte = {deleteNote}
+          onDelete = {deleteNote}
         />
       </div>
     </section>

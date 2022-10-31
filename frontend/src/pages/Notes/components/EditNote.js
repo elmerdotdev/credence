@@ -1,7 +1,10 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom'
+import Modal from 'react-modal'
 
-const EditNote = ({ onEdit }) => {
+Modal.setAppElement("body");
+
+const EditNote = ({ onEdit, modalOpen, toggle }) => {
     const [note, setNote] = useState({})
     const [title, setTitle] = useState('')
     const [content, setContent] = useState('')
@@ -37,6 +40,10 @@ const EditNote = ({ onEdit }) => {
     };
 
     return (
+        <Modal
+            isOpen = {modalOpen}
+        >
+        <button onClick={() => toggle(false)}>Close</button>
         <form className='edit-note' onSubmit={onSubmit}>
             <div className = "edit-note-form">
                 <label>Subject</label>
@@ -58,7 +65,7 @@ const EditNote = ({ onEdit }) => {
             </div>
             <input type="submit" value="Save Note" className="submit-btn" />
         </form>
-
+        </Modal>
     )
 }
 
