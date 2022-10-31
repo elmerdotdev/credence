@@ -64,42 +64,44 @@ const Signup = () => {
   return (
     <>
       <section className="page-signup">
-        <h1>Create <img src="" alt="credence-logo" />account</h1>
+        <h3>Create a<img src="" alt="credence-logo"  className='credence-logo'/>Account</h3>
 
-        <form className="signup-form" onSubmit={handleSubmit}>
+        <div className="grid-for-desktop">
+          <img src="" alt="signup-img" className='signup-img'/>
+          <div className="signup-form">
+            <form className="signup-form" onSubmit={handleSubmit}>
           
-          <label  htmlFor="firstname">First Name / Nickname<span className="required-star">*</span></label>
-          <input  type="text" 
-                  htmlFor="firstname" 
-                  value={firstName}
-                  onChange={(e) => setFirstName(e.target.value)}
-          />
-
-          <label  htmlFor="lastname">Last Name</label>
-          <input  type="text" 
-                  htmlFor="lastname" 
-                  value={lastName}
-                  onChange={(e) => setLastName(e.target.value)}
-          />
-
-          <label  htmlFor="email" name="email" >Email<span className="required-star">*</span></label>
-          <input  type="email" 
-                  htmlFor="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-          />
-
-          <label  htmlFor="password">Password<span className="required-star">*</span></label>
-          <input  type={ pwShow ? "text" :"password"} 
-                  htmlFor="password" 
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}      
-          />
-          <button onClick={togglePw} type="button">show password</button>
+              <label  htmlFor="firstname">First Name / Nickname<span className="required-star">*</span></label>
+              <input  type="text"
+                      htmlFor="firstname"
+                      value={firstName}
+                      onChange={(e) => setFirstName(e.target.value)}
+              />
+              <label  htmlFor="lastname">Last Name</label>
+              <input  type="text"
+                      htmlFor="lastname"
+                      value={lastName}
+                      onChange={(e) => setLastName(e.target.value)}
+              />
+              <label  htmlFor="email" name="email" >Email<span className="required-star">*</span></label>
+              <input  type="email"
+                      htmlFor="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+              />
+              <label  htmlFor="password">Password<span className="required-star">*</span></label>
+              <input  type={ pwShow ? "text" :"password"}
+                      htmlFor="password"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+              />
+              <button onClick={togglePw} type="button">show password</button>
           
-          <button type="submit" className="submit-signup-btn">Sign Up</button>
-          {error && <div className='error'>{error}</div>}
-        </form>
+              <button type="submit" className="submit-signup-btn">Sign Up</button>
+              {error && <div className='error'>{error}</div>}
+            </form>
+          </div>
+        </div>
        
         {/* <div>OR</div> */}
         {/* <GoogleLoginButton/> */}
@@ -119,14 +121,4 @@ export default Signup
 
 
 
-//===Signup====
 
-//Google Loginの機能
-//confirmation emailの機能
-//set google console & google authentication
-//===Login====
-//Google Loginの機能
-
-
-//==Logout===
-//NavigationにLogoutのTagをつける

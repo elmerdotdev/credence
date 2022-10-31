@@ -12,14 +12,17 @@ const SuccessSignup = () => {
   
   return (
     <div className='page-signup-successSignup'>
-        <div className='header-arrow'>
+        {/* <div className='header-arrow'>
             <p>return</p>
             <p>delete</p>
-        </div>
+        </div> */}
         
-        <h1>Sign Up Completed!</h1>
-        <p>Welcome to <img src="" alt="credence-logo"/>!</p>
+        <h3>Sign Up Complete!</h3>
+        <p>Welcome to <img src="" alt="credence-logo" className='img.credence-logo'/>!</p>
         <p>Thank you for taking the time to sign up. Keep up the good work!</p>
+
+        <img src="" alt="signup-complete-image" className='signup-complete-image'/>
+
 
         <button onClick={dlt200LocalStorage}><Link to="/login" >Next</Link></button>
 
