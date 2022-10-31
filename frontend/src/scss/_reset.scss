@@ -1,0 +1,167 @@
+@import url('https://fonts.googleapis.com/css2?family=Red+Hat+Text:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: $color-white-lilac;
+    font-family: $font;
+    @include fontSize(16);
+}
+
+img {
+    max-width: 100%;
+    width: auto;
+}
+
+a {
+    color: $color-shark;
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+input,
+textarea,
+select,
+button {
+    font-family: $font;
+    font-size: 1rem;
+}
+
+input[type="text"] {
+    font-size: 1rem;
+}
+
+button {
+    cursor: pointer;
+}
+
+.visually-hidden {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+}
+
+.no-sidebar {
+    header,
+    aside {
+        display: none;
+    }
+}
+
+aside {
+    display: flex;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100vh;
+    background: $color-white-lilac;
+    z-index: 999;
+
+    @media screen and (min-width: $screen-desktop) {
+        position: static;
+        height: calc(100vh - 75px);
+        z-index: 0;
+    }
+}
+
+.App-navigation {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 0 3rem;
+
+    @media screen and (min-width: $screen-desktop) {
+        justify-content: space-between;
+        height: 100%;
+        padding: 5rem 3rem 2rem;
+    }
+
+    ul {
+        display: flex;
+        flex-direction: column;
+
+        li {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 1rem 0;
+
+            @media screen and (min-width: $screen-desktop) {
+                justify-content: start;
+            }
+
+            i {
+                font-size: 2rem;
+            }
+        }
+
+        a {
+            @include fontSize(20);
+            position: relative;
+            font-weight: 600;
+
+            &::before {
+                content: '';
+                width: 0;
+                height: 5px;
+                background: $color-science-blue;
+                position: absolute;
+                bottom: -4px;
+                border-radius: 4px;
+                transition: width .2s linear;
+            }
+
+            &:hover {
+                &::before {
+                    width: 100%;
+                }
+            }
+
+            &.active {
+                &::before {
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
+
+.container {
+    display: flex;
+    gap: 1rem;
+
+    > aside {
+        @media screen and (min-width: $screen-desktop) {
+            flex-basis: 285px;
+        }
+    }
+
+    .App-body {
+        flex: 1;
+        margin: 0 .5rem .5rem 0;
+        padding: .5rem;
+        background-color: $color-white;
+        border: 1px solid $color-dusty-gray;
+        border-radius: 16px;
+
+        .no-sidebar & {
+            background-color: transparent;
+            border: none;
+        }
+    }
+}
