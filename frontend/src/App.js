@@ -24,6 +24,9 @@ import Header from './components/Header/Header';
 // CSS and scripts
 import './fontello/css/credence.css';
 import './App.css';
+// import ConfirmSignup from './pages/Signup/ConfirmSignup';
+import SuccessSignup from './pages/Signup/SuccessSignup';
+// import SelectPlan from './pages/Signup/SelectPlan';
 
 function App() {
     return (
