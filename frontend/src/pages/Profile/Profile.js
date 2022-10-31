@@ -39,7 +39,7 @@ const Profile = () => {
 
   console.log(allClients)
 
-  
+  //ここのMapがなんでダメなのか聞くこと！
   //   allClients.map((client) =>
   //   client.user_id === '633b6a81145c9d79405c54ea' ? {...myClientArray,client } : console.log('empty') )
    
