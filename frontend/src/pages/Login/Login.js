@@ -57,7 +57,9 @@ const Login = () => {
   return (
     <>
       <section className="page-login">
-        <h1>Login to your <img src="" alt="credence-logo" />account</h1>
+        <h3>Sign into your <br/><img src="" alt="credence-logo" className='credence-logo'/>account</h3>
+
+        <img src="" alt="login-img" className='login-img'/>
 
         <form className="login-form" onSubmit={handleSubmit}>
 
@@ -81,11 +83,13 @@ const Login = () => {
           <input type="submit" value="Login" className="submit-login-btn" />
         </form>
 
-        <Link>Forgotten your password?</Link>
+        <span className="forget-pw-link">
+          <Link>Forgotten your password?</Link>
+        </span>
         {/* <div>OR</div> */}
         {/* <GoogleLoginButton/> */}
 
-        <p>Don't have an account? <Link to='/signup'>Sign up here</Link></p>
+        <p className="move-to-signup-link">Don't have an account? <Link to='/signup'>Sign up here</Link></p>
 
         <button onClick={handleLogout} type={"submit"}>logout</button>
       </section>
