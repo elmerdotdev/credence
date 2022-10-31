@@ -1,5 +1,4 @@
-import React from 'react'
-import { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useNavigate  } from 'react-router-dom'
 import { useSignup } from './hooks/useSignup'
 // import GoogleLoginButton from '../../components/GoogleLoginButton'
@@ -22,6 +21,10 @@ const Signup = () => {
   //Error checker
   const {signup, error, isLoading} = useSignup()
 
+  useEffect(() => {
+    document.querySelector('body').removeAttribute("class")
+    document.querySelector('body').classList.add('no-sidebar')
+  }, [])
 
   //Signup submit action
   const navigate = useNavigate()
