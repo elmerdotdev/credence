@@ -71,7 +71,7 @@ const Notes = () => {
   }
 
 //Edit Note Modal
-  const openEditNoteModal = (status) => {
+  const toggleEditNoteModal = (status) => {
     setEditNoteIsOpen(status)
   }
 
