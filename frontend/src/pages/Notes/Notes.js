@@ -79,7 +79,6 @@ const Notes = () => {
 const viewNote = (id, client_id) => {
   toggleViewNoteModal(true);
   setSingleNoteId(id);
-  console.log(id)
   pullClientId(client_id);
 }
 
@@ -115,7 +114,7 @@ const editNote = async( title, content) => {
     content: content,
   }
 
-  await fetch(`${process.env.REACT_APP_API_URL}/api/notes/633b6a81145c9d79405c54ea/${notes.client_id}/${notes.id}`, {
+  await fetch(`${process.env.REACT_APP_API_URL}/api/notes/${singleNoteId}`, {
     method: 'PATCH',
     headers: {
       'Content-type' : 'application/json'
@@ -126,11 +125,13 @@ const editNote = async( title, content) => {
 
 //Delete Note
 const deleteNote = async (id) => {
-  await fetch(`${process.env.REACT_APP_API_URL}/api/notes/633b6a81145c9d79405c54ea/${notes.client_id}/${notes.id}`, {
+  await fetch(`${process.env.REACT_APP_API_URL}/api/notes/${singleNoteId}`, {
     method: 'DELETE',
   });
 
+  setViewNoteIsOpen(false)
   setNotes(notes.filter((note) => note.id !==id ))
+
 }
 
  
