@@ -11,6 +11,7 @@ import Notes from './pages/Notes/Notes';
 import Profile from './pages/Profile/Profile';
 import Login from './pages/Login/Login';
 import Signup from './pages/Signup/Signup';
+import SuccessSignup from './pages/Signup/SuccessSignup';
 
 // Landing Pages
 import Home from './pages/Landing/Home/Home';
@@ -24,9 +25,6 @@ import Header from './components/Header/Header';
 // CSS and scripts
 import './fontello/css/credence.css';
 import './App.css';
-// import ConfirmSignup from './pages/Signup/ConfirmSignup';
-import SuccessSignup from './pages/Signup/SuccessSignup';
-// import SelectPlan from './pages/Signup/SelectPlan';
 
 function App() {
     return (
@@ -63,6 +61,8 @@ function App() {
                         <Route path="/notes" element={<Notes />} />
                         <Route path="/login" element={<Login />} />
                         <Route path="/signup" element={<Signup />} />
+                        <Route path="/successsignup" element={<SuccessSignup />} />
+
                     </Routes>
                 </div>
             </section>

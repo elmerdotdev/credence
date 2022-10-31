@@ -39,7 +39,7 @@ const Login = () => {
 
     if (localStorage.getItem('user')) {  
       console.log('Successs Login!')
-      navigate('/')
+      navigate('/dashboard')
     } else {
       console.log(' No user into localstorage')
     }
