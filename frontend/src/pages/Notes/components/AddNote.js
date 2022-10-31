@@ -20,8 +20,6 @@ const AddNote = ({ onAdd }) => {
 
         setTitle('')
         setContent('')
-        
-
     }
 
     return (

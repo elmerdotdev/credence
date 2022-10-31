@@ -1,19 +1,18 @@
 import { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom'
 import Modal from 'react-modal'
 
  //Modal Style
- const customStyles = {
-    content: {
-      top: '50%',
-      left: '50%',
-      right: 'auto',
-      bottom: 'auto',
-      marginRight: '-50%',
-      transform: 'translate(-50%, -50%',
-      borderRadius: '15px'
-    },
-  };
+//  const customStyles = {
+//     content: {
+//       top: '50%',
+//       left: '50%',
+//       right: 'auto',
+//       bottom: 'auto',
+//       marginRight: '-50%',
+//       transform: 'translate(-50%, -50%',
+//       borderRadius: '15px'
+//     },
+//   };
 
 Modal.setAppElement("body");
 
@@ -21,9 +20,6 @@ const EditNote = ({ modalOpen, toggle, onEdit, clientId, noteId }) => {
     const [note, setNote] = useState({})
     const [title, setTitle] = useState('')
     const [content, setContent] = useState('')
-
-    const params = useParams();
-    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchNote = async () => {
@@ -36,7 +32,7 @@ const EditNote = ({ modalOpen, toggle, onEdit, clientId, noteId }) => {
         };
 
         fetchNote();
-    }, [params]);
+    }, []);
 
 
     const onSubmit = (e) => {
@@ -47,9 +43,7 @@ const EditNote = ({ modalOpen, toggle, onEdit, clientId, noteId }) => {
             return;
         }
 
-        onEdit(params.id, title, content);
-
-        navigate('/notes')
+        onEdit(noteId, title, content);
     };
 
     return (

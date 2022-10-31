@@ -9,9 +9,6 @@ import Settings from './pages/Settings/Settings';
 import Notes from './pages/Notes/Notes';
 import Login from './pages/Login/Login';
 import Signup from './pages/Signup/Signup';
-import ViewNote from './pages/Notes/components/ViewNote';
-import EditNote from './pages/Notes/components/EditNote'
-
 import './App.css';
 
 function App() {
