@@ -16,10 +16,8 @@ import Modal from 'react-modal'
 
 Modal.setAppElement("body");
 
-const ViewNote = ({ notes, modalOpen, onEdit, onDelete, toggle, clientId, noteId }) => {
+const ViewNote = ({ notes, modalOpen, onDelete, toggle, clientId, noteId, toggleEdit }) => {
     const [note, setNote] = useState({})
-    // console.log(noteId);
-    console.log(clientId);
 
     useEffect(() => {
         const fetchNote = async () => {
@@ -40,7 +38,9 @@ const ViewNote = ({ notes, modalOpen, onEdit, onDelete, toggle, clientId, noteId
             >
             <div className="single-note-btns">
                 <button onClick={() => toggle(false)}>Close</button>
-                <button onEdit={onEdit}>Edit</button>
+                <button onClick={() => toggleEdit(true)}>
+                    Edit
+                </button>
                 <button onClick={() => onDelete(notes.id)} >Delete</button>
             </div>
             <h2>{note.title}</h2>

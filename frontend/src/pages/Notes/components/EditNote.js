@@ -2,9 +2,22 @@ import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom'
 import Modal from 'react-modal'
 
+ //Modal Style
+ const customStyles = {
+    content: {
+      top: '50%',
+      left: '50%',
+      right: 'auto',
+      bottom: 'auto',
+      marginRight: '-50%',
+      transform: 'translate(-50%, -50%',
+      borderRadius: '15px'
+    },
+  };
+
 Modal.setAppElement("body");
 
-const EditNote = ({ onEdit, modalOpen, toggle }) => {
+const EditNote = ({ modalOpen, toggle, onEdit, clientId, noteId }) => {
     const [note, setNote] = useState({})
     const [title, setTitle] = useState('')
     const [content, setContent] = useState('')
@@ -14,7 +27,7 @@ const EditNote = ({ onEdit, modalOpen, toggle }) => {
 
     useEffect(() => {
         const fetchNote = async () => {
-            const res = await fetch(`${process.env.REACT_APP_API_URL}/api/notes/633b6a81145c9d79405c54ea/${params.client_id}/${params.id}`);
+            const res = await fetch(`${process.env.REACT_APP_API_URL}/api/notes/633b6a81145c9d79405c54ea/${clientId}/${noteId}`);
             const data = await res.json();
 
             setNote(data);
@@ -63,7 +76,7 @@ const EditNote = ({ onEdit, modalOpen, toggle }) => {
                     onChange={(e) => setContent(e.target.value)}
                 />
             </div>
-            <input type="submit" value="Save Note" className="submit-btn" />
+            <input type="submit" value="Save Note" className="submit-btn" onClick={onEdit} />
         </form>
         </Modal>
     )
