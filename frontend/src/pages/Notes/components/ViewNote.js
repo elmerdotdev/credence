@@ -2,7 +2,22 @@ import React from 'react'
 import { useEffect, useState } from 'react'
 import { Link, useParams, useNavigate } from 'react-router-dom'
 
-const ViewNote = () => {
+ //Modal Style
+//  const customStyles = {
+//     content: {
+//       top: '50%',
+//       left: '50%',
+//       right: 'auto',
+//       bottom: 'auto',
+//       marginRight: '-50%',
+//       transform: 'translate(-50%, -50%',
+//       borderRadius: '15px'
+//     },
+//   };
+
+Modal.setAppElement("body");
+
+const ViewNote = ({ notes, modalOpen, onDelete, toggle, clientId, noteId, toggleEdit }) => {
     const [note, setNote] = useState({})
 
     const params = useParams();

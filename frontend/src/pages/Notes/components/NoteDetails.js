@@ -5,18 +5,17 @@ import ViewNote from './ViewNote'
 import { Link } from 'react-router-dom'
 
  //Modal Style
- const customStyles = {
-    content: {
-      top: '50%',
-      left: '50%',
-      right: 'auto',
-      bottom: 'auto',
-      marginRight: '-50%',
-      transform: 'translate(-50%, -50%',
-      borderRadius: '15px',
-      backgroundColor: 'rgba(255, 255, 255)'
-    },
-  };
+//  const customStyles = {
+//     content: {
+//       top: '50%',
+//       left: '50%',
+//       right: 'auto',
+//       bottom: 'auto',
+//       marginRight: '-50%',
+//       transform: 'translate(-50%, -50%',
+//       borderRadius: '15px'
+//     },
+//   };
 
 
 const NoteDetails = ({ notes, close, onAdd, onEdit }) => {

@@ -11,15 +11,6 @@ import Notes from './pages/Notes/Notes';
 import Profile from './pages/Profile/Profile';
 import Login from './pages/Login/Login';
 import Signup from './pages/Signup/Signup';
-import ViewNote from './pages/Notes/components/ViewNote';
-import EditNote from './pages/Notes/components/EditNote'
-
-// Landing Pages
-import Home from './pages/Landing/Home/Home';
-import Features from './pages/Landing/Features/Features';
-import Pricing from './pages/Landing/Pricing/Pricing';
-import About from './pages/Landing/About/About';
-
 import './App.css';
 import logo from './images/logo.svg';
 
