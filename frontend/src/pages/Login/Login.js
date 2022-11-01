@@ -71,12 +71,13 @@ const Login = () => {
     <div className="page-login">
       <section className="page-login-area">
         <i className='icon-close'></i>
-        <h3>Sign into your <img src={logo_nopadding} alt="credence-logo" className='credence-logo'/> account</h3>
+        {/* <h3>Sign into your <img src={logo_nopadding} alt="credence-logo" className='credence-logo'/> account</h3> */}
+        <h3><span>Sign into your</span><img src={logo_nopadding} alt="credence-logo" className='credence-logo'/><span>Account</span></h3>
 
         <div className="desktop-grid">
-          <div>
+          
             <img src={loginimage} alt="login-img" className='login-img'/>
-          </div>
+          
           <div className="right-box">
             <form className="login-form" onSubmit={handleSubmit}>
               <label  htmlFor="email" name="email" >Email</label>
