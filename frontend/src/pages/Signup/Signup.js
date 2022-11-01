@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate  } from 'react-router-dom'
 import { useSignup } from './hooks/useSignup'
+//Icon & Logo
+import '../../fontello/css/credence.css';
 // import GoogleLoginButton from '../../components/GoogleLoginButton'
 
 
@@ -39,20 +41,10 @@ const Signup = () => {
     setEmail('')
     setPassword('')
 
-    //ここを何のタイミングでsignupできたにすればいいかわからない
-    // if (error.response.states){
-    //   console.log('omedetou!')
-    //   // navigate('/successsignup')
-    // }else if(error){
-    //   console.log('sorry')
-    // }
-   
-    //Signupできたらlocalstorage見て、201確認。そして次のページへ移動。
-      if (localStorage.getItem('user')){
+    //Signup success, check user in localstorage then move to next page 
+    if (localStorage.getItem('user')){
       console.log('Success Signup!')
-  
       navigate('/successsignup')
-      // navigate('/confirmsignup')  
     }else{
       console.log('Signup not successed.')
     }
@@ -80,26 +72,35 @@ const Signup = () => {
                       value={firstName}
                       onChange={(e) => setFirstName(e.target.value)}
               />
+              
               <label  htmlFor="lastname">Last Name</label>
               <input  type="text"
                       htmlFor="lastname"
                       value={lastName}
                       onChange={(e) => setLastName(e.target.value)}
               />
+              
               <label  htmlFor="email" name="email" >Email<span className="required-star">*</span></label>
               <input  type="email"
                       htmlFor="email"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
               />
+              
               <label  htmlFor="password">Password<span className="required-star">*</span></label>
-              <input  type={ pwShow ? "text" :"password"}
-                      htmlFor="password"
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-              />
-              <button onClick={togglePw} type="button">show password</button>
-          
+              <div className="password-area">
+                <input  type={ pwShow ? "text" :"password"}
+                        htmlFor="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                />
+                <i  className={pwShow === true ? "icon-lock" : "icon-info"}
+                    onClick={togglePw}
+                >
+                </i>   
+              </div>
+             
+
               <button type="submit" className="submit-signup-btn">Sign Up</button>
               {error && <div className='error'>{error}</div>}
             </form>

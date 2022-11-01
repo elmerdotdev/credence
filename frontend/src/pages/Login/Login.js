@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-// import GoogleLoginButton from '../../components/GoogleLoginButton'
 import { useLogin } from '../Signup/hooks/useLogin'
 import { useLogout } from '../Signup/hooks/useLogout' 
+//Icon & Logo
+import '../../fontello/css/credence.css';
+import logo from '../../images/logo.svg';
+import loginimage from '../../images/loginimage.svg'
 // import setLastLoggedIn from '../Signup/Signup'
-
+// import GoogleLoginButton from '../../components/GoogleLoginButton'
 
 const Login = () => {
   //Email
@@ -27,7 +30,6 @@ const Login = () => {
  
   const handleSubmit = async (e) => {
     e.preventDefault()
-
 
     //ここで入れる
     await  login(email, password)
@@ -54,16 +56,25 @@ const Login = () => {
   //dashboardできたらこれを入れてもらう
   const { logout } = useLogout()
   const handleLogout = () => {
+      
+    if(localStorage.getItem('user')){
       logout()
       navigate('/login')
+      console.log('Logout')
+    }else{
+      return null
+    }
+    
   }
 
   return (
     <>
       <section className="page-login">
-        <h3>Sign into your <br/><img src="" alt="credence-logo" className='credence-logo'/>account</h3>
+        <h3>Sign into your <br/><img src={logo} alt="credence-logo" className='credence-logo'/>account</h3>
 
-        <img src="" alt="login-img" className='login-img'/>
+        <div>
+          <img src={loginimage} alt="login-img" className='login-img'/>
+        </div>
 
         <form className="login-form" onSubmit={handleSubmit}>
 
@@ -75,20 +86,26 @@ const Login = () => {
           />
 
           <label  htmlFor="password">Password</label>
-          <input  type={ pwShow ? "text": "password"} 
-                  htmlFor="password" 
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-          />
-          <button onClick={togglePw} type="button">show password</button>
-
+          <div className="password-area">
+            <input  type={ pwShow ? "text": "password"}
+                    htmlFor="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+            
+            />
+            <i  className={pwShow === true ? "icon-lock" : "icon-info"}
+                onClick={togglePw}
+            >
+            </i>
+          </div>
+           
           {error && <div className='error'>{error}</div>} 
 
           <input type="submit" value="Login" className="submit-login-btn" />
         </form>
 
-        <span className="forget-pw-link">
-          <Link>Forgotten your password?</Link>
+        <span >
+          <Link className="forget-pw-link">Forgotten your password?</Link>
         </span>
         {/* <div>OR</div> */}
         {/* <GoogleLoginButton/> */}
