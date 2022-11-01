@@ -1,0 +1,18 @@
+h2{
+    font-size: 2rem;
+    text-align: center;
+}
+
+.client-card {
+    background-color: #E5E9EF;
+    border-radius: 10px;
+    padding: .1rem .5rem;
+    margin: .5rem;
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+}
+
+.client-card:hover {
+    background-color: #c5ffc2;
+    cursor: pointer;
+}
