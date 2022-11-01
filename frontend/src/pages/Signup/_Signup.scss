@@ -1,0 +1,46 @@
+.page-signup {
+    background-color: #F5F5F5;
+    .page-login-area{
+        font-size: 1rem;
+        font-family: serif;
+        padding: 0 20px;
+        background-color: #F5F5F5;
+    }
+    .icon-close{
+        display: none;
+    }
+    h3{
+        font-style: normal;
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 32px;
+        text-align: center;
+        color: #000000;
+
+        margin: 36px 40px 0 39px;
+    }
+    img.credence-logo{
+
+    }
+    img.signup-img{
+        margin:15px 130px 55px 114px;
+    }
+    input{
+        display: block;
+        margin-bottom: 32px;
+    }
+    .required-star{
+        color: #FF4D4F;
+    }
+    @media screen and (min-width:$screen-desktop){
+        padding: 26px 53px 70px 53px;
+
+        .grid-for-desktop{
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+
+
+}

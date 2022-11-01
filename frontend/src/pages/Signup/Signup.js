@@ -3,6 +3,8 @@ import { useNavigate  } from 'react-router-dom'
 import { useSignup } from './hooks/useSignup'
 //Icon & Logo
 import '../../fontello/css/credence.css';
+import logo_nopadding from '../../images/logo_nopadding.svg';
+import signupimage from '../../images/signupimage.svg';
 // import GoogleLoginButton from '../../components/GoogleLoginButton'
 
 
@@ -57,12 +59,13 @@ const Signup = () => {
   }
   
   return (
-    <>
-      <section className="page-signup">
-        <h3>Create a<img src="" alt="credence-logo"  className='credence-logo'/>Account</h3>
+    <div className="page-signup">
+      <section className="page-signup-area">
+        <i className='icon-close'></i>
+        <h3>Create a <img src={logo_nopadding} alt="credence-logo"  className='credence-logo'/> Account</h3>
 
         <div className="grid-for-desktop">
-          <img src="" alt="signup-img" className='signup-img'/>
+          <img src={signupimage} alt="signup-img" className='signup-img'/>
           <div className="signup-form">
             <form className="signup-form" onSubmit={handleSubmit}>
           
@@ -110,7 +113,7 @@ const Signup = () => {
         {/* <div>OR</div> */}
         {/* <GoogleLoginButton/> */}
       </section>
-    </>
+    </div>
   )
 }
 

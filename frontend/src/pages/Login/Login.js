@@ -4,7 +4,7 @@ import { useLogin } from '../Signup/hooks/useLogin'
 import { useLogout } from '../Signup/hooks/useLogout' 
 //Icon & Logo
 import '../../fontello/css/credence.css';
-import logo from '../../images/logo.svg';
+import logo_nopadding from '../../images/logo_nopadding.svg';
 import loginimage from '../../images/loginimage.svg'
 // import setLastLoggedIn from '../Signup/Signup'
 // import GoogleLoginButton from '../../components/GoogleLoginButton'
@@ -68,53 +68,54 @@ const Login = () => {
   }
 
   return (
-    <>
-      <section className="page-login">
-        <h3>Sign into your <br/><img src={logo} alt="credence-logo" className='credence-logo'/>account</h3>
+    <div className="page-login">
+      <section className="page-login-area">
+        <i className='icon-close'></i>
+        <h3>Sign into your <img src={logo_nopadding} alt="credence-logo" className='credence-logo'/> account</h3>
 
-        <div>
-          <img src={loginimage} alt="login-img" className='login-img'/>
-        </div>
-
-        <form className="login-form" onSubmit={handleSubmit}>
-
-          <label  htmlFor="email" name="email" >Email</label>
-          <input  type="email" 
-                  htmlFor="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-          />
-
-          <label  htmlFor="password">Password</label>
-          <div className="password-area">
-            <input  type={ pwShow ? "text": "password"}
-                    htmlFor="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-            
-            />
-            <i  className={pwShow === true ? "icon-lock" : "icon-info"}
-                onClick={togglePw}
-            >
-            </i>
+        <div className="desktop-grid">
+          <div>
+            <img src={loginimage} alt="login-img" className='login-img'/>
           </div>
-           
-          {error && <div className='error'>{error}</div>} 
-
-          <input type="submit" value="Login" className="submit-login-btn" />
-        </form>
-
-        <span >
-          <Link className="forget-pw-link">Forgotten your password?</Link>
-        </span>
-        {/* <div>OR</div> */}
-        {/* <GoogleLoginButton/> */}
-
-        <p className="move-to-signup-link">Don't have an account? <Link to='/signup'>Sign up here</Link></p>
+          <div className="right-box">
+            <form className="login-form" onSubmit={handleSubmit}>
+              <label  htmlFor="email" name="email" >Email</label>
+              <input  type="email"
+                      htmlFor="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+              />
+              <label  htmlFor="password">Password</label>
+              <div className="password-area">
+                <input  type={ pwShow ? "text": "password"}
+                        htmlFor="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+          
+                />
+                <i  className={pwShow === true ? "icon-lock" : "icon-info"}
+                    onClick={togglePw}
+                >
+                </i>
+              </div>
+          
+              {error && <div className='error'>{error}</div>}
+              <input type="submit" value="Login" className="submit-login-btn" />
+            </form>
+          
+              <div className="fgt-pwd-box">
+                <Link className="forget-pw-link">Forgotten your password?</Link>
+              </div>
+            {/* <div>OR</div> */}
+            {/* <GoogleLoginButton/> */}
+          
+            <p className="move-to-signup-link">Don't have an account? <Link to='/signup'>Sign up here</Link></p>
+          </div>
+        </div>
 
         <button onClick={handleLogout} type={"submit"}>logout</button>
       </section>
-    </>
+    </div>
   )
 }
 
