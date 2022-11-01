@@ -1,32 +1,57 @@
-import React from 'react'
-import { useState } from 'react';
-import { useLogin } from '../Signup/hooks/useLogin';
+import React, { useState, useEffect } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+// import GoogleLoginButton from '../../components/GoogleLoginButton'
+import { useLogin } from '../Signup/hooks/useLogin'
 import { useLogout } from '../Signup/hooks/useLogout' 
- 
+// import setLastLoggedIn from '../Signup/Signup'
+
 
 const Login = () => {
-   //Email
-   const [email, setEmail] = useState('');
-   //Password
-   const [password, setPassword] = useState('');
-   //Password display( hide or show )
-   const [pwShow, setPwShow] = useState(true);
-   //Error checker
-   const {login, error, isLoading} = useLogin();
- 
+  //Email
+  const [email, setEmail] = useState('');
+  //Password
+  const [password, setPassword] = useState('');
+  //Password display( hide or show )
+  const [pwShow, setPwShow] = useState(false);
+  //Error checker
+  const {login, error, isLoading} = useLogin();
+  const { addLoginDate, lastLoggedIn } = useLogin()
+  
+  useEffect(() => {
+    document.querySelector('body').removeAttribute("class")
+    document.querySelector('body').classList.add('no-sidebar')
+  }, [])
 
-  //Login submit action
+  //Login submit action 
+  const navigate = useNavigate()
+ 
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    await login(email, password)
+
+    //ここで入れる
+    await  login(email, password)
+    // await addLoginDate(lastLoggedIn)
     console.log(email, password)
 
     setEmail('')
     setPassword('')
+
+    if (localStorage.getItem('user')) {  
+      console.log('Successs Login!')
+      navigate('/')
+    } else {
+      console.log(' No user into localstorage')
+    }
   }
-  
+
+  //Password toggle
+  const togglePw = () => {
+    setPwShow(!pwShow)
+  }
+
   //Logout submit action
+  //dashboardできたらこれを入れてもらう
   const { logout } = useLogout()
   const handleLogout = () => {
       logout()
@@ -34,34 +59,43 @@ const Login = () => {
 
   return (
     <>
-    <section className="page-login">
-      <h1>Login to your <img src="" alt="credence-logo" />account</h1>
+      <section className="page-login">
+        <h3>Sign into your <br/><img src="" alt="credence-logo" className='credence-logo'/>account</h3>
 
-      <form className="login-form" onSubmit={handleSubmit}>
+        <img src="" alt="login-img" className='login-img'/>
 
-        <label  htmlFor="email" name="email" >Email</label>
-        <input  type="email" 
-                htmlFor="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-        />
+        <form className="login-form" onSubmit={handleSubmit}>
 
-        <label  htmlFor="password">Password</label>
-        <input  type={ pwShow ? "text": "password"} 
-                htmlFor="password" 
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-        />
+          <label  htmlFor="email" name="email" >Email</label>
+          <input  type="email" 
+                  htmlFor="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+          />
 
-        <button type={"submit"}>Login</button>
-        {error && <div className='error'>{error}</div>} 
-      </form>
-      
-      <div>OR</div>
-      <button >Login with Google</button> 
-      
-      <button onClick={handleLogout} type={"submit"}>logout</button>
-    </section>
+          <label  htmlFor="password">Password</label>
+          <input  type={ pwShow ? "text": "password"} 
+                  htmlFor="password" 
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+          />
+          <button onClick={togglePw} type="button">show password</button>
+
+          {error && <div className='error'>{error}</div>} 
+
+          <input type="submit" value="Login" className="submit-login-btn" />
+        </form>
+
+        <span className="forget-pw-link">
+          <Link>Forgotten your password?</Link>
+        </span>
+        {/* <div>OR</div> */}
+        {/* <GoogleLoginButton/> */}
+
+        <p className="move-to-signup-link">Don't have an account? <Link to='/signup'>Sign up here</Link></p>
+
+        <button onClick={handleLogout} type={"submit"}>logout</button>
+      </section>
     </>
   )
 }

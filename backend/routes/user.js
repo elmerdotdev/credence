@@ -3,6 +3,7 @@ const express = require('express')
 const {
     getUser,
     loginUser,
+    googleLogin,
     createUser,
     updateUser
 } = require('../controllers/userController')
@@ -15,8 +16,11 @@ router.get('/:id', getUser)
 // Post login user (login)
 router.post('/login', loginUser)
 
+//Post Google login user (login)
+router.post('/googlelogin', googleLogin)
+
 // Post a new userss (Signin)
-router.post('/register', createUser)
+router.post('/signup', createUser)
 
 // Update a user (specific properties)
 router.patch('/:id', updateUser)
