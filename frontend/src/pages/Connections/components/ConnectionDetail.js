@@ -1,13 +1,13 @@
 import Notes from '../../Notes/Notes';
 
-const ConnectionDetail = ({connection, onEditBtn, onDeleteBtn}) => {
+const ConnectionDetail = ({connection, onEditBtn, onDeleteBtn, onPinBtn}) => {
 
 
 
   return (
     <div>
       <div>
-      <button>Pin</button>
+      <button onClick={onPinBtn}>Pin</button>
       <button onClick={onEditBtn}>Edit</button>
       <button onClick={onDeleteBtn}>Delete</button>
         <h3>

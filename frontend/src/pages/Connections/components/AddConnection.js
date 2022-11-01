@@ -14,13 +14,14 @@ const AddConnection = ({ onAdd }) => {
   const [active, setActive] = useState(false);
   const [industry, setIndustry] = useState([]);
   const [user_id, setUserId] = useState('633b6a81145c9d79405c54ea');
+  const [pinned, setPinned] = useState(false);
 //   const [modalIsOpen, setIsOpen] = React.useState(false);
 
 
 const onSubmit = (e) => {
   e.preventDefault();
 
-  onAdd({ firstname, lastname, company, position, email, phone, active, user_id, industry});
+  onAdd({ firstname, lastname, company, position, email, phone, active, user_id, industry, pinned});
 
   setFirstname('');
   setLastname('');

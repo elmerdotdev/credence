@@ -19,6 +19,7 @@ import Modal from 'react-modal';
 import ClientCards from './components/ClientCards';
 import ConnectionDetail from './components/ConnectionDetail';
 import EditConnection from './components/EditConnection';
+import Filter from './components/Filter'
 
  //Modal Style
  const customStyles = {
@@ -79,7 +80,6 @@ const editConnection = async (inputConnObj) => {
   };
   updConnection.user_id = connection.user_id;
 
- 
 
   await fetch(`https://credence-server.onrender.com/api/clients/${connectionToEditId}`, {
 
@@ -125,7 +125,7 @@ const addConnection = async (newClient) => {
   alert('Connection has been added');
 };
 
- // Delete connection
+ // Delete Connection
  const deleteConnection = async () => {
   const id = connection._id
   await fetch(`https://credence-server.onrender.com/api/clients/${id}`, {
@@ -136,12 +136,40 @@ const addConnection = async (newClient) => {
   setShowDetailModal(false)
 };
 
+// Pin Connection
+const pinConnection = async () => {
+  const id = connection._id
+  const ConnectiontoPin = await fetch(`https://credence-server.onrender.com/api/clients/633b6a81145c9d79405c54ea/${id}`)
+  const updConnection = { ...ConnectiontoPin, pinned: true };
+
+  await fetch(`https://credence-server.onrender.com/api/clients/${id}`, {
+    method: 'PATCH',
+    headers: {
+      'Content-type': 'application/json',
+    },
+    body: JSON.stringify(updConnection),
+  });
+
+};
+
+// Pin Filter
+const pinFilter = () => {
+    // if state boolean true or false:
+    setConnections(
+    connections.filter((connection) => {if (connection.pinned) {return connection}})
+    )
+  const new_list = connections.filter((connection) => {if (connection.pinned) {return connection}})
+  console.log(new_list)
+  // else: fetch connections and set connections
+}
 
   return (
 
     <div className="clients">
-      <section className="page-connections " >Connections</section>
-      <button className="openModalBtn" onClick={() => setShowAddModalIsOpen(true)}>Add</button>
+      <section className="page-connections" >
+      <h2>All Connections</h2>
+      <p><button className="openModalBtn" onClick={() => setShowAddModalIsOpen(true)}>Add</button></p>
+      <Filter onPinFilter={pinFilter}/>
       <ModalComponent
         isOpen={showDetailModal}
         onRequestClose={() => setShowDetailModal(false)}
@@ -150,7 +178,8 @@ const addConnection = async (newClient) => {
       
         
         <ConnectionDetail 
-        connection={connection} onEditBtn={() => {setShowEditModal(true)}}onDeleteBtn={deleteConnection}
+        connection={connection} onEditBtn={() => {setShowEditModal(true)}} onDeleteBtn={deleteConnection}
+        onPinBtn={pinConnection}
         />
        
       </ModalComponent>
@@ -170,6 +199,7 @@ const addConnection = async (newClient) => {
         isOpen={showAddModalIsOpen}
         onRequestClose={() => setShowAddModalIsOpen(false)}
       >
+         <button onClick={() => setShowAddModalIsOpen(false)}>X</button>
         <AddConnection 
         onAdd= {addConnection}  
         />     
@@ -183,6 +213,7 @@ const addConnection = async (newClient) => {
             <button>Add a new connection</button>
           </p>
         )}
+        </section>
   </div>
 
   )
