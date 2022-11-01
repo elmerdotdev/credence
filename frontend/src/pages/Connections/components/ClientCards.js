@@ -5,7 +5,7 @@ const ClientCards = ({ connections, onToggle }) => {
        
         <>
         {connections.map((connection) => (
-            <ClientCard key={connection._id} connection={connection} onToggle={onToggle(connection._id)} />
+            <ClientCard key={connection._id} connection={connection} onToggle={onToggle(connection._id)}/>
         ))}
         </>
 
