@@ -25,7 +25,7 @@ const Profile = () => {
 
   //user＿idを入れるけれどこれがなんのIDなのかを確認すること(user＿idなのかそれとも_idなのか？）
   const fetchMyConnections = async () => {
-    const res = await fetch('http://localhost:5000/api/clients/633b6a81145c9d79405c54ea')
+    const res = await fetch(`http://localhost:${process.env.PORT}/api/clients/633b6a81145c9d79405c54ea`)
     const data = await res.json()
     
 

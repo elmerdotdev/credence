@@ -11,7 +11,7 @@ export const useSignup = () => {
         setIsLoading(true)
         setError(null)
 
-        const res = await fetch('http://localhost:5000/api/users/signup', {
+        const res = await fetch(`http://localhost:${process.env.PORT}/api/users/signup`, {
             method:'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({firstname, lastname, email, password, lastLoggedIn})
