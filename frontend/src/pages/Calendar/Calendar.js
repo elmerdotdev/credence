@@ -105,6 +105,7 @@ const Calendar = () => {
 
       <FullCalendar
         ref={calendarRef}
+        displayEventTime={false}
         plugins={[ dayGridPlugin, interactionPlugin ]}
         initialView="dayGridMonth"
         events={
@@ -126,9 +127,13 @@ const Calendar = () => {
 
       <EventsWidget events={events} currMonth={currentMonth} firstDay={monthFirstDay} lastDay={monthLastDay} onEventClick={handleEventClick} fetchClient={fetchClient} />
 
-      <AddEvent modalOpen={modalAddOpen} onToggle={toggleAddModal} onDateClick={addDate} onAddState={addToEventsState} userId={userID} />
+      {modalAddOpen &&
+        <AddEvent modalOpen={modalAddOpen} onToggle={toggleAddModal} onDateClick={addDate} onAddState={addToEventsState} userId={userID} />
+      }
 
-      <ViewEvent modalOpen={modalViewOpen} onToggle={toggleViewModal} onDelete={deleteEvent} userId={userID} eventId={viewEventId} fetchClient={fetchClient} />
+      {modalViewOpen &&
+        <ViewEvent modalOpen={modalViewOpen} onToggle={toggleViewModal} onDelete={deleteEvent} userId={userID} eventId={viewEventId} fetchClient={fetchClient} />
+      }
 
     </section>
   )
