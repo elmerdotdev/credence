@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import { useNavigate  } from 'react-router-dom'
+import { useNavigate, Link  } from 'react-router-dom'
 import { useSignup } from './hooks/useSignup'
+//Icon & Logo
+import '../../fontello/css/credence.css';
+import logo_nopadding from '../../images/logo_nopadding.svg';
+import signupimage from '../../images/signupimage.svg';
+
 // import GoogleLoginButton from '../../components/GoogleLoginButton'
 
 
@@ -39,20 +44,10 @@ const Signup = () => {
     setEmail('')
     setPassword('')
 
-    //ここを何のタイミングでsignupできたにすればいいかわからない
-    // if (error.response.states){
-    //   console.log('omedetou!')
-    //   // navigate('/successsignup')
-    // }else if(error){
-    //   console.log('sorry')
-    // }
-   
-    //Signupできたらlocalstorage見て、201確認。そして次のページへ移動。
-      if (localStorage.getItem('user')){
+    //Signup success, check user in localstorage then move to next page 
+    if (localStorage.getItem('user')){
       console.log('Success Signup!')
-  
       navigate('/successsignup')
-      // navigate('/confirmsignup')  
     }else{
       console.log('Signup not successed.')
     }
@@ -65,41 +60,53 @@ const Signup = () => {
   }
   
   return (
-    <>
-      <section className="page-signup">
-        <h3>Create a<img src="" alt="credence-logo"  className='credence-logo'/>Account</h3>
+    <div className="page-signup">
+      <section className="page-signup-area">
+      <Link to="/" ><i className='icon-close'></i></Link>
+        <h3><span>Create a</span><img src={logo_nopadding} alt="credence-logo"  className='credence-logo'/><span>Account</span></h3>
 
-        <div className="grid-for-desktop">
-          <img src="" alt="signup-img" className='signup-img'/>
+        <div className="desktop-grid">
+          
+            <img src={signupimage} alt="signup-img" className='signup-img'/>
+          
           <div className="signup-form">
             <form className="signup-form" onSubmit={handleSubmit}>
           
-              <label  htmlFor="firstname">First Name / Nickname<span className="required-star">*</span></label>
+              <label  htmlFor="firstname">First Name / Nickname<span className="required-star"> *</span></label>
               <input  type="text"
                       htmlFor="firstname"
                       value={firstName}
                       onChange={(e) => setFirstName(e.target.value)}
               />
+              
               <label  htmlFor="lastname">Last Name</label>
               <input  type="text"
                       htmlFor="lastname"
                       value={lastName}
                       onChange={(e) => setLastName(e.target.value)}
               />
-              <label  htmlFor="email" name="email" >Email<span className="required-star">*</span></label>
+              
+              <label  htmlFor="email" name="email" >Email<span className="required-star"> *</span></label>
               <input  type="email"
                       htmlFor="email"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
               />
-              <label  htmlFor="password">Password<span className="required-star">*</span></label>
-              <input  type={ pwShow ? "text" :"password"}
-                      htmlFor="password"
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-              />
-              <button onClick={togglePw} type="button">show password</button>
-          
+              
+              <label  htmlFor="password">Password<span className="required-star"> *</span></label>
+              <div className="password-area">
+                <input  type={ pwShow ? "text" :"password"}
+                        htmlFor="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                />
+                <i  className={pwShow === true ? "icon-lock" : "icon-info"}
+                    onClick={togglePw}
+                >
+                </i>   
+              </div>
+             
+
               <button type="submit" className="submit-signup-btn">Sign Up</button>
               {error && <div className='error'>{error}</div>}
             </form>
@@ -109,7 +116,7 @@ const Signup = () => {
         {/* <div>OR</div> */}
         {/* <GoogleLoginButton/> */}
       </section>
-    </>
+    </div>
   )
 }
 
