@@ -36,7 +36,9 @@ const EventsWidget = (props) => {
 
     return (
         <div className="page-calendar-widget">
-            <h2>{props.currMonth}</h2>
+            <h2>
+                <span>{moment(props.currMonth).format("MMMM")}</span> <span>{moment(props.currMonth).format("YYYY")}</span>
+            </h2>
 
             {events.length === 0 ? (
                 <button onClick={() => props.openAddModal(true)}>Add Your First Event</button>
