@@ -1,51 +1,47 @@
 import React from 'react'
-import { useEffect, useState } from 'react'
 import AddNote from './AddNote'
+import NoteList from './NoteList'
+import Modal from 'react-modal'
 
+ //Modal Style
+//  const customStyles = {
+//     content: {
+//       top: '50%',
+//       left: '50%',
+//       right: 'auto',
+//       bottom: 'auto',
+//       marginRight: '-50%',
+//       transform: 'translate(-50%, -50%',
+//       borderRadius: '15px'
+//     },
+//   };
 
-const NoteDetails = ({close, onAdd}) => {
-    const [notes, setNotes] = useState(null)
+Modal.setAppElement("body");
 
-    useEffect(() => {
-        const getNotes = async () => {
-            const res = await fetchNotes();
-            setNotes(res)
-        }
-
-        getNotes();
-    }, [])
-
-    //Fetch All Notes
-    const fetchNotes = async () => {
-        const response = await fetch('http://localhost:5002/api/notes/633b6a81145c9d79405c54ea')
-        const data = await response.json()
-
-        if (response.ok) {
-            return data
-        }
-    }
-
-    //Fetch Single Note
-    // const fetchNote = async (client_id, id) => {
-    //     const response = await fetch(`http://localhost:5002/api/notes/633b6a81145c9d79405c54ea/${client_id}/${id}`)
-    // }
-
+const NoteDetails = ({ notes, modalOpen, toggle, onAdd, viewNote, noteId }) => {
+   
     return (
         <div>
-            <button onClick={() => close()}>Close</button>
+            <Modal
+                isOpen = {modalOpen}
+            >
+            <button onClick={() => toggle(false)}>Close</button>
             <section className = "add-note">
                 <AddNote 
                     onAdd = {onAdd}
                 />
             </section>
-            <section className="note-details">
-                {notes && notes.map((notes, i) => (
-                    <div key={i}>
-                    <h2>{notes.title}</h2>
-                    <p>{notes.content}</p>
-                    </div>
+            <section className="note-details" >
+            {notes && notes.map((notes, i) => (
+                    <NoteList 
+                        key={i} 
+                        notes = {notes}
+                        viewNote = {viewNote}
+                        nodeId = {noteId}
+                    />
                 ))}
             </section>
+            </Modal>
         </div>
 
     )
