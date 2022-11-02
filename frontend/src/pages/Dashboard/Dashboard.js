@@ -32,6 +32,14 @@ const Dashboard = () => {
     getActivities()
   }, [])
 
+  // Get clients
+  const fetchClients = async () => {
+    const res = await fetch(`${process.env.REACT_APP_API_URL}/api/clients/${userID}`)
+    const data = await res.json()
+
+    return data
+  }
+
   // Get client
   const fetchClient = async (id) => {
     const res = await fetch(`${process.env.REACT_APP_API_URL}/api/clients/${userID}/${id}`)
@@ -98,7 +106,7 @@ const Dashboard = () => {
           <EventsWidget events={events} currMonth={currentMonth} firstDay={monthFirstDay} lastDay={monthLastDay} onEventClick={handleEventClick} fetchClient={fetchClient} />
 
           {modalAddOpen &&
-            <AddEvent modalOpen={modalAddOpen} onToggle={toggleAddModal} onAddState={addToEventsState} userId={userID} />
+            <AddEvent modalOpen={modalAddOpen} onToggle={toggleAddModal} onAddState={addToEventsState} fetchClients={fetchClients} userId={userID} />
           }
 
           {/* {modalViewOpen &&

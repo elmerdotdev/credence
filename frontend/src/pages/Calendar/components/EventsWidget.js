@@ -39,7 +39,7 @@ const EventsWidget = (props) => {
             <h2>{props.currMonth}</h2>
 
             {events.length === 0 ? (
-                <button>Add Your First Event</button>
+                <button onClick={() => props.openAddModal(true)}>Add Your First Event</button>
             ) : (
                 <div className="monthlyEvents">
                     {groupedEvents.map((day, i) => (
