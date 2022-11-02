@@ -15,8 +15,8 @@ const Notes = () => {
   useEffect(() => {
     const getNotes = async () => {
       const res = await fetchNotes();
-      setNotes(res)
-  }
+      setNotes(res);
+  };
 
     getNotes();
   }, [])
@@ -80,6 +80,9 @@ const addNote = async (note) => {
 
 // Edit Note
 const editNote = async( title, content) => {
+  const getNote = await fetch(`${process.env.REACT_APP_API_URL}/api/notes/${singleNoteId}`)
+
+  const noteToEdit = await getNote.json()
   const updNote = {
     title: title,
     content: content,
@@ -91,18 +94,23 @@ const editNote = async( title, content) => {
       'Content-type' : 'application/json'
     },
     body: JSON.stringify(updNote),
-  })
+  });
+
+  const res = await fetchNotes();
+  setNotes(res);
+  setEditNoteIsOpen(false)
 }
 
 //Delete Note
-const deleteNote = async (id) => {
+const deleteNote = async () => {
   await fetch(`${process.env.REACT_APP_API_URL}/api/notes/${singleNoteId}`, {
     method: 'DELETE',
   });
 
+  console.log(notes.filter((note) => note.id !== singleNoteId ));
+  // setNotes(notes.filter((note) => note.id !== id ))
+  // console.log(notes.filter((note) => note.id !== id ))
   setViewNoteIsOpen(false)
-  setNotes(notes.filter((note) => note.id !== id ))
-  // setNotes(notes)
 }
 
  
