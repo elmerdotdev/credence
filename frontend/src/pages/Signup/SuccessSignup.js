@@ -24,7 +24,7 @@ const SuccessSignup = () => {
           <p><span>Welcome to</span><img src={logo_nopadding} alt="credence-logo" className='credence-logo'/> !</p>
           <p>Thank you for taking the time to sign up. Keep up the good work!</p>
           
-          <img src={signupimage} alt="signup-image" className='signup-success-image'/>
+          <img src={signupimage} alt="signup-img" className='signup-success-image'/>
           
           <button onClick={dlt200LocalStorage}><Link to="/login" >Next</Link></button>
       </section>
