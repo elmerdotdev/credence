@@ -1,11 +1,10 @@
-// import { response } from 'express'
 import React, { useEffect, useState } from 'react'
 import ProfileReportsPreview from './ProfileReportsPreview'
 
 
 const Profile = () => {
-  const [ allClients, setAllClients ] = useState(null)
-  const [ myClientArray, setMyClientArray ] = useState(null)
+  const [ allClients, setAllClients ] = useState([])
+  const [ myClientArray, setMyClientArray ] = useState([])
   const [ myClientNbr, setMyClientNbr ] = useState(null)
  
  
@@ -15,27 +14,28 @@ const Profile = () => {
 
   //====Fetch Connection(このIDが入っているクライアントの数)====
   useEffect(() => {
-    const getMyConnections = async () => {
+    const getClients = async () => {
       const res = await fetchMyConnections();
       setAllClients(res);
     }
 
-    getMyConnections();
+    getClients();
   },[])
 
   //user＿idを入れるけれどこれがなんのIDなのかを確認すること(user＿idなのかそれとも_idなのか？）
   const fetchMyConnections = async () => {
-    const res = await fetch('http://localhost:5000/api/clients/633b6a81145c9d79405c54ea')
-    const data = await res.json()
-    
-
-    if (res.ok) {
-      console.log(data)
+    // const res = await fetch(`${process.env.REACT_APP_API_URL}/api/clients/633b6a81145c9d79405c54ea`)
+    const res = await fetch(`${process.env.REACT_APP_API_URL}/api/clients/getClients`);
+    const data = await res.json();  
+   
+    if(res.ok) {
       return data
+      
     }
-    setAllClients([...allClients, data])
+  }
+    // setAllClients([...allClients, data])
   
-  }  
+   
 
   console.log(allClients)
 
