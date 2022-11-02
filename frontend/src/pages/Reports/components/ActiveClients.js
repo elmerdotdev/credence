@@ -8,20 +8,36 @@ ChartJS.register(
     ArcElement
 )
 const ActiveClients = () => {
-    // const [activeClient, setActiveClients] = useState('')
-    // const [inactiveClient, setInactiveClients] = useState('')
+    const [activeClients, setActiveClients] = useState('')
+    const [inactiveClients, setInactiveClients] = useState('')
 
+    useEffect(() => {
+        const getClients = async () => {
+            const clients = await fetchClients();
+            const active = clients.filter((client) => client.active == true)
+            const inactive = clients.filter((client) => client.active == false)
+            setActiveClients(active.length)
+            setInactiveClients(inactive.length)
+        }
 
-    // const fetchActiveClients = async () => {
-    //     const reponse = await fetch(``)
-    // }
+        getClients();
+    }, [])
+
+    const fetchClients = async () => {
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/clients/633b6a81145c9d79405c54ea`)
+        const data = await response.json()
+
+        if (response.ok) {
+            return data
+        }
+    }
 
     // const fetchInactiveClients
 
     const data = {
         labels: ["Active", "Inactive"],
         datasets: [{
-            data: [5, 2],
+            data: [activeClients, inactiveClients],
             backgroundColor: [
                 "#0468BF",
                 "#D6EAFC"
