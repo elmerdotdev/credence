@@ -1,9 +1,8 @@
 .page-signup {
     background-color: #F5F5F5;
-    .page-login-area{
+    .page-signup-area{
         font-size: 1rem;
-        font-family: serif;
-        padding: 0 20px;
+        padding: 20px;
         background-color: #F5F5F5;
     }
     .icon-close{
@@ -11,33 +10,139 @@
     }
     h3{
         font-style: normal;
-        font-weight: 700;
         font-size: 24px;
         line-height: 32px;
         text-align: center;
         color: #000000;
-
         margin: 36px 40px 0 39px;
-    }
-    img.credence-logo{
+        display: flex;
+        justify-content: center;
+        text-align: center;
 
+        span{
+            margin-bottom: .8px;   
+        }
+        span:nth-of-type(1){
+            margin-right: 5px;
+        }
+        span:nth-of-type(2){
+            margin-left: 5px;
+        }
     }
+    // img.credence-logo{
+
+    // }
     img.signup-img{
-        margin:15px 130px 55px 114px;
-    }
-    input{
+        // margin:15px 130px 55px 114px;
         display: block;
+        margin: 15px auto 55px auto;
+    }
+    label{
+        display: block;
+        color:#004076;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 16px;
+        margin-bottom: 8px;
+    }
+    input[for="firstname"],
+    input[for="lastname"],
+    input[for="email"]{
+        width: 100%;
+        background-color: #F5F5F5;
+        border: none;
+        border-bottom: 1px solid #8A8A8A;
         margin-bottom: 32px;
+        font-size: 16px;
+        line-height: 20px;
+        font-weight: 400;
+    }
+    input[for="password"]{
+        width: 100%;
+        background-color: #F5F5F5;
+        border: none;
+        font-size: 16px;
+        line-height: 20px;
+        font-weight: 400;
+    }
+    .password-area{
+        display: flex;
+        border-bottom: 1px solid #747474; 
+        margin-bottom: 32px;
+    }
+    .icon-info,
+    .icon-info{
+        font-size: 16px;
+        color:#202533;
     }
     .required-star{
         color: #FF4D4F;
     }
+    button.submit-signup-btn{
+        margin: 56px 0 21px 0;
+        display: flex;
+        align-items: center;
+        gap: 1.2rem;
+        padding: 0.5rem 1rem 0.5rem 1.5rem;
+        background-color: #0468BF;
+        color: #FDFDFD;
+        border: none;
+        border-radius: 0.5rem;
+        width: 100%;
+        justify-content: center;
+        transition: background-color 0.2s ease-in-out;
+    }
     @media screen and (min-width:$screen-desktop){
-        padding: 26px 53px 70px 53px;
+        background-color:$color-dusty-gray;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 109px 35px;
+        .page-signup-area{
+            padding: 26px 53px 70px 53px;
+            border-radius: 24px;
+            width: 80%;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.25);
+        }
+        .icon-close{
+            display: block;
+            text-align: right;
+        }
+        .icon-close:before{
+            margin: 0;
+            font-size: 42px;
+        }
+        h3{
+            font-size: 36px;
+            line-height: 44px;
+            margin-top: 0;
 
-        .grid-for-desktop{
+            span{
+                margin-bottom: 10px;   
+            }
+            span:nth-of-type(1){
+                margin-right: 8px;
+            }
+            span:nth-of-type(2){
+                margin-left: 8px;
+            }
+        }
+        .desktop-grid{
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            align-items: center;
+            gap: 100px;
+            grid-template-columns: 1.3fr 1fr;
+            margin-top: 52px;
+            width: 100%;
+        }
+        img.signup-img{
+            // margin: 0;
+            width:100%;
+            height: auto;
+            
+        }
+        button.submit-signup-btn{
+            margin: 32px 0 0 0;
         }
     }
 

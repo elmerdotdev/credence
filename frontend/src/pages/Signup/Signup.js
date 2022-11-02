@@ -5,6 +5,7 @@ import { useSignup } from './hooks/useSignup'
 import '../../fontello/css/credence.css';
 import logo_nopadding from '../../images/logo_nopadding.svg';
 import signupimage from '../../images/signupimage.svg';
+
 // import GoogleLoginButton from '../../components/GoogleLoginButton'
 
 
@@ -62,14 +63,16 @@ const Signup = () => {
     <div className="page-signup">
       <section className="page-signup-area">
         <i className='icon-close'></i>
-        <h3>Create a <img src={logo_nopadding} alt="credence-logo"  className='credence-logo'/> Account</h3>
+        <h3><span>Create a</span><img src={logo_nopadding} alt="credence-logo"  className='credence-logo'/><span>Account</span></h3>
 
-        <div className="grid-for-desktop">
-          <img src={signupimage} alt="signup-img" className='signup-img'/>
+        <div className="desktop-grid">
+          
+            <img src={signupimage} alt="signup-img" className='signup-img'/>
+          
           <div className="signup-form">
             <form className="signup-form" onSubmit={handleSubmit}>
           
-              <label  htmlFor="firstname">First Name / Nickname<span className="required-star">*</span></label>
+              <label  htmlFor="firstname">First Name / Nickname<span className="required-star"> *</span></label>
               <input  type="text"
                       htmlFor="firstname"
                       value={firstName}
@@ -83,14 +86,14 @@ const Signup = () => {
                       onChange={(e) => setLastName(e.target.value)}
               />
               
-              <label  htmlFor="email" name="email" >Email<span className="required-star">*</span></label>
+              <label  htmlFor="email" name="email" >Email<span className="required-star"> *</span></label>
               <input  type="email"
                       htmlFor="email"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
               />
               
-              <label  htmlFor="password">Password<span className="required-star">*</span></label>
+              <label  htmlFor="password">Password<span className="required-star"> *</span></label>
               <div className="password-area">
                 <input  type={ pwShow ? "text" :"password"}
                         htmlFor="password"

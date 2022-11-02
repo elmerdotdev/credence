@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route, NavLink, useNavigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, NavLink } from 'react-router-dom';
 
 // App pages
 import Dashboard from './pages/Dashboard/Dashboard';
@@ -21,6 +21,7 @@ import About from './pages/Landing/About/About';
 
 // Components
 import Header from './components/Header/Header';
+import Logout from './pages/Login/Logout';
 
 // CSS and scripts
 import './fontello/css/credence.css';
@@ -42,7 +43,7 @@ function App() {
                         </ul>
                         <ul>
                             <li><i className="icon-settings"></i> <NavLink to="/settings">Settings</NavLink></li>
-                            <li><i className="icon-logout"></i> <NavLink to="/logout">Log Out</NavLink></li>
+                            <Logout/>
                         </ul>
                     </nav>
                 </aside>
