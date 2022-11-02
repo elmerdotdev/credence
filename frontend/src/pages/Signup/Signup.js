@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useNavigate  } from 'react-router-dom'
+import { useNavigate, Link  } from 'react-router-dom'
 import { useSignup } from './hooks/useSignup'
 //Icon & Logo
 import '../../fontello/css/credence.css';
@@ -62,7 +62,7 @@ const Signup = () => {
   return (
     <div className="page-signup">
       <section className="page-signup-area">
-        <i className='icon-close'></i>
+      <Link to="/" ><i className='icon-close'></i></Link>
         <h3><span>Create a</span><img src={logo_nopadding} alt="credence-logo"  className='credence-logo'/><span>Account</span></h3>
 
         <div className="desktop-grid">

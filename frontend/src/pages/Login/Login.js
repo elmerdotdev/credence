@@ -55,7 +55,7 @@ const Login = () => {
   return (
     <div className="page-login">
       <section className="page-login-area">
-        <i className='icon-close'></i>
+        <Link to="/" ><i className='icon-close'></i></Link>
         
         <h3><span>Sign into your</span><img src={logo_nopadding} alt="credence-logo" className='credence-logo'/><span>Account</span></h3>
 
