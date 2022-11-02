@@ -8,7 +8,7 @@ import EventsWidget from '../Calendar/components/EventsWidget';
 import AddEvent from '../Calendar/components/AddEvent';
 
 const Dashboard = () => {
-  const currentMonth = moment().format('MMMM')
+  const currentMonth = moment().format('MMMM YYYY')
   const monthFirstDay = moment().startOf('month').format('YYYY-MM-DD')
   const monthLastDay = moment().endOf('month').format('YYYY-MM-DD')
   const userID = '633b6a81145c9d79405c54ea'
@@ -31,6 +31,14 @@ const Dashboard = () => {
 
     getActivities()
   }, [])
+
+  // Get clients
+  const fetchClients = async () => {
+    const res = await fetch(`${process.env.REACT_APP_API_URL}/api/clients/${userID}`)
+    const data = await res.json()
+
+    return data
+  }
 
   // Get client
   const fetchClient = async (id) => {
@@ -98,7 +106,7 @@ const Dashboard = () => {
           <EventsWidget events={events} currMonth={currentMonth} firstDay={monthFirstDay} lastDay={monthLastDay} onEventClick={handleEventClick} fetchClient={fetchClient} />
 
           {modalAddOpen &&
-            <AddEvent modalOpen={modalAddOpen} onToggle={toggleAddModal} onAddState={addToEventsState} userId={userID} />
+            <AddEvent modalOpen={modalAddOpen} onToggle={toggleAddModal} onAddState={addToEventsState} fetchClients={fetchClients} userId={userID} />
           }
 
           {/* {modalViewOpen &&

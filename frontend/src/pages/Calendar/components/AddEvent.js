@@ -24,6 +24,9 @@ const AddEvent = (props) => {
     const [clients, setClients] = useState([])
     const [clientId, setClientId] = useState('')
 
+    // Destructure
+    const fetchClients = props.fetchClients
+
     const alertMsgs = {
         invalid: "Enter a valid start/end date",
         pastDate: "Start date must not be in the past",
@@ -32,15 +35,18 @@ const AddEvent = (props) => {
     
     useEffect(() => {
         const getClients = async () => {
-            const res = await fetch(`${process.env.REACT_APP_API_URL}/api/clients/${props.userId}`)
-            const data = await res.json()
+            const data = await fetchClients()
 
             setClients(data)
         }
 
         getClients()
         setStart(props.onDateClick)
-    }, [ props.userId, props.modalOpen, props.onDateClick ])
+    }, [ 
+        props.userId,
+        props.modalOpen,
+        props.onDateClick,
+        fetchClients ])
 
     const submitForm = (e) => {
         e.preventDefault()
