@@ -11,6 +11,7 @@ import Notes from './pages/Notes/Notes';
 import Profile from './pages/Profile/Profile';
 import Login from './pages/Login/Login';
 import Signup from './pages/Signup/Signup';
+import Reports from './pages/Reports/Reports';
 
 // Landing Pages
 import Home from './pages/Landing/Home/Home';
@@ -63,6 +64,7 @@ function App() {
                         <Route path="/notes" element={<Notes />} />
                         <Route path="/login" element={<Login />} />
                         <Route path="/signup" element={<Signup />} />
+                        <Route path="/reports" element={<Reports />} />
                     </Routes>
                 </div>
             </section>
