@@ -32,8 +32,6 @@ const ActiveClients = () => {
         }
     }
 
-    // const fetchInactiveClients
-
     const data = {
         labels: ["Active", "Inactive"],
         datasets: [{
@@ -42,13 +40,13 @@ const ActiveClients = () => {
                 "#0468BF",
                 "#D6EAFC"
             ],
-            hoverOffset: 4
+            hoverOffset: 10
         }]
     }
 
     return (
         <div>
-            <h1>My Active Clients</h1>
+            <h2>My Active Clients</h2>
             <div style = {{width:"500px"}}><Doughnut data={data} /></div>
 
         </div>

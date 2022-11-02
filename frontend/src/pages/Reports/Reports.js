@@ -5,7 +5,7 @@ const Reports = () => {
 
     return (
         <div>
-            <p>Reports</p>
+            <h1>Reports</h1>
             <div className="active-clients">
                 <ActiveClients />
             </div>
