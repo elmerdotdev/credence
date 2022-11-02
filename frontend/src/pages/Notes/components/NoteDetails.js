@@ -1,8 +1,7 @@
 import React from 'react'
 import AddNote from './AddNote'
+import NoteList from './NoteList'
 import Modal from 'react-modal'
-import ViewNote from './ViewNote'
-import { Link } from 'react-router-dom'
 
  //Modal Style
 //  const customStyles = {
@@ -17,25 +16,9 @@ import { Link } from 'react-router-dom'
 //     },
 //   };
 
+Modal.setAppElement("body");
 
-const NoteDetails = ({ notes, close, onAdd, onEdit }) => {
-    let subtitle;
-    const [modalIsOpen, setIsOpen] = React.useState(false)
-
-     //Open Modal
-    const openModal = () => {
-        setIsOpen(true)
-    }
-
-    //Modal Style 
-    const viewModal = () => {
-        subtitle.style.color = '#f00';
-    }
-
-   //Close Modal 
-    const closeModal = () => {
-        setIsOpen(false);
-    }
+const NoteDetails = ({ notes, modalOpen, toggle, onAdd, viewNote, noteId }) => {
    
     return (
         <div>
@@ -50,32 +33,15 @@ const NoteDetails = ({ notes, close, onAdd, onEdit }) => {
             </section>
             <section className="note-details" >
             {notes && notes.map((notes, i) => (
-                <Link to={`/notes/${notes.client_id}/${notes._id}`}
-                    onClick={openModal} 
-                    style={{cursor:'pointer'}}
-                >
-                        <div key={i}>
-                        <h2>{notes.title}</h2>
-                        <p>{notes.content}</p>
-                        <p>{notes.client_id}</p>
-                        </div>
-                    
-                </Link>
+                    <NoteList 
+                        key={i} 
+                        notes = {notes}
+                        viewNote = {viewNote}
+                        nodeId = {noteId}
+                    />
                 ))}
             </section>
-            <div className = "single-note">
-                <Modal
-                    isOpen={modalIsOpen}
-                    viewModal={viewModal} 
-                    closeModal={closeModal}
-                    style={customStyles} 
-                >
-                    <ViewNote 
-                        close={closeModal}
-                        onEdit={onEdit}
-                    />
-                </Modal>
-            </div>
+            </Modal>
         </div>
 
     )
