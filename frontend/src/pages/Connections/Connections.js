@@ -3,13 +3,13 @@
 // 【✅】insert一个新的client进database
 // 【✅】client card只显示姓名/title/organization
 // 【✅】点开每个client显示详情，包括姓名/title/organization/email/phone
-//  将active status改成可以one click更改状态的button加入ui
+//  ✅】将active status改成可以one click更改状态的button加入ui
 //  新增connection表格中加入industry，且显示在ui
 // 【✅】在client details中用modal增加edit client功能
 // 【✅】edit button打开edit function modal
 // 【✅】edit function
-//  delete funtion
-//  将pin button改成one click更改状态
+// 【✅】delete funtion
+// 【✅】将pin button改成one click更改状态
 
 import React from 'react';
 import { useState, useEffect } from 'react';
@@ -42,15 +42,17 @@ const ConnectionDetailsModal = props => {
 
 
 const Connections = () => {
-
+  
   const [connections, setConnections] = useState([]);
   const [connection, setConnection] = useState(null);
+  const [activeChecked, setActiveChecked] = useState();
+  const [pinFilterStatus, setPinFilterStatus] = useState(false);
   const [showAddModalIsOpen, setShowAddModalIsOpen] = useState(false);
   const [useConnectionDetailsModal, setConnectionDetailsModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const [showDetailModal, setShowDetailModal] = useState(false);
   const ModalComponent = useConnectionDetailsModal ? ConnectionDetailsModal : Modal;
-  let subtitle;
+  
 
   useEffect(() => {
     const getConnections = async () => {
@@ -153,15 +155,43 @@ const pinConnection = async () => {
 };
 
 // Pin Filter
-const pinFilter = () => {
-    // if state boolean true or false:
+const pinFilter = async () => {
+    if (!pinFilterStatus) {
     setConnections(
     connections.filter((connection) => {if (connection.pinned) {return connection}})
     )
   const new_list = connections.filter((connection) => {if (connection.pinned) {return connection}})
-  console.log(new_list)
+  setPinFilterStatus(true)
+}
+  
+  else {
+    const res = await fetchConnections();
+    setConnections(res);
+    setPinFilterStatus(false)
+  }
   // else: fetch connections and set connections
 }
+
+//Active Button
+const handleActiveCheckbox = async (e) => { 
+  const id = connection._id;
+  const ConnectiontChangeActive = await fetch(`https://credence-server.onrender.com/api/clients/633b6a81145c9d79405c54ea/${id}`)
+
+  connection.active ? connection.active=false : connection.active=true;
+  setConnection(connection);
+  e.target.checked = connection.active;
+  const updConnection = { ...ConnectiontChangeActive, active: connection.active };
+
+  await fetch(`https://credence-server.onrender.com/api/clients/${id}`, {
+    method: 'PATCH',
+    headers: {
+      'Content-type': 'application/json',
+    },
+    body: JSON.stringify(updConnection),
+  });
+  
+  
+}; 
 
   return (
 
@@ -174,32 +204,35 @@ const pinFilter = () => {
         isOpen={showDetailModal}
         onRequestClose={() => setShowDetailModal(false)}
       >
-        <button onClick={() => setShowDetailModal(false)}>X</button>
+        <button onClick={() => setShowDetailModal(false)}><i className="icon-close"></i></button>
       
         
         <ConnectionDetail 
-        connection={connection} onEditBtn={() => {setShowEditModal(true)}} onDeleteBtn={deleteConnection}
+        connection={connection} 
+        onEditBtn={() => {setShowEditModal(true)}} 
+        onDeleteBtn={deleteConnection} 
+        changeActiveBtn={handleActiveCheckbox}
+        // activeChecked = {activeChecked}
         onPinBtn={pinConnection}
-        />
-       
+        />    
       </ModalComponent>
+
       <ModalComponent
         isOpen={showEditModal}
         onRequestClose={() => setShowEditModal(false)}
       >
-        <button onClick = {() => setShowEditModal(false)}>X</button>
+        <button onClick = {() => setShowEditModal(false)}><i className="icon-close"></i></button>
         <EditConnection 
         connection={connection}
         onEdit={editConnection}
-        />
-       
+        />       
       </ModalComponent>
 
       <Modal
         isOpen={showAddModalIsOpen}
         onRequestClose={() => setShowAddModalIsOpen(false)}
       >
-         <button onClick={() => setShowAddModalIsOpen(false)}>X</button>
+         <button onClick={() => setShowAddModalIsOpen(false)}> <i className="icon-close"></i></button>
         <AddConnection 
         onAdd= {addConnection}  
         />     
