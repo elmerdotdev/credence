@@ -107,9 +107,7 @@ const deleteNote = async () => {
     method: 'DELETE',
   });
 
-  console.log(notes.filter((note) => note.id !== singleNoteId ));
-  // setNotes(notes.filter((note) => note.id !== id ))
-  // console.log(notes.filter((note) => note.id !== id ))
+  setNotes(notes.filter((note) => note._id !== singleNoteId ))
   setViewNoteIsOpen(false)
 }
 
