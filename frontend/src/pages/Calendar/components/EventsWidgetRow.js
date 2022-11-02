@@ -34,7 +34,7 @@ const EventsWidgetRow = (props) => {
 
             <div>
                 <h4>{props.event.title}</h4>
-                <div>{client.firstname} {client.lastname}</div>
+                <span className="event-client">{client.firstname} {client.lastname}</span>
             </div>
         </div>
     )
