@@ -1,77 +1,128 @@
 import React, { useEffect, useState } from 'react'
 import ProfileReportsPreview from './ProfileReportsPreview'
-
+import '../../fontello/css/credence.css';
 
 const Profile = () => {
-  const [ allClients, setAllClients ] = useState([])
-  const [ myClientArray, setMyClientArray ] = useState([])
-  const [ myClientNbr, setMyClientNbr ] = useState(null)
- 
- 
+  const [ myClients, setMyClients ] = useState('')
+  const [ myEvents, setMyEvents ] = useState('')
+  const [ myNotes, setMyNotes ] = useState('')
+  const [ myImg, setMyImg ] = useState('')
+
+  //後でuseidが接続できればuseruserIDを含むコードに戻すこと！
+  
   //get userID from Localstorage(user ID)
   const userID = localStorage.getItem('user')
   console.log(userID)
 
-  //====Fetch Connection(このIDが入っているクライアントの数)====
+  //1.Clients number
   useEffect(() => {
     const getClients = async () => {
-      const res = await fetchMyConnections();
-      setAllClients(res);
+      const res = await fetchMyConnections()
+      // const myList = res.filter((client) => client.user_id === userID)
+      const myList = res.filter((client) => client.user_id === '633b6a81145c9d79405c54ea')
+      setMyClients(myList.length)
     }
 
     getClients();
   },[])
 
-  //user＿idを入れるけれどこれがなんのIDなのかを確認すること(user＿idなのかそれとも_idなのか？）
+  //Fetch Clients Number
   const fetchMyConnections = async () => {
-    // const res = await fetch(`${process.env.REACT_APP_API_URL}/api/clients/633b6a81145c9d79405c54ea`)
-    const res = await fetch(`${process.env.REACT_APP_API_URL}/api/clients/getClients`);
+    // const res = await fetch(`${process.env.REACT_APP_API_URL}/api/clients/${userID}`);
+    const res = await fetch(`${process.env.REACT_APP_API_URL}/api/clients/633b6a81145c9d79405c54ea`);
     const data = await res.json();  
-   
+
     if(res.ok) {
-      return data
-      
+      return data 
     }
   }
-    // setAllClients([...allClients, data])
-  
-   
+  console.log(myClients)
 
-  console.log(allClients)
+  //2.Events number
+  useEffect(() => {
+    const getEvents = async () => {
+      const res = await fetchMyEvents()
+      // const mySchedule = res.filter((activity) => activity.user_id === userID)
+      const mySchedule = res.filter((activity) => activity.user_id === '633b6a81145c9d79405c54ea')
+      setMyEvents(mySchedule.length)
+    }
 
-  //ここのMapがなんでダメなのか聞くこと！
-  //   allClients.map((client) =>
-  //   client.user_id === '633b6a81145c9d79405c54ea' ? {...myClientArray,client } : console.log('empty') )
-   
-  // console.log(myClientArray)
-  
+    getEvents();
+  },[])
 
-  //Fetch Events
-  //このUserのIDガハイッテイルeventの数
-  const myEvents = async (userID) => {
-   
+  //Fetch Events Number
+  const fetchMyEvents = async () => {
+    // const res = await fetch(`${process.env.REACT_APP_API_URL}/api/activities/${userID}`);
+    const res = await fetch(`${process.env.REACT_APP_API_URL}/api/activities/633b6a81145c9d79405c54ea`);
+    const data = await res.json();      
+    if(res.ok) {
+      return data 
+    }
   }
-  
-  
-  //Fetch Notes
-  //このuserのIDのIDが入っているNoteの数
-  const myNotes = async (userID) => {
-    
+  console.log(myEvents)
+
+  //3.Notes number
+  useEffect(() => {
+    const getNotes = async () => {
+      const res = await fetchMyNotes()
+      // const myMemo = res.filter((note) => note.user_id === userID)
+      const myMemo = res.filter((note) => note.user_id === '633b6a81145c9d79405c54ea')
+      setMyNotes(myMemo.length)
+    }
+
+    getNotes();
+  },[])
+
+  //Fetch Memo Number
+  const fetchMyNotes = async () => {
+    // const res = await fetch(`${process.env.REACT_APP_API_URL}/api/notes/${userID}`);
+    const res = await fetch(`${process.env.REACT_APP_API_URL}/api/notes/633b6a81145c9d79405c54ea`);
+    const data = await res.json();  
+
+    if(res.ok) {
+      return data 
+    }
   }
-  
+  console.log(myNotes)
+
+  //4.User Image
+   useEffect(() => {
+    const getImg = async () => {
+      const res = await fetchMyImg()
+      const myPicture = res.filter((user) => user._id === `ObjectId('${userID}')`)
+      setMyNotes(myPicture.photo)
+    }
+
+    getImg();
+  },[])
+  //Fetch My Img
+  const fetchMyImg = async () => {
+    const res = await fetch(`${process.env.REACT_APP_API_URL}/api/users/${userID}`);
+    const data = await res.json();  
+
+    if(res.ok) {
+      return data 
+    }
+  }
+  console.log(myImg)
+
+
   return (
     <>
       <div className="page-profile">
       <section className="page-profile-edit">
-            <img src="" alt="user-img" />
+            <img src={ myImg } alt="user-img" />
 
-            <p>{ myClientNbr }</p>
+            <i className='icon-connection'></i>
+            <p>{ myClients }</p>
             <p>connections</p>
 
-            <p>Number</p>
+            <i className='icon-calendar'></i>
+            <p>{ myEvents }</p>
             <p>events</p>
 
-            <p>Number</p>
+            <i className='icon-note'></i>
+            <p>{ myNotes }</p>
             <p>notes</p>
 
             <button>Edit Profile</button>
