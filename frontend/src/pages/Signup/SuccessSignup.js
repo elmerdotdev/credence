@@ -14,18 +14,20 @@ const SuccessSignup = () => {
   
   return (
     <div className='page-signup-successSignup'>
-        {/* <div className='header-arrow'>
-            <p>return</p>
-            <p>delete</p>
-        </div> */}
-        
-        <h3>Sign Up Complete!</h3>
-        <p><span>Welcome to</span><img src={logo_nopadding} alt="credence-logo" className='img.credence-logo'/>!</p>
-        <p>Thank you for taking the time to sign up. Keep up the good work!</p>
-
-        <img src={signupimage} alt="signup-image" className='signup-image'/>
-
-        <button onClick={dlt200LocalStorage}><Link to="/login" >Next</Link></button>
+      <section className='page-successSignup-area'>
+          <div className='header-arrow'>
+              <Link to="/signup"><i className='icon-arrow-left'></i></Link>
+              <Link to="/"><i className='icon-close'></i></Link>
+          </div>
+      
+          <h3>Sign Up Complete!</h3>
+          <p><span>Welcome to</span><img src={logo_nopadding} alt="credence-logo" className='credence-logo'/> !</p>
+          <p>Thank you for taking the time to sign up. Keep up the good work!</p>
+          
+          <img src={signupimage} alt="signup-image" className='signup-success-image'/>
+          
+          <button onClick={dlt200LocalStorage}><Link to="/login" >Next</Link></button>
+      </section>
     </div>
   )
 }
