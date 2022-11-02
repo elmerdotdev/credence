@@ -5,7 +5,6 @@ import { useSignup } from './hooks/useSignup'
 import '../../fontello/css/credence.css';
 import logo_nopadding from '../../images/logo_nopadding.svg';
 import signupimage from '../../images/signupimage.svg';
-
 // import GoogleLoginButton from '../../components/GoogleLoginButton'
 
 
@@ -62,11 +61,10 @@ const Signup = () => {
   return (
     <div className="page-signup">
       <section className="page-signup-area">
-      <Link to="/" ><i className='icon-close'></i></Link>
+        <Link to="/" ><i className='icon-close'></i></Link>
         <h3><span>Create a</span><img src={logo_nopadding} alt="credence-logo"  className='credence-logo'/><span>Account</span></h3>
 
         <div className="desktop-grid">
-          
             <img src={signupimage} alt="signup-img" className='signup-img'/>
           
           <div className="signup-form">
