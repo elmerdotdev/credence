@@ -4,6 +4,8 @@
         font-size: 1rem;
         padding: 20px;
         background-color: #F5F5F5;
+        max-width: 1118px;
+        max-height: 720px;
     }
     .icon-close{
         display: none;
@@ -64,6 +66,9 @@
     }
     input[value="Login"]{
         margin-top: 33px;
+    }
+    .error{
+        color: #FF4D4F;
     }
     .submit-login-btn{
         display: flex;
@@ -145,6 +150,7 @@
         }
         .desktop-grid{
             display: grid;
+            align-items: center;
             gap: 100px;
             grid-template-columns: 1fr 1.2fr;
             margin-top: 68px;
