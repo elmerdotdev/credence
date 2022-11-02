@@ -4,6 +4,8 @@
         text-align: center;
         padding: 20px;
         background-color: #F5F5F5;
+        max-width: 1118px;
+        max-height: 720px;
     }
     .header-arrow{
         display: none;
@@ -38,7 +40,7 @@
     }
     img.signup-success-image{
         margin: 85px auto 0 auto;
-        width: 70%;
+        width: 60%;
     }    
     button{
         display: block;
@@ -85,6 +87,7 @@
         }
         img.signup-success-image{
             margin-top: 31px;
+            width: 30%;
         }
         button{
             width: 60%;
