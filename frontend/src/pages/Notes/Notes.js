@@ -5,10 +5,7 @@ import ViewNote from './components/ViewNote'
 import EditNote from './components/EditNote'
 
 const Notes = () => {
-  const [clients, setClients] = useState(null)
   const [notes, setNotes] = useState(null)
-  // let subtitle;
-  const [noteDetailsIsOpen, setNoteDetailsIsOpen] = useState(false)
   const [viewNoteIsOpen, setViewNoteIsOpen] = useState(false)
   const [editNoteIsOpen, setEditNoteIsOpen] = useState(false)
   const [singleNoteId, setSingleNoteId] = useState('')
@@ -16,29 +13,14 @@ const Notes = () => {
   
 
   useEffect(() => {
-    const getClients = async () => {
-      const res = await fetchClients();
-      setClients(res)
-    };
-
     const getNotes = async () => {
       const res = await fetchNotes();
       setNotes(res)
   }
 
     getNotes();
-    getClients();
   }, [])
 
-  //Fetch Clients
-  const fetchClients = async () => {
-    const response = await fetch(`${process.env.REACT_APP_API_URL}/api/clients/633b6a81145c9d79405c54ea`)
-    const data = await response.json()
-
-    if (response.ok) {
-      return data
-    }
-  }
 
     //Fetch All Notes
     const fetchNotes = async () => {
@@ -58,12 +40,6 @@ const Notes = () => {
 
     //   return data;
     // };
-
-
-  //Note Details Modal
-  const toggleNoteDetailsModal = (status) => {
-    setNoteDetailsIsOpen(status)
-  }
 
 //View Single Note Modal
   const toggleViewNoteModal = (status) => {
@@ -86,11 +62,6 @@ const viewNote = (id, client_id) => {
 const pullClientId = (client_id) => {
   setClientId(client_id);
 }
-
-//Modal Style 
-// const viewModal = () => {
-//   subtitle.style.color = '#f00';
-// }
 
 //Add Note
 const addNote = async (note) => {
@@ -136,16 +107,11 @@ const deleteNote = async (id) => {
 
  
   return (
-    <section className="clients">
-      {clients && clients.map((clients) => (
-      <button key={clients._id} onClick={() => toggleNoteDetailsModal(true)}>{clients.firstname} {clients.lastname}</button>
-      ))}
+    <section>
 
       <div className="notes">
 
         <NoteDetails
-          modalOpen = {noteDetailsIsOpen}
-          toggle={toggleNoteDetailsModal}
           viewNote = {viewNote}
           notes = {notes}
           onAdd = {addNote}
