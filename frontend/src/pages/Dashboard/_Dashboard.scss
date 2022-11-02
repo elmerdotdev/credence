@@ -1,0 +1,10 @@
+.page-dashboard {
+    .dashboard-tabs {
+        display: flex;
+        justify-content: center;
+
+        @media screen and (min-width: $screen-desktop) {
+            display: none;
+        }
+    }
+}

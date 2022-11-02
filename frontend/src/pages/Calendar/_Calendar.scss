@@ -1,0 +1,102 @@
+.page-calendar {
+    display: flex;
+    font-size: 1rem;
+
+    &-view {
+        flex: 1;
+        z-index: 0;
+
+        .fc-day:not(.fc-day-disabled) .fc-daygrid-day-frame {
+            &:hover {
+                background-color: #c5ffc2;
+                cursor: pointer;
+            }
+        }
+
+        .fc-daygrid-event {
+            padding: 0 1px;
+            white-space: normal;
+        }
+    }
+
+    &-widget {
+        flex-basis: 300px;
+        padding: 0 2rem;
+
+        h3 {
+            margin-bottom: .5rem;
+        }
+
+        .eventRow {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: .75rem;
+            padding: .5rem;
+            background: #E5E9EF;
+            border-radius: 12px;
+
+            &:hover {
+                background: #B4D1FD;
+                cursor: pointer;
+            }
+
+            .datesStartEnd {
+                display: flex;
+                flex-direction: column;
+                flex-basis: 100px;
+                text-align: center;
+                border-right: 1px solid #bbb;
+            }
+
+            h4 {
+                margin: 0;
+            }
+        }
+    }
+}
+
+.addEventForm {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 1rem;
+
+    .input-wrapper {
+        display: flex;
+        flex-direction: column;
+        padding: 5px 0;
+
+        input[type="text"],
+        textarea,
+        select {
+            border: 1px solid #000;
+        }
+    }
+
+    .submit-btn-wrapper {
+        grid-column: 1 / -1;
+    }
+}
+
+.viewModalTable {
+    width: 500px;
+
+    th, td {
+        text-align: left;
+        vertical-align: top;
+    }
+
+    .viewEventDates {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+.viewModalButtons {
+    display: flex;
+    justify-content: space-between;
+
+    button {
+        margin: 0 2px;
+    }
+}
