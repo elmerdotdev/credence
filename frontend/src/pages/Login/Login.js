@@ -1,68 +1,105 @@
-import React from 'react'
-import { useState } from 'react';
-import { useLogin } from '../Signup/hooks/useLogin';
-import { useLogout } from '../Signup/hooks/useLogout' 
- 
+import React, { useState, useEffect } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { useLogin } from '../Signup/hooks/useLogin'
+
+//Icon & Logo
+import '../../fontello/css/credence.css';
+import logo_nopadding from '../../images/logo_nopadding.svg';
+import loginimage from '../../images/loginimage.svg'
+// import setLastLoggedIn from '../Signup/Signup'
+// import GoogleLoginButton from '../../components/GoogleLoginButton'
 
 const Login = () => {
-   //Email
-   const [email, setEmail] = useState('');
-   //Password
-   const [password, setPassword] = useState('');
-   //Password display( hide or show )
-   const [pwShow, setPwShow] = useState(true);
-   //Error checker
-   const {login, error, isLoading} = useLogin();
- 
+  //Email
+  const [email, setEmail] = useState('');
+  //Password
+  const [password, setPassword] = useState('');
+  //Password display( hide or show )
+  const [pwShow, setPwShow] = useState(false);
+  //Error checker
+  const {login, error, isLoading} = useLogin();
+  const { addLoginDate, lastLoggedIn } = useLogin()
+  
+  useEffect(() => {
+    document.querySelector('body').removeAttribute("class")
+    document.querySelector('body').classList.add('no-sidebar')
+  }, [])
 
-  //Login submit action
+  //Login submit action 
+  const navigate = useNavigate()
+ 
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    await login(email, password)
+    //ここで入れる
+    await  login(email, password)
+    // await addLoginDate(lastLoggedIn)
     console.log(email, password)
 
     setEmail('')
     setPassword('')
+
+    if (localStorage.getItem('user')) {  
+      console.log('Successs Login!')
+      navigate('/dashboard')
+    } else {
+      console.log(' No user into localstorage')
+    }
   }
-  
-  //Logout submit action
-  const { logout } = useLogout()
-  const handleLogout = () => {
-      logout()
+
+  //Password toggle
+  const togglePw = () => {
+    setPwShow(!pwShow)
   }
 
   return (
-    <>
-    <section className="page-login">
-      <h1>Login to your <img src="" alt="credence-logo" />account</h1>
+    <div className="page-login">
+      <section className="page-login-area">
+        <Link to="/" ><i className='icon-close'></i></Link>
+        
+        <h3><span>Sign into your</span><img src={logo_nopadding} alt="credence-logo" className='credence-logo'/><span>Account</span></h3>
 
-      <form className="login-form" onSubmit={handleSubmit}>
+        <div className="desktop-grid">
+          
+          <img src={loginimage} alt="login-img" className='login-img'/>
+          
+          <div className="right-box">
+            <form className="login-form" onSubmit={handleSubmit}>
+              <label  htmlFor="email" name="email" >Email</label>
+              <input  type="email"
+                      htmlFor="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+              />
 
-        <label  htmlFor="email" name="email" >Email</label>
-        <input  type="email" 
-                htmlFor="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-        />
-
-        <label  htmlFor="password">Password</label>
-        <input  type={ pwShow ? "text": "password"} 
-                htmlFor="password" 
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-        />
-
-        <button type={"submit"}>Login</button>
-        {error && <div className='error'>{error}</div>} 
-      </form>
-      
-      <div>OR</div>
-      <button >Login with Google</button> 
-      
-      <button onClick={handleLogout} type={"submit"}>logout</button>
-    </section>
-    </>
+              <label  htmlFor="password">Password</label>
+              <div className="password-area">
+                <input  type={ pwShow ? "text": "password"}
+                        htmlFor="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                />
+                <i  className={pwShow === true ? "icon-lock" : "icon-info"}
+                    onClick={togglePw}
+                >
+                </i>
+              </div>
+          
+              {error && <div className='error'>{error}</div>}
+              <input type="submit" value="Login" className="submit-login-btn" />
+            </form>
+          
+              <div className="fgt-pwd-box">
+                <Link className="forget-pw-link">Forgotten your password?</Link>
+              </div>
+            {/* <div>OR</div> */}
+            {/* <GoogleLoginButton/> */}
+          
+            <p className="move-to-signup-link">Don't have an account? <Link to='/signup'>Sign up here</Link></p>
+          </div>
+        </div>
+      </section>
+    </div>
   )
 }
 

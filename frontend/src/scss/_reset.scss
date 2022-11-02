@@ -153,11 +153,11 @@ aside {
 
     .App-body {
         flex: 1;
-        margin: 0 .5rem .5rem 0;
+        // margin: 0 .5rem .5rem 0;
         padding: .5rem;
-        background-color: $color-white;
-        border: 1px solid $color-dusty-gray;
-        border-radius: 16px;
+        // background-color: $color-white;
+        // border: 1px solid $color-dusty-gray;
+        // border-radius: 16px;
 
         .no-sidebar & {
             background-color: transparent;
