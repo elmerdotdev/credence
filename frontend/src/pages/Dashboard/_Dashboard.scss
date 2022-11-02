@@ -1,3 +1,10 @@
 .page-dashboard {
-    font-size: 1rem;
+    .dashboard-tabs {
+        display: flex;
+        justify-content: center;
+
+        @media screen and (min-width: $screen-desktop) {
+            display: none;
+        }
+    }
 }

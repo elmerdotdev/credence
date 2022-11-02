@@ -12,6 +12,11 @@
                 cursor: pointer;
             }
         }
+
+        .fc-daygrid-event {
+            padding: 0 1px;
+            white-space: normal;
+        }
     }
 
     &-widget {
