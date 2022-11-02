@@ -1,25 +1,109 @@
 .page-calendar {
     display: flex;
-    font-size: 1rem;
+    gap: 1rem;
+    height: 100%;
 
     &-view {
         flex: 1;
+        padding: 1rem;
+        background-color: $color-white;
+        border: 1px solid $color-dusty-gray;
+        border-radius: 14px;
         z-index: 0;
+
+        .fc .fc-toolbar-title {
+            @include fontSize(36);
+            color: $color-mine-shaft;
+        }
+
+        .fc .fc-button-group .fc-button-primary {
+            padding: 0 .5rem;
+            background: none;
+            color: $color-shark;
+            border: none;
+
+            .fc-icon {
+                font-size: 2.5rem;
+            }
+        }
+        
+        .fc .fc-toolbar.fc-header-toolbar {
+            padding-bottom: 1rem;
+            border-bottom: 1px solid $color-iron;
+        }
 
         .fc-day:not(.fc-day-disabled) .fc-daygrid-day-frame {
             &:hover {
-                background-color: #c5ffc2;
+                background-color: $color-white-lilac;
                 cursor: pointer;
             }
+        }
+
+        .fc-theme-standard td,
+        .fc-theme-standard th {
+            @include fontSize(20);
+            font-weight: 600;
+            border-color: $color-iron;
+        }
+        
+
+        .fc-daygrid-event {
+            @include fontSize(16);
+            padding: 3px;
+            white-space: normal;
+        }
+
+        .fc .fc-daygrid-day.fc-day-today {
+            background-color: $color-hawkes-blue;
+        }
+
+        .fc-daygrid-dot-event .fc-event-title {
+            font-weight: 400;
+        }
+
+        .fc-theme-standard td,
+        .fc-theme-standard th {
+            background-color: $color-white;
+        }
+
+        .fc .fc-cell-shaded,
+        .fc .fc-day-disabled {
+            background-color: $color-white-lilac;
+        }
+
+        .fc .fc-daygrid-day-top {
+            flex-direction: row;
         }
     }
 
     &-widget {
-        flex-basis: 300px;
-        padding: 0 2rem;
+        flex-basis: 410px;
+        padding: 1rem .5rem;
+        background-color: $color-white;
+        border: 1px solid $color-dusty-gray;
+        border-radius: 14px;
+
+        h2 {
+            @include fontSize(36);
+            margin: 0;
+            text-align: center;
+
+            span {
+                &:last-child {
+                    font-weight: 600;
+                }
+            }
+        }
 
         h3 {
-            margin-bottom: .5rem;
+            @include fontSize(28);
+            margin: 1.5rem 1.5rem .5rem;
+        }
+
+        h4 {
+            margin: 0 0 .5rem;
+            font-size: 1rem;
+            font-weight: 600;
         }
 
         .eventRow {
@@ -27,12 +111,13 @@
             align-items: center;
             gap: 1rem;
             margin-bottom: .75rem;
-            padding: .5rem;
-            background: #E5E9EF;
+            padding: .75rem;
+            background: $color-mystic;
             border-radius: 12px;
+            transition: background .3s ease-in-out;
 
             &:hover {
-                background: #B4D1FD;
+                background: $color-iron;
                 cursor: pointer;
             }
 
@@ -40,12 +125,26 @@
                 display: flex;
                 flex-direction: column;
                 flex-basis: 100px;
+                font-weight: 600;
                 text-align: center;
                 border-right: 1px solid #bbb;
+
+                strong {
+                    font-weight: 600;
+                }
+
+                span {
+                    color: $color-bali-hai;
+                }
             }
 
-            h4 {
-                margin: 0;
+            .event-client {
+                @include fontSize(14);
+                display: inline-block;
+                padding: .25rem .75rem;
+                background-color: $color-manhattan;
+                font-weight: 600;
+                border-radius: 14px;
             }
         }
     }

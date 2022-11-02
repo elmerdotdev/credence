@@ -9,14 +9,34 @@ export const useLogin = () => {
     const login = async (email, password) => {
         setIsLoading(true)
         setError(null)
+        
 
-        const res = await fetch('http://localhost:5000/api/users/login',{
+        const res = await fetch(`${process.env.REACT_APP_API_URL}/api/users/login`,{
             method:'POST',
             headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({email, password})
+            body: JSON.stringify({email, password}),
         })
         const json = await res.json()
 
+      
+    //     const addLoginDate = async (lastLoggedIn) => {
+    //           //Set & add Last Login date 
+    //         lastLoggedIn = new Date();
+    //         console.log(lastLoggedIn)
+            
+    //         const res = await fetch('http://localhost:5000/api/users/login',{
+    //             method:'PATCH',
+    //             headers: {'Content-Type': 'application/json'},
+           
+    //         body: JSON.stringify({lastLoggedIn})
+    //     })
+        
+    //     const date = await res.json(lastLoggedIn)
+
+    //     // addLoginDate([...user,date])
+    //     setLastLoggedIn(date)
+        
+    // }
         if(!res.ok){
             setIsLoading(false)
             setError(json.error)
@@ -31,6 +51,27 @@ export const useLogin = () => {
             setIsLoading(false)
         }
     }
+    // const addLoginDate = async (lastLoggedIn) => {
+    //               //Set & add Last Login date 
+    //               lastLoggedIn = new Date();
+    //             console.log(lastLoggedIn)
+                
+    //             const res = await fetch('http://localhost:5000/api/users/login',{
+    //                 method:'PATCH',
+    //                 headers: {'Content-Type': 'application/json'},
+               
+    //             body: JSON.stringify({lastLoggedIn})
+    //         })
+            
+    //         const date = await res.json(lastLoggedIn)
+    
+    //         // addLoginDate([...user,date])
+    //         setlastLoggedIn(date)
+    //         console.log(date)
+            
+    //     }
 
-    return {login, isLoading, error}
+    // return {login,addLoginDate, addisLoading, error}
+    return {login, error}
 }
+
