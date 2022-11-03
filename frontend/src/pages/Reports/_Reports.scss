@@ -1,0 +1,54 @@
+@import '../../scss/variables';
+
+.reports {
+    background: $color-white;
+    padding: 2rem 1rem;
+    border: 1px solid $color-dusty-gray;
+    border-radius: 15px;
+    max-width: 100%;
+    display: grid;
+    grid-gap: .5rem;
+
+    h1 {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+
+        i::before {
+            font-size: 3rem;
+            color: $color-science-blue;
+            margin: 0;
+        }
+    }
+
+    @media screen and (min-width: $screen-desktop) {
+        grid-template-columns: repeat(3, 1fr);
+        padding: 2rem 2rem;
+
+        h1 {
+            grid-column: 1/-1;
+            justify-content: start;
+        }
+    }
+}
+
+.active-clients {
+    max-width: 100%;
+    
+    h2 {
+        text-align: center;
+        font-size: 1.25rem;
+    }
+
+    @media screen and (min-width: $screen-desktop) {
+        background-color: $color-white-lilac;
+        border: 1px solid $color-dusty-gray;
+        border-radius: 15px;
+        padding: 1rem 3rem;
+
+        h2 {
+            margin-bottom: 0;
+        }
+    }
+}
