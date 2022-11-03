@@ -48,15 +48,19 @@
     background-color: $color-white;
     width: 100%;
     max-width: 710px;
-    padding: .5rem;
     border-radius: 8px;
     border: $color-dusty-gray 1px solid;
 }
 
 .search-type-button {
     border-radius: 6px;
-    border: $color-dusty-gray 1px solid;
+    border: $color-text-grey-light 1px solid;
     background-color: $color-white;
+    color: $color-text-grey-light;
+}
+
+.search-single-grey-text {
+    color: $color-text-grey;
 }
 
 .search-type-button-wrapper {
@@ -68,6 +72,8 @@
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
+    border-bottom: $color-text-grey-light 1px solid;
+    margin: .5rem;
 }
 
 
