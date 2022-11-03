@@ -1,9 +1,9 @@
 .page-login {
-    background-color: #F5F5F5;
+    background-color: $color-wild-sand;
     .page-login-area{
         font-size: 1rem;
         padding: 20px;
-        background-color: #F5F5F5;
+        background-color: $color-wild-sand;
         max-width: 1118px;
         max-height: 720px;
     }
@@ -37,7 +37,7 @@
     }
     label{
         display: block;
-        color:#004076;
+        color:$color-regal-blue;
         font-size: 14px;
         margin-bottom: 8px;
     }
@@ -46,19 +46,19 @@
     }
     input[for="email"]{
         width: 100%;
-        background-color: #F5F5F5;
+        background-color: $color-wild-sand;
         border: none;
-        border-bottom: 1px solid #747474;
+        border-bottom: 1px solid $color-boulder;
     }
     input[for="password"]{
         width: 100%;
-        background-color: #F5F5F5;
+        background-color: $color-wild-sand;
         
         border: none;
     }
     .password-area{
         display: flex;
-        border-bottom: 1px solid #747474; 
+        border-bottom: 1px solid $color-boulder; 
     }
     .icon-info,
     .icon-info{
@@ -68,15 +68,15 @@
         margin-top: 33px;
     }
     .error{
-        color: #FF4D4F;
+        color: $color-guardsman-red;
     }
     .submit-login-btn{
         display: flex;
         align-items: center;
         gap: 1.2rem;
         padding: 0.5rem 1rem 0.5rem 1.5rem;
-        background-color: #0468BF;
-        color: #FDFDFD;
+        background-color: $color-science-blue;
+        color: $color-white;
         border: none;
         border-radius: 0.5rem;
         width: 100%;
@@ -86,12 +86,12 @@
     .forget-pw-link{
         margin-left: auto;
         margin-right: 0;
-        color:#004076;
+        color:$color-regal-blue;
         font-style: normal;
         font-weight: 400;
         font-size: 16px;
         line-height: 20px;
-        border-bottom: 1px solid #004076;
+        border-bottom: 1px solid $color-regal-blue;
     }
     .fgt-pwd-box{
         margin-top: 18px;
@@ -104,12 +104,12 @@
     }
     .move-to-signup-link a
     {
-        color:#004076;
+        color:$color-regal-blue;
         margin-left: 9px ;
-        border-bottom: 1px solid #004076;
+        border-bottom: 1px solid $color-regal-blue;
     }
     .move-to-signup-link{
-        color:#747474;
+        color:$color-boulder;
     }
     
     @media screen and (min-width:$screen-desktop){

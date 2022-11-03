@@ -1,9 +1,9 @@
 .page-signup-successSignup {
-    background-color: #F5F5F5;
+    background-color: $color-wild-sand;
     .page-successSignup-area{
         text-align: center;
         padding: 20px;
-        background-color: #F5F5F5;
+        background-color: $color-wild-sand;
         max-width: 1118px;
         max-height: 720px;
     }
@@ -49,7 +49,7 @@
         align-items: center;
         gap: 1.2rem;
         padding: 0.5rem 1rem 0.5rem 1.5rem;
-        background-color: #0468BF;
+        background-color: $color-science-blue;
         border: none;
         border-radius: 0.5rem;
         width: 100%;
@@ -57,7 +57,7 @@
         transition: background-color 0.2s ease-in-out;
 
         a[href="/login"]{
-            color: #FDFDFD;
+            color: $color-white;
         }
     }
     @media screen and (min-width:$screen-desktop){
