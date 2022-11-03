@@ -11,16 +11,35 @@
         border-radius: 14px;
         z-index: 0;
 
+        .fc .fc-header-toolbar {
+            > .fc-toolbar-chunk:first-child {
+                > div {
+                    display: flex;
+                    align-items: center;
+                    gap: .5rem;
+                }
+            }
+            > .fc-toolbar-chunk:last-child {
+                display: none;
+
+                @media screen and (min-width: $screen-desktop) {
+                    display: block;
+                }
+            }
+        }
+
         .fc .fc-toolbar-title {
             @include fontSize(36);
             color: $color-mine-shaft;
         }
 
-        .fc .fc-button-group .fc-button-primary {
+        .fc .fc-prev-button,
+        .fc .fc-next-button {
             padding: 0 .5rem;
             background: none;
             color: $color-shark;
             border: none;
+            box-shadow: none;
 
             .fc-icon {
                 font-size: 2.5rem;
@@ -29,7 +48,11 @@
         
         .fc .fc-toolbar.fc-header-toolbar {
             padding-bottom: 1rem;
-            border-bottom: 1px solid $color-iron;
+            border-bottom: 1px solid transparentize($color-iron, .4);
+        }
+
+        .fc .fc-scrollgrid-liquid {
+            border-color: transparentize($color-iron, .4);
         }
 
         .fc-day:not(.fc-day-disabled) .fc-daygrid-day-frame {
@@ -43,7 +66,7 @@
         .fc-theme-standard th {
             @include fontSize(20);
             font-weight: 600;
-            border-color: $color-iron;
+            border-color: transparentize($color-iron, .4);
         }
         
 
