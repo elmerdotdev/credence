@@ -17,11 +17,21 @@ header {
             margin-top: 1rem;
         }
 
-        img {
-            max-width: 155px;
+        a {
+            display: flex;
+            align-items: center;
+        }
 
-            @media screen and (min-width: $screen-desktop) {
-                max-width: 200px;
+        path {
+            stroke-linecap: round;
+            stroke-width: 1px;
+                
+            &.trace {
+                stroke-dashoffset: 0 !important;
+                transition:
+                    stroke-dashoffset 1s linear,
+                    stroke-dasharray 1s linear,
+                    fill .5s linear .1s;
             }
         }
     }
