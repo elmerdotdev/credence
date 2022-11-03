@@ -11,6 +11,7 @@ import Notes from './pages/Notes/Notes';
 import Profile from './pages/Profile/Profile';
 import Login from './pages/Login/Login';
 import Signup from './pages/Signup/Signup';
+import Reports from './pages/Reports/Reports';
 
 // Landing Pages
 import Home from './pages/Landing/Home/Home';
@@ -40,6 +41,7 @@ function App() {
                             <li><i className="icon-dashboard"></i> <NavLink to="/dashboard">Dashboard</NavLink></li>
                             <li><i className="icon-connection"></i> <NavLink to="/connections">Connection</NavLink></li>
                             <li><i className="icon-calendar"></i> <NavLink to="/calendar">Calendar</NavLink></li>
+                            <li><i className="icon-help"></i><NavLink to="/reports">Reports</NavLink></li>
                             <li><i className="icon-profile"></i> <NavLink to="/profile">Profile</NavLink></li>
                         </ul>
                         <ul>
@@ -63,6 +65,7 @@ function App() {
                         <Route path="/notes" element={<Notes />} />
                         <Route path="/login" element={<Login />} />
                         <Route path="/signup" element={<Signup />} />
+                        <Route path="/reports" element={<Reports />} />
                     </Routes>
                 </div>
             </section>
