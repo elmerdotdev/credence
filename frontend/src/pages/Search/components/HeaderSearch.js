@@ -3,9 +3,13 @@ import SearchResults from './SearchResults';
 
 const HeaderSearch = () => {
     const [ keyword, setKeyword ]= useState('');
+    const [events, setEvents] = useState([])
     const [connections, setConnections] = useState([]);
     const [filteredConnections, setFilteredConnections] = useState([]);
-    const [searchParams] = useState(["firstname", "lastname", "position"]);
+    const [filteredEvents, setFilteredEvents] = useState([]);
+    const [searchConnParams] = useState(["firstname", "lastname", "company", "position", "phone", "email"]);
+    const [searchEventParams] = useState(["title", "type"]);
+
     useEffect(() => {
         const getConnections = async () => {
             const res = await fetchConnections();
@@ -14,6 +18,18 @@ const HeaderSearch = () => {
       
           getConnections();
         }, []);
+
+    useEffect(() => {
+        const getActivities = async () => {
+            const activities = await fetchActivities()
+    
+            setEvents(activities)
+        }
+    
+        getActivities()
+        }, [])
+
+
     // Fetch Connections
     const fetchConnections = async () => {
         const res = await fetch('https://credence-server.onrender.com/api/clients/633b6a81145c9d79405c54ea');
@@ -21,24 +37,45 @@ const HeaderSearch = () => {
         return data;
     };
 
+        // Get all activities/events
+    const fetchActivities = async () => {
+        const res = await fetch(`${process.env.REACT_APP_API_URL}/api/activities/633b6a81145c9d79405c54ea`)
+        const data = await res.json()
+
+        return data
+    }
+
     const search = (queryStr) => {
         console.log(connections)
+        console.log(events)
         console.log(queryStr)
 
         if (queryStr === "") {
-            setFilteredConnections([]);
+            setFilteredConnections([]);setFilteredEvents([])
         }else{
-            const filtered = connections.filter((item) => {
-                return searchParams.some((searchParam) => {
+            const filteredConn = connections.filter((item) => {
+                return searchConnParams.some((searchConnParam) => {
                     return (
-                        item[searchParam]
+                        item[searchConnParam]
                             .toString()
                             .toLowerCase()
                             .indexOf(queryStr.toLowerCase()) > -1
                     );
                 });
         });
-        setFilteredConnections(filtered);}
+        setFilteredConnections(filteredConn);
+
+            const filteredEve = events.filter((item) => {
+                return searchEventParams.some((searchEventParam) => {
+                    return (
+                        item[searchEventParam]
+                            .toString()
+                            .toLowerCase()
+                            .indexOf(queryStr.toLowerCase()) > -1
+                    );
+                });
+        });
+        setFilteredEvents(filteredEve);}
     }
     return (
         <div className="header-search-qa">
@@ -49,7 +86,7 @@ const HeaderSearch = () => {
                 </button>
             </form>
           
-            <SearchResults filteredConnections={filteredConnections} />
+            <SearchResults filteredConnections={filteredConnections} filteredEvents={filteredEvents} />
  
             <button className="header-quick-add">
                 <span>Quick Add</span>

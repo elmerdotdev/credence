@@ -1,11 +1,15 @@
-import SearchResult from './SearchResult'
+import ConnSearchResult from './ConnSearchResult';
+import EveSearchResult from './EveSearchResult';
 
-const SearchResults = ({ filteredConnections }) => {
+const SearchResults = ({ filteredConnections, filteredEvents }) => {
     return (
        
         <div className="search-result">
         {filteredConnections.map((connection) => (
-            <SearchResult key={connection._id} connection={connection} />
+            <ConnSearchResult key={connection._id} connection={connection} />
+        ))}
+        {filteredEvents.map((event) => (
+            <EveSearchResult key={event._id} event={event} />
         ))}
         </div>
 
