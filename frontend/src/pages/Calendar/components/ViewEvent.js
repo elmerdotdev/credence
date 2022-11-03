@@ -47,7 +47,7 @@ const ViewEvent = (props) => {
             >
                 <div className="viewModalButtons">
                     <div>
-                        <button onClick={() => props.onToggle(false)}>Close</button>
+                        <i className="icon-close" onClick={() => props.onToggle(false)}></i>
                     </div>
                     <div>
                         <button>Edit</button>
