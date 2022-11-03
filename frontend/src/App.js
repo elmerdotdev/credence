@@ -11,6 +11,7 @@ import Notes from './pages/Notes/Notes';
 import Profile from './pages/Profile/Profile';
 import Login from './pages/Login/Login';
 import Signup from './pages/Signup/Signup';
+import SuccessSignup from './pages/Signup/SuccessSignup';
 import Reports from './pages/Reports/Reports';
 
 // Landing Pages
@@ -21,13 +22,11 @@ import About from './pages/Landing/About/About';
 
 // Components
 import Header from './components/Header/Header';
+import Logout from './pages/Login/Logout';
 
 // CSS and scripts
 import './fontello/css/credence.css';
 import './App.css';
-// import ConfirmSignup from './pages/Signup/ConfirmSignup';
-import SuccessSignup from './pages/Signup/SuccessSignup';
-// import SelectPlan from './pages/Signup/SelectPlan';
 
 function App() {
     return (
@@ -46,7 +45,7 @@ function App() {
                         </ul>
                         <ul>
                             <li><i className="icon-settings"></i> <NavLink to="/settings">Settings</NavLink></li>
-                            <li><i className="icon-logout"></i> <NavLink to="/logout">Log Out</NavLink></li>
+                            <Logout/>
                         </ul>
                     </nav>
                 </aside>
@@ -65,6 +64,7 @@ function App() {
                         <Route path="/notes" element={<Notes />} />
                         <Route path="/login" element={<Login />} />
                         <Route path="/signup" element={<Signup />} />
+                        <Route path="/successsignup" element={<SuccessSignup />} />
                         <Route path="/reports" element={<Reports />} />
                     </Routes>
                 </div>
