@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import SearchResults from './SearchResults';
-import ViewEvent from '../../Calendar/components/ViewEvent'
+import ViewEvent from '../../Calendar/components/ViewEvent';
+// import ConnectionDetail from '../../Connections/components/ConnectionDetail';
+import Modal from 'react-modal';
 
 const HeaderSearch = () => {
     const [keyword, setKeyword ]= useState('');
     const [events, setEvents] = useState([]);
     const [connections, setConnections] = useState([]);
+    const [showDetailModal, setShowDetailModal] = useState(false);
     const [modalViewOpen, setModalViewOpen] = useState(false)
     const [filteredConnections, setFilteredConnections] = useState([]);
     const [filteredEvents, setFilteredEvents] = useState([]);
@@ -52,6 +55,12 @@ const HeaderSearch = () => {
          console.log("Event search result has been clicked!")
     }
 
+    const toggleConnDetail = (id) => {
+        console.log(id)
+        console.log("Connection search result has been clicked!")
+        setShowDetailModal(true);
+    }
+
   
 
     const search = (queryStr) => {
@@ -92,9 +101,10 @@ const HeaderSearch = () => {
                 </button>
             </form>
           
-            <SearchResults filteredConnections={filteredConnections} filteredEvents={filteredEvents}  modalOpen={modalViewOpen} onToggle= {() => toggleViewModal}/>
+            <SearchResults filteredConnections={filteredConnections} filteredEvents={filteredEvents}  modalOpen={modalViewOpen} onToggle= {() => toggleViewModal} onToggleConn = {() => toggleConnDetail}/>
             {modalViewOpen &&
             <ViewEvent modalOpen={modalViewOpen} onToggle={toggleViewModal} />}
+            {/* <ConnectionDetail /> */}
  
             <button className="header-quick-add">
                 <span>Quick Add</span>
