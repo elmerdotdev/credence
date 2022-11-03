@@ -1,8 +1,8 @@
 
 
-const ConnSearchResult = ({ connection }) => {
+const ConnSearchResult = ({ connection, onToggle }) => {
     return (
-      <div className="search-single">
+      <div className="search-single" >
         <div >
         <h3>
         {connection.firstname}{' '}

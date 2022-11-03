@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import SearchResults from './SearchResults';
+import ViewEvent from '../../Calendar/components/ViewEvent'
 
 const HeaderSearch = () => {
-    const [ keyword, setKeyword ]= useState('');
-    const [events, setEvents] = useState([])
+    const [keyword, setKeyword ]= useState('');
+    const [events, setEvents] = useState([]);
     const [connections, setConnections] = useState([]);
+    const [modalViewOpen, setModalViewOpen] = useState(false)
     const [filteredConnections, setFilteredConnections] = useState([]);
     const [filteredEvents, setFilteredEvents] = useState([]);
     const [searchConnParams] = useState(["firstname", "lastname", "company", "position", "phone", "email"]);
@@ -37,7 +39,7 @@ const HeaderSearch = () => {
         return data;
     };
 
-        // Get all activities/events
+    // Get all activities/events
     const fetchActivities = async () => {
         const res = await fetch(`${process.env.REACT_APP_API_URL}/api/activities/633b6a81145c9d79405c54ea`)
         const data = await res.json()
@@ -45,10 +47,14 @@ const HeaderSearch = () => {
         return data
     }
 
+    const toggleViewModal = (status) => {
+        setModalViewOpen(status)
+         console.log("Event search result has been clicked!")
+    }
+
+  
+
     const search = (queryStr) => {
-        console.log(connections)
-        console.log(events)
-        console.log(queryStr)
 
         if (queryStr === "") {
             setFilteredConnections([]);setFilteredEvents([])
@@ -86,7 +92,9 @@ const HeaderSearch = () => {
                 </button>
             </form>
           
-            <SearchResults filteredConnections={filteredConnections} filteredEvents={filteredEvents} />
+            <SearchResults filteredConnections={filteredConnections} filteredEvents={filteredEvents}  modalOpen={modalViewOpen} onToggle= {() => toggleViewModal}/>
+            {modalViewOpen &&
+            <ViewEvent modalOpen={modalViewOpen} onToggle={toggleViewModal} />}
  
             <button className="header-quick-add">
                 <span>Quick Add</span>

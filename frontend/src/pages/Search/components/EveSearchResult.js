@@ -1,8 +1,8 @@
 import moment from 'moment'
 
-const EveSearchResult = ({ event }) => {
+const EveSearchResult = ({ event, onToggle}) => {
     return (
-      <div className="search-single">
+      <div className="search-single" onClick = {() => onToggle(event._id)}>
         <div>
         <h3>
         {event.title}   

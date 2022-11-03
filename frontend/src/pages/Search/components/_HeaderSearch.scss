@@ -74,8 +74,15 @@
     justify-content: space-between;
     border-bottom: $color-text-grey-light 1px solid;
     margin: .5rem;
+
 }
 
+.search-single:hover {
+    background-color: #B4D1FD;
+    padding: .2rem;
+    cursor: pointer;
+    border-radius: 6px;
+}
 
 .header-search-qa {
     position: relative;
