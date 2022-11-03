@@ -55,6 +55,14 @@ const Calendar = () => {
     toggleViewModal(false)
   }
 
+  // Get clients
+  const fetchClients = async () => {
+    const res = await fetch(`${process.env.REACT_APP_API_URL}/api/clients/${userID}`)
+    const data = await res.json()
+
+    return data
+  }
+
   // Get client
   const fetchClient = async (id) => {
     const res = await fetch(`${process.env.REACT_APP_API_URL}/api/clients/${userID}/${id}`)
@@ -101,34 +109,39 @@ const Calendar = () => {
     <section className="page-calendar">
 
       <div className="page-calendar-view">
-        <button onClick={() => toggleAddModal(true)}>Add Event</button>
-
-      <FullCalendar
-        ref={calendarRef}
-        plugins={[ dayGridPlugin, interactionPlugin ]}
-        initialView="dayGridMonth"
-        events={
-          events.map(event => {
-            return {
-              id: event._id,
-              title: event.title,
-              start: event.start_date,
-              end: event.end_date
-            }
-          })
-        }
-        dateClick={handleDateClick}
-        eventClick={handleEventClick}
-        datesSet={handleCalendarLoad}
-        showNonCurrentDates={false}
-      />
+        <FullCalendar
+          ref={calendarRef}
+          displayEventTime={false}
+          plugins={[ dayGridPlugin, interactionPlugin ]}
+          initialView="dayGridMonth"
+          events={
+            events.map(event => {
+              return {
+                id: event._id,
+                title: event.title,
+                start: event.start_date,
+                end: event.end_date
+              }
+            })
+          }
+          dateClick={handleDateClick}
+          eventClick={handleEventClick}
+          datesSet={handleCalendarLoad}
+          showNonCurrentDates={false}
+          fixedWeekCount={false}
+          height="100%"
+        />
       </div>
 
-      <EventsWidget events={events} currMonth={currentMonth} firstDay={monthFirstDay} lastDay={monthLastDay} onEventClick={handleEventClick} fetchClient={fetchClient} />
+      <EventsWidget events={events} currMonth={currentMonth} firstDay={monthFirstDay} lastDay={monthLastDay} onEventClick={handleEventClick} fetchClient={fetchClient} openAddModal={toggleAddModal} />
 
-      <AddEvent modalOpen={modalAddOpen} onToggle={toggleAddModal} onDateClick={addDate} onAddState={addToEventsState} userId={userID} />
+      {modalAddOpen &&
+        <AddEvent modalOpen={modalAddOpen} onToggle={toggleAddModal} onDateClick={addDate} onAddState={addToEventsState} fetchClients={fetchClients} userId={userID} />
+      }
 
-      <ViewEvent modalOpen={modalViewOpen} onToggle={toggleViewModal} onDelete={deleteEvent} userId={userID} eventId={viewEventId} fetchClient={fetchClient} />
+      {modalViewOpen &&
+        <ViewEvent modalOpen={modalViewOpen} onToggle={toggleViewModal} onDelete={deleteEvent} userId={userID} eventId={viewEventId} fetchClient={fetchClient} />
+      }
 
     </section>
   )
