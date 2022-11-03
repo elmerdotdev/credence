@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import ProfileReportsPreview from './ProfileReportsPreview'
+//Icon 
 import '../../fontello/css/credence.css';
 
 const Profile = () => {
@@ -8,8 +8,6 @@ const Profile = () => {
   const [ myNotes, setMyNotes ] = useState('')
   const [ myImg, setMyImg ] = useState('')
 
-  //後でuseidが接続できればuseruserIDを含むコードに戻すこと！
-  
   //get userID from Localstorage(user ID)
   const userID = localStorage.getItem('user')
   console.log(userID)
@@ -18,114 +16,110 @@ const Profile = () => {
   useEffect(() => {
     const getClients = async () => {
       const res = await fetchMyConnections()
-      // const myList = res.filter((client) => client.user_id === userID)
-      const myList = res.filter((client) => client.user_id === '633b6a81145c9d79405c54ea')
+      const myList = res.filter((client) => client.user_id === userID)
       setMyClients(myList.length)
     }
 
     getClients();
   },[])
 
-  //Fetch Clients Number
   const fetchMyConnections = async () => {
-    // const res = await fetch(`${process.env.REACT_APP_API_URL}/api/clients/${userID}`);
-    const res = await fetch(`${process.env.REACT_APP_API_URL}/api/clients/633b6a81145c9d79405c54ea`);
+    const res = await fetch(`${process.env.REACT_APP_API_URL}/api/clients/${userID}`);
     const data = await res.json();  
 
     if(res.ok) {
       return data 
     }
   }
-  console.log(myClients)
 
   //2.Events number
   useEffect(() => {
     const getEvents = async () => {
       const res = await fetchMyEvents()
-      // const mySchedule = res.filter((activity) => activity.user_id === userID)
-      const mySchedule = res.filter((activity) => activity.user_id === '633b6a81145c9d79405c54ea')
+      const mySchedule = res.filter((activity) => activity.user_id === userID)
       setMyEvents(mySchedule.length)
     }
 
     getEvents();
   },[])
 
-  //Fetch Events Number
   const fetchMyEvents = async () => {
-    // const res = await fetch(`${process.env.REACT_APP_API_URL}/api/activities/${userID}`);
-    const res = await fetch(`${process.env.REACT_APP_API_URL}/api/activities/633b6a81145c9d79405c54ea`);
+    const res = await fetch(`${process.env.REACT_APP_API_URL}/api/activities/${userID}`);
     const data = await res.json();      
+    
     if(res.ok) {
       return data 
     }
   }
-  console.log(myEvents)
+
 
   //3.Notes number
   useEffect(() => {
     const getNotes = async () => {
       const res = await fetchMyNotes()
-      // const myMemo = res.filter((note) => note.user_id === userID)
-      const myMemo = res.filter((note) => note.user_id === '633b6a81145c9d79405c54ea')
+      const myMemo = res.filter((note) => note.user_id === userID)
       setMyNotes(myMemo.length)
     }
 
     getNotes();
   },[])
 
-  //Fetch Memo Number
   const fetchMyNotes = async () => {
-    // const res = await fetch(`${process.env.REACT_APP_API_URL}/api/notes/${userID}`);
-    const res = await fetch(`${process.env.REACT_APP_API_URL}/api/notes/633b6a81145c9d79405c54ea`);
+    const res = await fetch(`${process.env.REACT_APP_API_URL}/api/notes/${userID}`);
     const data = await res.json();  
 
     if(res.ok) {
       return data 
     }
   }
-  console.log(myNotes)
+ 
 
-  //4.User Image
+  // 4.User Image
    useEffect(() => {
     const getImg = async () => {
       const res = await fetchMyImg()
-      const myPicture = res.filter((user) => user._id === `ObjectId('${userID}')`)
-      setMyNotes(myPicture.photo)
+      setMyImg(res.photo)
     }
 
     getImg();
   },[])
-  //Fetch My Img
+  
   const fetchMyImg = async () => {
     const res = await fetch(`${process.env.REACT_APP_API_URL}/api/users/${userID}`);
     const data = await res.json();  
-
+   
     if(res.ok) {
       return data 
     }
   }
-  console.log(myImg)
 
 
   return (
     <>
       <div className="page-profile">
-      <section className="page-profile-edit">
+        <section className="page-profile-edit">
+          <div className="my-profile-box">
+            
             <img src={ myImg } alt="user-img" />
+            
+            <div className='connection-box'>
+              <i className='icon-connection'></i>
+              <p>{ myClients }</p>
+              <p>connections</p>
+            </div>
+            <div className="event-box">
+              <i className='icon-calendar'></i>
+              <p>{ myEvents }</p>
+              <p>events</p>
+            </div>
+            <div className="note-box">
+              <i className='icon-note'></i>
+              <p>{ myNotes }</p>
+              <p>notes</p>
+            </div>
+          </div>
 
-            <i className='icon-connection'></i>
-            <p>{ myClients }</p>
-            <p>connections</p>
-
-            <i className='icon-calendar'></i>
-            <p>{ myEvents }</p>
-            <p>events</p>
-
-            <i className='icon-note'></i>
-            <p>{ myNotes }</p>
-            <p>notes</p>
-
-            <button>Edit Profile</button>
+            <button className="edit-profile-btn">Edit Profile</button>
         </section>
         
         <section className="page-profile-passwordSecurity">
@@ -141,8 +135,6 @@ const Profile = () => {
 
           <button>Go Premium</button>
         </section>
-
-        <ProfileReportsPreview/>
       </div>
     </>
   )
