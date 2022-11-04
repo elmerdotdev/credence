@@ -25,7 +25,7 @@ const Calendar = () => {
 
   const calendarRef = React.useRef()
 
-  const userID = '633b6a81145c9d79405c54ea'
+  const userID = JSON.parse(localStorage.getItem('user'))._id
 
   useEffect(() => {
     const getActivities = async () => {
@@ -130,6 +130,11 @@ const Calendar = () => {
           showNonCurrentDates={false}
           fixedWeekCount={false}
           height="100%"
+          headerToolbar={{
+            start: 'prev,title,next',
+            center: '',
+            end: 'today'
+          }}
         />
       </div>
 

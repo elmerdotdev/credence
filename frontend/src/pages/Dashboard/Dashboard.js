@@ -11,7 +11,9 @@ const Dashboard = () => {
   const currentMonth = moment().format('MMMM YYYY')
   const monthFirstDay = moment().startOf('month').format('YYYY-MM-DD')
   const monthLastDay = moment().endOf('month').format('YYYY-MM-DD')
-  const userID = '633b6a81145c9d79405c54ea'
+  // const userID = '63645e4850049bfd1e89637a'
+
+  const [userID, setUserID] = useState('')
 
   const navigate = useNavigate()
 
@@ -23,14 +25,23 @@ const Dashboard = () => {
   // const [modalViewOpen, setModalViewOpen] = useState(false)
 
   useEffect(() => {
-    const getActivities = async () => {
-      const activities = await fetchActivities()
+    if (!localStorage.getItem('user')) {
+      navigate('/login')
+    } else {
+      setUserID(JSON.parse(localStorage.getItem('user'))._id)
 
-      setEvents(activities)
+      document.body.classList.remove('no-sidebar')
+  
+      const getActivities = async () => {
+        const res = await fetch(`${process.env.REACT_APP_API_URL}/api/activities/${JSON.parse(localStorage.getItem('user'))._id}`)
+        const data = await res.json()
+  
+        setEvents(data)
+      }
+  
+      getActivities()
     }
-
-    getActivities()
-  }, [])
+  }, [navigate, userID])
 
   // Get clients
   const fetchClients = async () => {
