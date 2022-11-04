@@ -9,9 +9,12 @@ const Profile = () => {
   const [ myImg, setMyImg ] = useState('')
 
   //get userID from Localstorage(user ID)
-  const userID = localStorage.getItem('user')
+  const user = localStorage.getItem('user')
+  const you = JSON.parse(user)
+  const userID = you._id
   console.log(userID)
 
+  
   //1.Clients number
   useEffect(() => {
     const getClients = async () => {
@@ -123,17 +126,17 @@ const Profile = () => {
         </section>
         
         <section className="page-profile-passwordSecurity">
-          <h4>Password & Security</h4>
+          <div className="title-icon-box"><i className='icon-security'></i><h4>Password & Security</h4></div>
           <p>Manage your info, privacy and security to make Credence work better for you.</p>
 
-          <button>Manage</button>
+          <button className='manage-security-btn'>Manage</button>
         </section>
         
         <section className="page-profile-subscription">
-          <h4>Subscription</h4>
+          <div className="title-icon-box"><i className='icon-subscription'></i><h4>Subscription</h4></div>
           <p>You are currenty on our <span>30-day trial.</span>Go Premium to enjoy our most-loved premium features.</p>
 
-          <button>Go Premium</button>
+          <button className='go-premiun-btn'>Go Premium</button>
         </section>
       </div>
     </>
