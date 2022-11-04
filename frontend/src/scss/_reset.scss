@@ -195,4 +195,120 @@ aside {
     &:focus {
         outline: 0;
     }
+
+    .icon-close {
+        cursor: pointer;
+        color: $color-regal-blue;
+        font-size: 2rem;
+    }
+}
+
+/* BUTTONS */
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    padding: 8px 22px;
+    font-weight: 600;
+    line-height: 1;
+    border: 1px solid $color-gray;
+    box-shadow: none;
+    border-radius: 8px;
+    transition: all .3s ease-in-out;
+
+    i {
+        margin: -4px -10px -4px 0;
+        font-size: 2rem;
+    }
+
+    &-primary {
+        background-color: $color-science-blue;
+        color: $color-white;
+        border: 1px solid $color-science-blue;
+
+        &:hover {
+            background-color: $color-white;
+            border-color: $color-regal-blue;
+            color: $color-regal-blue;
+        }
+
+        &-reverse {
+            background-color: $color-white;
+            color: $color-regal-blue;
+            border: 1px solid $color-regal-blue;
+    
+            &:hover {
+                background-color: $color-science-blue;
+                border-color: $color-science-blue;
+                color: $color-white;
+            }
+        }
+    }
+
+    &-secondary {
+        background-color: $color-endeavour;
+        color: $color-white;
+        border: 1px solid $color-endeavour;
+
+        &:hover {
+            background-color: $color-solitude;
+            border-color: $color-regal-blue;
+            color: $color-regal-blue;
+        }
+
+        &-reverse {
+            background-color: $color-solitude;
+            color: $color-regal-blue;
+            border: 1px solid $color-regal-blue;
+    
+            &:hover {
+                background-color: $color-endeavour;
+                border-color: $color-endeavour;
+                color: $color-white;
+            }
+        }
+    }
+
+    &-focus {
+        background-color: $color-regal-blue;
+        color: $color-white;
+        border: 1px solid $color-regal-blue;
+
+        &:hover {
+            background-color: $color-hawkes-blue;
+            color: $color-regal-blue;
+        }
+
+        &-reverse {
+            background-color: $color-hawkes-blue;
+            color: $color-regal-blue;
+            border: 1px solid $color-regal-blue;
+    
+            &:hover {
+                background-color: $color-regal-blue;
+                color: $color-white;
+            }
+        }
+    }
+
+    &-disabled {
+        background-color: $color-french-gray;
+        color: $color-shark;
+        border: 1px solid $color-french-gray;
+
+        &:hover {
+            border-color: $color-regal-blue;
+        }
+
+        &-reverse {
+            background-color: $color-french-gray;
+            color: $color-shark;
+            border: 1px solid $color-regal-blue;
+    
+            &:hover {
+                border-color: $color-french-gray;
+            }
+        }
+    }
 }
