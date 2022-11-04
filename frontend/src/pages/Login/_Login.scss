@@ -1,0 +1,165 @@
+.page-login {
+    background-color: #F5F5F5;
+    .page-login-area{
+        font-size: 1rem;
+        padding: 20px;
+        background-color: #F5F5F5;
+        max-width: 1118px;
+        max-height: 720px;
+    }
+    .icon-close{
+        display: none;
+    }
+    h3{
+        font-size: 24px;
+        margin: 36px 0 21px 0;
+        display: flex;
+        justify-content: center;
+        text-align: center;
+
+        span{
+            margin-bottom: .8px;   
+        }
+        span:nth-of-type(1){
+            margin-right: 5px;
+        }
+        span:nth-of-type(2){
+            margin-left: 5px;
+        }
+    }
+    
+    // img.credence-logo{
+    //     // max-width:80%;
+    // }
+    img.login-img{
+        display: block;
+        margin: 21px auto 24px auto;
+    }
+    label{
+        display: block;
+        color:#004076;
+        font-size: 14px;
+        margin-bottom: 8px;
+    }
+    label:nth-of-type(2){
+        margin-top:27px;
+    }
+    input[for="email"]{
+        width: 100%;
+        background-color: #F5F5F5;
+        border: none;
+        border-bottom: 1px solid #747474;
+    }
+    input[for="password"]{
+        width: 100%;
+        background-color: #F5F5F5;
+        
+        border: none;
+    }
+    .password-area{
+        display: flex;
+        border-bottom: 1px solid #747474; 
+    }
+    .icon-info,
+    .icon-info{
+        font-size: 16px;
+    }
+    input[value="Login"]{
+        margin-top: 33px;
+    }
+    .error{
+        color: #FF4D4F;
+    }
+    .submit-login-btn{
+        display: flex;
+        align-items: center;
+        gap: 1.2rem;
+        padding: 0.5rem 1rem 0.5rem 1.5rem;
+        background-color: #0468BF;
+        color: #FDFDFD;
+        border: none;
+        border-radius: 0.5rem;
+        width: 100%;
+        justify-content: center;
+        transition: background-color 0.2s ease-in-out;
+    }
+    .forget-pw-link{
+        margin-left: auto;
+        margin-right: 0;
+        color:#004076;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 20px;
+        border-bottom: 1px solid #004076;
+    }
+    .fgt-pwd-box{
+        margin-top: 18px;
+        text-align: right;
+    }
+    .move-to-signup-link,
+    .move-to-signup-link a
+    {
+        text-align: center;
+    }
+    .move-to-signup-link a
+    {
+        color:#004076;
+        margin-left: 9px ;
+        border-bottom: 1px solid #004076;
+    }
+    .move-to-signup-link{
+        color:#747474;
+    }
+    
+    @media screen and (min-width:$screen-desktop){
+        background-color:$color-dusty-gray;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 109px 35px;
+        .page-login-area{
+            padding: 26px 53px 24px 53px;
+            border-radius: 24px;
+            width: 80%;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.25);
+        }
+        .icon-close{
+            display: block;
+            text-align: right;
+        }
+        .icon-close:before{
+            margin: 0;
+            font-size: 42px;
+        }
+        h3{
+            margin-top: 0;
+            font-weight: 700;
+            font-size: 36px;
+            line-height: 44px;
+
+            span{
+                margin-bottom: 10px;   
+            }
+            span:nth-of-type(1){
+                margin-right: 8px;
+            }
+            span:nth-of-type(2){
+                margin-left: 8px;
+            }
+        }
+        .desktop-grid{
+            display: grid;
+            align-items: center;
+            gap: 100px;
+            grid-template-columns: 1fr 1.2fr;
+            margin-top: 68px;
+            width: 100%;
+        }
+        img.login-img{
+            margin: auto;
+            width:80%;
+            height: auto;
+        }
+    }
+}

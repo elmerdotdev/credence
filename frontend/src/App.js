@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, NavLink } from 'react-router-dom';
 
 // App pages
@@ -11,6 +11,8 @@ import Notes from './pages/Notes/Notes';
 import Profile from './pages/Profile/Profile';
 import Login from './pages/Login/Login';
 import Signup from './pages/Signup/Signup';
+import SuccessSignup from './pages/Signup/SuccessSignup';
+import Reports from './pages/Reports/Reports';
 
 // Landing Pages
 import Home from './pages/Landing/Home/Home';
@@ -20,31 +22,39 @@ import About from './pages/Landing/About/About';
 
 // Components
 import Header from './components/Header/Header';
+import Logout from './pages/Login/Logout';
 
 // CSS and scripts
 import './fontello/css/credence.css';
 import './App.css';
-// import ConfirmSignup from './pages/Signup/ConfirmSignup';
-import SuccessSignup from './pages/Signup/SuccessSignup';
-// import SelectPlan from './pages/Signup/SelectPlan';
 
 function App() {
+    const [isMenuOpen, setIsMenuOpen] = useState(false)
+
+    useEffect(() => {
+        document.body.classList.toggle('mobile-menu-visible', isMenuOpen)
+    } , [isMenuOpen])
+
+    const toggleMobileMenu = () => {
+        setIsMenuOpen(!isMenuOpen)
+    }
+
     return (
         <BrowserRouter>
         <div className="App">
-            <Header />
+            <Header onToggleMenu={toggleMobileMenu}/>
             <section className="container">
                 <aside>
                     <nav className="App-navigation">
                         <ul>
-                            <li><i className="icon-dashboard"></i> <NavLink to="/dashboard">Dashboard</NavLink></li>
-                            <li><i className="icon-connection"></i> <NavLink to="/connections">Connection</NavLink></li>
-                            <li><i className="icon-calendar"></i> <NavLink to="/calendar">Calendar</NavLink></li>
-                            <li><i className="icon-profile"></i> <NavLink to="/profile">Profile</NavLink></li>
-                        </ul>
-                        <ul>
-                            <li><i className="icon-settings"></i> <NavLink to="/settings">Settings</NavLink></li>
-                            <li><i className="icon-logout"></i> <NavLink to="/logout">Log Out</NavLink></li>
+                            <li onClick={toggleMobileMenu}><i className="icon-home"></i> <NavLink to="/dashboard">Dashboard</NavLink></li>
+                            <li onClick={toggleMobileMenu}><i className="icon-connection"></i> <NavLink to="/connections">Connection</NavLink></li>
+                            <li onClick={toggleMobileMenu}><i className="icon-calendar"></i> <NavLink to="/calendar">Calendar</NavLink></li>
+                            <li onClick={toggleMobileMenu}><i className="icon-reports"></i><NavLink to="/reports">Reports</NavLink></li>
+                            <li onClick={toggleMobileMenu}><i className="icon-profile"></i> <NavLink to="/profile">Profile</NavLink></li>
+                            <li className="mister-spacer"></li>
+                            <li onClick={toggleMobileMenu}><i className="icon-settings"></i> <NavLink to="/settings">Settings</NavLink></li>
+                            <Logout onToggleMenu={toggleMobileMenu}/>
                         </ul>
                     </nav>
                 </aside>
@@ -63,6 +73,8 @@ function App() {
                         <Route path="/notes" element={<Notes />} />
                         <Route path="/login" element={<Login />} />
                         <Route path="/signup" element={<Signup />} />
+                        <Route path="/successsignup" element={<SuccessSignup />} />
+                        <Route path="/reports" element={<Reports />} />
                     </Routes>
                 </div>
             </section>

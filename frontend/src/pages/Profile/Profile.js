@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useEffect, useState } from 'react'
 //Icon 
 import '../../fontello/css/credence.css';
@@ -137,6 +138,15 @@ const Profile = () => {
         </section>
       </div>
     </>
+=======
+import React from 'react'
+
+const Profile = () => {
+  return (
+    <section className="page-Profile">
+      
+    </section>
+>>>>>>> 94adbaf8034609a26e497d89d38228cf1a94d391
   )
 }
 

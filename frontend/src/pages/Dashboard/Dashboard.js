@@ -8,7 +8,7 @@ import EventsWidget from '../Calendar/components/EventsWidget';
 import AddEvent from '../Calendar/components/AddEvent';
 
 const Dashboard = () => {
-  const currentMonth = moment().format('MMMM')
+  const currentMonth = moment().format('MMMM YYYY')
   const monthFirstDay = moment().startOf('month').format('YYYY-MM-DD')
   const monthLastDay = moment().endOf('month').format('YYYY-MM-DD')
   const userID = '633b6a81145c9d79405c54ea'

@@ -129,6 +129,12 @@ const Calendar = () => {
           datesSet={handleCalendarLoad}
           showNonCurrentDates={false}
           fixedWeekCount={false}
+          height="100%"
+          headerToolbar={{
+            start: 'prev,title,next',
+            center: '',
+            end: 'today'
+          }}
         />
       </div>
 

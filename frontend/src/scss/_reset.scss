@@ -65,28 +65,36 @@ aside {
     display: flex;
     align-items: center;
     position: fixed;
-    top: 0;
-    right: 0;
-    width: 100%;
-    height: 100vh;
+    top: 50px;
+    left: 0;
+    width: 100vw;
+    height: calc(100vh - 50px);
     background: $color-white-lilac;
     z-index: 999;
+    transform: translateX(100%);
+    transition: transform .5s ease-in-out;
 
     @media screen and (min-width: $screen-desktop) {
         position: static;
         height: calc(100vh - 75px);
         z-index: 0;
+        transform: translateX(0);
+    }
+
+    .mobile-menu-visible & {
+        transform: translateX(0)
     }
 }
 
 .App-navigation {
     display: flex;
     flex-direction: column;
+    align-items: center;
     flex: 1;
     padding: 0 3rem;
 
     @media screen and (min-width: $screen-desktop) {
-        justify-content: space-between;
+        align-items: start;
         height: 100%;
         padding: 5rem 3rem 2rem;
     }
@@ -94,10 +102,10 @@ aside {
     ul {
         display: flex;
         flex-direction: column;
+        height: 100%;
 
         li {
             display: flex;
-            justify-content: center;
             align-items: center;
             margin: 1rem 0;
 
@@ -107,6 +115,14 @@ aside {
 
             i {
                 font-size: 2rem;
+            }
+
+            &.mister-spacer {
+                margin: 0;
+
+                @media screen and (min-width: $screen-desktop) {
+                    flex: 1;
+                }
             }
         }
 
@@ -153,11 +169,7 @@ aside {
 
     .App-body {
         flex: 1;
-        // margin: 0 .5rem .5rem 0;
         padding: .5rem;
-        // background-color: $color-white;
-        // border: 1px solid $color-dusty-gray;
-        // border-radius: 16px;
 
         .no-sidebar & {
             background-color: transparent;

@@ -1,6 +1,7 @@
 .page-calendar {
     display: flex;
     gap: 1rem;
+    height: 100%;
 
     &-view {
         flex: 1;
@@ -10,16 +11,35 @@
         border-radius: 14px;
         z-index: 0;
 
+        .fc .fc-header-toolbar {
+            > .fc-toolbar-chunk:first-child {
+                > div {
+                    display: flex;
+                    align-items: center;
+                    gap: .5rem;
+                }
+            }
+            > .fc-toolbar-chunk:last-child {
+                display: none;
+
+                @media screen and (min-width: $screen-desktop) {
+                    display: block;
+                }
+            }
+        }
+
         .fc .fc-toolbar-title {
             @include fontSize(36);
             color: $color-mine-shaft;
         }
 
-        .fc .fc-button-group .fc-button-primary {
+        .fc .fc-prev-button,
+        .fc .fc-next-button {
             padding: 0 .5rem;
             background: none;
             color: $color-shark;
             border: none;
+            box-shadow: none;
 
             .fc-icon {
                 font-size: 2.5rem;
@@ -28,7 +48,11 @@
         
         .fc .fc-toolbar.fc-header-toolbar {
             padding-bottom: 1rem;
-            border-bottom: 1px solid $color-iron;
+            border-bottom: 1px solid transparentize($color-iron, .4);
+        }
+
+        .fc .fc-scrollgrid-liquid {
+            border-color: transparentize($color-iron, .4);
         }
 
         .fc-day:not(.fc-day-disabled) .fc-daygrid-day-frame {
@@ -42,13 +66,13 @@
         .fc-theme-standard th {
             @include fontSize(20);
             font-weight: 600;
-            border-color: $color-iron;
+            border-color: transparentize($color-iron, .4);
         }
         
 
         .fc-daygrid-event {
             @include fontSize(16);
-            padding: 0 1px;
+            padding: 3px;
             white-space: normal;
         }
 
@@ -86,10 +110,23 @@
             @include fontSize(36);
             margin: 0;
             text-align: center;
+
+            span {
+                &:last-child {
+                    font-weight: 600;
+                }
+            }
         }
 
         h3 {
-            margin-bottom: .5rem;
+            @include fontSize(28);
+            margin: 1.5rem 1.5rem .5rem;
+        }
+
+        h4 {
+            margin: 0 0 .5rem;
+            font-size: 1rem;
+            font-weight: 600;
         }
 
         .eventRow {
@@ -97,12 +134,13 @@
             align-items: center;
             gap: 1rem;
             margin-bottom: .75rem;
-            padding: .5rem;
-            background: #E5E9EF;
+            padding: .75rem;
+            background: $color-mystic;
             border-radius: 12px;
+            transition: background .3s ease-in-out;
 
             &:hover {
-                background: #B4D1FD;
+                background: $color-iron;
                 cursor: pointer;
             }
 
@@ -110,12 +148,26 @@
                 display: flex;
                 flex-direction: column;
                 flex-basis: 100px;
+                font-weight: 600;
                 text-align: center;
                 border-right: 1px solid #bbb;
+
+                strong {
+                    font-weight: 600;
+                }
+
+                span {
+                    color: $color-bali-hai;
+                }
             }
 
-            h4 {
-                margin: 0;
+            .event-client {
+                @include fontSize(14);
+                display: inline-block;
+                padding: .25rem .75rem;
+                background-color: $color-manhattan;
+                font-weight: 600;
+                border-radius: 14px;
             }
         }
     }

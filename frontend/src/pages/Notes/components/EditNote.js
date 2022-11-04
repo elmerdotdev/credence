@@ -70,7 +70,7 @@ const EditNote = ({ modalOpen, toggle, onEdit, clientId, noteId }) => {
                     onChange={(e) => setContent(e.target.value)}
                 />
             </div>
-            <input type="submit" value="Save Note" className="submit-btn" onClick={onEdit} />
+            <input type="submit" value="Save Note" className="submit-btn" onClick={onSubmit} />
         </form>
         </Modal>
     )
