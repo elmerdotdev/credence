@@ -19,7 +19,7 @@ const EditConnection = ({ onEdit, connection }) => {
     { text: "Manufacturing", select: false },
     { text: "Media", select: false }
   ]);
-  const [user_id, setUserId] = useState('633b6a81145c9d79405c54ea');
+  const [user_id, setUserId] = useState('63645e4850049bfd1e89637a');
 
   const checkboxes = [
     { text: "Technology" },

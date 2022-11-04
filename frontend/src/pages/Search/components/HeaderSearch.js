@@ -1,16 +1,21 @@
 import React, { useState, useEffect } from 'react'
 import SearchResults from './SearchResults';
-import ViewEvent from '../../Calendar/components/ViewEvent'
+import ViewEvent from '../../Calendar/components/ViewEvent';
+// import ConnectionDetail from '../../Connections/components/ConnectionDetail';
+import Modal from 'react-modal';
 
 const HeaderSearch = () => {
     const [keyword, setKeyword ]= useState('');
     const [events, setEvents] = useState([]);
     const [connections, setConnections] = useState([]);
+    const [showDetailModal, setShowDetailModal] = useState(false);
     const [modalViewOpen, setModalViewOpen] = useState(false)
     const [filteredConnections, setFilteredConnections] = useState([]);
     const [filteredEvents, setFilteredEvents] = useState([]);
     const [searchConnParams] = useState(["firstname", "lastname", "company", "position", "phone", "email"]);
     const [searchEventParams] = useState(["title", "type"]);
+
+    const userID = "63645e4850049bfd1e89637a";
 
     useEffect(() => {
         const getConnections = async () => {
@@ -34,14 +39,14 @@ const HeaderSearch = () => {
 
     // Fetch Connections
     const fetchConnections = async () => {
-        const res = await fetch('https://credence-server.onrender.com/api/clients/633b6a81145c9d79405c54ea');
+        const res = await fetch(`${process.env.REACT_APP_API_URL}/api/clients/${userID}`);
         const data = await res.json();
         return data;
     };
 
     // Get all activities/events
     const fetchActivities = async () => {
-        const res = await fetch(`${process.env.REACT_APP_API_URL}/api/activities/633b6a81145c9d79405c54ea`)
+        const res = await fetch(`${process.env.REACT_APP_API_URL}/api/activities/${userID}`)
         const data = await res.json()
 
         return data
@@ -50,6 +55,12 @@ const HeaderSearch = () => {
     const toggleViewModal = (status) => {
         setModalViewOpen(status)
          console.log("Event search result has been clicked!")
+    }
+
+    const toggleConnDetail = (id) => {
+        console.log(id)
+        console.log("Connection search result has been clicked!")
+        setShowDetailModal(true);
     }
 
   
@@ -92,9 +103,10 @@ const HeaderSearch = () => {
                 </button>
             </form>
           
-            <SearchResults filteredConnections={filteredConnections} filteredEvents={filteredEvents}  modalOpen={modalViewOpen} onToggle= {() => toggleViewModal}/>
+            <SearchResults filteredConnections={filteredConnections} filteredEvents={filteredEvents}  modalOpen={modalViewOpen} onToggle= {() => toggleViewModal} onToggleConn = {() => toggleConnDetail}/>
             {modalViewOpen &&
             <ViewEvent modalOpen={modalViewOpen} onToggle={toggleViewModal} />}
+            {/* <ConnectionDetail /> */}
  
             <button className="header-quick-add">
                 <span>Quick Add</span>
