@@ -2,6 +2,7 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 import Logo from '../Logo/Logo'
 import HeaderSearch from '../../pages/Search/components/HeaderSearch'
+import MobileMenu from '../MobileMenu/MobileMenu'
 
 const Header = () => {
   return (
@@ -17,9 +18,7 @@ const Header = () => {
         </div>
 
         <div className="mobile-menu">
-            <span></span>
-            <span></span>
-            <span></span>
+            <MobileMenu />
         </div>
     </header>
   )
