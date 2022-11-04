@@ -1,5 +1,4 @@
 import Notes from '../../Notes/Notes';
-import { useState } from 'react';
 
 const ConnectionDetail = ({connection, onEditBtn, onDeleteBtn, onPinBtn, changeActiveBtn}) => {
 
@@ -21,6 +20,10 @@ const ConnectionDetail = ({connection, onEditBtn, onDeleteBtn, onPinBtn, changeA
                 <div>
                   <p className="regular-text-gray">Organization</p>
                   <p>{connection && connection.company}</p>
+                </div>
+                <div>
+                  <p className="regular-text-gray">Location</p>
+                  <p>{connection && connection.location}</p>
                 </div>
                 <div>
                   <p className="regular-text-gray">Email</p>
