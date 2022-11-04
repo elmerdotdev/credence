@@ -65,28 +65,36 @@ aside {
     display: flex;
     align-items: center;
     position: fixed;
-    top: 0;
-    right: 0;
-    width: 100%;
-    height: 100vh;
+    top: 50px;
+    left: 0;
+    width: 100vw;
+    height: calc(100vh - 50px);
     background: $color-white-lilac;
     z-index: 999;
+    transform: translateX(100%);
+    transition: transform .5s ease-in-out;
 
     @media screen and (min-width: $screen-desktop) {
         position: static;
         height: calc(100vh - 75px);
         z-index: 0;
+        transform: translateX(0);
+    }
+
+    .mobile-menu-visible & {
+        transform: translateX(0)
     }
 }
 
 .App-navigation {
     display: flex;
     flex-direction: column;
+    align-items: center;
     flex: 1;
     padding: 0 3rem;
 
     @media screen and (min-width: $screen-desktop) {
-        justify-content: space-between;
+        align-items: start;
         height: 100%;
         padding: 5rem 3rem 2rem;
     }
@@ -94,10 +102,10 @@ aside {
     ul {
         display: flex;
         flex-direction: column;
+        height: 100%;
 
         li {
             display: flex;
-            justify-content: center;
             align-items: center;
             margin: 1rem 0;
 
@@ -107,6 +115,14 @@ aside {
 
             i {
                 font-size: 2rem;
+            }
+
+            &.mister-spacer {
+                margin: 0;
+
+                @media screen and (min-width: $screen-desktop) {
+                    flex: 1;
+                }
             }
         }
 
@@ -153,15 +169,146 @@ aside {
 
     .App-body {
         flex: 1;
-        margin: 0 .5rem .5rem 0;
         padding: .5rem;
-        background-color: $color-white;
-        border: 1px solid $color-dusty-gray;
-        border-radius: 16px;
 
         .no-sidebar & {
             background-color: transparent;
             border: none;
+        }
+    }
+}
+
+.credence-modal {
+    background-color: $color-white;
+    padding: 2rem;
+    max-width: 1024px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid transparentize($color-dusty-gray, .25);
+
+    @media screen and (min-width: $screen-desktop) {
+        padding: 2rem 5rem 6rem;
+    }
+
+    &:focus {
+        outline: 0;
+    }
+
+    .icon-close {
+        cursor: pointer;
+        color: $color-regal-blue;
+        font-size: 2rem;
+    }
+}
+
+/* BUTTONS */
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    padding: 8px 22px;
+    font-weight: 600;
+    line-height: 1;
+    border: 1px solid $color-gray;
+    box-shadow: none;
+    border-radius: 8px;
+    transition: all .3s ease-in-out;
+
+    i {
+        margin: -4px -10px -4px 0;
+        font-size: 2rem;
+    }
+
+    &-primary {
+        background-color: $color-science-blue;
+        color: $color-white;
+        border: 1px solid $color-science-blue;
+
+        &:hover {
+            background-color: $color-white;
+            border-color: $color-regal-blue;
+            color: $color-regal-blue;
+        }
+
+        &-reverse {
+            background-color: $color-white;
+            color: $color-regal-blue;
+            border: 1px solid $color-regal-blue;
+    
+            &:hover {
+                background-color: $color-science-blue;
+                border-color: $color-science-blue;
+                color: $color-white;
+            }
+        }
+    }
+
+    &-secondary {
+        background-color: $color-endeavour;
+        color: $color-white;
+        border: 1px solid $color-endeavour;
+
+        &:hover {
+            background-color: $color-solitude;
+            border-color: $color-regal-blue;
+            color: $color-regal-blue;
+        }
+
+        &-reverse {
+            background-color: $color-solitude;
+            color: $color-regal-blue;
+            border: 1px solid $color-regal-blue;
+    
+            &:hover {
+                background-color: $color-endeavour;
+                border-color: $color-endeavour;
+                color: $color-white;
+            }
+        }
+    }
+
+    &-focus {
+        background-color: $color-regal-blue;
+        color: $color-white;
+        border: 1px solid $color-regal-blue;
+
+        &:hover {
+            background-color: $color-hawkes-blue;
+            color: $color-regal-blue;
+        }
+
+        &-reverse {
+            background-color: $color-hawkes-blue;
+            color: $color-regal-blue;
+            border: 1px solid $color-regal-blue;
+    
+            &:hover {
+                background-color: $color-regal-blue;
+                color: $color-white;
+            }
+        }
+    }
+
+    &-disabled {
+        background-color: $color-french-gray;
+        color: $color-shark;
+        border: 1px solid $color-french-gray;
+
+        &:hover {
+            border-color: $color-regal-blue;
+        }
+
+        &-reverse {
+            background-color: $color-french-gray;
+            color: $color-shark;
+            border: 1px solid $color-regal-blue;
+    
+            &:hover {
+                border-color: $color-french-gray;
+            }
         }
     }
 }

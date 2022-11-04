@@ -1,17 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Modal from 'react-modal'
 import Datetime from 'react-datetime';
-
-const customStyles = {
-    content: {
-        top: '50%',
-        left: '50%',
-        right: 'auto',
-        bottom: 'auto',
-        marginRight: '-50%',
-        transform: 'translate(-50%, -50%)',
-    },
-};
+import moment from 'moment';
 
 Modal.setAppElement('body');
 
@@ -19,10 +9,17 @@ const AddEvent = (props) => {
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
     const [start, setStart] = useState('')
+    const [startDate, setStartDate] = useState('')
+    const [startTime, setStartTime] = useState('')
     const [end, setEnd] = useState('')
+    const [endDate, setEndDate] = useState('')
+    const [endTime, setEndTime] = useState('')
     const [type, setType] = useState('')
     const [clients, setClients] = useState([])
     const [clientId, setClientId] = useState('')
+
+    // Destructure
+    const fetchClients = props.fetchClients
 
     const alertMsgs = {
         invalid: "Enter a valid start/end date",
@@ -32,15 +29,30 @@ const AddEvent = (props) => {
     
     useEffect(() => {
         const getClients = async () => {
-            const res = await fetch(`${process.env.REACT_APP_API_URL}/api/clients/${props.userId}`)
-            const data = await res.json()
+            const data = await fetchClients()
 
             setClients(data)
         }
 
         getClients()
-        setStart(props.onDateClick)
-    }, [ props.userId, props.modalOpen, props.onDateClick ])
+        setStartDate(props.onDateClick)
+    }, [ 
+        props.userId,
+        props.modalOpen,
+        props.onDateClick,
+        fetchClients
+    ])
+
+    useEffect(() => {
+        setStart(moment(startDate).format("YYYY-MM-DD") + " " + moment(startTime).format("HH:mm:ss"))
+
+        setEnd(moment(endDate).format("YYYY-MM-DD") + " " + moment(endTime).format("HH:mm:ss"))
+    }, [
+        startDate,
+        startTime,
+        endDate,
+        endTime
+    ])
 
     const submitForm = (e) => {
         e.preventDefault()
@@ -94,41 +106,47 @@ const AddEvent = (props) => {
             <Modal
                 isOpen={props.modalOpen}
                 onRequestClose={() => props.onToggle(false)}
-                style={customStyles}
+                className="credence-modal modal-event-add"
                 contentLabel="Add Event"
             >
-                <button onClick={() => props.onToggle(false)}>Close</button>
-                <h2>Add Event</h2>
-                <form className="addEventForm" onSubmit={submitForm}>
-                    <div className="column">
+                <div className="addEventForm">
+                    <h2>New Event</h2>
+                    <form onSubmit={submitForm}>
                         <div className="input-wrapper">
-                            <label htmlFor="title">Event name</label>
+                            <label htmlFor="title">Subject</label>
                             <input id="title" type="text" value={title} onChange={e => setTitle(e.target.value)} required />
                         </div>
                         <div className="input-wrapper">
-                            <label htmlFor="description">Description</label>
-                            <textarea id="description" cols="30" rows="15" value={description} onChange={e => setDescription(e.target.value)} />
-                        </div>
-                    </div>
-                    <div className="column">
-                        <div className="input-wrapper">
-                            <label htmlFor="startdate">Start</label>
-                            <Datetime initialValue={props.onDateClick || start} onChange={date => setStart(date)} />
-                        </div>
-                        <div className="input-wrapper">
-                            <label htmlFor="enddate">End</label>
-                            <Datetime value={end} onChange={date => setEnd(date)} />
-                        </div>
-                        <div className="input-wrapper">
-                            <label htmlFor="eventtype">Event Type</label>
+                            <label htmlFor="eventtype">Category</label>
                             <select id="eventtype" required defaultValue={type || ''} onChange={e => setType(e.target.value) || ''}>
                                 <option value=""></option>
                                 <option value="meeting">Meeting</option>
+                                <option value="conference">Conference</option>
                                 <option value="birthday">Birthday</option>
                             </select>
                         </div>
+                        <div className="input-wrapper start-date-time">
+                            <div className="input-date">
+                                <label htmlFor="startdate">Start Date</label>
+                                <Datetime timeFormat={false} initialValue={props.onDateClick || startDate} onChange={date => setStartDate(date)} />
+                            </div>
+                            <div className="input-time">
+                                <label htmlFor="starttime">Start Time</label>
+                                <Datetime dateFormat={false} value={startTime} onChange={date => setStartTime(date)} />
+                            </div>
+                        </div>
+                        <div className="input-wrapper end-date-time">
+                            <div className="input-date">
+                                <label htmlFor="enddate">End Date</label>
+                                <Datetime timeFormat={false} initialValue={endDate} onChange={date => setEndDate(date)} />
+                            </div>
+                            <div className="input-time">
+                                <label htmlFor="endtime">End Time</label>
+                                <Datetime dateFormat={false} value={endTime} onChange={date => setEndTime(date)} />
+                            </div>
+                        </div>
                         <div className="input-wrapper">
-                            <label htmlFor="clientlist">Client</label>
+                            <label htmlFor="clientlist">Connection</label>
                             <select id="clientlist" value={clientId || ''} onChange={e => setClientId(e.target.value) || ''}>
                                 <option value=""></option>
                                 {clients.map((client, i) => (
@@ -136,11 +154,16 @@ const AddEvent = (props) => {
                                 ))}
                             </select>
                         </div>
-                    </div>
-                    <div className="input-wrapper submit-btn-wrapper">
-                        <input type="submit" value="Add New Event" />
-                    </div>
-                </form>
+                        <div className="input-wrapper">
+                            <label htmlFor="description">Description</label>
+                            <textarea id="description" value={description} onChange={e => setDescription(e.target.value)} />
+                        </div>
+                        <div className="input-wrapper submit-btn-wrapper">
+                            <button className="btn btn-primary-reverse" onClick={() => props.onToggle(false)}>Cancel</button>
+                            <button type="submit" className="btn btn-primary">Save Event</button>
+                        </div>
+                    </form>
+                </div>
             </Modal>
         </div>
     )

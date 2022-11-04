@@ -1,15 +1,15 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import Logo from '../Logo/Logo'
 import HeaderSearch from '../../pages/Search/components/HeaderSearch'
+import MobileMenu from '../MobileMenu/MobileMenu'
 
-import logo from '../../images/logo.svg';
-
-const Header = () => {
+const Header = (props) => {
   return (
     <header>
         <div className="logo">
             <NavLink to="/dashboard">
-                <img src={logo} alt="Credence Logo" />
+                <Logo />
             </NavLink>
         </div>
 
@@ -18,9 +18,7 @@ const Header = () => {
         </div>
 
         <div className="mobile-menu">
-            <span></span>
-            <span></span>
-            <span></span>
+            <MobileMenu onToggleMenu={props.onToggleMenu}/>
         </div>
     </header>
   )

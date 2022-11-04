@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import moment from 'moment'
 import EventsWidgetRow from './EventsWidgetRow'
 
+import ImageCalendarWoman from '../../../images/Calendar/calendar-add-event-woman.svg'
+
 const EventsWidget = (props) => {
     const [ events, setEvents ] = useState([])
     const [ groupedEvents, setGroupedEvents ] = useState([])
@@ -36,10 +38,14 @@ const EventsWidget = (props) => {
 
     return (
         <div className="page-calendar-widget">
-            <h2>{props.currMonth}</h2>
+            <h2>
+                <span>{moment(props.currMonth).format("MMMM")}</span> <span>{moment(props.currMonth).format("YYYY")}</span>
+            </h2>
 
             {events.length === 0 ? (
-                <button>Add Your First Event</button>
+                <div className="noMonthlyEvents">
+                    <img onClick={() => props.openAddModal(true)} src={ImageCalendarWoman} alt="Add First Event" />
+                </div>
             ) : (
                 <div className="monthlyEvents">
                     {groupedEvents.map((day, i) => (
