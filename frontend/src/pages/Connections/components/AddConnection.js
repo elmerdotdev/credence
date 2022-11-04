@@ -1,4 +1,3 @@
-//完善表格： 添加client照片、职位、地点等
 
 import React from 'react';
 import { useState } from 'react';
@@ -22,7 +21,7 @@ const AddConnection = ({ onAdd }) => {
     { text: "Manufacturing", select: false },
     { text: "Media", select: false }
   ]);
-  const [user_id, setUserId] = useState('633b6a81145c9d79405c54ea');
+  const [user_id, setUserId] = useState('63645e4850049bfd1e89637a');
   const [pinned, setPinned] = useState(false);
 
 const checkboxes = [
