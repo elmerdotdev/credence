@@ -180,13 +180,17 @@ aside {
 
 .credence-modal {
     background-color: $color-white;
-    padding: 2rem 5rem 6rem;
+    padding: 2rem;
     max-width: 1024px;
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     border: 1px solid $color-dusty-gray;
+
+    @media screen and (min-width: $screen-desktop) {
+        padding: 2rem 5rem 6rem;
+    }
 
     &:focus {
         outline: 0;
