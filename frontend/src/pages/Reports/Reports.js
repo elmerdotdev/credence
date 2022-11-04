@@ -1,5 +1,5 @@
 import ActiveClients from './components/ActiveClients'
-// import PositionType from './components/PositionType'
+import IndustryType from './components/IndustryType'
 
 const Reports = () => {
 
@@ -10,9 +10,9 @@ const Reports = () => {
             <div className="active-clients">
                 <ActiveClients />
             </div>
-            {/* <div className="Position Type">
-                <PositionType />
-            </div> */}
+            <div className="Position Type">
+                <IndustryType />
+            </div>
         </div>
     )
 }

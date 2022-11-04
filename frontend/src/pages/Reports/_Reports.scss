@@ -1,4 +1,3 @@
-@import '../../scss/variables';
 
 .reports {
     background: $color-white;
@@ -14,9 +13,10 @@
         align-items: center;
         justify-content: center;
         margin: 0;
+        @include fontSize(34);
 
         i::before {
-            font-size: 3rem;
+            @include fontSize(34);
             color: $color-science-blue;
             margin: 0;
         }
@@ -29,6 +29,11 @@
         h1 {
             grid-column: 1/-1;
             justify-content: start;
+            @include fontSize(36);
+
+            i::before {
+               @include fontSize(36);
+            }
         }
     }
 }
@@ -38,7 +43,7 @@
     
     h2 {
         text-align: center;
-        font-size: 1.25rem;
+        @include fontSize(30);
     }
 
     @media screen and (min-width: $screen-desktop) {
@@ -49,6 +54,7 @@
 
         h2 {
             margin-bottom: 0;
+            @include fontSize(32);
         }
     }
 }
