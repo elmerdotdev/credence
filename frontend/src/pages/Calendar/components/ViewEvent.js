@@ -44,7 +44,7 @@ const ViewEvent = (props) => {
                     </div>
                 </div>
 
-                <div class="viewModalContent">
+                <div className="viewModalContent">
                     <h2>{event.title}</h2>
                     <table className="viewModalTable">
                         <tbody>
@@ -66,14 +66,16 @@ const ViewEvent = (props) => {
                                 </td>
                             </tr>
                             <tr>
-                                <th>Client</th>
-                                <td>{clientName}</td>
+                                <th>Connection</th>
+                                <td className="viewModalConnections"><span>{clientName}</span></td>
                             </tr>
                             <tr>
                                 <th colSpan="2">Description</th>
                             </tr>
                             <tr>
-                                <td colSpan="2">{event.description}</td>
+                                <td colSpan="2">
+                                    <p>{event.description}</p>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
