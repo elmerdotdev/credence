@@ -15,6 +15,8 @@ const HeaderSearch = () => {
     const [searchConnParams] = useState(["firstname", "lastname", "company", "position", "phone", "email"]);
     const [searchEventParams] = useState(["title", "type"]);
 
+    const userID = "63645e4850049bfd1e89637a";
+
     useEffect(() => {
         const getConnections = async () => {
             const res = await fetchConnections();
@@ -37,14 +39,14 @@ const HeaderSearch = () => {
 
     // Fetch Connections
     const fetchConnections = async () => {
-        const res = await fetch('https://credence-server.onrender.com/api/clients/633b6a81145c9d79405c54ea');
+        const res = await fetch(`${process.env.REACT_APP_API_URL}/api/clients/${userID}`);
         const data = await res.json();
         return data;
     };
 
     // Get all activities/events
     const fetchActivities = async () => {
-        const res = await fetch(`${process.env.REACT_APP_API_URL}/api/activities/633b6a81145c9d79405c54ea`)
+        const res = await fetch(`${process.env.REACT_APP_API_URL}/api/activities/${userID}`)
         const data = await res.json()
 
         return data
