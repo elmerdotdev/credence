@@ -122,21 +122,21 @@ const Profile = () => {
             </div>
           </div>
 
-            <button className="edit-profile-btn">Edit Profile</button>
+            <button className="edit-profile-btn btn btn-primary-reverse">Edit Profile</button>
         </section>
         
         <section className="page-profile-passwordSecurity">
           <div className="title-icon-box"><i className='icon-security'></i><h4>Password & Security</h4></div>
           <p>Manage your info, privacy and security to make Credence work better for you.</p>
 
-          <button className='manage-security-btn'>Manage</button>
+          <button className='manage-security-btn btn btn-primary-reverse'>Manage</button>
         </section>
         
         <section className="page-profile-subscription">
           <div className="title-icon-box"><i className='icon-subscription'></i><h4>Subscription</h4></div>
           <p>You are currenty on our <span>30-day trial.</span>Go Premium to enjoy our most-loved premium features.</p>
 
-          <button className='go-premiun-btn'>Go Premium</button>
+          <button className='go-premiun-btn btn btn-primary'>Go Premium</button>
         </section>
       </div>
     </>
