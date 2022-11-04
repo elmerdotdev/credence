@@ -23,7 +23,9 @@ const IndustryType = () => {
     useEffect(() => {
       const getClients = async () => {
           const clients = await fetchClients();
-          console.log(clients.filter((client) => {return client.labels[0].select === false}));
+          const tech = clients.filter((client) => client.labels.filter((label) => label.text === 'Technology' && label.select === true))
+          console.log(tech);
+          // console.log(clients)
       }
 
       getClients();
@@ -62,7 +64,7 @@ const IndustryType = () => {
 
     return (
         <div>
-            <h2>Industries Represented</h2>
+            <h3>Industries Represented</h3>
             <div><Bar data={data} options={options}/></div>
 
         </div>
