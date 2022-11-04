@@ -150,16 +150,15 @@ const onSubmit = (e) => {
           return (
           <div key={index}>
           <div className="industry-item">
-          <label className="industry-name" htmlFor={`industry-checkbox-${index}`}>
-              <input
-                className="industry-checkbox"
-                type="checkbox"
-                id={`industry-checkbox-${index}`}
-                name={text}
-                value={text}
-                onChange={(e) => {const currSelection = labels; currSelection[index].select = e.currentTarget.checked; setLabels(currSelection)}}
-              />
-              {text}</label>
+            <input
+              className="industry-item-input"
+              type="checkbox"
+              id={`industry-checkbox-${index}`}
+              name={text}
+              value={text}
+              onChange={(e) => {const currSelection = labels; currSelection[index].select = e.currentTarget.checked; setLabels(currSelection)}}
+            />
+              <label className="industry-item-label" htmlFor={`industry-checkbox-${index}`}>{text}</label>
           </div>
         </div>
         )  

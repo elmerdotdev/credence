@@ -125,12 +125,13 @@ const EditConnection = ({ onEdit, connection }) => {
           onChange={(e) => setActive(e.currentTarget.checked)}
         />
       </div>
-      <div className="IndustryChkbox">
+      <div className="IndustryChkbox-wrapper">
         {checkboxes.map(({text}, index) => {
           return (
           <div key={index}>
           <div className="industry-item">
               <input
+                className="industry-item-input"
                 type="checkbox"
                 id={`industry-checkbox-${index}`}
                 name={text}
@@ -138,7 +139,7 @@ const EditConnection = ({ onEdit, connection }) => {
                 onChange={(e) => {const currSelection = labels; currSelection[index].select = e.currentTarget.checked; setLabels(currSelection)}}
 
               />
-              <label htmlFor={`custom-checkbox-${index}`}>{text}</label>
+              <label htmlFor={`industry-checkbox-${index}` } className="industry-item-label">{text}</label>
           </div>
         </div>
         )  

@@ -85,26 +85,26 @@
 
 
   //industry label checkbox
-  .industry-name {
+  .industry-item-label {
     border: $color-gray solid 1px;
     color: $color-gray;
     border-radius: 20px;
     padding: .1rem .5rem;
   }
 
-  .industry-name:hover {
+  .industry-item-label:hover {
     color: $color-science-blue;
     border: $color-science-blue solid 1px;
   }
 
-  .industry-checkbox:checked + .industry-name{
+  .industry-item-input:checked ~ .industry-item-label{
     color: $color-science-blue;
     border: $color-science-blue solid 1px;
   }
 
-// .industry-checkbox {
-//     display: none;
-//   }
+  .industry-item-input {
+      display: none;
+    }
 
 
   .industry-item {
@@ -116,10 +116,6 @@
     flex-flow: row wrap;
   }
 
-  // .industry-checkbox {
-  //   display: none;
-  //   cursor: pointer;
-  // }
 
   // text
   .regular-text-gray {
