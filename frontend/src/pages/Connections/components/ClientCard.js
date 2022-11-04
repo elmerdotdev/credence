@@ -3,10 +3,10 @@ const ClientCard = ({ connection, onToggle }) => {
     return (
       <div className="client-card" onClick = {() => onToggle(connection._id)}>
         <div>
-        <h3>
+        <h4>
         {connection.firstname}{' '}
         {connection.lastname}{' '}
-        </h3>
+        </h4>
         <p>{connection.position}</p>
         <p>{connection.company}</p>
         <p>{connection.active}</p>

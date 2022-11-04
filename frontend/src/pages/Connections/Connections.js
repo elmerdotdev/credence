@@ -3,7 +3,7 @@
 // 【✅】insert一个新的client进database
 // 【✅】client card只显示姓名/title/organization
 // 【✅】点开每个client显示详情，包括姓名/title/organization/email/phone
-//  ✅】将active status改成可以one click更改状态的button加入ui
+// 【✅】将active status改成可以one click更改状态的button加入ui
 //  新增connection表格中加入industry，且显示在ui
 // 【✅】在client details中用modal增加edit client功能
 // 【✅】edit button打开edit function modal
@@ -24,12 +24,17 @@ import Filter from './components/Filter'
  //Modal Style
  const customStyles = {
   content: {
-    top: '50%',
-    left: '50%',
-    right: 'auto',
-    bottom: 'auto',
-    marginRight: '-50%',
-    transform: 'translate(-50%, -50%',
+    // top: '50%',
+    // left: '50%',
+    // right: 'auto',
+    // bottom: 'auto',
+    // marginRight: '-50%',
+    // transform: 'translate(-50%, -50%',
+    position: "absolute",
+    top: "20px",
+    left: "20%",
+    right: "20%",
+    bottom: "20px"
   },
 };
 
@@ -94,7 +99,9 @@ const editConnection = async (inputConnObj) => {
 
   const res = await fetchConnections();
   setConnections(res);
-  console.log('finish edit')
+  console.log('finish edit');
+  setShowEditModal(false);
+  alert('Connection has been updated');
 };
 
 // Fetch Connections
@@ -139,19 +146,28 @@ const addConnection = async (newClient) => {
 };
 
 // Pin Connection
-const pinConnection = async () => {
+const pinConnection = async (e) => {
   const id = connection._id
-  const ConnectiontoPin = await fetch(`https://credence-server.onrender.com/api/clients/633b6a81145c9d79405c54ea/${id}`)
-  const updConnection = { ...ConnectiontoPin, pinned: true };
+  const getConnectionRes = await fetch(`https://credence-server.onrender.com/api/clients/633b6a81145c9d79405c54ea/${id}`)
+  const ConnectiontoPin = await getConnectionRes.json()
+  // console.log(connection.pinned)
+  let updConnection = null
+  if(!connection.pinned) {
+  updConnection = { ...ConnectiontoPin, pinned: true };
+  } else if(connection.pinned){
+  updConnection = { ...ConnectiontoPin, pinned: false };
+  }
 
-  await fetch(`https://credence-server.onrender.com/api/clients/${id}`, {
-    method: 'PATCH',
-    headers: {
-      'Content-type': 'application/json',
-    },
-    body: JSON.stringify(updConnection),
-  });
 
+await fetch(`https://credence-server.onrender.com/api/clients/${id}`, {
+  method: 'PATCH',
+  headers: {
+    'Content-type': 'application/json',
+  },
+  body: JSON.stringify(updConnection),
+});
+
+setConnection(updConnection)
 };
 
 // Pin Filter
@@ -201,6 +217,7 @@ const handleActiveCheckbox = async (e) => {
       <p><button className="openModalBtn" onClick={() => setShowAddModalIsOpen(true)}>Add</button></p>
       <Filter onPinFilter={pinFilter}/>
       <ModalComponent
+        style={customStyles}
         isOpen={showDetailModal}
         onRequestClose={() => setShowDetailModal(false)}
       >
@@ -214,10 +231,12 @@ const handleActiveCheckbox = async (e) => {
         changeActiveBtn={handleActiveCheckbox}
         // activeChecked = {activeChecked}
         onPinBtn={pinConnection}
+        // PinText={connection.pinned ?  "Pinned" : "Pin"}
         />    
       </ModalComponent>
 
       <ModalComponent
+        style={customStyles}
         isOpen={showEditModal}
         onRequestClose={() => setShowEditModal(false)}
       >
@@ -229,6 +248,7 @@ const handleActiveCheckbox = async (e) => {
       </ModalComponent>
 
       <Modal
+        style={customStyles}
         isOpen={showAddModalIsOpen}
         onRequestClose={() => setShowAddModalIsOpen(false)}
       >
