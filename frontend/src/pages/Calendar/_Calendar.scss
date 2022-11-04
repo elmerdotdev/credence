@@ -100,6 +100,8 @@
     }
 
     &-widget {
+        display: flex;
+        flex-direction: column;
         flex-basis: 410px;
         padding: 1rem .5rem;
         background-color: $color-white;
@@ -127,6 +129,19 @@
             margin: 0 0 .5rem;
             font-size: 1rem;
             font-weight: 600;
+        }
+
+        .noMonthlyEvents {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            img {
+                cursor: pointer;
+                width: 100%;
+                max-width: 300px;
+            }
         }
 
         .eventRow {
@@ -173,29 +188,121 @@
     }
 }
 
-.addEventForm {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 1rem;
-
-    .input-wrapper {
-        display: flex;
-        flex-direction: column;
-        padding: 5px 0;
-
-        input[type="text"],
-        textarea,
-        select {
-            border: 1px solid #000;
-        }
+.modal-event-add {
+    @media screen and (min-width: $screen-desktop) {
+        padding: 2rem 10rem 6rem;
     }
 
-    .submit-btn-wrapper {
-        grid-column: 1 / -1;
+    .addEventForm {
+        display: grid;
+        width: 650px;
+        max-width: 100%;
+    
+        h2 {
+            @include fontSize(32);
+            font-weight: 600;
+        }
+    
+        .input-wrapper {
+            display: flex;
+            gap: 5px;
+            flex-direction: column;
+            padding: .75rem 0;
+
+            label {
+                color: $color-regal-blue;
+            }
+    
+            input[type="text"],
+            textarea,
+            select {
+                padding: .2rem 0;
+                background: none;
+                border: none;
+                border-bottom: 1px solid $color-dusty-gray;
+    
+                &:focus {
+                    outline: 0;
+                }
+            }
+
+            &.start-date-time,
+            &.end-date-time {
+                gap: 1rem;
+
+                @media screen and (min-width: $screen-desktop) {
+                    flex-direction: row;
+                }
+
+                > div {
+                    flex: 1;
+
+                    .form-control {
+                        width: 100%;
+                    }
+                }
+
+                .rdt {
+                    position: relative;
+
+                    &::before {
+                        position: absolute;
+                        bottom: 0;
+                        right: 0;
+                        color: $color-regal-blue;
+                        font-family: "credence";
+                        font-size: 2rem;
+                        font-style: normal;
+                        font-weight: normal;
+                        display: inline-block;
+                        text-decoration: inherit;
+                        width: 1em;
+                        margin-right: 0.2em;
+                        text-align: center;
+                        font-feature-settings: normal;
+                        font-variant: normal;
+                        text-transform: none;
+                        line-height: 1em;
+                        margin-left: 0.2em;
+                        -webkit-font-smoothing: antialiased;
+                        -moz-osx-font-smoothing: grayscale;
+                    }
+                }
+
+                .input-date .rdt::before {
+                    content: '\e814';
+                }
+
+                .input-time .rdt::before {
+                    content: '\e819';
+                }
+            }
+        }
+    
+        .submit-btn-wrapper {
+            flex-direction: row;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+    }
+}
+
+.viewModalButtons {
+    display: flex;
+    justify-content: space-between;
+
+    button {
+        margin: 0 5px;
     }
 }
 
 .viewModalContent {
+    padding: 0;
+
+    @media screen and (min-width: $screen-desktop) {
+        padding: 0 4rem;
+    }
+
     h2 {
         font-size: 32px;
         font-weight: 600;
@@ -206,21 +313,33 @@
     width: 500px;
 
     th, td {
+        padding: 5px 0;
+        font-weight: 400;
         text-align: left;
         vertical-align: top;
+    }
+
+    th {
+        color: $color-dusty-gray;
+
+        @media screen and (min-width: $screen-desktop) {
+            padding-right: 50px;
+        }
     }
 
     .viewEventDates {
         display: flex;
         flex-direction: column;
     }
-}
 
-.viewModalButtons {
-    display: flex;
-    justify-content: space-between;
-
-    button {
-        margin: 0 2px;
+    .viewModalConnections {
+        span {
+            @include fontSize(14);
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background-color: $color-manhattan;
+            font-weight: 600;
+            border-radius: 14px;
+        }
     }
 }

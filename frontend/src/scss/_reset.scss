@@ -186,7 +186,7 @@ aside {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    border: 1px solid $color-dusty-gray;
+    border: 1px solid transparentize($color-dusty-gray, .25);
 
     @media screen and (min-width: $screen-desktop) {
         padding: 2rem 5rem 6rem;
