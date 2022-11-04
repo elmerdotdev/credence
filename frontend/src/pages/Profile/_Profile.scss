@@ -1,3 +1,56 @@
 .page-profile {
     font-size: 1rem;
+
+    img[alt="user-img"]{
+        width: 124px;
+        height: 125px;
+        border-radius: 199.789px;
+        
+    }
+    .my-profile-box{
+        display: flex;
+        justify-content: space-between;
+    }
+    i.icon-connection,
+    i.icon-calendar,
+    i.icon-note{
+        font-size:43px;
+        display: flex;
+    }
+    .connection-box,
+    .event-box,
+    .note-box{
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        align-items: center;
+        p:nth-of-type(1){
+            margin: 0;
+            font-weight: 700;
+            font-size: 20px;
+            line-height: 24px;
+        }
+        p:nth-of-type(2){
+            margin: 0;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 20px;
+        }
+    }
+    button.edit-profile-btn{
+        display: flex;
+        align-items: center;
+        gap: 1.2rem;
+        padding: 0.5rem 1rem 0.5rem 1.5rem;
+        background-color: $color-white;
+        color: $regal-blue;
+        border: 1.5px solid $regal-blue;
+        border-radius: 8px;
+        transition: background-color 0.2s ease-in-out;  
+        
+        margin:39px 0 0 auto;
+        text-align: right;
+
+    }
+   
 }
