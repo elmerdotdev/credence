@@ -2,7 +2,7 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 import { useLogout } from '../Signup/hooks/useLogout' 
 
-const Logout = () => {
+const Logout = (props) => {
     const { logout } = useLogout()
     
     //Logout submit action
@@ -17,7 +17,7 @@ const Logout = () => {
   
     return (
     <>
-       <li><i className="icon-logout" ></i> <NavLink to='/login' onClick={handleLogout} type={"submit"}>Log Out</NavLink></li>
+       <li onClick={props.onToggleMenu}><i className="icon-logout" ></i> <NavLink to='/login' onClick={handleLogout} type={"submit"}>Log Out</NavLink></li>
     </>
   )
 }

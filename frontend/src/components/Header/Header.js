@@ -4,7 +4,7 @@ import Logo from '../Logo/Logo'
 import HeaderSearch from '../../pages/Search/components/HeaderSearch'
 import MobileMenu from '../MobileMenu/MobileMenu'
 
-const Header = () => {
+const Header = (props) => {
   return (
     <header>
         <div className="logo">
@@ -18,7 +18,7 @@ const Header = () => {
         </div>
 
         <div className="mobile-menu">
-            <MobileMenu />
+            <MobileMenu onToggleMenu={props.onToggleMenu}/>
         </div>
     </header>
   )
