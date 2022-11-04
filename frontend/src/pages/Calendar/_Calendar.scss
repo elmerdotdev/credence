@@ -228,8 +228,11 @@
 
             &.start-date-time,
             &.end-date-time {
-                flex-direction: row;
                 gap: 1rem;
+
+                @media screen and (min-width: $screen-desktop) {
+                    flex-direction: row;
+                }
 
                 > div {
                     flex: 1;
@@ -237,6 +240,41 @@
                     .form-control {
                         width: 100%;
                     }
+                }
+
+                .rdt {
+                    position: relative;
+
+                    &::before {
+                        position: absolute;
+                        bottom: 0;
+                        right: 0;
+                        color: $color-regal-blue;
+                        font-family: "credence";
+                        font-size: 2rem;
+                        font-style: normal;
+                        font-weight: normal;
+                        display: inline-block;
+                        text-decoration: inherit;
+                        width: 1em;
+                        margin-right: 0.2em;
+                        text-align: center;
+                        font-feature-settings: normal;
+                        font-variant: normal;
+                        text-transform: none;
+                        line-height: 1em;
+                        margin-left: 0.2em;
+                        -webkit-font-smoothing: antialiased;
+                        -moz-osx-font-smoothing: grayscale;
+                    }
+                }
+
+                .input-date .rdt::before {
+                    content: '\e814';
+                }
+
+                .input-time .rdt::before {
+                    content: '\e819';
                 }
             }
         }

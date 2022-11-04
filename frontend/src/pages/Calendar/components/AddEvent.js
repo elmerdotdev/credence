@@ -44,9 +44,9 @@ const AddEvent = (props) => {
     ])
 
     useEffect(() => {
-        setStart(moment(startDate).format("YYYY-MM-DD") + " " + moment(startTime).format("HH:mm:ss a"))
+        setStart(moment(startDate).format("YYYY-MM-DD") + " " + moment(startTime).format("HH:mm:ss"))
 
-        setEnd(moment(endDate).format("YYYY-MM-DD") + " " + moment(endTime).format("HH:mm:ss a"))
+        setEnd(moment(endDate).format("YYYY-MM-DD") + " " + moment(endTime).format("HH:mm:ss"))
     }, [
         startDate,
         startTime,
@@ -159,7 +159,7 @@ const AddEvent = (props) => {
                             <textarea id="description" value={description} onChange={e => setDescription(e.target.value)} />
                         </div>
                         <div className="input-wrapper submit-btn-wrapper">
-                            <button className="btn btn-primary-reverse" onClick={() => props.onToggle(false)}>Close</button>
+                            <button className="btn btn-primary-reverse" onClick={() => props.onToggle(false)}>Cancel</button>
                             <button type="submit" className="btn btn-primary">Save Event</button>
                         </div>
                     </form>
