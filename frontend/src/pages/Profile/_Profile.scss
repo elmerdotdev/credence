@@ -80,7 +80,9 @@
     }
     @media screen and (min-width:$screen-desktop){
         padding: 20px;
-        background-color: #ffffff;
+        background-color: $color-white;
+        border: 1px solid $color-dusty-gray;
+        border-radius: 16px;
         display: grid;
         gap: 20px;
         .page-profile-edit,
