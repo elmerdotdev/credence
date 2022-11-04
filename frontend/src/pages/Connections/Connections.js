@@ -94,7 +94,9 @@ const editConnection = async (inputConnObj) => {
 
   const res = await fetchConnections();
   setConnections(res);
-  console.log('finish edit')
+  console.log('finish edit');
+  setShowEditModal(false);
+  alert('Connection has been updated');
 };
 
 // Fetch Connections
@@ -139,19 +141,28 @@ const addConnection = async (newClient) => {
 };
 
 // Pin Connection
-const pinConnection = async () => {
+const pinConnection = async (e) => {
   const id = connection._id
-  const ConnectiontoPin = await fetch(`https://credence-server.onrender.com/api/clients/633b6a81145c9d79405c54ea/${id}`)
-  const updConnection = { ...ConnectiontoPin, pinned: true };
+  const getConnectionRes = await fetch(`https://credence-server.onrender.com/api/clients/633b6a81145c9d79405c54ea/${id}`)
+  const ConnectiontoPin = await getConnectionRes.json()
+  // console.log(connection.pinned)
+  let updConnection = null
+  if(!connection.pinned) {
+  updConnection = { ...ConnectiontoPin, pinned: true };
+  } else if(connection.pinned){
+  updConnection = { ...ConnectiontoPin, pinned: false };
+  }
 
-  await fetch(`https://credence-server.onrender.com/api/clients/${id}`, {
-    method: 'PATCH',
-    headers: {
-      'Content-type': 'application/json',
-    },
-    body: JSON.stringify(updConnection),
-  });
 
+await fetch(`https://credence-server.onrender.com/api/clients/${id}`, {
+  method: 'PATCH',
+  headers: {
+    'Content-type': 'application/json',
+  },
+  body: JSON.stringify(updConnection),
+});
+
+setConnection(updConnection)
 };
 
 // Pin Filter
@@ -214,6 +225,7 @@ const handleActiveCheckbox = async (e) => {
         changeActiveBtn={handleActiveCheckbox}
         // activeChecked = {activeChecked}
         onPinBtn={pinConnection}
+        // PinText={connection.pinned ?  "Pinned" : "Pin"}
         />    
       </ModalComponent>
 

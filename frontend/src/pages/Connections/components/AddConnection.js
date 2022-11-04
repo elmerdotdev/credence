@@ -12,16 +12,34 @@ const AddConnection = ({ onAdd }) => {
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [active, setActive] = useState(false);
-  const [industry, setIndustry] = useState([]);
+  const [labels, setLabels] = useState( [
+    { text: "Technology", select: false },
+    { text: "Hospitality", select: false },
+    { text: "Finance", select: false },
+    { text: "Retail", select: false },
+    { text: "Art & Design", select: false },
+    { text: "Manufacturing", select: false },
+    { text: "Media", select: false }
+  ]);
   const [user_id, setUserId] = useState('633b6a81145c9d79405c54ea');
   const [pinned, setPinned] = useState(false);
+
+const checkboxes = [
+  { text: "Technology" },
+  { text: "Hospitality" },
+  { text: "Finance" },
+  { text: "Retail" },
+  { text: "Art & Design" },
+  { text: "Manufacturing" },
+  { text: "Media" }
+];
 
 
 const onSubmit = (e) => {
   e.preventDefault();
 
-  onAdd({ firstname, lastname, company, position, email, phone, active, user_id, industry, pinned });
-
+  onAdd({ firstname, lastname, company, position, email, phone, active, user_id, labels, pinned });
+  console.log("industry: ", labels);
   setFirstname('');
   setLastname('');
   setPosition('');
@@ -29,7 +47,14 @@ const onSubmit = (e) => {
   setEmail('');
   setPhone('');
   setActive(false);
-  setIndustry([]);
+  setLabels([ 
+  { text: "Technology", select: false },
+  { text: "Hospitality", select: false },
+  { text: "Finance", select: false },
+  { text: "Retail", select: false },
+  { text: "Art & Design", select: false },
+  { text: "Manufacturing", select: false },
+  { text: "Media", select: false }]);
 };
 
 
@@ -95,7 +120,8 @@ const onSubmit = (e) => {
         />
       </div>
       <div className="form-control form-control-check">
-        <label htmlFor="activeChkbox">Active</label>
+        <span >Active Client</span>
+        <label htmlFor="activeChkbox" className="switch">Active
         <input
           id="activeChkbox"
           type="checkbox"
@@ -103,8 +129,29 @@ const onSubmit = (e) => {
           value={active}
           onChange={(e) => setActive(e.currentTarget.checked)}
         />
+        <span className="slider round"></span>
+        </label>
       </div>
-
+      <div className="IndustryChkbox">
+        {checkboxes.map(({text}, index) => {
+          return (
+          <div key={index}>
+          <div className="industry-item">
+          <label className="industry-name" htmlFor={`custom-checkbox-${index}`}>
+              <input
+                className="industry-checkbox"
+                type="checkbox"
+                id={`industry-checkbox-${index}`}
+                name={text}
+                value={text}
+                onChange={(e) => {const currSelection = labels; currSelection[index].select = e.currentTarget.checked; setLabels(currSelection)}}
+              />
+              {text}</label>
+          </div>
+        </div>
+        )  
+        })}
+      </div>
 
       <input type="submit" value="Save Connection" className="btn btn-block" />
     </form>
