@@ -59,7 +59,7 @@ const ActiveClients = () => {
 
     return (
         <div>
-            <h2>Clients: Active vs Inactive</h2>
+            <h3>Clients: Active vs Inactive</h3>
             <Pie data={data} options={options}/>
         </div>
 

@@ -30,6 +30,7 @@
             grid-column: 1/-1;
             justify-content: start;
             @include fontSize(32);
+            padding-bottom: .5rem;
 
             i::before {
                @include fontSize(32);
@@ -38,7 +39,7 @@
     }
 }
 
-.active-clients {
+.active-clients, .industry-type {
     max-width: 100%;
     
     h3 {
@@ -57,4 +58,19 @@
             @include fontSize(28);
         }
     }
+}
+
+@media screen and (min-width: $screen-desktop) {
+    .industry-type div{
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: center;
+        align-items: center;
+        gap: 5rem;
+
+        canvas {
+            align-items: center;
+        }
+    }
+
 }
