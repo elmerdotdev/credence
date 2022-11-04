@@ -42,7 +42,7 @@ const ViewEvent = (props) => {
             <Modal
                 isOpen={props.modalOpen}
                 onRequestClose={() => props.onToggle(false)}
-                style={customStyles}
+                className="credence-modal modal-event-view"
                 contentLabel="View Event"
             >
                 <div className="viewModalButtons">

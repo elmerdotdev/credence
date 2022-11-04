@@ -177,3 +177,18 @@ aside {
         }
     }
 }
+
+.credence-modal {
+    background-color: $color-white;
+    padding: 2rem 5rem 6rem;
+    max-width: 1024px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid $color-dusty-gray;
+
+    &:focus {
+        outline: 0;
+    }
+}
