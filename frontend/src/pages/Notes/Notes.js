@@ -24,7 +24,7 @@ const Notes = () => {
 
     //Fetch All Notes
     const fetchNotes = async () => {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/notes/633b6a81145c9d79405c54ea`)
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/notes/63645e4850049bfd1e89637a`)
       const data = await response.json()
 
       if (response.ok) {
