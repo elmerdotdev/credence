@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, NavLink } from 'react-router-dom';
 
 // App pages
@@ -29,23 +29,32 @@ import './fontello/css/credence.css';
 import './App.css';
 
 function App() {
+    const [isMenuOpen, setIsMenuOpen] = useState(false)
+
+    useEffect(() => {
+        document.body.classList.toggle('mobile-menu-visible', isMenuOpen)
+    } , [isMenuOpen])
+
+    const toggleMobileMenu = () => {
+        setIsMenuOpen(!isMenuOpen)
+    }
+
     return (
         <BrowserRouter>
         <div className="App">
-            <Header />
+            <Header onToggleMenu={toggleMobileMenu}/>
             <section className="container">
                 <aside>
                     <nav className="App-navigation">
                         <ul>
-                            <li><i className="icon-home"></i> <NavLink to="/dashboard">Dashboard</NavLink></li>
-                            <li><i className="icon-connection"></i> <NavLink to="/connections">Connection</NavLink></li>
-                            <li><i className="icon-calendar"></i> <NavLink to="/calendar">Calendar</NavLink></li>
-                            <li><i className="icon-reports"></i><NavLink to="/reports">Reports</NavLink></li>
-                            <li><i className="icon-profile"></i> <NavLink to="/profile">Profile</NavLink></li>
-                        </ul>
-                        <ul>
-                            <li><i className="icon-settings"></i> <NavLink to="/settings">Settings</NavLink></li>
-                            <Logout/>
+                            <li onClick={toggleMobileMenu}><i className="icon-home"></i> <NavLink to="/dashboard">Dashboard</NavLink></li>
+                            <li onClick={toggleMobileMenu}><i className="icon-connection"></i> <NavLink to="/connections">Connection</NavLink></li>
+                            <li onClick={toggleMobileMenu}><i className="icon-calendar"></i> <NavLink to="/calendar">Calendar</NavLink></li>
+                            <li onClick={toggleMobileMenu}><i className="icon-reports"></i><NavLink to="/reports">Reports</NavLink></li>
+                            <li onClick={toggleMobileMenu}><i className="icon-profile"></i> <NavLink to="/profile">Profile</NavLink></li>
+                            <li className="mister-spacer"></li>
+                            <li onClick={toggleMobileMenu}><i className="icon-settings"></i> <NavLink to="/settings">Settings</NavLink></li>
+                            <Logout onToggleMenu={toggleMobileMenu}/>
                         </ul>
                     </nav>
                 </aside>
