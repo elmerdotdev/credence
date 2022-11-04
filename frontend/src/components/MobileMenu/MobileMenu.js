@@ -1,20 +1,8 @@
-import React, { useState } from 'react'
+import React from 'react'
 
-const MobileMenu = () => {
-    const [isMenuOpen, setIsMenuOpen] = useState(false)
-
-    const menuToggle = (status) => {
-        setIsMenuOpen(status)
-
-        if (isMenuOpen) {
-            document.querySelector('body').classList.add('mobile-menu-visible')
-        } else {
-            document.querySelector('body').classList.remove('mobile-menu-visible')
-        }
-    }
-
+const MobileMenu = (props) => {
     return (
-        <div className="burger" onClick={() => menuToggle(!isMenuOpen)}>
+        <div className="burger" onClick={props.onToggleMenu}>
             <span></span>
             <span></span>
             <span></span>
