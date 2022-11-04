@@ -42,8 +42,7 @@ function App() {
                             <li><i className="icon-calendar"></i> <NavLink to="/calendar">Calendar</NavLink></li>
                             <li><i className="icon-reports"></i><NavLink to="/reports">Reports</NavLink></li>
                             <li><i className="icon-profile"></i> <NavLink to="/profile">Profile</NavLink></li>
-                        </ul>
-                        <ul>
+                            <li className="mister-spacer"></li>
                             <li><i className="icon-settings"></i> <NavLink to="/settings">Settings</NavLink></li>
                             <Logout/>
                         </ul>
