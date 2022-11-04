@@ -8,6 +8,7 @@ const EditConnection = ({ onEdit, connection }) => {
   const [company, setCompany] = useState(connection.company);
   const [email, setEmail] = useState(connection.email);
   const [phone, setPhone] = useState(connection.phone);
+  const [location, setLocation] = useState(connection.location);
   const [active, setActive] = useState(connection.active);
   const [labels, setLabels] = useState( [
     { text: "Technology", select: false },
@@ -35,7 +36,7 @@ const EditConnection = ({ onEdit, connection }) => {
     e.preventDefault();
 
 
-    onEdit({firstname, lastname, company, position, email, phone, active, labels, user_id});
+    onEdit({firstname, lastname, company, position, email, phone, location, active, labels, user_id});
 
     
 
@@ -47,8 +48,9 @@ const EditConnection = ({ onEdit, connection }) => {
    
     <form className="edit-form" onSubmit={onSubmit}>
       <div className="form-control">
-        <label>First Name / Nickname</label>
+        <label>First Name / Nickname*</label>
         <input
+          required
           type="text"
           placeholder="First name"
           defaultValue={connection.firstname}
@@ -56,8 +58,9 @@ const EditConnection = ({ onEdit, connection }) => {
         />
       </div>
       <div className="form-control">
-        <label>Last Name</label>
+        <label>Last Name*</label>
         <input
+          required
           type="text"
           placeholder="Last name"
           defaultValue={connection.lastname}
@@ -66,8 +69,9 @@ const EditConnection = ({ onEdit, connection }) => {
       </div>
       <h4>Contact Information</h4>
       <div className="form-control">
-        <label>Email</label>
+        <label>Email*</label>
         <input
+          required
           type="text"
           placeholder="Email"
           defaultValue={connection.email}
@@ -75,8 +79,9 @@ const EditConnection = ({ onEdit, connection }) => {
         />
       </div>
       <div className="form-control">
-        <label>Phone Number</label>
+        <label>Phone Number*</label>
         <input
+          required
           type="text"
           placeholder="Phone"
           defaultValue={connection.phone}
@@ -100,6 +105,14 @@ const EditConnection = ({ onEdit, connection }) => {
           placeholder="Position"
           defaultValue={connection.position}
           onChange={(e) => setPosition(e.target.value)}
+        />
+      </div>
+      <div className="form-control">
+        <label> Location</label>
+        <input
+          type="text"
+          value={location}
+          onChange={(e) => setLocation(e.target.value)}
         />
       </div>
       <div className="form-control form-control-check">

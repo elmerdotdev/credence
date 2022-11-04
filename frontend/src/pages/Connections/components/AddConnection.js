@@ -11,6 +11,7 @@ const AddConnection = ({ onAdd }) => {
   const [company, setCompany] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
+  const [location, setLocation] = useState('');
   const [active, setActive] = useState(false);
   const [labels, setLabels] = useState( [
     { text: "Technology", select: false },
@@ -38,7 +39,7 @@ const checkboxes = [
 const onSubmit = (e) => {
   e.preventDefault();
 
-  onAdd({ firstname, lastname, company, position, email, phone, active, user_id, labels, pinned });
+  onAdd({ firstname, lastname, company, position, email, phone, active, location, user_id, labels, pinned });
   console.log("industry: ", labels);
   setFirstname('');
   setLastname('');
@@ -46,6 +47,7 @@ const onSubmit = (e) => {
   setCompany('');
   setEmail('');
   setPhone('');
+  setLocation('');
   setActive(false);
   setLabels([ 
   { text: "Technology", select: false },
@@ -60,42 +62,47 @@ const onSubmit = (e) => {
 
   return (
     <div>
-    <h3 className="modal-title">New Connection</h3>
+    <h2 className="modal-title">New Connection</h2>
    
     <form className="add-form" onSubmit={onSubmit}>
       <div className="form-control">
-        <label>First Name / Nickname</label>
+        <label>First Name / Nickname*</label>
         <input
+          required
+          className="form-input"
           type="text"
-          placeholder="First name"
+          placeholder="Name"
           value={firstname}
           onChange={(e) => setFirstname(e.target.value)}
         />
       </div>
       <div className="form-control">
-        <label>Last Name</label>
+        <label>Last Name*</label>
         <input
+          required
           type="text"
-          placeholder="Last name"
+          placeholder="Last Name"
           value={lastname}
           onChange={(e) => setLastname(e.target.value)}
         />
       </div>
       <h4>Contact Information</h4>
       <div className="form-control">
-        <label>Email</label>
+        <label>Email*</label>
         <input
+          required
           type="text"
-          placeholder="Email"
+          placeholder="connection@email.com"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
       </div>
       <div className="form-control">
-        <label>Phone Number</label>
+        <label>Phone Number*</label>
         <input
+          required
           type="text"
-          placeholder="Phone"
+          placeholder="(000)000-000"
           value={phone}
           onChange={(e) => setPhone(e.target.value)}
         />
@@ -105,7 +112,6 @@ const onSubmit = (e) => {
         <label>Organization</label>
         <input
           type="text"
-          placeholder="Organization"
           value={company}
           onChange={(e) => setCompany(e.target.value)}
         />
@@ -114,9 +120,16 @@ const onSubmit = (e) => {
         <label>Position</label>
         <input
           type="text"
-          placeholder="Position"
           value={position}
           onChange={(e) => setPosition(e.target.value)}
+        />
+      </div>
+      <div className="form-control">
+        <label> Location</label>
+        <input
+          type="text"
+          value={location}
+          onChange={(e) => setLocation(e.target.value)}
         />
       </div>
       <div className="form-control form-control-check">
@@ -132,12 +145,12 @@ const onSubmit = (e) => {
         <span className="slider round"></span>
         </label>
       </div>
-      <div className="IndustryChkbox">
+      <div className="IndustryChkbox-wrapper">
         {checkboxes.map(({text}, index) => {
           return (
           <div key={index}>
           <div className="industry-item">
-          <label className="industry-name" htmlFor={`custom-checkbox-${index}`}>
+          <label className="industry-name" htmlFor={`industry-checkbox-${index}`}>
               <input
                 className="industry-checkbox"
                 type="checkbox"
