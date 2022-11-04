@@ -108,17 +108,17 @@ const Profile = () => {
             <div className='connection-box'>
               <i className='icon-connection'></i>
               <p>{ myClients }</p>
-              <p>connections</p>
+              <p>Connections</p>
             </div>
             <div className="event-box">
               <i className='icon-calendar'></i>
               <p>{ myEvents }</p>
-              <p>events</p>
+              <p>Events</p>
             </div>
             <div className="note-box">
               <i className='icon-note'></i>
               <p>{ myNotes }</p>
-              <p>notes</p>
+              <p>Notes</p>
             </div>
           </div>
 
@@ -134,7 +134,7 @@ const Profile = () => {
         
         <section className="page-profile-subscription">
           <div className="title-icon-box"><i className='icon-subscription'></i><h4>Subscription</h4></div>
-          <p>You are currenty on our <span>30-day trial.</span>Go Premium to enjoy our most-loved premium features.</p>
+          <p>You are currenty on our <span>30-day trial</span>.Go Premium to enjoy our most-loved premium features.</p>
 
           <button className='go-premiun-btn btn btn-primary'>Go Premium</button>
         </section>
