@@ -213,11 +213,15 @@ const handleActiveCheckbox = async (e) => {
 
   return (
 
-    <div className="clients">
+    <div className="clients-wrapper">
+      <section className="connections-top-buttons">
+        <button className="btn btn-primary openModalBtn" onClick={() => setShowAddModalIsOpen(true)}>Add</button>
+        <div className="connections-filter-buttons">
+          <Filter onPinFilter={pinFilter}/>
+        </div>
+      </section>
       <section className="page-connections" >
       <h2>All Connections</h2>
-      <p><button className="btn btn-primary openModalBtn" onClick={() => setShowAddModalIsOpen(true)}>Add</button></p>
-      <Filter onPinFilter={pinFilter}/>
       <ModalComponent
         className="credence-modal modal-connection-detail"
         isOpen={showDetailModal}
