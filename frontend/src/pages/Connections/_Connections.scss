@@ -138,7 +138,8 @@
 
 
 
-.modal-connection-add {
+.modal-connection-add,
+.modal-connection-edit {
   padding: 2rem;
 
   @media screen and (min-width: $screen-desktop) {
@@ -150,7 +151,8 @@
       font-weight: 600;
   }
 
-  .add-form {
+  .add-form,
+  .edit-form {
     display: grid;
     width: 650px;
     max-width: 100%;
@@ -300,6 +302,22 @@
       padding: .5rem 0;
       color: $color-regal-blue;
       border-bottom: 2px solid $color-regal-blue;
+    }
+  }
+
+  .note-details {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 2px solid $color-gray;
+
+    > div {
+      margin: 1.5rem 0;
+    }
+
+    h4 {
+      @include fontSize(20);
+      margin: 0;
+      font-weight: 600;
     }
   }
 }
