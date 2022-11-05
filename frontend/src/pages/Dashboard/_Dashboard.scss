@@ -57,9 +57,13 @@
 
             &-content {
                 display: grid;
-                grid-template-columns: repeat(3, 1fr);
+                grid-template-columns: repeat(2, 1fr);
                 gap: .5rem;
                 margin-bottom: 2rem;
+
+                @media screen and (min-width: $screen-desktop) {
+                  grid-template-columns: repeat(3, 1fr);
+                }
             }
 
             .client-card {
