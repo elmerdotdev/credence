@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Doughnut } from 'react-chartjs-2'
+import { Pie } from 'react-chartjs-2'
 import { Chart as ChartJS, ArcElement, Tooltip, Legend} from 'chart.js'
 
 ChartJS.register(
@@ -24,7 +24,7 @@ const ActiveClients = () => {
     }, [])
 
     const fetchClients = async () => {
-        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/clients/633b6a81145c9d79405c54ea`)
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/clients/63645e4850049bfd1e89637a`)
         const data = await response.json()
 
         if (response.ok) {
@@ -34,21 +34,33 @@ const ActiveClients = () => {
 
     const data = {
         labels: ["Active", "Inactive"],
+        position: 'right',
         datasets: [{
             data: [activeClients, inactiveClients],
             backgroundColor: [
-                "#0468BF",
-                "#D6EAFC"
+                "#87B0D8",
+                "#94CA86"
             ],
-            hoverOffset: 10
+            hoverOffset: 2
         }]
     }
 
+    const options = {
+        plugins: {
+            legend: {
+                position: 'right',
+                labels: {
+                    boxWidth: 15
+                }
+            }
+        }
+    }
+
+
     return (
         <div>
-            <h2>My Active Clients</h2>
-            <div style = {{width:"500px"}}><Doughnut data={data} /></div>
-
+            <h3>Clients: Active vs Inactive</h3>
+            <Pie data={data} options={options}/>
         </div>
 
     )

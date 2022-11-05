@@ -4,7 +4,7 @@ const AddNote = ({ onAdd }) => {
     const [title, setTitle] = useState('')
     const [content, setContent] = useState('')
     const [client_id, setClientId] = useState('633b2f54c6a3c84891b1bf72')
-    const [user_id, setUserId] = useState('633b6a81145c9d79405c54ea')
+    const [user_id, setUserId] = useState('63645e4850049bfd1e89637a')
     const [activity_id, setActivityId] = useState('')
 
     const onSubmit = (e) => {

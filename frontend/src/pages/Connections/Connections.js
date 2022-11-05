@@ -3,8 +3,8 @@
 // 【✅】insert一个新的client进database
 // 【✅】client card只显示姓名/title/organization
 // 【✅】点开每个client显示详情，包括姓名/title/organization/email/phone
-//  ✅】将active status改成可以one click更改状态的button加入ui
-//  新增connection表格中加入industry，且显示在ui
+// 【✅】将active status改成可以one click更改状态的button加入ui
+// 【✅】新增connection表格中加入industry，且显示在ui
 // 【✅】在client details中用modal增加edit client功能
 // 【✅】edit button打开edit function modal
 // 【✅】edit function
@@ -24,12 +24,17 @@ import Filter from './components/Filter'
  //Modal Style
  const customStyles = {
   content: {
-    top: '50%',
-    left: '50%',
-    right: 'auto',
-    bottom: 'auto',
-    marginRight: '-50%',
-    transform: 'translate(-50%, -50%',
+    // top: '50%',
+    // left: '50%',
+    // right: 'auto',
+    // bottom: 'auto',
+    // marginRight: '-50%',
+    // transform: 'translate(-50%, -50%',
+    position: "absolute",
+    top: "20px",
+    left: "20%",
+    right: "20%",
+    bottom: "20px"
   },
 };
 
@@ -54,6 +59,8 @@ const Connections = () => {
   const ModalComponent = useConnectionDetailsModal ? ConnectionDetailsModal : Modal;
   
 
+  const userID = "63645e4850049bfd1e89637a";
+
   useEffect(() => {
     const getConnections = async () => {
       const res = await fetchConnections();
@@ -71,11 +78,11 @@ const updateConnectionDataState = async (connection_id) => {
 
 const editConnection = async (inputConnObj) => {
   const connectionToEditId = connection._id;
-  const getConnectionRes = await fetch(`https://credence-server.onrender.com/api/clients/633b6a81145c9d79405c54ea/${connectionToEditId}`)
+  // const getConnectionRes = await fetch(`${process.env.REACT_APP_API_URL}/api/clients/${userID}/${connectionToEditId}`)
 
  
   setShowEditModal(true)
-  const connectionToEdit = await getConnectionRes.json()
+  // const connectionToEdit = await getConnectionRes.json()
   const updConnection = {
     ...inputConnObj,
 
@@ -83,7 +90,7 @@ const editConnection = async (inputConnObj) => {
   updConnection.user_id = connection.user_id;
 
 
-  await fetch(`https://credence-server.onrender.com/api/clients/${connectionToEditId}`, {
+  await fetch(`${process.env.REACT_APP_API_URL}/api/clients/${connectionToEditId}`, {
 
     method: 'PATCH',
     headers: {
@@ -94,26 +101,28 @@ const editConnection = async (inputConnObj) => {
 
   const res = await fetchConnections();
   setConnections(res);
-  console.log('finish edit')
+  console.log('finish edit');
+  setShowEditModal(false);
+  alert('Connection has been updated');
 };
 
 // Fetch Connections
 const fetchConnections = async () => {
-  const res = await fetch('https://credence-server.onrender.com/api/clients/633b6a81145c9d79405c54ea');
+  const res = await fetch(`${process.env.REACT_APP_API_URL}/api/clients/${userID}`);
   const data = await res.json();
   return data;
 };
 
 // Fetch Connection
 const fetchConnection = async (id) => {
-  const res = await fetch(`https://credence-server.onrender.com/api/clients/633b6a81145c9d79405c54ea/${id}`);
+  const res = await fetch(`${process.env.REACT_APP_API_URL}/api/clients/${userID}/${id}`);
   const data = await res.json();
   return data;
 };
 
 // Add Connection
 const addConnection = async (newClient) => {
-  const res = await fetch('https://credence-server.onrender.com/api/clients', {
+  const res = await fetch(`${process.env.REACT_APP_API_URL}/api/clients`, {
     method: 'POST',
     headers: {
       'Content-type': 'application/json',
@@ -130,7 +139,7 @@ const addConnection = async (newClient) => {
  // Delete Connection
  const deleteConnection = async () => {
   const id = connection._id
-  await fetch(`https://credence-server.onrender.com/api/clients/${id}`, {
+  await fetch(`${process.env.REACT_APP_API_URL}/api/clients/${id}`, {
     method: 'DELETE',
   });
   alert('Connection has been deleted')
@@ -139,19 +148,28 @@ const addConnection = async (newClient) => {
 };
 
 // Pin Connection
-const pinConnection = async () => {
+const pinConnection = async (e) => {
   const id = connection._id
-  const ConnectiontoPin = await fetch(`https://credence-server.onrender.com/api/clients/633b6a81145c9d79405c54ea/${id}`)
-  const updConnection = { ...ConnectiontoPin, pinned: true };
+  const getConnectionRes = await fetch(`${process.env.REACT_APP_API_URL}/api/clients/${userID}/${id}`)
+  const ConnectiontoPin = await getConnectionRes.json()
+  // console.log(connection.pinned)
+  let updConnection = null
+  if(!connection.pinned) {
+  updConnection = { ...ConnectiontoPin, pinned: true };
+  } else if(connection.pinned){
+  updConnection = { ...ConnectiontoPin, pinned: false };
+  }
 
-  await fetch(`https://credence-server.onrender.com/api/clients/${id}`, {
-    method: 'PATCH',
-    headers: {
-      'Content-type': 'application/json',
-    },
-    body: JSON.stringify(updConnection),
-  });
 
+await fetch(`${process.env.REACT_APP_API_URL}/api/clients/${id}`, {
+  method: 'PATCH',
+  headers: {
+    'Content-type': 'application/json',
+  },
+  body: JSON.stringify(updConnection),
+});
+
+setConnection(updConnection)
 };
 
 // Pin Filter
@@ -175,14 +193,14 @@ const pinFilter = async () => {
 //Active Button
 const handleActiveCheckbox = async (e) => { 
   const id = connection._id;
-  const ConnectiontChangeActive = await fetch(`https://credence-server.onrender.com/api/clients/633b6a81145c9d79405c54ea/${id}`)
+  const ConnectiontChangeActive = await fetch(`${process.env.REACT_APP_API_URL}/api/clients/${userID}/${id}`)
 
   connection.active ? connection.active=false : connection.active=true;
   setConnection(connection);
   e.target.checked = connection.active;
   const updConnection = { ...ConnectiontChangeActive, active: connection.active };
 
-  await fetch(`https://credence-server.onrender.com/api/clients/${id}`, {
+  await fetch(`${process.env.REACT_APP_API_URL}/api/clients/${id}`, {
     method: 'PATCH',
     headers: {
       'Content-type': 'application/json',
@@ -201,6 +219,7 @@ const handleActiveCheckbox = async (e) => {
       <p><button className="openModalBtn" onClick={() => setShowAddModalIsOpen(true)}>Add</button></p>
       <Filter onPinFilter={pinFilter}/>
       <ModalComponent
+        style={customStyles}
         isOpen={showDetailModal}
         onRequestClose={() => setShowDetailModal(false)}
       >
@@ -214,10 +233,12 @@ const handleActiveCheckbox = async (e) => {
         changeActiveBtn={handleActiveCheckbox}
         // activeChecked = {activeChecked}
         onPinBtn={pinConnection}
+        // PinText={connection.pinned ?  "Pinned" : "Pin"}
         />    
       </ModalComponent>
 
       <ModalComponent
+        style={customStyles}
         isOpen={showEditModal}
         onRequestClose={() => setShowEditModal(false)}
       >
@@ -229,6 +250,7 @@ const handleActiveCheckbox = async (e) => {
       </ModalComponent>
 
       <Modal
+        style={customStyles}
         isOpen={showAddModalIsOpen}
         onRequestClose={() => setShowAddModalIsOpen(false)}
       >

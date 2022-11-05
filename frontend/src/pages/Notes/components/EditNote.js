@@ -23,7 +23,7 @@ const EditNote = ({ modalOpen, toggle, onEdit, clientId, noteId }) => {
 
     useEffect(() => {
         const fetchNote = async () => {
-            const res = await fetch(`${process.env.REACT_APP_API_URL}/api/notes/633b6a81145c9d79405c54ea/${clientId}/${noteId}`);
+            const res = await fetch(`${process.env.REACT_APP_API_URL}/api/notes/63645e4850049bfd1e89637a/${clientId}/${noteId}`);
             const data = await res.json();
 
             setNote(data);
@@ -70,7 +70,7 @@ const EditNote = ({ modalOpen, toggle, onEdit, clientId, noteId }) => {
                     onChange={(e) => setContent(e.target.value)}
                 />
             </div>
-            <input type="submit" value="Save Note" className="submit-btn" onClick={onEdit} />
+            <input type="submit" value="Save Note" className="submit-btn" onClick={onSubmit} />
         </form>
         </Modal>
     )
