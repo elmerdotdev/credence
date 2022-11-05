@@ -23,8 +23,8 @@ const AddNote = ({ onAdd }) => {
     }
 
     return (
-        <form className = "add-note" onSubmit={onSubmit}>
-            <div className="note-form">
+        <form className="add-note-form" onSubmit={onSubmit}>
+            <div className="input-wrapper">
                 <label>Subject</label>
                 <input 
                     type="text"
@@ -33,7 +33,7 @@ const AddNote = ({ onAdd }) => {
                     onChange={(e) => setTitle(e.target.value)}
                 />
             </div>
-            <div className="note-form">
+            <div className="input-wrapper">
                 <label>Content</label>
                 <textarea
                     type="text"
@@ -42,10 +42,9 @@ const AddNote = ({ onAdd }) => {
                     onChange={(e) => setContent(e.target.value)}
                 />
             </div>
-            <input type="submit" 
-            value="Save Note"
-            className='submit-btn'
-            />
+            <div className="input-wrapper submit-btn-wrapper">
+                <button type="submit" className="btn btn-primary">Save Note</button>
+            </div>
         </form>
 
     )
