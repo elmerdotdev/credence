@@ -240,10 +240,10 @@ const handleActiveCheckbox = async (e) => {
         isOpen={showEditModal}
         onRequestClose={() => setShowEditModal(false)}
       >
-        <button onClick = {() => setShowEditModal(false)}><i className="icon-close"></i></button>
         <EditConnection 
         connection={connection}
         onEdit={editConnection}
+        onClose={setShowEditModal}
         />       
       </ModalComponent>
 

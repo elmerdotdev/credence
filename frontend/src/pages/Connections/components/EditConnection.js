@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const EditConnection = ({ onEdit, connection }) => {
+const EditConnection = ({ onEdit, connection, onClose }) => {
   // const [connection, setConnection] = useState({});
   const [firstname, setFirstname] = useState(connection.firstname);
   const [lastname, setLastname] = useState(connection.lastname);
@@ -44,10 +44,10 @@ const EditConnection = ({ onEdit, connection }) => {
 
   return (
     <div>
-    <h3 className="modal-title">Edit Connection</h3>
+    <h2 className="modal-title">Edit Connection</h2>
    
     <form className="edit-form" onSubmit={onSubmit}>
-      <div className="form-control">
+      <div className="input-wrapper">
         <label>First Name / Nickname*</label>
         <input
           required
@@ -57,7 +57,7 @@ const EditConnection = ({ onEdit, connection }) => {
           onChange={(e) => setFirstname(e.target.value)}
         />
       </div>
-      <div className="form-control">
+      <div className="input-wrapper">
         <label>Last Name*</label>
         <input
           required
@@ -68,7 +68,7 @@ const EditConnection = ({ onEdit, connection }) => {
         />
       </div>
       <h4>Contact Information</h4>
-      <div className="form-control">
+      <div className="input-wrapper">
         <label>Email*</label>
         <input
           required
@@ -78,7 +78,7 @@ const EditConnection = ({ onEdit, connection }) => {
           onChange={(e) => setEmail(e.target.value)}
         />
       </div>
-      <div className="form-control">
+      <div className="input-wrapper">
         <label>Phone Number*</label>
         <input
           required
@@ -89,7 +89,7 @@ const EditConnection = ({ onEdit, connection }) => {
         />
       </div>
       <h4>Work</h4>
-      <div className="form-control">
+      <div className="input-wrapper">
         <label>Organization</label>
         <input
           type="text"
@@ -98,7 +98,7 @@ const EditConnection = ({ onEdit, connection }) => {
           onChange={(e) => setCompany(e.target.value)}
         />
       </div>
-      <div className="form-control">
+      <div className="input-wrapper">
         <label>Position</label>
         <input
           type="text"
@@ -107,7 +107,7 @@ const EditConnection = ({ onEdit, connection }) => {
           onChange={(e) => setPosition(e.target.value)}
         />
       </div>
-      <div className="form-control">
+      <div className="input-wrapper">
         <label> Location</label>
         <input
           type="text"
@@ -115,8 +115,9 @@ const EditConnection = ({ onEdit, connection }) => {
           onChange={(e) => setLocation(e.target.value)}
         />
       </div>
-      <div className="form-control form-control-check">
-        <label htmlFor="activeChkbox">Active</label>
+      <div className="input-wrapper">
+        <span className="slider-label-span">Active Client</span>
+        <label htmlFor="activeChkbox" className="switch">
         <input
           id="activeChkbox"
           type="checkbox"
@@ -124,8 +125,12 @@ const EditConnection = ({ onEdit, connection }) => {
           defaultValue={connection.active}
           onChange={(e) => setActive(e.currentTarget.checked)}
         />
+        <span className="slider round"></span>
+        </label>
       </div>
-      <div className="IndustryChkbox-wrapper">
+      <div className="input-wrapper">
+        <label>Industry</label>
+        <div className="industry-checkboxes">
         {checkboxes.map(({text}, index) => {
           return (
           <div key={index}>
@@ -144,9 +149,13 @@ const EditConnection = ({ onEdit, connection }) => {
         </div>
         )  
         })}
-         </div>
+        </div>
+      </div>
 
-      <input type="submit" value="Update" className="btn btn-block" />
+      <div className="input-wrapper submit-btn-wrapper">
+        <button className="btn btn-primary-reverse" onClick={() => onClose(false)}>Cancel</button>
+        <button type="submit" className="btn btn-primary">Update Connection</button>
+      </div>
     </form>
   
 
