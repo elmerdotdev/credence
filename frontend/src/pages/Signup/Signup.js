@@ -62,7 +62,7 @@ const Signup = () => {
     <div className="page-signup">
       <section className="page-signup-area">
         <Link to="/" ><i className='icon-close'></i></Link>
-        <h3>Create a<img src={logo} alt="credence logo"  className='credence-logo'/>Account</h3>
+        <h3><span>Create a</span><span><img src={logo} alt="credence logo"  className='credence-logo'/>Account</span></h3>
 
         <div className="desktop-grid">
             <img src={signupimage} alt="signup-img" className='signup-img'/>
@@ -107,6 +107,7 @@ const Signup = () => {
 
               <button type="submit" className="submit-signup-btn btn btn-primary">Sign Up</button>
               {error && <div className='error'>{error}</div>}
+
             </form>
           </div>
         </div>

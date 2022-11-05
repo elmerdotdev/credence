@@ -34,7 +34,7 @@ const Login = () => {
     //ここで入れる
     await  login(email, password)
     // await addLoginDate(lastLoggedIn)
-    console.log(email, password)
+    // console.log(email, password)
 
     setEmail('')
     setPassword('')
