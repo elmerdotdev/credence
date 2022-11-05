@@ -6,9 +6,13 @@
 
     .connection-content {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       gap: .5rem;
       margin-bottom: 2rem;
+
+      @media screen and (min-width: $screen-desktop) {
+        grid-template-columns: repeat(4, 1fr);
+      }
     }
 
     .client-card {
@@ -117,24 +121,9 @@
     padding: .1rem .5rem;
   }
 
-  .industry-item-label:hover {
-    color: $color-science-blue;
-    border: $color-science-blue solid 1px;
-  }
-
-  .industry-item-input:checked ~ .industry-item-label{
-    color: $color-science-blue;
-    border: $color-science-blue solid 1px;
-  }
-
   .industry-item-input {
       display: none;
     }
-
-
-  .industry-item {
-    margin: .5rem;
-  }
 
   .IndustryChkbox-wrapper {
     display: flex;
@@ -147,3 +136,143 @@
     color: $color-gray;
   }
 
+
+
+.modal-connection-add {
+  padding: 2rem;
+
+  @media screen and (min-width: $screen-desktop) {
+      padding: 2rem 10rem 6rem;
+  }
+
+  h2 {
+      @include fontSize(32);
+      font-weight: 600;
+  }
+
+  .add-form {
+    display: grid;
+    width: 650px;
+    max-width: 100%;
+
+    h4 {
+      @include fontSize(20);
+      margin-bottom: 0;
+      color: $color-regal-blue;
+      font-weight: 600;
+    }
+
+    .input-wrapper {
+        display: flex;
+        gap: 5px;
+        flex-direction: column;
+        padding: .75rem 0;
+
+        label {
+            color: $color-regal-blue;
+
+            &.industry-item-label {
+              display: inline-block;
+              color: $color-gray;
+              cursor: pointer;
+              transition: all .2s ease-in-out;
+
+              &:hover {
+                color: $color-science-blue;
+                border: $color-science-blue solid 1px;
+              }
+            }
+        }
+
+        input[type="text"],
+        textarea,
+        select {
+            padding: .2rem 0;
+            background: none;
+            border: none;
+            border-bottom: 1px solid $color-dusty-gray;
+
+            &:focus {
+                outline: 0;
+            }
+        }
+
+        .slider-label-span {
+          color: $color-science-blue;
+        }
+    }
+
+    .industry-checkboxes {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem;
+
+      .industry-item-input:checked ~ .industry-item-label {
+        background-color: $color-science-blue;
+        color: $color-white;
+        border: $color-science-blue solid 1px;
+      }
+    }
+
+    .submit-btn-wrapper {
+        flex-direction: row;
+        gap: 1rem;
+        margin-top: 1rem;
+    }
+  }
+}
+
+.modal-connection-detail {
+  padding: 2rem;
+  width: 100%;
+
+  @media screen and (min-width: $screen-desktop) {
+      padding: 2rem 8rem 6rem;
+  }
+
+  &-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .modal-button-controls {
+    display: flex;
+    flex-direction: row;
+    gap: .5rem;
+  }
+
+  &-content {
+    padding: 0 3rem;
+
+    &.detail-info {
+      div {
+        display: flex;
+        align-items: center;
+  
+        p {
+          margin: .5rem 0;
+
+          &:first-child {
+            flex-basis: 160px;
+          }
+        }
+      }
+
+      .detail-info-industry {
+        display: flex;
+        flex-direction: row;
+        gap: .6rem;
+
+        span {
+          @include fontSize(14);
+          display: inline-block;
+          padding: 3px 12px;
+          color: $color-regal-blue;
+          border: 1px solid $color-regal-blue;
+          border-radius: 20px;
+        }
+      }
+    }
+  }
+}

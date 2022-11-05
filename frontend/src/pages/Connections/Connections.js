@@ -219,13 +219,10 @@ const handleActiveCheckbox = async (e) => {
       <p><button className="btn btn-primary openModalBtn" onClick={() => setShowAddModalIsOpen(true)}>Add</button></p>
       <Filter onPinFilter={pinFilter}/>
       <ModalComponent
-        className="credence-modal"
+        className="credence-modal modal-connection-detail"
         isOpen={showDetailModal}
         onRequestClose={() => setShowDetailModal(false)}
-      >
-        <button onClick={() => setShowDetailModal(false)}><i className="icon-close"></i></button>
-      
-        
+      > 
         <ConnectionDetail 
         connection={connection} 
         onEditBtn={() => {setShowEditModal(true)}} 
@@ -233,12 +230,13 @@ const handleActiveCheckbox = async (e) => {
         changeActiveBtn={handleActiveCheckbox}
         // activeChecked = {activeChecked}
         onPinBtn={pinConnection}
+        onClose={setShowDetailModal}
         // PinText={connection.pinned ?  "Pinned" : "Pin"}
         />    
       </ModalComponent>
 
       <ModalComponent
-        className="credence-modal"
+        className="credence-modal modal-connection-edit"
         isOpen={showEditModal}
         onRequestClose={() => setShowEditModal(false)}
       >
@@ -250,15 +248,14 @@ const handleActiveCheckbox = async (e) => {
       </ModalComponent>
 
       <Modal
-        className="credence-modal"
+        className="credence-modal modal-connection-add"
         isOpen={showAddModalIsOpen}
         onRequestClose={() => setShowAddModalIsOpen(false)}
       >
-         <button onClick={() => setShowAddModalIsOpen(false)}> <i className="icon-close"></i></button>
         <AddConnection 
-        onAdd= {addConnection}  
-        />     
-        <button onClick = {() => setShowAddModalIsOpen(false)}>Cancel</button> 
+        onAdd={addConnection}
+        onClose={setShowAddModalIsOpen}
+        />
       </Modal>
       {connections.length > 0 ? (
         <div className="connection-content"><ClientCards
@@ -274,6 +271,5 @@ const handleActiveCheckbox = async (e) => {
 
   )
 }
-
 
 export default Connections
