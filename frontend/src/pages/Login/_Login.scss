@@ -1,5 +1,6 @@
 .page-login {
     background-color: $color-white;
+    height: 100vh;
     .page-login-area{
         font-size: 1rem;
         padding: 20px;
@@ -14,23 +15,21 @@
         font-size: 24px;
         margin: 36px 0 21px 0;
         display: flex;
+        flex-wrap:wrap;
         justify-content: center;
         text-align: center;
 
         span{
             margin-bottom: .8px;   
         }
-        span:nth-of-type(1){
-            margin-right: 5px;
-        }
-        span:nth-of-type(2){
-            margin-left: 5px;
+        img.credence-logo{
+            height: 24px;
+            position: relative;
+            bottom: -6px;
+            margin-right: 8px;
+            margin-left: 8px;
         }
     }
-    
-    // img.credence-logo{
-    //     // max-width:80%;
-    // }
     img.login-img{
         display: block;
         margin: 21px auto 24px auto;
@@ -60,8 +59,8 @@
         display: flex;
         border-bottom: 1px solid $color-boulder; 
     }
-    .icon-info,
-    .icon-info{
+    .icon-hide,
+    .icon-show{
         font-size: 16px;
     }
     input[value="Login"]{
@@ -70,18 +69,9 @@
     .error{
         color: $color-guardsman-red;
     }
-    .submit-login-btn{
-        display: flex;
-        align-items: center;
-        gap: 1.2rem;
-        padding: 0.5rem 1rem 0.5rem 1.5rem;
-        background-color: $color-science-blue;
-        color: $color-white;
-        border: none;
-        border-radius: 0.5rem;
+    .submit-login-btn.btn.btn-primary{
         width: 100%;
         justify-content: center;
-        transition: background-color 0.2s ease-in-out;
     }
     .forget-pw-link{
         margin-left: auto;
@@ -137,15 +127,10 @@
             font-weight: 700;
             font-size: 36px;
             line-height: 44px;
-
-            span{
-                margin-bottom: 10px;   
-            }
-            span:nth-of-type(1){
-                margin-right: 8px;
-            }
-            span:nth-of-type(2){
-                margin-left: 8px;
+            
+            img.credence-logo{
+                height: 36px;
+                bottom: -9px;
             }
         }
         .desktop-grid{
@@ -161,5 +146,9 @@
             width:80%;
             height: auto;
         }
+        .icon-hide,
+        .icon-show{
+        font-size: 26px;
+    }
     }
 }

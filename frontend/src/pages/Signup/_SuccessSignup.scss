@@ -1,9 +1,9 @@
 .page-signup-successSignup {
-    background-color: $color-wild-sand;
+    background-color: $color-white;
     .page-successSignup-area{
         text-align: center;
         padding: 20px;
-        background-color: $color-wild-sand;
+        background-color: $color-white;
         max-width: 1118px;
         max-height: 720px;
     }
@@ -19,7 +19,9 @@
         margin: 64px 0 59px 0;
     }
     img.credence-logo{
-        width: 20%;
+        height: 16px;
+        position: relative;
+        bottom: -2px;
         margin-right: 3px;
     }
     p{
@@ -31,7 +33,6 @@
         justify-content: center;
         margin: 0;
         span{
-            margin-bottom: 4px;
             margin-right: 5px;
         }
     }
@@ -42,22 +43,16 @@
         margin: 85px auto 0 auto;
         width: 60%;
     }    
-    button{
+    button.btn.btn-primary{
         display: block;
-        margin: 123px 0 177px 0;
-        display: flex;
-        align-items: center;
-        gap: 1.2rem;
-        padding: 0.5rem 1rem 0.5rem 1.5rem;
-        background-color: $color-science-blue;
-        border: none;
-        border-radius: 0.5rem;
+        margin: 105px 0 177px 0;
         width: 100%;
         justify-content: center;
-        transition: background-color 0.2s ease-in-out;
-
         a[href="/login"]{
             color: $color-white;
+        }
+        a:hover[href="/login"]{
+            color: $color-regal-blue;
         }
     }
     @media screen and (min-width:$screen-desktop){
@@ -89,8 +84,8 @@
             margin-top: 31px;
             width: 30%;
         }
-        button{
-            width: 60%;
+        button.btn.btn-primary{
+            width: 50%;
             margin: 75px auto 0 auto;
         }
     }

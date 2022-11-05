@@ -3,8 +3,8 @@ import { useNavigate, Link  } from 'react-router-dom'
 import { useSignup } from './hooks/useSignup'
 //Icon & Logo
 import '../../fontello/css/credence.css';
-import logo_nopadding from '../../images/logo_nopadding.svg';
-import signupimage from '../../images/signupimage.svg';
+import logo from '../../images/logo.svg';
+import signupimage from '../../images/Register/signupimage.svg';
 // import GoogleLoginButton from '../../components/GoogleLoginButton'
 
 
@@ -62,7 +62,7 @@ const Signup = () => {
     <div className="page-signup">
       <section className="page-signup-area">
         <Link to="/" ><i className='icon-close'></i></Link>
-        <h3><span>Create a</span><img src={logo_nopadding} alt="credence-logo"  className='credence-logo'/><span>Account</span></h3>
+        <h3>Create a<img src={logo} alt="credence logo"  className='credence-logo'/>Account</h3>
 
         <div className="desktop-grid">
             <img src={signupimage} alt="signup-img" className='signup-img'/>
@@ -98,14 +98,14 @@ const Signup = () => {
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                 />
-                <i  className={pwShow === true ? "icon-lock" : "icon-info"}
+                <i  className={pwShow === true ? "icon-hide" : "icon-show"}
                     onClick={togglePw}
                 >
                 </i>   
               </div>
              
 
-              <button type="submit" className="submit-signup-btn">Sign Up</button>
+              <button type="submit" className="submit-signup-btn btn btn-primary">Sign Up</button>
               {error && <div className='error'>{error}</div>}
             </form>
           </div>

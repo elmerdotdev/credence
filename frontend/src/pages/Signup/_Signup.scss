@@ -15,14 +15,14 @@
         font-size: 24px;
         line-height: 32px;
         color: #000000;
-        margin: 36px 40px 0 39px;
+        margin: 36px auto 0 auto;
         display: flex;
         justify-content: center;
         text-align: center;
         align-items: center;
 
         span{
-            margin-bottom: .8px;   
+            margin-bottom: 1px;   
         }
         span:nth-of-type(1){
             margin-right: 5px;
@@ -30,13 +30,14 @@
         span:nth-of-type(2){
             margin-left: 5px;
         }
-    }
-    .credence-logo{
-        width:40%;
-        max-width: 180px;
+        .credence-logo{
+            height: 24px;
+            margin: 0 5px;
+            position: relative;
+            bottom: -3px;
+        }
     }
     img.signup-img{
-        // margin:15px 130px 55px 114px;
         display: block;
         margin: 15px auto 55px auto;
     }
@@ -73,8 +74,8 @@
         border-bottom: 1px solid $color-boulder; 
         margin-bottom: 32px;
     }
-    .icon-info,
-    .icon-info{
+    .icon-hide,
+    .icon-show{
         font-size: 16px;
         color:#202533;
     }
@@ -84,19 +85,10 @@
     .error{
         color: $color-guardsman-red;
     }
-    button.submit-signup-btn{
-        margin: 56px 0 21px 0;
-        display: flex;
-        align-items: center;
-        gap: 1.2rem;
-        padding: 0.5rem 1rem 0.5rem 1.5rem;
-        background-color: $color-science-blue;
-        color: $color-white;
-        border: none;
-        border-radius: 0.5rem;
+    button.submit-signup-btn.btn.btn-primary{
+        margin: 56px 0 117px 0;
         width: 100%;
         justify-content: center;
-        transition: background-color 0.2s ease-in-out;
     }
     @media screen and (min-width:$screen-desktop){
         background-color:$color-dusty-gray;
@@ -104,6 +96,7 @@
         justify-content: center;
         align-items: center;
         padding: 109px 35px;
+        height: 100vh;
         .page-signup-area{
             padding: 26px 53px 70px 53px;
             border-radius: 24px;
@@ -125,13 +118,19 @@
             margin-top: 0;
 
             span{
-                margin-bottom: 10px;   
+                margin-bottom: 8px;   
             }
             span:nth-of-type(1){
                 margin-right: 8px;
             }
             span:nth-of-type(2){
                 margin-left: 8px;
+            }
+            .credence-logo{
+                height: 36px;
+                margin: 0 7px;
+                position: relative;
+                bottom: -3px;
             }
         }
         .desktop-grid{
@@ -145,12 +144,18 @@
         img.signup-img{
             width:100%;
             height: auto;
-            
         }
-        input{
-            background-color: $color-white-lilac;
+        input[for="firstname"],
+        input[for="lastname"],
+        input[for="email"]
+        input[for="password"]{
+            background-color:$color-white-lilac;
         }
-        button.submit-signup-btn{
+        .icon-hide,
+        .icon-show{
+            font-size: 26px;
+        }
+        button.submit-signup-btn.btn.btn-primary{
             margin: 32px 0 0 0;
         }
     }
