@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import SearchResults from './SearchResults';
 import ViewEvent from '../../Calendar/components/ViewEvent';
+import Calendar from '../../Calendar/Calendar';
 // import ConnectionDetail from '../../Connections/components/ConnectionDetail';
 import Modal from 'react-modal';
+import { useNavigate, useSearchParams, Link } from 'react-router-dom';
 
 const HeaderSearch = () => {
     const [keyword, setKeyword ]= useState('');
@@ -16,6 +18,7 @@ const HeaderSearch = () => {
     const [searchEventParams] = useState(["title", "type"]);
 
     const userID = "63645e4850049bfd1e89637a";
+    const navigate = useNavigate();
 
     useEffect(() => {
         const getConnections = async () => {
@@ -52,9 +55,11 @@ const HeaderSearch = () => {
         return data
     }
 
-    const toggleViewModal = (status) => {
-        setModalViewOpen(status)
-         console.log("Event search result has been clicked!")
+    const toggleEvent = (id) => {
+        navigate(`/calendar?eventId=${id}&modalViewOpen=1&userId=${userID}`)
+        setKeyword('')
+        search('')
+        //  console.log("Event search result has been clicked!")
     }
 
     const toggleConnDetail = (id) => {
@@ -103,9 +108,9 @@ const HeaderSearch = () => {
                 </button>
             </form>
           
-            <SearchResults filteredConnections={filteredConnections} filteredEvents={filteredEvents}  modalOpen={modalViewOpen} onToggle= {() => toggleViewModal} onToggleConn = {() => toggleConnDetail}/>
-            {modalViewOpen &&
-            <ViewEvent modalOpen={modalViewOpen} onToggle={toggleViewModal} />}
+            <SearchResults filteredConnections={filteredConnections} filteredEvents={filteredEvents}  modalOpen={modalViewOpen} onToggleEvent= {() => toggleEvent} onToggleConn = {() => toggleConnDetail}/>
+            {/* {modalViewOpen &&
+            <ViewEvent modalOpen={modalViewOpen} onDelete={Calendar.deleteEvent} onToggle={toggleViewModal} />} */}
             {/* <ConnectionDetail /> */}
  
             <button className="header-quick-add">
