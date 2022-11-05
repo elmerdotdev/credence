@@ -39,8 +39,6 @@ const IndustryType = () => {
           setManufacturing(manu.length)
           setMedia(med.length)
 
-
-          // console.log(clients)
       }
 
       getClients();
@@ -70,6 +68,7 @@ const IndustryType = () => {
         labels,
         datasets: [
           {
+            label: 'Clients in this Industry',
             data: [technology,hospitality,finance,retail,artAndDesign,manufacturing,media],
             backgroundColor: [
               "#88B2D8",

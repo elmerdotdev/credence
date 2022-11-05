@@ -1,5 +1,6 @@
 import ActiveClients from './components/ActiveClients'
 import IndustryType from './components/IndustryType'
+import EventsBreakdown from './components/EventsBreakdown'
 
 const Reports = () => {
 
@@ -12,6 +13,9 @@ const Reports = () => {
             </div>
             <div className="industry-type">
                 <IndustryType />
+            </div>
+            <div className="events-breakdown">
+                <EventsBreakdown />
             </div>
         </div>
     )
