@@ -82,7 +82,7 @@ const EventsBreakdown = () => {
     const data = {
         labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
         datasets: [{
-            label: 'My First Dataset',
+            label: 'Meetings this Month',
             data: [january, february, march, april, may, june, july, august, september, october, november, december],
             fill: false,
             borderColor: "#7DDBD9",
