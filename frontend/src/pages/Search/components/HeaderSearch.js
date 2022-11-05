@@ -101,7 +101,7 @@ const HeaderSearch = () => {
     }
     return (
         <div className="header-search-qa">
-            <form className="header-search-form" autocomplete="off">
+            <form className="header-search-form" autoComplete="off">
                 <input id="header-search-input" type="text" placeholder="Search" value={keyword} onChange={e => {setKeyword(e.target.value); search(e.target.value)}} />
                 <button type="submit">
                     <i className="icon-search"></i>
