@@ -4,7 +4,7 @@ import { useLogin } from '../Signup/hooks/useLogin'
 
 //Icon & Logo
 import '../../fontello/css/credence.css';
-import logo_nopadding from '../../images/Register/logo_nopadding.svg';
+import logo from '../../images/logo.svg';
 import loginimage from '../../images/Register/loginimage.svg'
 // import setLastLoggedIn from '../Signup/Signup'
 // import GoogleLoginButton from '../../components/GoogleLoginButton'
@@ -57,7 +57,7 @@ const Login = () => {
       <section className="page-login-area">
         <Link to="/" ><i className='icon-close'></i></Link>
         
-        <h3><span>Sign into your</span><span><img src={logo_nopadding} alt="credence-logo" className='credence-logo'/>Account</span></h3>
+        <h3><span>Sign into your</span><span><img src={logo} alt="credence-logo" className='credence-logo'/>Account</span></h3>
 
         <div className="desktop-grid">
           
