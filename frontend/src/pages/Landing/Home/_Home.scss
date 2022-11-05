@@ -73,6 +73,21 @@
                 padding: 1.5rem;
             }
         }
+        
+        .logo {
+            path {
+                stroke-linecap: round;
+                stroke-width: 1px;
+                    
+                &.trace {
+                    stroke-dashoffset: 0 !important;
+                    transition:
+                        stroke-dashoffset 1s linear,
+                        stroke-dasharray 1s linear,
+                        fill .5s linear .1s;
+                }
+            }
+        }
 
         .home-navigation {
             position: absolute;
