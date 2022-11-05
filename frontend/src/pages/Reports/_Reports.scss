@@ -39,7 +39,7 @@
     }
 }
 
-.active-clients, .industry-type {
+.active-clients, .industry-type, .events-breakdown {
     max-width: 100%;
     
     h3 {
@@ -61,7 +61,7 @@
 }
 
 @media screen and (min-width: $screen-desktop) {
-    .industry-type div{
+    .industry-type div, .events-breakdown div{
         display: flex;
         flex-flow: column nowrap;
         justify-content: center;
