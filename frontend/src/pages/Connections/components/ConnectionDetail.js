@@ -4,7 +4,7 @@ const ConnectionDetail = ({connection, onEditBtn, onDeleteBtn, onPinBtn, changeA
 
   return (
     <div>
-    <div>
+    <div className="modal-connection-detail-top">
       <div>
           <div className="modal-connection-detail-header">
             <div>
@@ -28,10 +28,6 @@ const ConnectionDetail = ({connection, onEditBtn, onDeleteBtn, onPinBtn, changeA
               <div>
                 <p className="regular-text-gray">Organization</p>
                 <p>{connection && connection.company}</p>
-              </div>
-              <div>
-                <p className="regular-text-gray">Location</p>
-                <p>{connection && connection.location}</p>
               </div>
               <div>
                 <p className="regular-text-gray">Email</p>
@@ -65,10 +61,13 @@ const ConnectionDetail = ({connection, onEditBtn, onDeleteBtn, onPinBtn, changeA
             </div>
           </div>
         </div>
-      <div className="modal-connection-detail-content">
-        <h3>Notes</h3>
-        <Notes />
-      </div>
+
+        <div className="modal-connection-detail-bottom">
+          <div className="modal-connection-detail-content">
+            <h3>Notes</h3>
+            <Notes />
+          </div>
+        </div>
   </div>
     )
 };
