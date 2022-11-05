@@ -1,9 +1,9 @@
 .page-login {
-    background-color: #F5F5F5;
+    background-color: $color-white;
     .page-login-area{
         font-size: 1rem;
         padding: 20px;
-        background-color: #F5F5F5;
+        background-color: $color-white;
         max-width: 1118px;
         max-height: 720px;
     }
@@ -14,30 +14,28 @@
         font-size: 24px;
         margin: 36px 0 21px 0;
         display: flex;
+        flex-wrap:wrap;
         justify-content: center;
         text-align: center;
 
         span{
             margin-bottom: .8px;   
         }
-        span:nth-of-type(1){
-            margin-right: 5px;
-        }
-        span:nth-of-type(2){
-            margin-left: 5px;
+        img.credence-logo{
+            height: 24px;
+            position: relative;
+            bottom: -6px;
+            margin-right: 8px;
+            margin-left: 8px;
         }
     }
-    
-    // img.credence-logo{
-    //     // max-width:80%;
-    // }
     img.login-img{
         display: block;
         margin: 21px auto 24px auto;
     }
     label{
         display: block;
-        color:#004076;
+        color:$color-regal-blue;
         font-size: 14px;
         margin-bottom: 8px;
     }
@@ -46,52 +44,43 @@
     }
     input[for="email"]{
         width: 100%;
-        background-color: #F5F5F5;
+        background-color: $color-white;
         border: none;
-        border-bottom: 1px solid #747474;
+        border-bottom: 1px solid $color-boulder;
     }
     input[for="password"]{
         width: 100%;
-        background-color: #F5F5F5;
+        background-color: $color-white;
         
         border: none;
     }
     .password-area{
         display: flex;
-        border-bottom: 1px solid #747474; 
+        border-bottom: 1px solid $color-boulder; 
     }
-    .icon-info,
-    .icon-info{
+    .icon-hide,
+    .icon-show{
         font-size: 16px;
     }
     input[value="Login"]{
         margin-top: 33px;
     }
     .error{
-        color: #FF4D4F;
+        color: $color-guardsman-red;
     }
-    .submit-login-btn{
-        display: flex;
-        align-items: center;
-        gap: 1.2rem;
-        padding: 0.5rem 1rem 0.5rem 1.5rem;
-        background-color: #0468BF;
-        color: #FDFDFD;
-        border: none;
-        border-radius: 0.5rem;
+    .submit-login-btn.btn.btn-primary{
         width: 100%;
         justify-content: center;
-        transition: background-color 0.2s ease-in-out;
     }
     .forget-pw-link{
         margin-left: auto;
         margin-right: 0;
-        color:#004076;
+        color:$color-regal-blue;
         font-style: normal;
         font-weight: 400;
         font-size: 16px;
         line-height: 20px;
-        border-bottom: 1px solid #004076;
+        border-bottom: 1px solid $color-regal-blue;
     }
     .fgt-pwd-box{
         margin-top: 18px;
@@ -104,12 +93,12 @@
     }
     .move-to-signup-link a
     {
-        color:#004076;
+        color:$color-regal-blue;
         margin-left: 9px ;
-        border-bottom: 1px solid #004076;
+        border-bottom: 1px solid $color-regal-blue;
     }
     .move-to-signup-link{
-        color:#747474;
+        color:$color-boulder;
     }
     
     @media screen and (min-width:$screen-desktop){
@@ -118,6 +107,7 @@
         justify-content: center;
         align-items: center;
         padding: 109px 35px;
+        height: 100vh;
         .page-login-area{
             padding: 26px 53px 24px 53px;
             border-radius: 24px;
@@ -137,15 +127,10 @@
             font-weight: 700;
             font-size: 36px;
             line-height: 44px;
-
-            span{
-                margin-bottom: 10px;   
-            }
-            span:nth-of-type(1){
-                margin-right: 8px;
-            }
-            span:nth-of-type(2){
-                margin-left: 8px;
+            
+            img.credence-logo{
+                height: 36px;
+                bottom: -9px;
             }
         }
         .desktop-grid{
@@ -161,5 +146,9 @@
             width:80%;
             height: auto;
         }
+        .icon-hide,
+        .icon-show{
+        font-size: 26px;
+    }
     }
 }

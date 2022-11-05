@@ -1,13 +1,17 @@
 import ActiveClients from './components/ActiveClients'
+import IndustryType from './components/IndustryType'
 
 const Reports = () => {
 
 
     return (
-        <div>
-            <h1>Reports</h1>
+        <div className="reports">
+            <h2><i className="icon-reports"></i>Reports</h2>
             <div className="active-clients">
                 <ActiveClients />
+            </div>
+            <div className="industry-type">
+                <IndustryType />
             </div>
         </div>
     )
