@@ -198,7 +198,7 @@
         }
 
         .slider-label-span {
-          color: $color-science-blue;
+          color: $color-regal-blue;
         }
     }
 
@@ -223,11 +223,16 @@
 }
 
 .modal-connection-detail {
-  padding: 2rem;
+  padding: 0;
   width: 100%;
 
-  @media screen and (min-width: $screen-desktop) {
-      padding: 2rem 8rem 6rem;
+  &-top {
+    padding: 2rem;
+    background-color: $color-mystic;
+
+    @media screen and (min-width: $screen-desktop) {
+      padding: 2rem 8rem;
+    }
   }
 
   &-header {
@@ -246,12 +251,18 @@
     padding: 0 3rem;
 
     &.detail-info {
+      h2 {
+        @include fontSize(32);
+        margin-bottom: 1rem;
+        font-weight: 600;
+      }
+
       div {
         display: flex;
         align-items: center;
   
         p {
-          margin: .5rem 0;
+          margin: .6rem 0;
 
           &:first-child {
             flex-basis: 160px;
@@ -262,7 +273,7 @@
       .detail-info-industry {
         display: flex;
         flex-direction: row;
-        gap: .6rem;
+        gap: .5rem;
 
         span {
           @include fontSize(14);
@@ -273,6 +284,55 @@
           border-radius: 20px;
         }
       }
+    }
+  }
+
+  &-bottom {
+    padding: 2rem;
+
+    @media screen and (min-width: $screen-desktop) {
+      padding: 2rem 8rem 6rem;
+    }
+
+    h3 {
+      @include fontSize(28);
+      margin: 0 0 1rem;
+      padding: .5rem 0;
+      color: $color-regal-blue;
+      border-bottom: 2px solid $color-regal-blue;
+    }
+  }
+}
+
+.add-note-form {
+  .input-wrapper {
+    display: flex;
+    gap: 5px;
+    flex-direction: column;
+    padding: .75rem 0;
+
+    label {
+        color: $color-regal-blue;
+    }
+
+    input[type="text"],
+    textarea,
+    select {
+        padding: .2rem 0;
+        background: none;
+        border: none;
+        border-bottom: 1px solid $color-dusty-gray;
+
+        &:focus {
+            outline: 0;
+        }
+    }
+
+    &.submit-btn-wrapper {
+        flex-direction: row;
+        justify-content: end;
+        gap: 1rem;
+        margin-top: 1rem;
     }
   }
 }
