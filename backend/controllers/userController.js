@@ -13,7 +13,7 @@ const getUser = async (req, res) => {
         return res.status(404).json({ error: 'No such user' })
     }
 
-    const user = await this.findById(id)
+    const user = await User.findOne({ _id: id})
 
     if (!user) {
         return res.status(404).json({ error: 'No such user' })

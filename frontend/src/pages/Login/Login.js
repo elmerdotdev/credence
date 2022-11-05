@@ -4,8 +4,8 @@ import { useLogin } from '../Signup/hooks/useLogin'
 
 //Icon & Logo
 import '../../fontello/css/credence.css';
-import logo_nopadding from '../../images/logo_nopadding.svg';
-import loginimage from '../../images/loginimage.svg'
+import logo from '../../images/logo.svg';
+import loginimage from '../../images/Register/loginimage.svg'
 // import setLastLoggedIn from '../Signup/Signup'
 // import GoogleLoginButton from '../../components/GoogleLoginButton'
 
@@ -18,7 +18,7 @@ const Login = () => {
   const [pwShow, setPwShow] = useState(false);
   //Error checker
   const {login, error, isLoading} = useLogin();
-  const { addLoginDate, lastLoggedIn } = useLogin()
+  // const { addLoginDate, lastLoggedIn } = useLogin()
   
   useEffect(() => {
     document.querySelector('body').removeAttribute("class")
@@ -34,7 +34,7 @@ const Login = () => {
     //ここで入れる
     await  login(email, password)
     // await addLoginDate(lastLoggedIn)
-    console.log(email, password)
+    // console.log(email, password)
 
     setEmail('')
     setPassword('')
@@ -57,7 +57,7 @@ const Login = () => {
       <section className="page-login-area">
         <Link to="/" ><i className='icon-close'></i></Link>
         
-        <h3><span>Sign into your</span><img src={logo_nopadding} alt="credence-logo" className='credence-logo'/><span>Account</span></h3>
+        <h3><span>Sign into your</span><span><img src={logo} alt="credence-logo" className='credence-logo'/>Account</span></h3>
 
         <div className="desktop-grid">
           
@@ -79,14 +79,14 @@ const Login = () => {
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                 />
-                <i  className={pwShow === true ? "icon-lock" : "icon-info"}
+                <i  className={pwShow === true ? "icon-hide" : "icon-show"}
                     onClick={togglePw}
                 >
                 </i>
               </div>
-          
               {error && <div className='error'>{error}</div>}
-              <input type="submit" value="Login" className="submit-login-btn" />
+          
+              <input type="submit" value="Login" className="submit-login-btn btn btn-primary" />
             </form>
           
               <div className="fgt-pwd-box">

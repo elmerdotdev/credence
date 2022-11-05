@@ -1,9 +1,8 @@
-//完善表格： 添加client照片、职位、地点等
 
 import React from 'react';
 import { useState } from 'react';
 
-const AddConnection = ({ onAdd }) => {
+const AddConnection = ({ onAdd, onClose }) => {
 
   const [firstname, setFirstname] = useState('');
   const [lastname, setLastname] = useState('');
@@ -11,91 +10,130 @@ const AddConnection = ({ onAdd }) => {
   const [company, setCompany] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
+  const [location, setLocation] = useState('');
   const [active, setActive] = useState(false);
-  const [industry, setIndustry] = useState([]);
-  const [user_id, setUserId] = useState('633b6a81145c9d79405c54ea');
+  const [labels, setLabels] = useState( [
+    { text: "Technology", select: false },
+    { text: "Hospitality", select: false },
+    { text: "Finance", select: false },
+    { text: "Retail", select: false },
+    { text: "Art & Design", select: false },
+    { text: "Manufacturing", select: false },
+    { text: "Media", select: false }
+  ]);
+  const [user_id, setUserId] = useState('63645e4850049bfd1e89637a');
   const [pinned, setPinned] = useState(false);
+
+const checkboxes = [
+  { text: "Technology" },
+  { text: "Hospitality" },
+  { text: "Finance" },
+  { text: "Retail" },
+  { text: "Art & Design" },
+  { text: "Manufacturing" },
+  { text: "Media" }
+];
 
 
 const onSubmit = (e) => {
   e.preventDefault();
 
-  onAdd({ firstname, lastname, company, position, email, phone, active, user_id, industry, pinned });
-
+  onAdd({ firstname, lastname, company, position, email, phone, active, location, user_id, labels, pinned });
+  console.log("industry: ", labels);
   setFirstname('');
   setLastname('');
   setPosition('');
   setCompany('');
   setEmail('');
   setPhone('');
+  setLocation('');
   setActive(false);
-  setIndustry([]);
+  setLabels([ 
+  { text: "Technology", select: false },
+  { text: "Hospitality", select: false },
+  { text: "Finance", select: false },
+  { text: "Retail", select: false },
+  { text: "Art & Design", select: false },
+  { text: "Manufacturing", select: false },
+  { text: "Media", select: false }]);
 };
 
 
   return (
     <div>
-    <h3 className="modal-title">New Connection</h3>
+    <h2 className="modal-title">New Connection</h2>
    
     <form className="add-form" onSubmit={onSubmit}>
-      <div className="form-control">
-        <label>First Name / Nickname</label>
+      <div className="input-wrapper">
+        <label>First Name / Nickname*</label>
         <input
+          required
+          className="form-input"
           type="text"
-          placeholder="First name"
+          placeholder="Name"
           value={firstname}
           onChange={(e) => setFirstname(e.target.value)}
         />
       </div>
-      <div className="form-control">
-        <label>Last Name</label>
+      <div className="input-wrapper">
+        <label>Last Name*</label>
         <input
+          required
           type="text"
-          placeholder="Last name"
+          placeholder="Last Name"
           value={lastname}
           onChange={(e) => setLastname(e.target.value)}
         />
       </div>
       <h4>Contact Information</h4>
-      <div className="form-control">
-        <label>Email</label>
+      <div className="input-wrapper">
+        <label>Email*</label>
         <input
+          required
           type="text"
-          placeholder="Email"
+          placeholder="connection@email.com"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
       </div>
-      <div className="form-control">
-        <label>Phone Number</label>
+      <div className="input-wrapper">
+        <label>Phone Number*</label>
         <input
+          required
           type="text"
-          placeholder="Phone"
+          placeholder="(000)000-000"
           value={phone}
           onChange={(e) => setPhone(e.target.value)}
         />
       </div>
       <h4>Work</h4>
-      <div className="form-control">
+      <div className="input-wrapper">
         <label>Organization</label>
         <input
           type="text"
-          placeholder="Organization"
           value={company}
           onChange={(e) => setCompany(e.target.value)}
         />
       </div>
-      <div className="form-control">
+      <div className="input-wrapper">
         <label>Position</label>
         <input
           type="text"
-          placeholder="Position"
           value={position}
           onChange={(e) => setPosition(e.target.value)}
         />
       </div>
-      <div className="form-control form-control-check">
-        <label htmlFor="activeChkbox">Active</label>
+      <div className="input-wrapper">
+        <label>Location</label>
+        <input
+          type="text"
+          value={location}
+          onChange={(e) => setLocation(e.target.value)}
+        />
+      </div>
+      <div className="input-wrapper">
+        <span className="slider-label-span">Active Client</span>
+        <label htmlFor="activeChkbox" className="switch">
         <input
           id="activeChkbox"
           type="checkbox"
@@ -103,10 +141,36 @@ const onSubmit = (e) => {
           value={active}
           onChange={(e) => setActive(e.currentTarget.checked)}
         />
+        <span className="slider round"></span>
+        </label>
+      </div>
+      <div className="input-wrapper">
+        <label>Industry</label>
+        <div className="industry-checkboxes">
+          {checkboxes.map(({text}, index) => {
+            return (
+            <div key={index}>
+            <div className="industry-item">
+              <input
+                className="industry-item-input"
+                type="checkbox"
+                id={`industry-checkbox-${index}`}
+                name={text}
+                value={text}
+                onChange={(e) => {const currSelection = labels; currSelection[index].select = e.currentTarget.checked; setLabels(currSelection)}}
+              />
+                <label className="industry-item-label" htmlFor={`industry-checkbox-${index}`}>{text}</label>
+            </div>
+          </div>
+          )  
+          })}
+        </div>
       </div>
 
-
-      <input type="submit" value="Save Connection" className="btn btn-block" />
+      <div className="input-wrapper submit-btn-wrapper">
+        <button className="btn btn-primary-reverse" onClick={() => onClose(false)}>Cancel</button>
+        <button type="submit" className="btn btn-primary">Save Connection</button>
+      </div>
     </form>
   
 

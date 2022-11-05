@@ -1,32 +1,93 @@
 .page-signup-successSignup {
+    background-color: $color-white;
+    .page-successSignup-area{
         text-align: center;
         padding: 20px;
-    
+        background-color: $color-white;
+        max-width: 1118px;
+        max-height: 720px;
+    }
+    .header-arrow{
+        display: none;
+    }
     h3{
         font-style: normal;
         font-weight: 700;
         font-size: 24px;
         line-height: 32px;
         text-align: center;
-        // margin-top: 64px 0 59px 0;
+        margin: 64px 0 59px 0;
     }
     img.credence-logo{
-
+        height: 16px;
+        position: relative;
+        bottom: -2px;
+        margin-right: 3px;
     }
-    
     p{
         text-align: center;
+        font-size: 16px;
+        line-height: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+        span{
+            margin-right: 5px;
+        }
     }
-    
-    img.signup-complete-image{
-        margin-top: 85px;
+    p:nth-of-type(2){
+        margin: 0;
     }
-     
-    button{
+    img.signup-success-image{
+        margin: 85px auto 0 auto;
+        width: 60%;
+    }    
+    button.btn.btn-primary{
         display: block;
-        margin-top: 123px 0 177px 0;
+        margin: 105px 0 177px 0;
+        width: 100%;
+        justify-content: center;
+        a[href="/login"]{
+            color: $color-white;
+        }
+        a:hover[href="/login"]{
+            color: $color-regal-blue;
+        }
     }
     @media screen and (min-width:$screen-desktop){
-        
+        background-color:$color-dusty-gray;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 109px 35px;
+        height: 100vh;
+        .page-successSignup-area{
+            padding: 26px 53px 51px 53px;
+            border-radius: 24px;
+            width: 80%;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.25);
+        }
+        .header-arrow{
+            display: flex;
+            justify-content: space-between;
+            .icon-arrow-left,
+            .icon-close{
+                font-size: 42px;
+            }
+        }
+        h3{
+            margin: 0 auto 68px auto;
+            font-size: 36px;
+            line-height: 44px;
+        }
+        img.signup-success-image{
+            margin-top: 31px;
+            width: 30%;
+        }
+        button.btn.btn-primary{
+            width: 50%;
+            margin: 75px auto 0 auto;
+        }
     }
 }
