@@ -4,9 +4,9 @@ const FilterConnections = ({onPinFilter}) => {
     return (
        
         <>
-        <button className="Btn" onClick={onPinFilter} >Pinned</button>
-        <button className="Btn" >Most Recent</button>
-       <button className="Btn" >Latest Interacted</button>
+        <button className="btn btn-primary-reverse" onClick={onPinFilter} >Pinned</button>
+        <button className="btn btn-primary-reverse" >Most Recent</button>
+        <button className="btn btn-primary-reverse" >Latest Interacted</button>
         </>
 
     )

@@ -1,10 +1,118 @@
 .page-dashboard {
+    height: 100%;
+
+    @media screen and (min-width: $screen-desktop) {
+        display: flex;
+        flex-direction: column;
+    }
+
     .dashboard-tabs {
         display: flex;
         justify-content: center;
 
         @media screen and (min-width: $screen-desktop) {
             display: none;
+        }
+    }
+
+    .dashboard-wrapper {
+        flex: 1;
+        display: flex;
+        gap: 1rem;
+
+        .dashboard-connection {
+            flex: 1;
+            padding: 1rem 2rem;
+            background-color: #FDFDFD;
+            border: 1px solid #949494;
+            border-radius: 14px;
+
+            h2 {
+                @include fontSize(34);
+                margin: 0;
+                text-align: center;
+            }
+
+            &-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin: 1rem 0;
+
+                h3 {
+                    @include fontSize(24);
+                    margin: 0;
+                    font-weight: 600;
+                }
+
+                a {
+                    color: $color-science-blue;
+                    font-weight: 600;
+
+                    &:hover {
+                        text-decoration: underline;
+                    }
+                }
+            }
+
+            &-content {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: .5rem;
+                margin-bottom: 2rem;
+
+                @media screen and (min-width: $screen-desktop) {
+                  grid-template-columns: repeat(3, 1fr);
+                }
+            }
+
+            .client-card {
+                background-color: $color-mystic;
+                border-radius: 10px;
+                padding: 1.5rem;
+                color: $color-shark;
+                cursor: pointer;
+
+                &:hover {
+                    background-color: $color-hawkes-blue;
+                    cursor: pointer;
+                }
+
+                h4 {
+                  @include fontSize(20);
+                  margin: 0;
+                  font-weight: 600;
+                }
+
+                p {
+                    @include fontSize(14);
+                    margin: 0;
+
+                    &.connection-company {
+                      font-weight: 600;
+                    }
+                }
+
+                .connection-interaction {
+                    margin-top: 1rem;
+                    padding-top: 1rem;
+                    text-align: center;
+                    border-top: 1px solid $color-shark;
+                }
+            }
+        }
+
+        .dashboard-upcoming {
+            display: none;
+
+            @media screen and (min-width: $screen-desktop) {
+                display: block;
+                flex-basis: 410px;
+            }
+
+            .page-calendar-widget {
+                height: 100%;
+            }
         }
     }
 }
