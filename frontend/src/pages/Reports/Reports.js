@@ -10,7 +10,7 @@ const Reports = () => {
             <div className="active-clients">
                 <ActiveClients />
             </div>
-            <div className="Position Type">
+            <div className="industry-type">
                 <IndustryType />
             </div>
         </div>

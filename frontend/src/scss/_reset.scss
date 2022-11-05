@@ -172,6 +172,7 @@ aside {
         padding: .5rem;
 
         .no-sidebar & {
+            padding: 0;
             background-color: transparent;
             border: none;
         }
