@@ -1,25 +1,50 @@
 .page-connections {
-
-
-    h2{
+    h2 {
         font-size: 2rem;
         text-align: center;
     }
 
+    .connection-content {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: .5rem;
+      margin-bottom: 2rem;
+    }
+
     .client-card {
-        background-color: $color-mystic;
-        border-radius: 10px;
-        padding: .1rem .5rem;
-        margin: .5rem;
-        display: grid;
-        grid-template-columns: 3fr 1fr;
-    }
+      background-color: $color-mystic;
+      border-radius: 10px;
+      padding: 1.5rem;
+      color: $color-shark;
+      cursor: pointer;
 
-    .client-card:hover {
-        background-color: $color-hawkes-blue;
-        cursor: pointer;
-    }
+      &:hover {
+          background-color: $color-hawkes-blue;
+          cursor: pointer;
+      }
 
+      h4 {
+        @include fontSize(20);
+        margin: 0;
+        font-weight: 600;
+      }
+
+      p {
+          @include fontSize(14);
+          margin: 0;
+
+          &.connection-company {
+            font-weight: 600;
+          }
+      }
+
+      .connection-interaction {
+          margin-top: 1rem;
+          padding-top: 1rem;
+          text-align: center;
+          border-top: 1px solid $color-shark;
+      }
+    }
 }
 
 // Active button

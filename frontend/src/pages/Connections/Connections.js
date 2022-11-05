@@ -216,10 +216,10 @@ const handleActiveCheckbox = async (e) => {
     <div className="clients">
       <section className="page-connections" >
       <h2>All Connections</h2>
-      <p><button className="openModalBtn" onClick={() => setShowAddModalIsOpen(true)}>Add</button></p>
+      <p><button className="btn btn-primary openModalBtn" onClick={() => setShowAddModalIsOpen(true)}>Add</button></p>
       <Filter onPinFilter={pinFilter}/>
       <ModalComponent
-        style={customStyles}
+        className="credence-modal"
         isOpen={showDetailModal}
         onRequestClose={() => setShowDetailModal(false)}
       >
@@ -238,7 +238,7 @@ const handleActiveCheckbox = async (e) => {
       </ModalComponent>
 
       <ModalComponent
-        style={customStyles}
+        className="credence-modal"
         isOpen={showEditModal}
         onRequestClose={() => setShowEditModal(false)}
       >
@@ -250,7 +250,7 @@ const handleActiveCheckbox = async (e) => {
       </ModalComponent>
 
       <Modal
-        style={customStyles}
+        className="credence-modal"
         isOpen={showAddModalIsOpen}
         onRequestClose={() => setShowAddModalIsOpen(false)}
       >
@@ -260,9 +260,10 @@ const handleActiveCheckbox = async (e) => {
         />     
         <button onClick = {() => setShowAddModalIsOpen(false)}>Cancel</button> 
       </Modal>
-      {connections.length > 0 ? (<ClientCards
+      {connections.length > 0 ? (
+        <div className="connection-content"><ClientCards
         connections={connections}  onToggle = {() => updateConnectionDataState}
-        />
+        /></div>
         ) : (
           <p className="error-message">
             <button>Add a new connection</button>
