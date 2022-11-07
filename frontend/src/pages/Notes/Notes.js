@@ -121,6 +121,7 @@ const deleteNote = async () => {
           viewNote = {viewNote}
           notes = {notes}
           onAdd = {addNote}
+          connection = {connection}
         />
 
         {viewNoteIsOpen &&
