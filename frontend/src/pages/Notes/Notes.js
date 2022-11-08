@@ -4,13 +4,13 @@ import NoteDetails from './components/NoteDetails'
 import ViewNote from './components/ViewNote'
 import EditNote from './components/EditNote'
 
-const Notes = () => {
+const Notes = ( connection ) => {
   const [notes, setNotes] = useState(null)
   const [viewNoteIsOpen, setViewNoteIsOpen] = useState(false)
   const [editNoteIsOpen, setEditNoteIsOpen] = useState(false)
   const [singleNoteId, setSingleNoteId] = useState('')
   const [clientId, setClientId] = useState('')
-  
+  const [connectionId, setConnectionId ] = useState(connection.connection._id)
 
   useEffect(() => {
     const getNotes = async () => {
@@ -21,10 +21,9 @@ const Notes = () => {
     getNotes();
   }, [])
 
-
-    //Fetch All Notes
+    //Fetch All Notes For Client
     const fetchNotes = async () => {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/notes/63645e4850049bfd1e89637a`)
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/notes/63645e4850049bfd1e89637a/${connectionId}`)
       const data = await response.json()
 
       if (response.ok) {
@@ -32,7 +31,7 @@ const Notes = () => {
       }
     }
 
-    //Fetch Note
+    // Fetch Note
     // const fetchNote= async (id) => {
     //   const response = await fetch(`${process.env.REACT_APP_API_URL}/api/notes/633b6a81145c9d79405c54ea/${notes.client_id}/${notes.id}`);
       
@@ -61,6 +60,7 @@ const viewNote = (id, client_id) => {
 //Client ID
 const pullClientId = (client_id) => {
   setClientId(client_id);
+  console.log(client_id);
 }
 
 //Add Note
@@ -75,7 +75,7 @@ const addNote = async (note) => {
 
   const data = await response.json()
 
-  setNotes([...notes, data])
+  setNotes([data, ...notes ])
 }
 
 // Edit Note
@@ -121,6 +121,7 @@ const deleteNote = async () => {
           viewNote = {viewNote}
           notes = {notes}
           onAdd = {addNote}
+          connection = {connection}
         />
 
         {viewNoteIsOpen &&

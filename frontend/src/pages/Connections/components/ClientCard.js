@@ -1,5 +1,6 @@
 
 const ClientCard = ({ connection, onToggle }) => {
+
     return (
       <div className="client-card" onClick = {() => onToggle(connection._id)}>
         <div>
