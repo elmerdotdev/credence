@@ -46,6 +46,7 @@ const Calendar = () => {
     if (params.toString().length > 0) {
       setModalViewOpen(true)
       setViewEventId(params.get("eventId"))
+      console.log(viewEventId)
       setCurrParams(params.toString())
     }
   }, [location])

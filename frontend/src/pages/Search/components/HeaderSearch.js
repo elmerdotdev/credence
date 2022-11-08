@@ -59,13 +59,13 @@ const HeaderSearch = () => {
         navigate(`/calendar?eventId=${id}&modalViewOpen=1&userId=${userID}`)
         setKeyword('')
         search('')
-        //  console.log("Event search result has been clicked!")
     }
 
     const toggleConnDetail = (id) => {
+        navigate(`connections/?connectionId=${id}&userId=${userID}`)
         console.log(id)
-        console.log("Connection search result has been clicked!")
-        setShowDetailModal(true);
+        setKeyword('')
+        search('')
     }
 
   
