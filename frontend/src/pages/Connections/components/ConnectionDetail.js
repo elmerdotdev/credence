@@ -65,7 +65,9 @@ const ConnectionDetail = ({connection, onEditBtn, onDeleteBtn, onPinBtn, changeA
         <div className="modal-connection-detail-bottom">
           <div className="modal-connection-detail-content">
             <h3>Notes</h3>
-            <Notes />
+            <Notes 
+              connection = {connection}
+            />
           </div>
         </div>
   </div>

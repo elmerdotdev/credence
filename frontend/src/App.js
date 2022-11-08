@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, NavLink } from 'react-router-dom';
+import Modal from "react-modal"
 
 // App pages
 import Dashboard from './pages/Dashboard/Dashboard';
@@ -13,6 +14,7 @@ import Login from './pages/Login/Login';
 import Signup from './pages/Signup/Signup';
 import SuccessSignup from './pages/Signup/SuccessSignup';
 import Reports from './pages/Reports/Reports';
+import Logout from './pages/Login/Logout';
 
 // Landing Pages
 import Home from './pages/Landing/Home/Home';
@@ -22,7 +24,6 @@ import About from './pages/Landing/About/About';
 
 // Components
 import Header from './components/Header/Header';
-import Logout from './pages/Login/Logout';
 
 // CSS and scripts
 import './fontello/css/credence.css';
@@ -30,6 +31,7 @@ import './App.css';
 
 function App() {
     const [isMenuOpen, setIsMenuOpen] = useState(false)
+    const [modalIsOpen, setModalIsOpen] = useState(false)
 
     useEffect(() => {
         document.body.classList.toggle('mobile-menu-visible', isMenuOpen)
@@ -54,7 +56,8 @@ function App() {
                             <li onClick={toggleMobileMenu}><i className="icon-profile"></i> <NavLink to="/profile">Profile</NavLink></li>
                             <li className="mister-spacer"></li>
                             <li onClick={toggleMobileMenu}><i className="icon-settings"></i> <NavLink to="/settings">Settings</NavLink></li>
-                            <Logout onToggleMenu={toggleMobileMenu}/>
+                            <li onClick={() => {toggleMobileMenu(); setModalIsOpen(true);}}><i className="icon-logout"></i>Log Out</li> 
+                            <Modal isOpen={modalIsOpen} className="logoutModal" ><Logout onModelIsOpen={modalIsOpen} onSetModalIsOpen={setModalIsOpen}/></Modal>
                         </ul>
                     </nav>
                 </aside>
