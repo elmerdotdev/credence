@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import SearchResults from './SearchResults';
-import { useNavigate, useSearchParams, Link } from 'react-router-dom';
-import Notes from '../../Notes/Notes'
+import { useNavigate } from 'react-router-dom';
 
 const HeaderSearch = () => {
     const [keyword, setKeyword ]= useState('');
     const [events, setEvents] = useState([]);
     const [connections, setConnections] = useState([]);
     const [notes, setNotes] = useState(null)
-    const [modalViewOpen, setModalViewOpen] = useState(false)
     const [filteredConnections, setFilteredConnections] = useState([]);
     const [filteredEvents, setFilteredEvents] = useState([]);
     const [filteredNotes, setFilteredNotes] = useState([]);
@@ -158,12 +156,16 @@ const HeaderSearch = () => {
         <div className="header-search-qa">
             <form className="header-search-form" autoComplete="off">
                 <input id="header-search-input" type="text" placeholder="Search" value={keyword} onChange={e => {setKeyword(e.target.value); search(e.target.value)}} />
+                <button className="button-reset" type="reset" >
+                    <i className="icon-close"></i>
+                </button>
                 <button type="submit">
                     <i className="icon-search"></i>
                 </button>
             </form>
           
-            <SearchResults filteredConnections={filteredConnections} filteredEvents={filteredEvents}  filteredNotes={filteredNotes} modalOpen={modalViewOpen} onToggleEvent= {toggleEvent} onToggleConn = {toggleConnDetail} onToggleNote = {toggleNoteDetail} sortedAllResults={sortedAllResults}/>
+            <SearchResults filteredConnections={filteredConnections} filteredEvents={filteredEvents}  filteredNotes={filteredNotes} onToggleEvent= {toggleEvent} onToggleConn = {toggleConnDetail} onToggleNote = {toggleNoteDetail} sortedAllResults={sortedAllResults}/>
+            
 
  
             <button className="header-quick-add">

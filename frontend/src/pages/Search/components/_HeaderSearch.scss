@@ -40,6 +40,11 @@
             font-size: 2rem;
         }
     }
+
+    .button-reset {
+        border-right: 1px solid $color-dusty-gray;
+        border-radius: 0;
+    }
 }
 
 .search-result {
