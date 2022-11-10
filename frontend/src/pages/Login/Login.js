@@ -17,8 +17,8 @@ const Login = () => {
   const [password, setPassword] = useState('');
   //Password display( hide or show )
   const [pwShow, setPwShow] = useState(false);
-  //Error checker and functions
-  const {login, error, isLoading, addLoginDate} = useLogin();
+  //Error checker and functions from useLogin.js
+  const {login, error, lastday} = useLogin();
   
   
   useEffect(() => {
@@ -26,22 +26,34 @@ const Login = () => {
     document.querySelector('body').classList.add('no-sidebar')
   }, [])
 
-   
   const navigate = useNavigate()
+
   //Login submit action
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-   //ここで入れる
-    await  login(email, password)
+   //Login here
+    await login(email, password)
     
     setEmail('')
     setPassword('')
 
-    if (localStorage.getItem('user')) {  
-      console.log('Successs Login!')
+    const yourData = localStorage.getItem('user')
+    const dateInLocal = JSON.parse(yourData).lastLoggedIn
+    //IF文最後のRemoveができない。LastLoggedInだけを掴めない
+    console.log(yourData.lastLoggedIn)    
+   
+    if (yourData && (dateInLocal === null)) {
+      console.log('Success Login. First time to Login!')
+      await lastday()
+      navigate('/signup')
+      localStorage.removeItem('lastLoggedIn')
+    } else if (yourData && !(dateInLocal === null)) {  
+      console.log('Success Login. Welcome back!')
+      await lastday()
       navigate('/dashboard')
-    } else {
+      localStorage.removeItem(yourData.lastLoggedIn)
+    } else if (!yourData) {
       console.log(' No user in localstorage')
     }
   }

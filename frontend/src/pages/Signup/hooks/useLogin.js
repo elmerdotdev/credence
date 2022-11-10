@@ -7,8 +7,7 @@ export const useLogin = () => {
     const [ isLoading, setIsLoading ] = useState(null)
     const { dispatch } = useAuthContext()
   
-    
-    const login = async (email, password, lastLoggedIn) => {
+    const login = async (email, password) => {
         setIsLoading(true)
         setError(null)
         
@@ -18,21 +17,6 @@ export const useLogin = () => {
             body: JSON.stringify({email, password})
         })
         const json = await res.json()
-        
-        const yourID = json._id
-        
-        lastLoggedIn = new Date()
-
-        const loginDate = {
-            lastLoggedIn: lastLoggedIn
-        }  
-
-        //update last loggedin date in DB
-        await fetch(`${process.env.REACT_APP_API_URL}/api/users/${yourID}`,{
-            method:'PATCH',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify(loginDate)
-        })
          
         if(!res.ok){
             setIsLoading(false)
@@ -49,5 +33,23 @@ export const useLogin = () => {
         }
     }
 
-    return {login, error}
+    //  update last loggedin date in DB
+     const lastday = async (lastLoggedIn) => {
+
+        const yourID = JSON.parse(localStorage.getItem('user'))._id
+        
+        lastLoggedIn = new Date()
+
+        const loginDate = {
+            lastLoggedIn: lastLoggedIn
+        }  
+
+        const res = await fetch(`${process.env.REACT_APP_API_URL}/api/users/${yourID}`,{
+            method:'PATCH',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(loginDate)
+        })
+     }
+    
+    return {login, lastday, error}
 }
