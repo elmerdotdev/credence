@@ -1,5 +1,6 @@
 import Notes from '../../Notes/Notes';
 
+// TODO: accept isOpenNote and noteId as parameters
 const ConnectionDetail = ({connection, onEditBtn, onDeleteBtn, onPinBtn, changeActiveBtn, onClose}) => {
 
   return (
@@ -67,6 +68,8 @@ const ConnectionDetail = ({connection, onEditBtn, onDeleteBtn, onPinBtn, changeA
             <h3>Notes</h3>
             <Notes 
               connection = {connection}
+              // isOpenNote = true
+              // noteId = asdjfaskjdfsf
             />
           </div>
         </div>

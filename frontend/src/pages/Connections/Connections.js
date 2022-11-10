@@ -64,6 +64,8 @@ const Connections = () => {
     if (params.toString().length > 0) {
       updateConnectionDataState(params.get("connectionId"))
       setCurrParams(params.toString())
+      //set note id = asfdhasjfhlskj
+      //set isopennote = true
     }
   }, [location])
 
@@ -223,6 +225,8 @@ const handleActiveCheckbox = async (e) => {
         onRequestClose={() => setShowDetailModal(false)}
       > 
         <ConnectionDetail 
+        // isOpenNote={Boolean}
+        // NoteId={id_from_state}
         connection={connection} 
         onEditBtn={() => {setShowEditModal(true)}} 
         onDeleteBtn={deleteConnection} 
