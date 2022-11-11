@@ -21,7 +21,7 @@ const Signup = () => {
   //Password display( hide or show )
   const [pwShow, setPwShow] = useState(false)
   //lastLoggedIn
-  const [lastLoggedIn, setlastLoggedIn] = useState(null)
+  const [lastLoggedIn, setLastLoggedIn] = useState(null)
   //Error checker
   const {signup, error, isLoading} = useSignup()
 
@@ -118,7 +118,11 @@ const Signup = () => {
     </div>
   )
 }
+export function useLastLogin() {
+  const [lastLoggedIn, setLastLoggedIn] = useState(null)
 
+  return{lastLoggedIn, setLastLoggedIn}
+}
 export default Signup
 
 
