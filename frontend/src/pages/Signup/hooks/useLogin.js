@@ -17,7 +17,7 @@ export const useLogin = () => {
             body: JSON.stringify({email, password})
         })
         const json = await res.json()
-         
+        
         if(!res.ok){
             setIsLoading(false)
             setError(json.error)
@@ -43,6 +43,7 @@ export const useLogin = () => {
         const loginDate = {
             lastLoggedIn: lastLoggedIn
         }  
+        
 
         const res = await fetch(`${process.env.REACT_APP_API_URL}/api/users/${yourID}`,{
             method:'PATCH',

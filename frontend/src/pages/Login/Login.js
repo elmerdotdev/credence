@@ -7,6 +7,7 @@ import { useLogin } from '../Signup/hooks/useLogin'
 import '../../fontello/css/credence.css';
 import logo from '../../images/logo.svg';
 import loginimage from'../../images/Register/loginimage.svg';
+// import userModel from '../../../../backend/models/userModel';
 // import GoogleLoginButton from '../../components/GoogleLoginButton'
 
 
@@ -39,20 +40,28 @@ const Login = () => {
     setPassword('')
 
     const yourData = localStorage.getItem('user')
-    const dateInLocal = JSON.parse(yourData).lastLoggedIn
-    //IF文最後のRemoveができない。LastLoggedInだけを掴めない
-    console.log(yourData.lastLoggedIn)    
-   
-    if (yourData && (dateInLocal === null)) {
+    const dataInLocal = JSON.parse(yourData)
+    const lastLoggedIn = dataInLocal.lastLoggedIn
+
+    //Delete lastLoggedIn from localstorage 
+    const deleteLocalDate = () => {
+      const userID = dataInLocal._id
+      const loginDate = { _id: userID }  
+      localStorage.clear()
+      localStorage.setItem('user', JSON.stringify(loginDate))
+    }
+    
+
+    if (yourData && (lastLoggedIn === null)) {
       console.log('Success Login. First time to Login!')
       await lastday()
       navigate('/signup')
-      localStorage.removeItem('lastLoggedIn')
-    } else if (yourData && !(dateInLocal === null)) {  
+      deleteLocalDate()
+    } else if (yourData && !(lastLoggedIn === null)) {  
       console.log('Success Login. Welcome back!')
       await lastday()
-      navigate('/dashboard')
-      localStorage.removeItem(yourData.lastLoggedIn)
+       navigate('/dashboard')
+       deleteLocalDate()
     } else if (!yourData) {
       console.log(' No user in localstorage')
     }
