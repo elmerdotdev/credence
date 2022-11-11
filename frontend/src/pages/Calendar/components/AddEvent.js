@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Modal from 'react-modal'
 import Datetime from 'react-datetime';
 import moment from 'moment';
+import Select from 'react-select'
 
 Modal.setAppElement('body');
 
@@ -24,14 +25,20 @@ const AddEvent = (props) => {
     const alertMsgs = {
         invalid: "Enter a valid start/end date",
         pastDate: "Start date must not be in the past",
-        futureDate: "End date must be after start date"
+        futureDate: "End date must be after start date",
+        needClient: "Specify at least one connection"
     }
     
     useEffect(() => {
         const getClients = async () => {
             const data = await fetchClients()
 
-            setClients(data)
+            setClients(data.map((client) => {
+                return {
+                    value: client._id,
+                    label: `${client.firstname} ${client.lastname}`
+                }
+            }))
         }
 
         getClients()
@@ -69,6 +76,11 @@ const AddEvent = (props) => {
 
         if (end < start) {
             alert(alertMsgs.futureDate)
+            return false
+        }
+
+        if (!clientId) {
+            alert(alertMsgs.needClient)
             return false
         }
 
@@ -122,6 +134,7 @@ const AddEvent = (props) => {
                                 <option value=""></option>
                                 <option value="meeting">Meeting</option>
                                 <option value="conference">Conference</option>
+                                <option value="holiday">Holiday</option>
                                 <option value="birthday">Birthday</option>
                             </select>
                         </div>
@@ -147,12 +160,7 @@ const AddEvent = (props) => {
                         </div>
                         <div className="input-wrapper">
                             <label htmlFor="clientlist">Connection</label>
-                            <select id="clientlist" value={clientId || ''} onChange={e => setClientId(e.target.value) || ''}>
-                                <option value=""></option>
-                                {clients.map((client, i) => (
-                                    <option key={i} value={client._id}>{client.firstname} {client.lastname}</option>
-                                ))}
-                            </select>
+                            <Select options={clients} isMulti="true" value={clientId || ''} onChange={e => setClientId(e) || ''} />
                         </div>
                         <div className="input-wrapper">
                             <label htmlFor="description">Description</label>
