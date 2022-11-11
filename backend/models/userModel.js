@@ -24,6 +24,9 @@ const userSchema = new Schema({
     },
     lastLoggedIn: {
         type: Date
+    },
+    gmailAuth: {
+        type: Object
     }
 }, {
     timestamps: true

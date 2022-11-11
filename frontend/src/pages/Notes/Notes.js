@@ -3,7 +3,9 @@ import { useEffect, useState } from 'react'
 import NoteDetails from './components/NoteDetails'
 import ViewNote from './components/ViewNote'
 import EditNote from './components/EditNote'
+import { useNavigate, useLocation } from 'react-router-dom';
 
+// TODO: accept isOpenNote and noteId as parameters
 const Notes = ( connection ) => {
   const [notes, setNotes] = useState(null)
   const [viewNoteIsOpen, setViewNoteIsOpen] = useState(false)
@@ -11,15 +13,23 @@ const Notes = ( connection ) => {
   const [singleNoteId, setSingleNoteId] = useState('')
   const [clientId, setClientId] = useState('')
   const [connectionId, setConnectionId ] = useState(connection.connection._id)
+  const [currParams, setCurrParams] = useState('');
+
+  const navigate = useNavigate()
+  const location = useLocation()
 
   useEffect(() => {
     const getNotes = async () => {
       const res = await fetchNotes();
       setNotes(res);
   };
-
-    getNotes();
-  }, [])
+    getNotes()
+      let params = (new URL(document.location)).searchParams;
+    if (params.toString().length > 0 && params.toString().search("noteId") != -1) {
+      viewNote(params.get("noteId"), params.get("connectionId"))
+      setCurrParams(params.toString())
+    }
+  }, [location])
 
     //Fetch All Notes For Client
     const fetchNotes = async () => {
@@ -60,7 +70,6 @@ const viewNote = (id, client_id) => {
 //Client ID
 const pullClientId = (client_id) => {
   setClientId(client_id);
-  console.log(client_id);
 }
 
 //Add Note

@@ -23,7 +23,7 @@ const activitySchema = new Schema({
         required: true
     },
     client_id: {
-        type: String
+        type: Array
     },
     user_id: {
         type: String,
