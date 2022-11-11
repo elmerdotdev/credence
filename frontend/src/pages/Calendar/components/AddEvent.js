@@ -122,6 +122,7 @@ const AddEvent = (props) => {
                                 <option value=""></option>
                                 <option value="meeting">Meeting</option>
                                 <option value="conference">Conference</option>
+                                <option value="holiday">Holiday</option>
                                 <option value="birthday">Birthday</option>
                             </select>
                         </div>

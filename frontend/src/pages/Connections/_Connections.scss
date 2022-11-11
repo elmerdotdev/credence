@@ -1,7 +1,34 @@
+.clients-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  width: 100%;
+  height: 100%;
+}
+
+.connections-top-buttons {
+  .connections-filter-buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    margin-top: .5rem;
+  }
+}
+
 .page-connections {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 1rem;
+  background-color: $color-white;
+  border: 1px solid $color-dusty-gray;
+  border-radius: 1rem;
+
     h2 {
-        font-size: 2rem;
-        text-align: center;
+      margin: 0;
+      font-size: 2rem;
+      text-align: center;
     }
 
     .connection-content {
@@ -138,7 +165,8 @@
 
 
 
-.modal-connection-add {
+.modal-connection-add,
+.modal-connection-edit {
   padding: 2rem;
 
   @media screen and (min-width: $screen-desktop) {
@@ -150,7 +178,8 @@
       font-weight: 600;
   }
 
-  .add-form {
+  .add-form,
+  .edit-form {
     display: grid;
     width: 650px;
     max-width: 100%;
@@ -300,6 +329,22 @@
       padding: .5rem 0;
       color: $color-regal-blue;
       border-bottom: 2px solid $color-regal-blue;
+    }
+  }
+
+  .note-details {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 2px solid $color-gray;
+
+    > div {
+      margin: 1.5rem 0;
+    }
+
+    h4 {
+      @include fontSize(20);
+      margin: 0;
+      font-weight: 600;
     }
   }
 }

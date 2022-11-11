@@ -1,15 +1,3 @@
-// 【✅】显示所有clients
-// 【✅】用modal打开添加client表格 用cancel button关闭表格
-// 【✅】insert一个新的client进database
-// 【✅】client card只显示姓名/title/organization
-// 【✅】点开每个client显示详情，包括姓名/title/organization/email/phone
-// 【✅】将active status改成可以one click更改状态的button加入ui
-// 【✅】新增connection表格中加入industry，且显示在ui
-// 【✅】在client details中用modal增加edit client功能
-// 【✅】edit button打开edit function modal
-// 【✅】edit function
-// 【✅】delete funtion
-// 【✅】将pin button改成one click更改状态
 
 import React from 'react';
 import { useState, useEffect } from 'react';
@@ -20,6 +8,7 @@ import ClientCards from './components/ClientCards';
 import ConnectionDetail from './components/ConnectionDetail';
 import EditConnection from './components/EditConnection';
 import Filter from './components/Filter'
+import { useNavigate, useSearchParams, Link, useLocation } from 'react-router-dom';
 
  //Modal Style
  const customStyles = {
@@ -57,9 +46,12 @@ const Connections = () => {
   const [showEditModal, setShowEditModal] = useState(false);
   const [showDetailModal, setShowDetailModal] = useState(false);
   const ModalComponent = useConnectionDetailsModal ? ConnectionDetailsModal : Modal;
+  const [currParams, setCurrParams] = useState('');
   
 
-  const userID = "63645e4850049bfd1e89637a";
+  const userID = JSON.parse(localStorage.getItem('user'))._id
+  const navigate = useNavigate()
+  const location = useLocation()
 
   useEffect(() => {
     const getConnections = async () => {
@@ -67,8 +59,15 @@ const Connections = () => {
       setConnections(res);
     };
 
-    getConnections();
-  }, []);
+    getConnections() 
+    let params = (new URL(document.location)).searchParams;
+    if (params.toString().length > 0) {
+      updateConnectionDataState(params.get("connectionId"))
+      setCurrParams(params.toString())
+      //set note id = asfdhasjfhlskj
+      //set isopennote = true
+    }
+  }, [location])
 
 const updateConnectionDataState = async (connection_id) => {
   const connectionData = await fetchConnection(connection_id);
@@ -152,7 +151,6 @@ const pinConnection = async (e) => {
   const id = connection._id
   const getConnectionRes = await fetch(`${process.env.REACT_APP_API_URL}/api/clients/${userID}/${id}`)
   const ConnectiontoPin = await getConnectionRes.json()
-  // console.log(connection.pinned)
   let updConnection = null
   if(!connection.pinned) {
   updConnection = { ...ConnectiontoPin, pinned: true };
@@ -187,7 +185,6 @@ const pinFilter = async () => {
     setConnections(res);
     setPinFilterStatus(false)
   }
-  // else: fetch connections and set connections
 }
 
 //Active Button
@@ -213,25 +210,29 @@ const handleActiveCheckbox = async (e) => {
 
   return (
 
-    <div className="clients">
+    <div className="clients-wrapper">
+      <section className="connections-top-buttons">
+        <button className="btn btn-primary openModalBtn" onClick={() => setShowAddModalIsOpen(true)}>Add</button>
+        <div className="connections-filter-buttons">
+          <Filter onPinFilter={pinFilter}/>
+        </div>
+      </section>
       <section className="page-connections" >
       <h2>All Connections</h2>
-      <p><button className="btn btn-primary openModalBtn" onClick={() => setShowAddModalIsOpen(true)}>Add</button></p>
-      <Filter onPinFilter={pinFilter}/>
       <ModalComponent
         className="credence-modal modal-connection-detail"
         isOpen={showDetailModal}
         onRequestClose={() => setShowDetailModal(false)}
       > 
         <ConnectionDetail 
+        // isOpenNote={Boolean}
+        // NoteId={id_from_state}
         connection={connection} 
         onEditBtn={() => {setShowEditModal(true)}} 
         onDeleteBtn={deleteConnection} 
         changeActiveBtn={handleActiveCheckbox}
-        // activeChecked = {activeChecked}
         onPinBtn={pinConnection}
-        onClose={setShowDetailModal}
-        // PinText={connection.pinned ?  "Pinned" : "Pin"}
+        onClose={() => {setShowDetailModal(); navigate(`/connections`)}}
         />    
       </ModalComponent>
 
@@ -240,10 +241,10 @@ const handleActiveCheckbox = async (e) => {
         isOpen={showEditModal}
         onRequestClose={() => setShowEditModal(false)}
       >
-        <button onClick = {() => setShowEditModal(false)}><i className="icon-close"></i></button>
         <EditConnection 
         connection={connection}
         onEdit={editConnection}
+        onClose={setShowEditModal}
         />       
       </ModalComponent>
 
@@ -263,7 +264,7 @@ const handleActiveCheckbox = async (e) => {
         /></div>
         ) : (
           <p className="error-message">
-            <button>Add a new connection</button>
+            <button>Add Your First Connection</button>
           </p>
         )}
         </section>
