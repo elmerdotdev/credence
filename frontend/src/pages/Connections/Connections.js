@@ -208,6 +208,14 @@ const handleActiveCheckbox = async (e) => {
   
 }; 
 
+// gmail integration
+const gmailIntegration =  async () => {
+  const res = await fetch(`${process.env.REACT_APP_API_URL}/api/users/gmailauth/${userID}`);
+  const output = await res.json()
+  console.log(output)
+
+} 
+
   return (
 
     <div className="clients-wrapper">
@@ -219,6 +227,9 @@ const handleActiveCheckbox = async (e) => {
       </section>
       <section className="page-connections" >
       <h2>All Connections</h2>
+      <p><button className="openModalBtn" onClick={() => setShowAddModalIsOpen(true)}>Add</button></p>
+      <p><button onClick={gmailIntegration}>Intergrate with Gmail</button></p>
+      <Filter onPinFilter={pinFilter}/>
       <ModalComponent
         className="credence-modal modal-connection-detail"
         isOpen={showDetailModal}
