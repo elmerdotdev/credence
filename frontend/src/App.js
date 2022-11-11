@@ -21,6 +21,7 @@ import Home from './pages/Landing/Home/Home';
 import Features from './pages/Landing/Features/Features';
 import Pricing from './pages/Landing/Pricing/Pricing';
 import About from './pages/Landing/About/About';
+import Onboarding from './pages/Onboarding/Onboarding';
 
 // Components
 import Header from './components/Header/Header';
@@ -78,6 +79,7 @@ function App() {
                         <Route path="/signup" element={<Signup />} />
                         <Route path="/successsignup" element={<SuccessSignup />} />
                         <Route path="/reports" element={<Reports />} />
+                        <Route path="/onboarding" element={<Onboarding />} />
                     </Routes>
                 </div>
             </section>
