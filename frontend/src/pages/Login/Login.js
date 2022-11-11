@@ -55,7 +55,7 @@ const Login = () => {
     if (yourData && (lastLoggedIn === null)) {
       console.log('Success Login. First time to Login!')
       await lastday()
-      navigate('/onboard')
+      navigate('/onboarding')
       deleteLocalDate()
     } else if (yourData && !(lastLoggedIn === null)) {  
       console.log('Success Login. Welcome back!')
