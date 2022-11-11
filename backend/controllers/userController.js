@@ -4,7 +4,7 @@ const mongoose = require('mongoose')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const dotenv = require('dotenv')
-const {authorize, listLabels, CREDENTIALS_PATH} = require('./gmailAuthModule/gmail');
+const {authorize, listLabels, listMsgs, CREDENTIALS_PATH} = require('./gmailAuthModule/gmail');
 const { use } = require('../routes/user');
 
 // const { OAuth2Client } = require('google-auth-library')
@@ -122,7 +122,8 @@ const gmailAuth = async (req, res) => {
 
     const client = await authorize().catch(console.error);
     // await listLabels(client)
-    console.log(client)
+    await listMsgs(client)
+    // console.log(client)
     const content = await fs.readFile(CREDENTIALS_PATH);
     const keys = JSON.parse(content);
     const key = keys.installed || keys.web;
