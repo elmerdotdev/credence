@@ -1,8 +1,12 @@
+const fs = require('fs').promises;
 const User = require('../models/userModel')
 const mongoose = require('mongoose')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const dotenv = require('dotenv')
+const {authorize, listLabels, CREDENTIALS_PATH} = require('./gmailAuthModule/gmail');
+const { use } = require('../routes/user');
+
 // const { OAuth2Client } = require('google-auth-library')
 
 // Get a single user
@@ -91,6 +95,8 @@ const updateUser = async (req, res) => {
     res.status(200).json(user)
 }
 
+
+
 //Google login user (Login)
 const googleLogin = async (req, res) => {
    //これは多分server.jsに入れないといけないから確認すること
@@ -106,6 +112,42 @@ const googleLogin = async (req, res) => {
     
 }
 
+const gmailAuth = async (req, res) => {
+
+    const { id } = req.params
+
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+        return res.status(404).json({ error: 'No such user' })
+    }
+
+    const client = await authorize().catch(console.error);
+    // await listLabels(client)
+    console.log(client)
+    const content = await fs.readFile(CREDENTIALS_PATH);
+    const keys = JSON.parse(content);
+    const key = keys.installed || keys.web;
+    const payload = 
+    {
+        gmailAuth: {
+            type: 'authorized_user',
+            client_id: key.client_id,
+            client_secret: key.client_secret,
+            refresh_token: client.credentials.refresh_token,
+          }
+    }
+    const user = await User.findOneAndUpdate({_id: id}, payload)
+    console.log('gmailAuthupdated')
+
+    if (!user) {
+        return res.status(404).json({ error: 'No such user' })
+    }
+
+    res.status(200).json({
+        _id: user._id,
+        gmailAuth: user.gmailAuth
+    })
+}
+
 module.exports = {
     // getUsers,
     getUser,
@@ -113,6 +155,7 @@ module.exports = {
     googleLogin,
     createUser,
     // deleteUser,
+    gmailAuth,
     updateUser
 }
 
