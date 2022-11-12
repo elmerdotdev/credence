@@ -74,7 +74,7 @@ const Onboarding = () => {
                             <button onClick={skiptoDashboard} className='btn btn-primary-reverse'>Skip</button>
                             <button onClick={movepage2} className='btn btn-primary'>Next</button>
                         </div>
-                        <img src={circle1_mobile} alt="page1" className='flow-circles'/>
+                        <img src={circle1_desktop} alt="page1" className='flow-circles'/>
                     </div>
                 </div>
             </div>
@@ -97,7 +97,7 @@ const Onboarding = () => {
                             <button onClick={skiptoDashboard} className='btn btn-primary-reverse'>Skip</button>
                             <button onClick={movepage3} className='btn btn-primary'>Next</button>
                         </div>
-                        <img src={circle2_mobile} alt="page2" className='flow-circles'/>
+                        <img src={circle2_desktop} alt="page2" className='flow-circles'/>
                     </div>
                 </div>
             </div>
@@ -135,7 +135,7 @@ const Onboarding = () => {
                 <div className="grid-box">
                     <div className="title-grid">
                         <h2>Email Integration</h2>
-                        <p>Review and search for Emails without leaving the app with our Gmail integration function</p>
+                        <p className='page4-p'>Review and search for Emails without leaving the app with our Gmail integration function</p>
                     </div>
                     <div className='design'><img src={page4_img} alt="email-integration" /></div>
                     <div className="btn-grid">
@@ -143,7 +143,7 @@ const Onboarding = () => {
                             <Link to=''><button className='btn btn-primary-reverse gmail-btn'>Connect Gmail</button></Link>
                             <Link to='/dashboard'><button className='btn btn-primary dash-btn'>Go to Dashboard</button></Link>
                         </div>
-                        <img src={circle4_mobile} alt="page4" className='flow-circles'/>
+                        <img src={circle4_desktop} alt="page4" className='flow-circles'/>
                     </div>
                 </div>
             </div>
