@@ -17,6 +17,7 @@ const Notes = ( {connection, openNotification} ) => {
 
   const navigate = useNavigate()
   const location = useLocation()
+  const userID = JSON.parse(localStorage.getItem('user'))._id
 
   useEffect(() => {
     const getNotes = async () => {
@@ -33,7 +34,7 @@ const Notes = ( {connection, openNotification} ) => {
 
     //Fetch All Notes For Client
     const fetchNotes = async () => {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/notes/63645e4850049bfd1e89637a/${connectionId}`)
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/notes/${userID}/${connectionId}`)
       const data = await response.json()
 
       if (response.ok) {
@@ -135,6 +136,7 @@ const deleteNote = async () => {
           notes = {notes}
           onAdd = {addNote}
           connection = {connection}
+          userID = {userID}
         />
 
         {viewNoteIsOpen &&
