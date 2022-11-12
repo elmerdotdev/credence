@@ -15,13 +15,13 @@ import Signup from './pages/Signup/Signup';
 import SuccessSignup from './pages/Signup/SuccessSignup';
 import Reports from './pages/Reports/Reports';
 import Logout from './pages/Login/Logout';
+import Onboarding from './pages/Onboarding/Onboarding';
 
 // Landing Pages
 import Home from './pages/Landing/Home/Home';
 import Features from './pages/Landing/Features/Features';
 import Pricing from './pages/Landing/Pricing/Pricing';
 import About from './pages/Landing/About/About';
-import Onboarding from './pages/Onboarding/Onboarding';
 
 // Components
 import Header from './components/Header/Header';
