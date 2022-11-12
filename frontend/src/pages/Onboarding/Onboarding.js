@@ -8,9 +8,9 @@ import page1_img from '../../images/Onboarding/page1_img.svg'
 import page2_img from '../../images/Onboarding/page2_img.svg'
 import page3_img from '../../images/Onboarding/page3_img.svg'
 import page4_img from '../../images/Onboarding/page4_img.svg'
-import circle1_mobile from '../../images/Onboarding/page1_circle_mobile.svg'
-import circle2_mobile from '../../images/Onboarding/page2_circle_mobile.svg'
-import circle4_mobile from '../../images/Onboarding/page4_circle_mobile.svg'
+// import circle1_mobile from '../../images/Onboarding/page1_circle_mobile.svg'
+// import circle2_mobile from '../../images/Onboarding/page2_circle_mobile.svg'
+// import circle4_mobile from '../../images/Onboarding/page4_circle_mobile.svg'
 import circle1_desktop from '../../images/Onboarding/page1_circle_desktop.svg'
 import circle2_desktop from '../../images/Onboarding/page2_circle_desktop.svg'
 import circle3_desktop from '../../images/Onboarding/page3_circle_desktop.svg'
@@ -22,12 +22,14 @@ const Onboarding = () => {
         document.querySelector('body').removeAttribute("class")
         document.querySelector('body').classList.add('no-sidebar')
       }, [])
-  
+      
+      //OPEN & CLOSE page
       const [FirstmodalIsOpen, setFirstModalIsOpen] = useState(true)
       const [SecondmodalIsOpen, setSecondModalIsOpen] = useState(false)
       const [ThirdmodalIsOpen, setThirdModalIsOpen] = useState(false)
       const [ForthmodalIsOpen, setForthModalIsOpen] = useState(false)
 
+      //FOR "Next" Button
       const movepage2 = () => {
         setFirstModalIsOpen(false)
         setSecondModalIsOpen(true)
@@ -40,6 +42,7 @@ const Onboarding = () => {
         setThirdModalIsOpen(false)
         setForthModalIsOpen(true)
       }
+      //FOR "Back Page" icon on Header 
       const backpage1 = () => {
         setFirstModalIsOpen(true)
         setSecondModalIsOpen(false)
@@ -52,7 +55,7 @@ const Onboarding = () => {
         setThirdModalIsOpen(true)
         setForthModalIsOpen(false)
       }
-
+      //FOR "Skip" Button
       const navigate = useNavigate()
       const skiptoDashboard = () => {
         navigate('/dashboard')
@@ -62,13 +65,15 @@ const Onboarding = () => {
     <section className="page-onboarding">
         <Modal isOpen={FirstmodalIsOpen} className='modal-onboarding'>
             <div className="onboarding-page">
-            <Link to="/dashboard" className='header-close'><i className='icon-close'></i></Link>
+                <Link to="/dashboard" className='header-close'><i className='icon-close'></i></Link>
                 <div className="grid-box">
                     <div className="title-grid">
-                        <h2>Calender</h2>
+                        <h2>Calendar</h2>
                         <p>Manage all your shared events with connections, all in one place</p>
                     </div>
+
                     <div className='design'><img src={page1_img} alt="calender" /></div>
+
                     <div className="btn-grid">
                         <div className="buttons">
                             <button onClick={skiptoDashboard} className='btn btn-primary-reverse'>Skip</button>
@@ -86,12 +91,15 @@ const Onboarding = () => {
                     <i className='icon-arrow-left' onClick={backpage1}></i>
                     <Link to="/dashboard"><i className='icon-close'></i></Link>
                 </div>
+
                 <div className="grid-box">
                     <div className="title-grid">
                         <h2>Connection</h2>
                         <p>Add new connections or make updates, and categorize them to your needs</p>
                     </div>
+
                     <div className='design'><img src={page2_img} alt="connection" /></div>
+
                     <div className="btn-grid">
                         <div className="buttons">
                             <button onClick={skiptoDashboard} className='btn btn-primary-reverse'>Skip</button>
@@ -109,12 +117,15 @@ const Onboarding = () => {
                     <i className='icon-arrow-left' onClick={backpage2}></i>
                     <Link to="/dashboard"><i className='icon-close'></i></Link>
                 </div>
+
                 <div className="grid-box">
                     <div className="title-grid">
                         <h2>Quickly Add Things!</h2>
                         <p>Quickly add notes, connection, and events from any of the main screens</p>
                     </div>
+
                     <div className='design'><img src={page3_img} alt="quick-add" /></div>
+
                     <div className="btn-grid">
                         <div className="buttons">
                             <button onClick={skiptoDashboard} className='btn btn-primary-reverse'>Skip</button>
@@ -132,12 +143,15 @@ const Onboarding = () => {
                     <i className='icon-arrow-left' onClick={backpage3}></i>
                     <Link to="/dashboard"><i className='icon-close'></i></Link>
                 </div>
+
                 <div className="grid-box">
                     <div className="title-grid">
                         <h2>Email Integration</h2>
-                        <p className='page4-p'>Review and search for Emails without leaving the app with our Gmail integration function</p>
+                        <p className='page4-p'>Review and search for emails without leaving the app with our Gmail integration function</p>
                     </div>
+
                     <div className='design'><img src={page4_img} alt="email-integration" /></div>
+
                     <div className="btn-grid">
                         <div className="buttons-last">
                             <Link to=''><button className='btn btn-primary-reverse gmail-btn'>Connect Gmail</button></Link>
@@ -148,8 +162,6 @@ const Onboarding = () => {
                 </div>
             </div>
         </Modal>
-
-
     </section>
   )
 }

@@ -1,5 +1,6 @@
 .modal-onboarding{  
-    padding:17px 20px 20px;  
+    padding:17px 20px 20px;
+    font-family: $font;  
     .onboarding-page{
         .header-close,
         .header-arrow{
@@ -27,12 +28,10 @@
             margin:0 auto 100px auto;
             display: flex;
             justify-content: center;
-            
         }
         .buttons{
             display: flex;
             gap: 21px;
-            // width: 80%;
             margin: 0 auto 36px auto;
             justify-content: space-between;
             button,
@@ -63,12 +62,10 @@
     }
     
     @media screen and (min-width:$screen-desktop){
-        
             background-color:$color-dusty-gray;
             display: flex;
             justify-content: center;
             align-items: center;
-            // padding: 109px 305px;
             height: 100vh;
             padding: 0;
         .onboarding-page{
@@ -124,6 +121,7 @@
                     grid-row: 2 / 3;
                     .buttons{
                        margin-bottom: 0;
+                       width: 70%;
                     }
                     .buttons-last{
                         align-items: center;
@@ -141,9 +139,7 @@
                         height: 17px;
                     }
                 }
-
             }
-        }
-        
+        } 
     }
 }
