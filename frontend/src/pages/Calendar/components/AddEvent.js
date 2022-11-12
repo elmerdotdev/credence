@@ -111,6 +111,7 @@ const AddEvent = (props) => {
 
         props.onAddState(data)
         props.onToggle(false)
+        props.openNotification('Event added')
     }
 
     return (
