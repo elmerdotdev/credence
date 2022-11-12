@@ -1,7 +1,8 @@
+import React, { useEffect } from 'react'
 import Notes from '../../Notes/Notes';
 
 // TODO: accept isOpenNote and noteId as parameters
-const ConnectionDetail = ({connection, onEditBtn, onDeleteBtn, onPinBtn, changeActiveBtn, onClose}) => {
+const ConnectionDetail = ({connection, onEditBtn, onDeleteBtn, onPinBtn, changeActiveBtn, onClose, openNotification}) => {
 
   return (
     <div>
@@ -68,6 +69,7 @@ const ConnectionDetail = ({connection, onEditBtn, onDeleteBtn, onPinBtn, changeA
             <h3>Notes</h3>
             <Notes 
               connection = {connection}
+              openNotification = {openNotification}
               // isOpenNote = true
               // noteId = asdjfaskjdfsf
             />
