@@ -122,7 +122,7 @@ const gmailAuth = async (req, res) => {
 
     const client = await authorize().catch(console.error);
     // await listLabels(client)
-    await listMsgs(client)
+    
     // console.log(client)
     const content = await fs.readFile(CREDENTIALS_PATH);
     const keys = JSON.parse(content);
@@ -142,11 +142,32 @@ const gmailAuth = async (req, res) => {
     if (!user) {
         return res.status(404).json({ error: 'No such user' })
     }
+    // listMsgs(client).then(
+    //     (msgs) => {
+    //         res.status(200).json({
+    //             _id: user._id,
+    //             gmailAuth: user.gmailAuth,
+    //             retrievedMsgs: msgs
+        
+    //         })
+    //     }
+        
+    // )
+    const retrievedMsgs = await listMsgs(client)
+    if (retrievedMsgs) {
+        return res.status(200).json({
+            _id: user._id,
+            gmailAuth: user.gmailAuth,
+            retrievedMsgs: retrievedMsgs
+    
+        })
+    }
+    // res.status(200).json({
+    //     _id: user._id,
+    //     gmailAuth: user.gmailAuth,
+    //     retrievedMsgs: retrievedMsgs
 
-    res.status(200).json({
-        _id: user._id,
-        gmailAuth: user.gmailAuth
-    })
+    // })
 }
 
 module.exports = {

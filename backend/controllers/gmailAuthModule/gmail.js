@@ -102,17 +102,35 @@ async function listMsgs(auth) {
     return;
   }
   console.log('Message found');
-
+  let retrievedMsgs = []
   for (let i = 0; i < messages.length; i++) {
+    const msgObj = {}
     const res = await gmail.users.messages.get({
       userId: 'me',
       id: messages[i].id
       // format: 'raw'
     });
-        console.log(res.data.payload.parts[0].body.data)
+        // console.log(res.data.payload.parts[0].body.data)
+    
         let buff = new Buffer.from(res.data.payload.parts[0].body.data, 'base64');
         let text = buff.toString('utf-8');
-        console.log(text)
+        // console.log(text)
+        res.data.payload.headers.forEach((header) => {
+          if (header.name == 'From'){
+            console.log(header)
+            msgObj.from = header.value
+          }
+          if (header.name == 'To'){
+            console.log(header)
+            msgObj.to = header.value
+          }
+          if (header.name == 'Subject'){
+            console.log(header)
+            msgObj.subject = header.value
+          }
+        })
+        msgObj.snippet = res.data.snippet
+        retrievedMsgs.push(msgObj)
 
         // const simpleParser = require('mailparser').simpleParser;
         // let parsed = await simpleParser(res.data.raw);
@@ -125,6 +143,7 @@ async function listMsgs(auth) {
     // console.log(`- ${res.data.payload.headers[22]}`);
     // console.log(res.data.payload.headers);
   }
+  return retrievedMsgs
   
   // const res1 = await gmail.users.messages.get({
   //   userId: 'me',
