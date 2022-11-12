@@ -1,15 +1,3 @@
-// 【✅】显示所有clients
-// 【✅】用modal打开添加client表格 用cancel button关闭表格
-// 【✅】insert一个新的client进database
-// 【✅】client card只显示姓名/title/organization
-// 【✅】点开每个client显示详情，包括姓名/title/organization/email/phone
-// 【✅】将active status改成可以one click更改状态的button加入ui
-// 【✅】新增connection表格中加入industry，且显示在ui
-// 【✅】在client details中用modal增加edit client功能
-// 【✅】edit button打开edit function modal
-// 【✅】edit function
-// 【✅】delete funtion
-// 【✅】将pin button改成one click更改状态
 
 import React from 'react';
 import { useState, useEffect } from 'react';
@@ -20,6 +8,8 @@ import ClientCards from './components/ClientCards';
 import ConnectionDetail from './components/ConnectionDetail';
 import EditConnection from './components/EditConnection';
 import Filter from './components/Filter'
+import { useNavigate, useSearchParams, Link, useLocation } from 'react-router-dom';
+import Notification from '../../components/Notification/Notification'
 
  //Modal Style
  const customStyles = {
@@ -57,9 +47,14 @@ const Connections = () => {
   const [showEditModal, setShowEditModal] = useState(false);
   const [showDetailModal, setShowDetailModal] = useState(false);
   const ModalComponent = useConnectionDetailsModal ? ConnectionDetailsModal : Modal;
+  const [currParams, setCurrParams] = useState('');
+  const [notificationOpen, setNotificationOpen] = useState(false)
+  const [notificationMessage, setNotificationMessage] = useState('')
   
 
-  const userID = "63645e4850049bfd1e89637a";
+  const userID = JSON.parse(localStorage.getItem('user'))._id
+  const navigate = useNavigate()
+  const location = useLocation()
 
   useEffect(() => {
     const getConnections = async () => {
@@ -67,8 +62,15 @@ const Connections = () => {
       setConnections(res);
     };
 
-    getConnections();
-  }, []);
+    getConnections() 
+    let params = (new URL(document.location)).searchParams;
+    if (params.toString().length > 0) {
+      updateConnectionDataState(params.get("connectionId"))
+      setCurrParams(params.toString())
+      //set note id = asfdhasjfhlskj
+      //set isopennote = true
+    }
+  }, [location])
 
 const updateConnectionDataState = async (connection_id) => {
   const connectionData = await fetchConnection(connection_id);
@@ -103,7 +105,7 @@ const editConnection = async (inputConnObj) => {
   setConnections(res);
   console.log('finish edit');
   setShowEditModal(false);
-  alert('Connection has been updated');
+  openNotification('Connection updated')
 };
 
 // Fetch Connections
@@ -133,7 +135,7 @@ const addConnection = async (newClient) => {
   const data = await res.json();
   setConnections([...connections, data]);
   setShowAddModalIsOpen(false);
-  alert('Connection has been added');
+  openNotification('Connection added')
 };
 
  // Delete Connection
@@ -142,7 +144,7 @@ const addConnection = async (newClient) => {
   await fetch(`${process.env.REACT_APP_API_URL}/api/clients/${id}`, {
     method: 'DELETE',
   });
-  alert('Connection has been deleted')
+  openNotification('Connection deleted')
   setConnections(connections.filter((connection) => connection._id !== id));
   setShowDetailModal(false)
 };
@@ -152,7 +154,6 @@ const pinConnection = async (e) => {
   const id = connection._id
   const getConnectionRes = await fetch(`${process.env.REACT_APP_API_URL}/api/clients/${userID}/${id}`)
   const ConnectiontoPin = await getConnectionRes.json()
-  // console.log(connection.pinned)
   let updConnection = null
   if(!connection.pinned) {
   updConnection = { ...ConnectiontoPin, pinned: true };
@@ -187,7 +188,6 @@ const pinFilter = async () => {
     setConnections(res);
     setPinFilterStatus(false)
   }
-  // else: fetch connections and set connections
 }
 
 //Active Button
@@ -211,6 +211,20 @@ const handleActiveCheckbox = async (e) => {
   
 }; 
 
+// gmail integration
+const gmailIntegration =  async () => {
+  const res = await fetch(`${process.env.REACT_APP_API_URL}/api/users/gmailauth/${userID}`);
+  const output = await res.json()
+  console.log(output)
+
+} 
+
+// Open notification
+const openNotification = (message) => {
+  setNotificationMessage(message)
+  setNotificationOpen(true)
+}
+
   return (
 
     <div className="clients-wrapper">
@@ -222,20 +236,24 @@ const handleActiveCheckbox = async (e) => {
       </section>
       <section className="page-connections" >
       <h2>All Connections</h2>
+      <p><button className="openModalBtn" onClick={() => setShowAddModalIsOpen(true)}>Add</button></p>
+      <p><button onClick={gmailIntegration}>Intergrate with Gmail</button></p>
+      <Filter onPinFilter={pinFilter}/>
       <ModalComponent
         className="credence-modal modal-connection-detail"
         isOpen={showDetailModal}
         onRequestClose={() => setShowDetailModal(false)}
       > 
         <ConnectionDetail 
+        // isOpenNote={Boolean}
+        // NoteId={id_from_state}
         connection={connection} 
         onEditBtn={() => {setShowEditModal(true)}} 
         onDeleteBtn={deleteConnection} 
         changeActiveBtn={handleActiveCheckbox}
-        // activeChecked = {activeChecked}
         onPinBtn={pinConnection}
-        onClose={setShowDetailModal}
-        // PinText={connection.pinned ?  "Pinned" : "Pin"}
+        onClose={() => {setShowDetailModal(); navigate(`/connections`)}}
+        openNotification={openNotification}
         />    
       </ModalComponent>
 
@@ -267,10 +285,14 @@ const handleActiveCheckbox = async (e) => {
         /></div>
         ) : (
           <p className="error-message">
-            <button>Add a new connection</button>
+            <button>Add Your First Connection</button>
           </p>
         )}
         </section>
+
+        {notificationOpen && 
+          <Notification message={notificationMessage} onClose={() => setNotificationOpen(false)} />
+        }
   </div>
 
   )

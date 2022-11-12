@@ -1,21 +1,21 @@
 import React, { useState, useEffect } from 'react'
 import SearchResults from './SearchResults';
-import ViewEvent from '../../Calendar/components/ViewEvent';
-import Calendar from '../../Calendar/Calendar';
-// import ConnectionDetail from '../../Connections/components/ConnectionDetail';
-import Modal from 'react-modal';
 import { useNavigate, useSearchParams, Link } from 'react-router-dom';
+import Notes from '../../Notes/Notes'
 
 const HeaderSearch = () => {
     const [keyword, setKeyword ]= useState('');
     const [events, setEvents] = useState([]);
     const [connections, setConnections] = useState([]);
-    const [showDetailModal, setShowDetailModal] = useState(false);
+    const [notes, setNotes] = useState(null)
     const [modalViewOpen, setModalViewOpen] = useState(false)
     const [filteredConnections, setFilteredConnections] = useState([]);
     const [filteredEvents, setFilteredEvents] = useState([]);
+    const [filteredNotes, setFilteredNotes] = useState([]);
     const [searchConnParams] = useState(["firstname", "lastname", "company", "position", "phone", "email"]);
     const [searchEventParams] = useState(["title", "type"]);
+    const [searchNoteParams] = useState(["title", "content"]);
+    const [sortedAllResults, setSortedAllResults] = useState([]);
 
     const userID = "63645e4850049bfd1e89637a";
     const navigate = useNavigate();
@@ -39,6 +39,15 @@ const HeaderSearch = () => {
         getActivities()
         }, [])
 
+    useEffect(() => {
+        const getNotes = async () => {
+            const res = await fetchNotes();
+            setNotes(res);
+        }
+    
+        getNotes()
+        }, [])
+
 
     // Fetch Connections
     const fetchConnections = async () => {
@@ -55,27 +64,45 @@ const HeaderSearch = () => {
         return data
     }
 
+     //Fetch All Notes For Client
+     const fetchNotes = async () => {
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/notes/${userID}`)
+        const data = await response.json()
+  
+        if (response.ok) {
+            return data
+        }
+      }
+
     const toggleEvent = (id) => {
-        navigate(`/calendar?eventId=${id}&modalViewOpen=1&userId=${userID}`)
+        navigate(`/calendar?eventId=${id}`)
         setKeyword('')
         search('')
-        //  console.log("Event search result has been clicked!")
     }
 
     const toggleConnDetail = (id) => {
-        console.log(id)
-        console.log("Connection search result has been clicked!")
-        setShowDetailModal(true);
+        navigate(`connections/?connectionId=${id}`)
+        // console.log(id)
+        console.log("connection clicked")
+        setKeyword('')
+        search('')
+    }
+
+    const toggleNoteDetail = (note_id, conn_id) => {
+        navigate(`connections/?connectionId=${conn_id}&noteId=${note_id}`)
+        // open connection modal -> open note modal
+        console.log("note clicked")
+        setKeyword('')
+        search('')
     }
 
   
 
     const search = (queryStr) => {
-
         if (queryStr === "") {
-            setFilteredConnections([]);setFilteredEvents([])
+            setFilteredConnections([]);setFilteredEvents([]); setFilteredNotes([]); setSortedAllResults([]);
         }else{
-            const filteredConn = connections.filter((item) => {
+            let filteredConn = connections.filter((item) => {
                 return searchConnParams.some((searchConnParam) => {
                     return (
                         item[searchConnParam]
@@ -85,20 +112,48 @@ const HeaderSearch = () => {
                     );
                 });
         });
+        filteredConn.map((connection)=> connection.class = "connection") ;
         setFilteredConnections(filteredConn);
+        
 
-            const filteredEve = events.filter((item) => {
-                return searchEventParams.some((searchEventParam) => {
-                    return (
-                        item[searchEventParam]
-                            .toString()
-                            .toLowerCase()
-                            .indexOf(queryStr.toLowerCase()) > -1
+        let filteredEve = events.filter((item) => {
+            return searchEventParams.some((searchEventParam) => {
+                return (
+                    item[searchEventParam]
+                        .toString()
+                        .toLowerCase()
+                        .indexOf(queryStr.toLowerCase()) > -1
+                );
+            });
+        });
+        filteredEve.map((event)=> event.class = "event") ;
+        setFilteredEvents(filteredEve);
+        
+        
+        let filteredNts = notes.filter((item) => {
+            return searchNoteParams.some((searchNoteParam) => {
+                return (          
+                    item[searchNoteParam]
+                        .toString()
+                        .toLowerCase()
+                        .indexOf(queryStr.toLowerCase()) > -1
                     );
                 });
         });
-        setFilteredEvents(filteredEve);}
+        filteredNts.map((note)=> note.class = "note") ;
+        setFilteredNotes(filteredNts);
+
+        const allResults = [...filteredConn, ...filteredEve, ...filteredNts];    
+          
+        allResults.sort((x, y) => {
+            return new Date(x.updatedAt) <= new Date(y.updatedAt) ? 1 : -1
+        })
+        setSortedAllResults(allResults)
     }
+    }
+
+
+
     return (
         <div className="header-search-qa">
             <form className="header-search-form" autoComplete="off">
@@ -108,10 +163,8 @@ const HeaderSearch = () => {
                 </button>
             </form>
           
-            <SearchResults filteredConnections={filteredConnections} filteredEvents={filteredEvents}  modalOpen={modalViewOpen} onToggleEvent= {() => toggleEvent} onToggleConn = {() => toggleConnDetail}/>
-            {/* {modalViewOpen &&
-            <ViewEvent modalOpen={modalViewOpen} onDelete={Calendar.deleteEvent} onToggle={toggleViewModal} />} */}
-            {/* <ConnectionDetail /> */}
+            <SearchResults filteredConnections={filteredConnections} filteredEvents={filteredEvents}  filteredNotes={filteredNotes} modalOpen={modalViewOpen} onToggleEvent= {toggleEvent} onToggleConn = {toggleConnDetail} onToggleNote = {toggleNoteDetail} sortedAllResults={sortedAllResults}/>
+
  
             <button className="header-quick-add">
                 <span>Quick Add</span>

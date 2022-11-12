@@ -1,6 +1,8 @@
+import React, { useEffect } from 'react'
 import Notes from '../../Notes/Notes';
 
-const ConnectionDetail = ({connection, onEditBtn, onDeleteBtn, onPinBtn, changeActiveBtn, onClose}) => {
+// TODO: accept isOpenNote and noteId as parameters
+const ConnectionDetail = ({connection, onEditBtn, onDeleteBtn, onPinBtn, changeActiveBtn, onClose, openNotification}) => {
 
   return (
     <div>
@@ -65,7 +67,12 @@ const ConnectionDetail = ({connection, onEditBtn, onDeleteBtn, onPinBtn, changeA
         <div className="modal-connection-detail-bottom">
           <div className="modal-connection-detail-content">
             <h3>Notes</h3>
-            <Notes />
+            <Notes 
+              connection = {connection}
+              openNotification = {openNotification}
+              // isOpenNote = true
+              // noteId = asdjfaskjdfsf
+            />
           </div>
         </div>
   </div>

@@ -11,6 +11,7 @@ import { useNavigate, useSearchParams, Link, useLocation } from 'react-router-do
 import EventsWidget from './components/EventsWidget'
 import AddEvent from './components/AddEvent'
 import ViewEvent from './components/ViewEvent'
+import Notification from '../../components/Notification/Notification'
 
 const Calendar = () => {
   const [events, setEvents] = useState([])
@@ -20,7 +21,8 @@ const Calendar = () => {
   const [addDate, setAddDate] = useState()
   const [viewEventId, setViewEventId] = useState('')
   const [currParams, setCurrParams] = useState('');
-
+  const [notificationOpen, setNotificationOpen] = useState(false)
+  const [notificationMessage, setNotificationMessage] = useState('')
   // console.log("searchParams: ", searchParams[0])
 
   // Modal states
@@ -46,6 +48,7 @@ const Calendar = () => {
     if (params.toString().length > 0) {
       setModalViewOpen(true)
       setViewEventId(params.get("eventId"))
+      console.log(viewEventId)
       setCurrParams(params.toString())
     }
   }, [location])
@@ -66,6 +69,7 @@ const Calendar = () => {
 
     setEvents(events.filter(event => event._id !== id))
     toggleViewModal(false)
+    openNotification('Event deleted')
   }
 
   // Get clients
@@ -119,6 +123,12 @@ const Calendar = () => {
     setEvents(current => [...current, event])
   }
 
+  // Open notification
+  const openNotification = (message) => {
+    setNotificationMessage(message)
+    setNotificationOpen(true)
+  }
+
   return (
     <section className="page-calendar">
 
@@ -155,11 +165,15 @@ const Calendar = () => {
       <EventsWidget events={events} currMonth={currentMonth} firstDay={monthFirstDay} lastDay={monthLastDay} onEventClick={handleEventClick} fetchClient={fetchClient} openAddModal={toggleAddModal} />
 
       {modalAddOpen &&
-        <AddEvent modalOpen={modalAddOpen} onToggle={toggleAddModal} onDateClick={addDate} onAddState={addToEventsState} fetchClients={fetchClients} userId={userID} />
+        <AddEvent modalOpen={modalAddOpen} onToggle={toggleAddModal} onDateClick={addDate} onAddState={addToEventsState} fetchClients={fetchClients} userId={userID} openNotification={openNotification} />
       }
 
       {modalViewOpen &&
         <ViewEvent modalOpen={modalViewOpen} onToggle={toggleViewModal} onDelete={deleteEvent} userId={userID} eventId={viewEventId} fetchClient={fetchClient} />
+      }
+
+      {notificationOpen && 
+        <Notification message={notificationMessage} onClose={() => setNotificationOpen(false)} />
       }
 
     </section>

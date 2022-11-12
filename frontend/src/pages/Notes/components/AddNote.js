@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
 
-const AddNote = ({ onAdd }) => {
+const AddNote = ({ onAdd, connection }) => {
     const [title, setTitle] = useState('')
     const [content, setContent] = useState('')
-    const [client_id, setClientId] = useState('633b2f54c6a3c84891b1bf72')
+    const [client_id, setClientId] = useState(connection._id)
     const [user_id, setUserId] = useState('63645e4850049bfd1e89637a')
     const [activity_id, setActivityId] = useState('')
+
 
     const onSubmit = (e) => {
         e.preventDefault()
