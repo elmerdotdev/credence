@@ -9,6 +9,7 @@ import ConnectionDetail from './components/ConnectionDetail';
 import EditConnection from './components/EditConnection';
 import Filter from './components/Filter'
 import { useNavigate, useSearchParams, Link, useLocation } from 'react-router-dom';
+import Notification from '../../components/Notification/Notification'
 
  //Modal Style
  const customStyles = {
@@ -47,6 +48,8 @@ const Connections = () => {
   const [showDetailModal, setShowDetailModal] = useState(false);
   const ModalComponent = useConnectionDetailsModal ? ConnectionDetailsModal : Modal;
   const [currParams, setCurrParams] = useState('');
+  const [notificationOpen, setNotificationOpen] = useState(false)
+  const [notificationMessage, setNotificationMessage] = useState('')
   
 
   const userID = JSON.parse(localStorage.getItem('user'))._id
@@ -102,7 +105,7 @@ const editConnection = async (inputConnObj) => {
   setConnections(res);
   console.log('finish edit');
   setShowEditModal(false);
-  alert('Connection has been updated');
+  openNotification('Connection updated')
 };
 
 // Fetch Connections
@@ -132,7 +135,7 @@ const addConnection = async (newClient) => {
   const data = await res.json();
   setConnections([...connections, data]);
   setShowAddModalIsOpen(false);
-  alert('Connection has been added');
+  openNotification('Connection added')
 };
 
  // Delete Connection
@@ -141,7 +144,7 @@ const addConnection = async (newClient) => {
   await fetch(`${process.env.REACT_APP_API_URL}/api/clients/${id}`, {
     method: 'DELETE',
   });
-  alert('Connection has been deleted')
+  openNotification('Connection deleted')
   setConnections(connections.filter((connection) => connection._id !== id));
   setShowDetailModal(false)
 };
@@ -216,6 +219,12 @@ const gmailIntegration =  async () => {
 
 } 
 
+// Open notification
+const openNotification = (message) => {
+  setNotificationMessage(message)
+  setNotificationOpen(true)
+}
+
   return (
 
     <div className="clients-wrapper">
@@ -244,6 +253,7 @@ const gmailIntegration =  async () => {
         changeActiveBtn={handleActiveCheckbox}
         onPinBtn={pinConnection}
         onClose={() => {setShowDetailModal(); navigate(`/connections`)}}
+        openNotification={openNotification}
         />    
       </ModalComponent>
 
@@ -279,6 +289,10 @@ const gmailIntegration =  async () => {
           </p>
         )}
         </section>
+
+        {notificationOpen && 
+          <Notification message={notificationMessage} onClose={() => setNotificationOpen(false)} />
+        }
   </div>
 
   )
