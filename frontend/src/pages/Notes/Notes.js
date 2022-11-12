@@ -3,28 +3,37 @@ import { useEffect, useState } from 'react'
 import NoteDetails from './components/NoteDetails'
 import ViewNote from './components/ViewNote'
 import EditNote from './components/EditNote'
+import { useNavigate, useLocation } from 'react-router-dom';
 
-const Notes = () => {
+// TODO: accept isOpenNote and noteId as parameters
+const Notes = ( {connection, openNotification} ) => {
   const [notes, setNotes] = useState(null)
   const [viewNoteIsOpen, setViewNoteIsOpen] = useState(false)
   const [editNoteIsOpen, setEditNoteIsOpen] = useState(false)
   const [singleNoteId, setSingleNoteId] = useState('')
   const [clientId, setClientId] = useState('')
-  
+  const [connectionId, setConnectionId ] = useState(connection._id)
+  const [currParams, setCurrParams] = useState('');
+
+  const navigate = useNavigate()
+  const location = useLocation()
 
   useEffect(() => {
     const getNotes = async () => {
       const res = await fetchNotes();
       setNotes(res);
   };
+    getNotes()
+      let params = (new URL(document.location)).searchParams;
+    if (params.toString().length > 0 && params.toString().search("noteId") !== -1) {
+      viewNote(params.get("noteId"), params.get("connectionId"))
+      setCurrParams(params.toString())
+    }
+  }, [location])
 
-    getNotes();
-  }, [])
-
-
-    //Fetch All Notes
+    //Fetch All Notes For Client
     const fetchNotes = async () => {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/notes/63645e4850049bfd1e89637a`)
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/notes/63645e4850049bfd1e89637a/${connectionId}`)
       const data = await response.json()
 
       if (response.ok) {
@@ -32,7 +41,7 @@ const Notes = () => {
       }
     }
 
-    //Fetch Note
+    // Fetch Note
     // const fetchNote= async (id) => {
     //   const response = await fetch(`${process.env.REACT_APP_API_URL}/api/notes/633b6a81145c9d79405c54ea/${notes.client_id}/${notes.id}`);
       
@@ -75,7 +84,9 @@ const addNote = async (note) => {
 
   const data = await response.json()
 
-  setNotes([...notes, data])
+  setNotes([data, ...notes ])
+
+  openNotification('Note added')
 }
 
 // Edit Note
@@ -99,6 +110,7 @@ const editNote = async(id, title, content ) => {
   setNotes(res);
   setEditNoteIsOpen(false)
   setViewNoteIsOpen(false)
+  openNotification('Note updated')
 }
 
 //Delete Note
@@ -109,6 +121,7 @@ const deleteNote = async () => {
 
   setNotes(notes.filter((note) => note._id !== singleNoteId ))
   setViewNoteIsOpen(false)
+  openNotification('Note deleted')
 }
 
  
@@ -121,6 +134,7 @@ const deleteNote = async () => {
           viewNote = {viewNote}
           notes = {notes}
           onAdd = {addNote}
+          connection = {connection}
         />
 
         {viewNoteIsOpen &&
