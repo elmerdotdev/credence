@@ -15,6 +15,7 @@ import Signup from './pages/Signup/Signup';
 import SuccessSignup from './pages/Signup/SuccessSignup';
 import Reports from './pages/Reports/Reports';
 import Logout from './pages/Login/Logout';
+import Onboarding from './pages/Onboarding/Onboarding';
 
 // Landing Pages
 import Home from './pages/Landing/Home/Home';
@@ -78,6 +79,7 @@ function App() {
                         <Route path="/signup" element={<Signup />} />
                         <Route path="/successsignup" element={<SuccessSignup />} />
                         <Route path="/reports" element={<Reports />} />
+                        <Route path="/onboarding" element={<Onboarding />} />
                     </Routes>
                 </div>
             </section>

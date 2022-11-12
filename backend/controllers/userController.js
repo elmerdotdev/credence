@@ -53,6 +53,7 @@ const loginUser = async (req, res) => {
     } else {
             res.status(200).json({
                 _id: user._id,
+                lastLoggedIn: user.lastLoggedIn
             })
     }
 }
