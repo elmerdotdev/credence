@@ -4,9 +4,14 @@
     left: 50%;
     transform: translateX(-50%);
     z-index: 9999;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     padding: .5rem 1rem;
+    width: 300px;
     background-color: $color-science-blue;
     color: $color-white;
+    border-radius: 4px 4px 0px 0px;
     transition: bottom .5s ease-in-out;
 
     &-open {
@@ -14,9 +19,9 @@
     }
 
     .icon-close {
+        @include fontSize(24);
         margin-left: 1rem;
         color: $color-white;
-        font-size: 1rem;
         cursor: pointer;
     }
 }
