@@ -1,0 +1,22 @@
+.notification-message {
+    position: fixed;
+    bottom: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    padding: .5rem 1rem;
+    background-color: $color-science-blue;
+    color: $color-white;
+    transition: bottom .5s ease-in-out;
+
+    &-open {
+        bottom: 0;
+    }
+
+    .icon-close {
+        margin-left: 1rem;
+        color: $color-white;
+        font-size: 1rem;
+        cursor: pointer;
+    }
+}
