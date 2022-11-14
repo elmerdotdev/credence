@@ -1,3 +1,11 @@
 .page-notes {
     font-size: 1rem;
 }
+
+.single-note-btns {
+    > div {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+}

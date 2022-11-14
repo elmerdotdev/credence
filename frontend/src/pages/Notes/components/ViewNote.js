@@ -35,13 +35,22 @@ const ViewNote = ({ notes, modalOpen, onDelete, toggle, clientId, noteId, toggle
         <div className = "single-note-details">
             <Modal
                 isOpen = {modalOpen}
+                className="credence-modal modal-notes-view"
             >
             <div className="single-note-btns">
-                <button onClick={() => toggle(false)}>Close</button>
-                <button onClick={() => toggleEdit(true)}>
-                    Edit
-                </button>
-                <button onClick={() => onDelete(notes.id)} >Delete</button>
+                <div>
+                    <i className="icon-close" onClick={() => toggle(false)}></i>
+                </div>
+                <div>
+                    <button className="btn btn-primary-reverse" onClick={() => toggleEdit(true)}>
+                        Edit
+                        <i className="icon-edit"></i>
+                    </button>
+                    <button className="btn btn-primary-reverse" onClick={() => onDelete(notes.id)}>
+                        Delete
+                        <i className="icon-trash"></i>
+                    </button>
+                </div>
             </div>
             <h2>{note.title}</h2>
             <p>{note.content}</p>
