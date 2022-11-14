@@ -5,7 +5,6 @@ import { useSignup } from './hooks/useSignup'
 import '../../fontello/css/credence.css';
 import logo from '../../images/logo.svg';
 import signupimage from '../../images/Register/signupimage.svg';
-// import GoogleLoginButton from '../../components/GoogleLoginButton'
 
 
 const Signup = () => {
@@ -111,9 +110,6 @@ const Signup = () => {
             </form>
           </div>
         </div>
-       
-        {/* <div>OR</div> */}
-        {/* <GoogleLoginButton/> */}
       </section>
     </div>
   )
@@ -124,14 +120,3 @@ export function useLastLogin() {
   return{lastLoggedIn, setLastLoggedIn}
 }
 export default Signup
-
-
-
-
-
-
-
-
-
-
-
