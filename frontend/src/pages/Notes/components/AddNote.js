@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
 
-const AddNote = ({ onAdd }) => {
+const AddNote = ({ onAdd, connection }) => {
     const [title, setTitle] = useState('')
     const [content, setContent] = useState('')
-    const [client_id, setClientId] = useState('633b2f54c6a3c84891b1bf72')
+    const [client_id, setClientId] = useState(connection.connection._id)
     const [user_id, setUserId] = useState('63645e4850049bfd1e89637a')
     const [activity_id, setActivityId] = useState('')
+
 
     const onSubmit = (e) => {
         e.preventDefault()
@@ -23,8 +24,8 @@ const AddNote = ({ onAdd }) => {
     }
 
     return (
-        <form className = "add-note" onSubmit={onSubmit}>
-            <div className="note-form">
+        <form className="add-note-form" onSubmit={onSubmit}>
+            <div className="input-wrapper">
                 <label>Subject</label>
                 <input 
                     type="text"
@@ -33,7 +34,7 @@ const AddNote = ({ onAdd }) => {
                     onChange={(e) => setTitle(e.target.value)}
                 />
             </div>
-            <div className="note-form">
+            <div className="input-wrapper">
                 <label>Content</label>
                 <textarea
                     type="text"
@@ -42,10 +43,9 @@ const AddNote = ({ onAdd }) => {
                     onChange={(e) => setContent(e.target.value)}
                 />
             </div>
-            <input type="submit" 
-            value="Save Note"
-            className='submit-btn'
-            />
+            <div className="input-wrapper submit-btn-wrapper">
+                <button type="submit" className="btn btn-primary">Save Note</button>
+            </div>
         </form>
 
     )

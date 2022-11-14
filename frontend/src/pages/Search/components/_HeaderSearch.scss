@@ -50,11 +50,12 @@
     max-width: 710px;
     border-radius: 8px;
     border: $color-dusty-gray 1px solid;
+    z-index: 100;
 }
 
 .search-type-button {
     border-radius: 6px;
-    border: $color-gray 1px solid;
+    border: $color-french-gray 1px solid;
     background-color: $color-white;
     color: $color-french-gray;
 }

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import Modal from 'react-modal'
 import moment from 'moment'
 
@@ -6,7 +7,9 @@ Modal.setAppElement('body');
 
 const ViewEvent = (props) => {
     const [event, setEvent] = useState({})
-    const [clientName, setClientName] = useState('')
+    const colorArray = [
+        '#F8C5A1', '#D6F99E', '#F9ADAD', '#B4D1FD', '#B8B5FF'
+    ]
 
     useEffect(() => {
         const fetchEvent = async () => {
@@ -14,13 +17,6 @@ const ViewEvent = (props) => {
             const data = await res.json()
 
             setEvent(data)
-
-            if (data.client_id) {
-                const resClient = await fetch(`${process.env.REACT_APP_API_URL}/api/clients/${props.userId}/${data.client_id}`)
-                const dataClient = await resClient.json()
-
-                setClientName(`${dataClient.firstname || 'None'} ${dataClient.lastname || ''}`)
-            }
         }
 
         fetchEvent()
@@ -67,7 +63,11 @@ const ViewEvent = (props) => {
                             </tr>
                             <tr>
                                 <th>Connection</th>
-                                <td className="viewModalConnections"><span>{clientName}</span></td>
+                                <td className="viewModalConnections">
+                                {event.client_id && event.client_id.map((client, i) => (
+                                    <Link key={i} to={`/connections/?connectionId=${client.value}`} style={{ backgroundColor: colorArray[i] }}>{client.label}</Link>
+                                ))}
+                                </td>
                             </tr>
                             <tr>
                                 <th colSpan="2">Description</th>

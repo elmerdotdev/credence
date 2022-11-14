@@ -1,3 +1,4 @@
+//React
 import React, { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useLogin } from '../Signup/hooks/useLogin'
@@ -5,9 +6,9 @@ import { useLogin } from '../Signup/hooks/useLogin'
 //Icon & Logo
 import '../../fontello/css/credence.css';
 import logo from '../../images/logo.svg';
-import loginimage from '../../images/Register/loginimage.svg'
-// import setLastLoggedIn from '../Signup/Signup'
+import loginimage from'../../images/Register/loginimage.svg';
 // import GoogleLoginButton from '../../components/GoogleLoginButton'
+
 
 const Login = () => {
   //Email
@@ -16,26 +17,24 @@ const Login = () => {
   const [password, setPassword] = useState('');
   //Password display( hide or show )
   const [pwShow, setPwShow] = useState(false);
-  //Error checker
-  const {login, error, isLoading} = useLogin();
-  // const { addLoginDate, lastLoggedIn } = useLogin()
+  //Error checker and functions
+  const {login, error, isLoading, addLoginDate} = useLogin();
+  
   
   useEffect(() => {
     document.querySelector('body').removeAttribute("class")
     document.querySelector('body').classList.add('no-sidebar')
   }, [])
 
-  //Login submit action 
+   
   const navigate = useNavigate()
- 
+  //Login submit action
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    //ここで入れる
+   //ここで入れる
     await  login(email, password)
-    // await addLoginDate(lastLoggedIn)
-    // console.log(email, password)
-
+    
     setEmail('')
     setPassword('')
 
@@ -43,7 +42,7 @@ const Login = () => {
       console.log('Successs Login!')
       navigate('/dashboard')
     } else {
-      console.log(' No user into localstorage')
+      console.log(' No user in localstorage')
     }
   }
 
@@ -51,6 +50,7 @@ const Login = () => {
   const togglePw = () => {
     setPwShow(!pwShow)
   }
+
 
   return (
     <div className="page-login">

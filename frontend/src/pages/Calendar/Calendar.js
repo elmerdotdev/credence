@@ -4,6 +4,8 @@ import dayGridPlugin from '@fullcalendar/daygrid'
 import interactionPlugin from '@fullcalendar/interaction'
 import moment from 'moment'
 import "react-datetime/css/react-datetime.css";
+import { useNavigate, useSearchParams, Link, useLocation } from 'react-router-dom';
+
 
 // Components
 import EventsWidget from './components/EventsWidget'
@@ -17,6 +19,9 @@ const Calendar = () => {
   const [monthLastDay, setMonthLastDay] = useState()
   const [addDate, setAddDate] = useState()
   const [viewEventId, setViewEventId] = useState('')
+  const [currParams, setCurrParams] = useState('');
+
+  // console.log("searchParams: ", searchParams[0])
 
   // Modal states
   const [modalAddOpen, setModalAddOpen] = useState(false)
@@ -26,7 +31,8 @@ const Calendar = () => {
   const calendarRef = React.useRef()
 
   const userID = JSON.parse(localStorage.getItem('user'))._id
-
+  const navigate = useNavigate()
+  const location = useLocation()
   useEffect(() => {
     const getActivities = async () => {
       const activities = await fetchActivities()
@@ -35,7 +41,15 @@ const Calendar = () => {
     }
 
     getActivities()
-  }, [])
+
+    let params = (new URL(document.location)).searchParams;
+    if (params.toString().length > 0) {
+      setModalViewOpen(true)
+      setViewEventId(params.get("eventId"))
+      console.log(viewEventId)
+      setCurrParams(params.toString())
+    }
+  }, [location])
 
   // Get all activities/events
   const fetchActivities = async () => {
@@ -79,6 +93,7 @@ const Calendar = () => {
   // Toggle View modal
   const toggleViewModal = (status) => {
     setModalViewOpen(status)
+    navigate(`/calendar`)
   }
   
   // On Date Cell Click
