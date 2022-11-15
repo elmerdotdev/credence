@@ -6,6 +6,9 @@ const AddConnection = ({ onAdd, onClose }) => {
 
   const [firstname, setFirstname] = useState('');
   const [lastname, setLastname] = useState('');
+  const [image, setImage] = useState('');
+  const [imageUrl, setImageUrl] = useState('');
+  const [previewImage, setPreviewImage] = useState('');
   const [position, setPosition] = useState('');
   const [company, setCompany] = useState('');
   const [email, setEmail] = useState('');
@@ -38,7 +41,28 @@ const checkboxes = [
 const onSubmit = (e) => {
   e.preventDefault();
 
-  onAdd({ firstname, lastname, company, position, email, phone, active, location, user_id, labels, pinned });
+  if (!image) {
+    alert("Need image")
+    return false
+  }
+
+  const data = new FormData()
+
+  data.append("file", image)
+  data.append("upload_preset", "credence-cloudinary-upload")
+  data.append("cloud_name","dp53wf7gb")
+
+  fetch("  https://api.cloudinary.com/v1_1/dp53wf7gb/image/upload",{
+    method:"post",
+    body: data
+  })
+  .then(resp => resp.json())
+  .then(data => {
+    const photo = data.url
+    onAdd({ firstname, lastname, position, company, email, phone, active, pinned, labels, photo, user_id });
+  })
+  .catch(err => console.log(err))
+
   console.log("industry: ", labels);
   setFirstname('');
   setLastname('');
@@ -57,6 +81,15 @@ const onSubmit = (e) => {
   { text: "Manufacturing", select: false },
   { text: "Media", select: false }]);
 };
+
+const processImage = async (image) => {
+  const reader = new FileReader()
+  reader.addEventListener('load', (event) => {
+    setImage(image)
+    setPreviewImage(event.target.result)
+  });
+  reader.readAsDataURL(image);
+}
 
 
   return (
@@ -84,6 +117,12 @@ const onSubmit = (e) => {
           value={lastname}
           onChange={(e) => setLastname(e.target.value)}
         />
+      </div>
+      <div className="input-wrapper">
+        <input type="file" onChange= {(e)=> processImage(e.target.files[0])}></input>
+        {previewImage &&
+          <img src={previewImage} alt="New connection" />
+        }
       </div>
       <h4>Contact Information</h4>
       <div className="input-wrapper">

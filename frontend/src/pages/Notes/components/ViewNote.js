@@ -41,7 +41,7 @@ const ViewNote = ({ notes, modalOpen, onDelete, toggle, clientId, noteId, toggle
                 <div>
                     <i className="icon-close" onClick={() => toggle(false)}></i>
                 </div>
-                <div>
+                <div className="modal-control-buttons">
                     <button className="btn btn-primary-reverse" onClick={() => toggleEdit(true)}>
                         Edit
                         <i className="icon-edit"></i>
@@ -52,8 +52,10 @@ const ViewNote = ({ notes, modalOpen, onDelete, toggle, clientId, noteId, toggle
                     </button>
                 </div>
             </div>
-            <h2>{note.title}</h2>
-            <p>{note.content}</p>
+            <div className="modal-notes-content">
+                <h2>{note.title}</h2>
+                <p>{note.content}</p>
+            </div>
             </Modal>
         </div>
     )
