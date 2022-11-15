@@ -1,9 +1,16 @@
 .page-settings {
     font-size: 1rem;
     padding: 17px 12px;
-    .page-profile-edit,
-    .page-profile-passwordSecurity,
-    .page-profile-subscription{
+    h2{
+        text-align: center;
+    }
+    .section-profile-edit,
+    .section-profile-passwordSecurity,
+    .section-profile-subscription,
+    .section-theme,
+    .section-notification,
+    .section-aboutus,
+    .section-help{
         border-bottom: 1px solid $color-dusty-gray;
     }
 
@@ -70,13 +77,61 @@
         font-weight: 700;
     }
     button.edit-profile-btn,
-    button.manage-security-btn{
+    button.manage-security-btn,
+    button.go-premiun-btn,
+    button.learnmore,
+    button.contactus{
         margin:39px 0 24px auto;
-        text-align: right;
+        display: flex;
     }
-    button.go-premiun-btn{
-        margin:39px 0 24px auto;
-        text-align: right;
+    
+    
+    //toggle buttons=========================
+    .toggle-switch {
+        display: table;
+        font-size: 60px;
+    }
+    
+    .toggle-switch>input {
+        display: none;
+    }
+    
+    .toggle-switch > label {
+        display: block;
+        position: relative;
+        height: 24px;
+        width: 48px;
+        border-radius: 29px;
+        background-color: $color-white-lilac;
+        border:1px solid $color-regal-blue ;
+        cursor: pointer;
+    }
+    .toggle-switch > input:checked + label {
+        background-color: #2dcb45;
+    }
+    .toggle-switch > label::before {
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        width: 20px;
+        height: 20px;
+        border-radius:36px;
+        background-color: $color-science-blue;
+        transition: 0.5s;
+        gap: 10px;
+        content: "";
+    }
+    .toggle-switch > input:checked + label::before {
+        left: calc(100% - 1em + 0.05em);
+    }
+    //==========================================================
+    section.subscribe{
+            background-color: $color-solitude;
+            border: 1px solid $color-science-blue;
+            border-radius: 16px;
+            .blue-inpact{
+                color: $color-science-blue;
+            }
     }
     @media screen and (min-width:$screen-desktop){
         padding: 20px;

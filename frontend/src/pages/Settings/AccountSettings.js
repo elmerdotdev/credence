@@ -99,6 +99,7 @@ const AccountSettings = () => {
 
   return (
     <>
+        <h2>Account Settings</h2>
         <section className="section-profile-edit">
           <div className="my-profile-box">
             
@@ -124,14 +125,14 @@ const AccountSettings = () => {
             <button className="edit-profile-btn btn btn-primary-reverse">Edit Profile</button>
         </section>
         
-        <section className="page-profile-passwordSecurity">
+        <section className="section-profile-passwordSecurity">
           <div className="title-icon-box"><i className='icon-security'></i><h4>Password & Security</h4></div>
           <p>Manage your info, privacy and security to make Credence work better for you.</p>
 
           <button className='manage-security-btn btn btn-primary-reverse'>Manage</button>
         </section>
         
-        <section className="page-profile-subscription">
+        <section className="section-profile-subscription">
           <div className="title-icon-box"><i className='icon-subscription'></i><h4>Subscription</h4></div>
           <p>You are currenty on our <span>30-day trial</span>.Go Premium to enjoy our most-loved premium features.</p>
 
