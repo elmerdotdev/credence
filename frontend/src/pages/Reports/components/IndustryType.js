@@ -68,7 +68,7 @@ const IndustryType = () => {
         labels,
         datasets: [
           {
-            label: 'Clients in this Industry',
+            label: ['Technology', 'Hospitality', 'Finance', 'Retail', 'Art & Design', 'Manufacturing', 'Media'],
             data: [technology,hospitality,finance,retail,artAndDesign,manufacturing,media],
             backgroundColor: [
               "#88B2D8",
