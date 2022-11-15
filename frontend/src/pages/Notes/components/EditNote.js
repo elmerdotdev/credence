@@ -49,19 +49,20 @@ const EditNote = ({ modalOpen, toggle, onEdit, clientId, noteId }) => {
     return (
         <Modal
             isOpen = {modalOpen}
+            className = "credence-modal modal-notes-edit"
         >
-        <button onClick={() => toggle(false)}>Close</button>
+        <h2>Edit Note</h2>
         <form className='edit-note' onSubmit={onSubmit}>
-            <div className = "edit-note-form">
+            <div class="input-wrapper">
                 <label>Subject</label>
                 <input 
                     type="text"
                     placeholder="Add Subject"
                     defaultValue={note.title}
                     onChange={(e) => setTitle(e.target.value)}
-                 />
+                />
             </div>
-            <div className="edit-note-form">
+            <div className="input-wrapper">
                 <label>Content</label>
                 <textarea 
                     type="text"
@@ -70,7 +71,10 @@ const EditNote = ({ modalOpen, toggle, onEdit, clientId, noteId }) => {
                     onChange={(e) => setContent(e.target.value)}
                 />
             </div>
-            <input type="submit" value="Save Note" className="submit-btn" onClick={onSubmit} />
+            <div className="input-wrapper submit-btn-wrapper">
+                <button className="btn btn-primary-reverse" onClick={() => toggle(false)}>Close</button>
+                <button type="submit" className="btn btn-primary" onClick={onSubmit}>Save Note</button>
+            </div>
         </form>
         </Modal>
     )

@@ -7,9 +7,6 @@ import { useLogin } from '../Signup/hooks/useLogin'
 import '../../fontello/css/credence.css';
 import logo from '../../images/logo.svg';
 import loginimage from'../../images/Register/loginimage.svg';
-// import userModel from '../../../../backend/models/userModel';
-// import GoogleLoginButton from '../../components/GoogleLoginButton'
-
 
 const Login = () => {
   //Email
@@ -113,8 +110,6 @@ const Login = () => {
               <div className="fgt-pwd-box">
                 <Link className="forget-pw-link">Forgotten your password?</Link>
               </div>
-            {/* <div>OR</div> */}
-            {/* <GoogleLoginButton/> */}
           
             <p className="move-to-signup-link">Don't have an account? <Link to='/signup'>Sign up here</Link></p>
           </div>
