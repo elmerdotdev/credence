@@ -280,15 +280,20 @@
     padding: 0 3rem;
 
     &.detail-info {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+
       h2 {
         @include fontSize(32);
         margin-bottom: 1rem;
         font-weight: 600;
       }
 
-      div {
+      .connection-detail-info {
+        flex: 1;
         display: flex;
-        align-items: center;
+        flex-direction: column;
   
         p {
           margin: .6rem 0;
@@ -297,6 +302,10 @@
             flex-basis: 160px;
           }
         }
+      }
+
+      .connection-photo {
+        flex-basis: 225px;
       }
 
       .detail-info-industry {

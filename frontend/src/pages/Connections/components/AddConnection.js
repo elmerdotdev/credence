@@ -52,7 +52,7 @@ const onSubmit = (e) => {
   data.append("upload_preset", "credence-cloudinary-upload")
   data.append("cloud_name","dp53wf7gb")
 
-  fetch("  https://api.cloudinary.com/v1_1/dp53wf7gb/image/upload",{
+  fetch("https://api.cloudinary.com/v1_1/dp53wf7gb/image/upload",{
     method:"post",
     body: data
   })
