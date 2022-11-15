@@ -305,7 +305,9 @@
       }
 
       .connection-photo {
-        flex-basis: 225px;
+        @media screen and (min-width: $screen-desktop) {
+          flex-basis: 225px;
+        }
       }
 
       .detail-info-industry {
