@@ -128,9 +128,33 @@
     section.subscribe{
             background-color: $color-solitude;
             border: 1px solid $color-science-blue;
+            padding: 26px 16px 19px 16px;
             border-radius: 16px;
-            .blue-inpact{
+            h2{
+                margin: 0;
+            }
+            h2,h2+p{
+                text-align: center;
+            }
+            .blue-title{
                 color: $color-science-blue;
+            }
+            .price-box{
+                display: flex;
+                justify-content: space-between;
+                .price{
+                    display: flex;
+                    align-items: center;
+                    .blue-price{
+                        color: $color-science-blue;
+                        font-weight: 700;
+                        font-size: 34px;
+                        line-height: 44px;
+                    }
+                }
+            }
+            li:before{
+                display: block;
             }
     }
     @media screen and (min-width:$screen-desktop){

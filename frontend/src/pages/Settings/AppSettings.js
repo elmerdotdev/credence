@@ -40,13 +40,13 @@ const AppSettings = () => {
         </section>
 
         <section className='subscribe'>
-            <h2>Subscribe to Our <span className='blue-inpact'>Premium Plan</span></h2>
+            <h2>Subscribe to Our <span className='blue-title'>Premium Plan</span></h2>
             <p>Unlimit your experience. Superchange your efficiency.</p>
 
             <div className="price-box">
                 <div className="price">
                     <p>$</p>
-                    <p className='blue-inpact'>19.95</p>
+                    <p className='blue-price'>19.95</p>
                     <p>/ month</p>
                 </div>
                 
@@ -55,10 +55,10 @@ const AppSettings = () => {
             
             <h3>You can enjoy:</h3>
             <ul>
-                <i className='icon-check'></i><li><span>Unlimited</span> Connection to manage</li>
-                <i className='icon-check'></i><li><span>Unlimited</span> Note Entries</li>
-                <i className='icon-check'></i><li><span>Unlimited</span> Schedule entries</li>
-                <i className='icon-check'></i><li>Search Connection information by Keywords from Events, Connection, Email, and Notes</li>    
+                <li><i className='icon-check'></i><span>Unlimited</span> Connection to manage</li>
+                <li><i className='icon-check'></i><span>Unlimited</span> Note Entries</li>
+                <li><i className='icon-check'></i><span>Unlimited</span> Schedule entries</li>
+                <li><i className='icon-check'></i>Search Connection information <span>by Keywords from Events, Connection, Email, and Notes</span></li>    
             </ul>
         </section>
     </>
