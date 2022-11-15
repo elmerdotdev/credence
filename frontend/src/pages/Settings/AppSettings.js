@@ -6,9 +6,11 @@ const AppSettings = () => {
         <section className='page-appsettings'>
           <h2>App Settings</h2>
             <section className='section-theme'>
-                <i className='icon-'></i>
-                <h3>Theme</h3>
-                <p>Switch between light and dark mode.</p>
+                <i className='icon-profile'></i>
+                <div className="title-contents">
+                    <h3>Theme</h3>
+                    <p>Switch between light and dark mode.</p>
+                </div>
 
                 <div className="toggle-switch">
                     <input type="checkbox" className='cb-toggle-switch'></input>
@@ -16,9 +18,11 @@ const AppSettings = () => {
                 </div>
             </section>
             <section className='section-notification'>
-                <i className='icon-'></i>
-                <h3>Notification</h3>
-                <p>Turn on the notifications to receive the latest updates.</p>
+                <i className='icon-profile'></i>
+                <div className="title-contents">
+                    <h3>Notification</h3>
+                    <p>Turn on the notifications to receive the latest updates.</p>
+                </div>
 
                 <div className="toggle-switch">
                     <input type="checkbox" className='cb-toggle-switch'></input>
@@ -26,7 +30,7 @@ const AppSettings = () => {
                 </div>
             </section>
             <section className='section-aboutus'>
-                <i className='icon-'></i>
+                <i className='icon-profile'></i>
                 <h3>About Us</h3>
                 <p>Learn more about The Planeteers.</p>
                 <button className='learnmore btn btn-primary-reverse'>Learn More <i className='icon-arrow-right'></i></button>
@@ -55,10 +59,10 @@ const AppSettings = () => {
             
             <h3>You can enjoy:</h3>
             <ul>
-                <li><i className='icon-check'></i><span>Unlimited</span> Connection to manage</li>
+                <li><i className='icon-check'></i><span>Unlimited</span> Client Management</li>
                 <li><i className='icon-check'></i><span>Unlimited</span> Note Entries</li>
-                <li><i className='icon-check'></i><span>Unlimited</span> Schedule entries</li>
-                <li><i className='icon-check'></i>Search Connection information <span>by Keywords from Events, Connection, Email, and Notes</span></li>    
+                <li><i className='icon-check'></i>Create <span>Unlimited</span> Schedule entries</li>
+                <li><i className='icon-check'></i>Search Connection information <span>by Keywords from Events, Connection, Emails, and Notes</span></li>    
             </ul>
         </section>
     </>

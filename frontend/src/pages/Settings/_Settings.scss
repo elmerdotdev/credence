@@ -125,11 +125,43 @@
         left: calc(100% - 1em + 0.05em);
     }
     //==========================================================
+    section.section-notification,
+    section.section-theme{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        i{
+            font-size: 30px;
+        }
+        h3{
+            margin-bottom: 0;
+            font-size: 20px;
+        }
+        p{
+            margin-top: 0;
+            font-size: 14px;
+        }
+    }
+    section.section-aboutus,
+    section.section-help{
+        i{
+            font-size: 30px;
+        }
+        h3{
+            margin-bottom: 0;
+            font-size: 20px;
+        }
+        p{
+            margin-top: 0;
+            font-size: 14px;
+        }
+    }
     section.subscribe{
             background-color: $color-solitude;
             border: 1px solid $color-science-blue;
             padding: 26px 16px 19px 16px;
             border-radius: 16px;
+            margin-top: 24px;
             h2{
                 margin: 0;
             }
@@ -141,10 +173,14 @@
             }
             .price-box{
                 display: flex;
-                justify-content: space-between;
+                align-items: center;
+                justify-content: space-around;
                 .price{
                     display: flex;
                     align-items: center;
+                    p:nth-of-type(1){
+                        margin-right: 8px;
+                    }
                     .blue-price{
                         color: $color-science-blue;
                         font-weight: 700;
@@ -153,8 +189,18 @@
                     }
                 }
             }
+            h3{
+                margin: 16px 0 20px 0;
+            }
             li:before{
                 display: block;
+                
+            }
+            li{
+               margin-bottom: 20px; 
+               i{
+                font-size: 20px;
+               }
             }
     }
     @media screen and (min-width:$screen-desktop){
