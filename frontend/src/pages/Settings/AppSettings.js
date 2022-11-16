@@ -1,7 +1,14 @@
-import React from 'react'
+import Modal from "react-modal"
+import React, { useState } from 'react'
+
+//page
+import Aboutus from "./Aboutus"
 
 const AppSettings = () => {
-  return (
+  
+    const [aboutusModalIsOpen, setAboutusModalIsOpen]= useState(false)
+    const [subscmodalIsOpen, setSubscModalIsOpen] = useState(false)
+    return (
     <>
         <section className='page-appsettings'>
           <h2>App Settings</h2>
@@ -36,8 +43,12 @@ const AppSettings = () => {
                         <h3>About Us</h3>
                     </div>
                     <p>Learn more about The Planeteers</p>
-                    <button className='learnmore btn btn-primary-reverse'>Learn More <i className='icon-arrow-right'></i></button>
+                    <button onClick={() => setAboutusModalIsOpen(true)} className='learnmore btn btn-primary-reverse'>Learn More <i className='icon-arrow-right'></i></button>
+                    <Modal isOpen={aboutusModalIsOpen} className="aboutus-page-modal-modal">
+                        <Aboutus aboutusIsOpen={aboutusModalIsOpen} onsetAboutusIsOpen={setAboutusModalIsOpen}/>
+                    </Modal>
                 </section>
+
                 <section className='section-help'>
                     <div className="title-icon">
                         <i className='icon-help'></i>
@@ -62,7 +73,14 @@ const AppSettings = () => {
                     <p>/ month</p>
                 </div>
                 
-                <button className='btn btn-primary'>Subscribe</button>
+                <button onClick={() => setSubscModalIsOpen(true)} className='btn btn-primary'>Subscribe</button>
+                <Modal isOpen={subscmodalIsOpen} className="subscribe-modal-premium">
+                    <div className="subsc-modal">
+                        <h2>Thank you for Subscribing!</h2>
+                        <p>Now you subscribe our Premium Plan</p>
+                        <button className="btn btn-primary-reverse" onClick={() => setSubscModalIsOpen(false)}>Close</button>
+                    </div>
+                </Modal>
             </div>
             
             <div className="desc-subsc">
@@ -71,7 +89,10 @@ const AppSettings = () => {
                     <li><i className='icon-check'></i><span>Unlimited</span> Client Management</li>
                     <li><i className='icon-check'></i><span>Unlimited</span> Note Entries</li>
                     <li><i className='icon-check'></i>Create <span>Unlimited</span> Schedule entries</li>
-                    <li><i className='icon-check'></i>Search Connection information <span>by Keywords from Events, Connection, Emails, and Notes</span></li>
+                    <li>
+                        <i className='icon-check'></i>
+                        <span>Search Connection information <span>by Keywords from Events, Connection, Emails, and Notes</span></span>
+                    </li>
                 </ul>
             </div>
         </section>

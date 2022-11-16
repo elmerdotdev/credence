@@ -1,3 +1,92 @@
+//MODAL PAGE//Subscribe Premium section 
+.subscribe-modal-premium{
+    height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    .subsc-modal{
+        width: 50%;
+        padding: 20px;
+        background-color: $color-white;
+        border: 1px solid $color-dusty-gray;
+        border-radius: 16px;
+        text-align: center;
+        margin: auto;
+    }
+}
+//MODAL PAGE//About us
+.aboutus-page-modal-modal{
+    background-color: $color-white;
+    height: 100vh;
+    .modal-aboutus{
+        h2{
+            text-align: center;
+            font-size: 28px;
+        }
+        .members-box{
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            justify-items: center;
+            margin-bottom: 3rem;
+        }
+        .member{
+            text-align: center;
+            display: flex;
+            flex-flow: column;
+            align-items: center;
+            .image+p{
+                font-style: normal;
+                font-weight: 600;
+                font-size: 24px;
+            }
+            .image{
+                width: 120px;
+                height:120px;
+            }
+            h3,h3+p{
+             margin:0 0 5px 0;
+            }
+            h3{
+             margin-bottom: 5px;
+             font-size: 21px;
+            }
+            a{
+                display: flex;
+                img{
+                    width: 15px;
+                    margin-right: 8px;
+                }
+                p{
+                    margin: 0;
+                    font-size: 14px;
+                }
+            }
+        }
+        .close-btn{
+            display: flex;
+            justify-content: center;
+            margin-bottom: 1rem;  
+        }
+        .credence-tag{
+            display: flex;
+            justify-content: center;
+        }
+        @media screen and (min-width:$screen-desktop){
+            .members-box{
+                grid-template-columns: repeat(4, 1fr);
+                grid-template-rows: repeat(2, 1fr);
+                .member{
+                    .image{
+                        width: 180px;
+                        height:180px;
+                    }
+                }
+            }
+        }
+    } 
+}
+
 .page-settings {
     font-size: 1rem;
     padding: 17px 12px;
@@ -111,7 +200,6 @@
         display: grid;
         grid-template-columns: auto 48px;
         grid-template-rows: 1fr 1fr;
-        
         .title-icon{
             display: flex;
         }
@@ -141,9 +229,9 @@
     section.section-subscription,
     section.section-aboutus,
     section.section-help{
-    .title-icon{
-        display: flex;
-    }
+        .title-icon{
+            display: flex;
+        }
         .icon-security,
         .icon-subscription,
         .icon-profile,
@@ -207,7 +295,17 @@
                 font-size: 20px;
                }
             }
+            li:nth-of-type(4){
+                display: flex;
+                span{
+                    font-weight: normal;
+                    span{
+                        font-weight: bold;
+                    }
+                }
+            }
     }
+    
     @media screen and (min-width:$screen-desktop){
         padding: 20px;
         background-color: $color-white;
@@ -229,20 +327,41 @@
             grid-template-columns: 1fr 1fr 1fr 1fr;
             gap: 24px;
         }
-        .section-profile-edit,
-        .section-passwordSecurity,
-        .section-subscription,
-        .section-theme,
-        .section-notification,
-        .section-aboutus,
-        .section-help{
+        img[alt="user-img"]{
+            width: 100px;
+            height: 100px;
+        }
+        .my-profile-box{
+            margin-right: auto;
+            margin-left: auto;
+        }
+        section.section-profile-edit,
+        section.section-passwordSecurity,
+        section.section-subscription,
+        section.section-theme,
+        section.section-notification,
+        section.section-aboutus,
+        section.section-help{
             border-bottom:none;
             background-color: $color-mystic;
             border: 1px solid $color-dusty-gray;
             border-radius: 16px;
             padding: 24px;
+            display: flex;
+            flex-flow: column;
+            justify-content: space-between;
+            align-items: flex-start;
+            .title-icon{
+                align-items: center;
+                i{
+                    margin-top: 0;
+                }
+            }
             h3{
                 margin-top: 0;
+            }
+            p{
+                margin-left: 0;
             }
         }
         section.section-theme,
@@ -256,11 +375,11 @@
             p{
                 grid-column: 1 / -1;
                 grid-row: 2 / 3;
-                margin: 0;
             }
             .toggle-switch{
                 grid-row: 3 / 4;
                 grid-column: 1 / -1;
+                margin: 0;
             }
         }
         button.edit-profile-btn,
@@ -288,7 +407,6 @@
                     margin: 0 0 17px 0;
                 }
             }
-            
         }
     }
 }
