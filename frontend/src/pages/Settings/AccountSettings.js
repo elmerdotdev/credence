@@ -100,45 +100,51 @@ const AccountSettings = () => {
   return (
     <>
         <h2>Account Settings</h2>
-        <section className="section-profile-edit">
-          <div className="my-profile-box">
+        <div className="account-setting-box">
+            <section className="section-profile-edit">
+              <div className="my-profile-box">
             
-            <img src={ myImg } alt="user-img" />
+                <img src={ myImg } alt="user-img" />
             
-            <div className='connection-box'>
-              <i className='icon-connection'></i>
-              <p>{ myClients }</p>
-              <p>Connections</p>
-            </div>
-            <div className="event-box">
-              <i className='icon-calendar'></i>
-              <p>{ myEvents }</p>
-              <p>Events</p>
-            </div>
-            <div className="note-box">
-              <i className='icon-note'></i>
-              <p>{ myNotes }</p>
-              <p>Notes</p>
-            </div>
-          </div>
-
-            <button className="edit-profile-btn btn btn-primary-reverse">Edit Profile</button>
-        </section>
-        
-        <section className="section-profile-passwordSecurity">
-          <div className="title-icon-box"><i className='icon-security'></i><h4>Password & Security</h4></div>
-          <p>Manage your info, privacy and security to make Credence work better for you.</p>
-
-          <button className='manage-security-btn btn btn-primary-reverse'>Manage</button>
-        </section>
-        
-        <section className="section-profile-subscription">
-          <div className="title-icon-box"><i className='icon-subscription'></i><h4>Subscription</h4></div>
-          <p>You are currenty on our <span>30-day trial</span>.Go Premium to enjoy our most-loved premium features.</p>
-
-          <button className='go-premiun-btn btn btn-primary'>Go Premium</button>
-        </section>
-    
+                <div className='connection-box'>
+                  <i className='icon-connection'></i>
+                  <p>{ myClients }</p>
+                  <p>Connections</p>
+                </div>
+                <div className="event-box">
+                  <i className='icon-calendar'></i>
+                  <p>{ myEvents }</p>
+                  <p>Events</p>
+                </div>
+                <div className="note-box">
+                  <i className='icon-note'></i>
+                  <p>{ myNotes }</p>
+                  <p>Notes</p>
+                </div>
+              </div>
+                <button className="edit-profile-btn btn btn-primary-reverse">Edit Profile</button>
+            </section>
+            
+            <section className="section-passwordSecurity">
+                <div className="title-icon">
+                    <i className='icon-security'></i>
+                    <h3>Password & Security</h3>
+                </div>
+                <p>Manage your info, privacy and security to make Credence work better for you.</p>
+                <button className='manage-security-btn btn btn-primary-reverse'>Manage</button>
+                
+            </section>
+            
+            <section className="section-subscription">
+                <div className="title-icon">
+                    <i className='icon-subscription'></i>
+                    <h3>Subscription</h3>
+                </div>
+                <p>You are currenty on our <span>30-day trial</span>.Go Premium to enjoy our most-loved premium features.</p>
+                <button className='go-premiun-btn btn btn-primary'>Go Premium</button>
+                
+            </section>
+        </div>
     </>
   )
 }

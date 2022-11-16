@@ -5,21 +5,19 @@
         text-align: center;
     }
     .section-profile-edit,
-    .section-profile-passwordSecurity,
-    .section-profile-subscription,
+    .section-passwordSecurity,
+    .section-subscription,
     .section-theme,
     .section-notification,
     .section-aboutus,
     .section-help{
         border-bottom: 1px solid $color-dusty-gray;
     }
-
     img[alt="user-img"]{
         width: 124px;
         height: 125px;
         border-radius: 199.789px;
-        margin-right: 20px;
-        
+        margin-right: 20px; 
     }
     .my-profile-box{
         display: flex;
@@ -52,27 +50,6 @@
             line-height: 20px;
         }
     }
-    .title-icon-box{
-        display: flex;
-        align-items: center;
-        i{
-            font-size: 50px;
-            color: $color-science-blue;
-        }
-        h4{
-            font-style: normal;
-            font-weight: 600;
-            font-size: 20px;
-            line-height: 24px;
-            margin: 0;
-        }
-    }
-    .title-icon-box+p{
-        margin: 0;
-        font-weight: 400;
-        font-size: 15.8391px;
-        line-height: 21px;
-    }
     span{
         font-weight: 700;
     }
@@ -84,7 +61,11 @@
         margin:39px 0 24px auto;
         display: flex;
     }
-    
+    .page-appsettings{
+        h2{
+            margin-top: 32px;
+        }
+    }
     
     //toggle buttons=========================
     .toggle-switch {
@@ -127,32 +108,57 @@
     //==========================================================
     section.section-notification,
     section.section-theme{
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
+        display: grid;
+        grid-template-columns: auto 48px;
+        grid-template-rows: 1fr 1fr;
+        
+        .title-icon{
+            display: flex;
+        }
         i{
             font-size: 30px;
+            margin-top: 15px;
         }
         h3{
             margin-bottom: 0;
             font-size: 20px;
+            font-weight: 600;
+            line-height: 24px;
         }
         p{
             margin-top: 0;
             font-size: 14px;
+            margin-left: 42px;
+        }
+        .toggle-switch{
+            grid-column: 2 / 3;
+            grid-row: 1 / -1;
+            margin-top: auto;
+            margin-bottom: auto;
         }
     }
+    section.section-passwordSecurity,
+    section.section-subscription,
     section.section-aboutus,
     section.section-help{
-        i{
+    .title-icon{
+        display: flex;
+    }
+        .icon-security,
+        .icon-subscription,
+        .icon-profile,
+        .icon-help{
             font-size: 30px;
+            margin-top: 15px;
         }
         h3{
             margin-bottom: 0;
             font-size: 20px;
+            font-weight: 600;
         }
         p{
             margin-top: 0;
+            margin-left: 42px;
             font-size: 14px;
         }
     }
@@ -194,7 +200,6 @@
             }
             li:before{
                 display: block;
-                
             }
             li{
                margin-bottom: 20px; 
@@ -210,26 +215,80 @@
         border-radius: 16px;
         display: grid;
         gap: 20px;
-        .page-profile-edit,
-        .page-profile-passwordSecurity,
-        .page-profile-subscription{
+        h2{
+            font-size: 36px;
+            line-height: 44px;
+        }
+        .account-setting-box{
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 24px;
+        }
+        .app-setting-box{
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            gap: 24px;
+        }
+        .section-profile-edit,
+        .section-passwordSecurity,
+        .section-subscription,
+        .section-theme,
+        .section-notification,
+        .section-aboutus,
+        .section-help{
             border-bottom:none;
             background-color: $color-mystic;
             border: 1px solid $color-dusty-gray;
             border-radius: 16px;
+            padding: 24px;
+            h3{
+                margin-top: 0;
+            }
         }
-        .page-profile-edit{
-            padding: 39px 39px 37px 49px;
+        section.section-theme,
+        section.section-notification{
+            grid-template-columns: 1fr;
+            grid-template-rows: auto auto 30px;
+            .title-icon{
+                grid-column: 1 / -1;
+                grid-row: 1 / 2;
+            }
+            p{
+                grid-column: 1 / -1;
+                grid-row: 2 / 3;
+                margin: 0;
+            }
+            .toggle-switch{
+                grid-row: 3 / 4;
+                grid-column: 1 / -1;
+            }
         }
-        .page-profile-passwordSecurity,
-        .page-profile-subscription{
-            padding: 51px 73px 51px 49px;
+        button.edit-profile-btn,
+        button.manage-security-btn,
+        button.go-premiun-btn,
+        button.contactus,
+        button.learnmore{
+            margin: 0;
         }
         button.edit-profile-btn,
         button.manage-security-btn,
         button.go-premiun-btn{
-            margin:39px auto 0 0;
-            text-align: left;
+            margin-top: 52px;
+        }
+        .subscribe{
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+            align-items: center;
+            .price-box{
+                order: 3;
+                flex-direction: column;
+                flex-wrap: nowrap;
+                p{
+                    margin: 0 0 17px 0;
+                }
+            }
+            
         }
     }
 }
