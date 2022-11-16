@@ -51,10 +51,7 @@ const MostInteracted = () => {
     const options = {
         plugins: {
             legend: {
-                position: 'right',
-                labels: {
-                    boxWidth: 15
-                }
+                display: false,
             }
         }
     }
