@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react'
+import Modal from "react-modal"
 //Icon 
 import '../../fontello/css/credence.css';
+import SelectPlan from './SelectPlan';
 
 const AccountSettings = () => {
   const [ myClients, setMyClients ] = useState('')
   const [ myEvents, setMyEvents ] = useState('')
   const [ myNotes, setMyNotes ] = useState('')
   const [ myImg, setMyImg ] = useState('')
+  const [selectPlanModalIsOpen, setSelectPlanModalIsOpen] = useState(false)
 
   //get userID from Localstorage(user ID)
   const user = localStorage.getItem('user')
@@ -96,7 +99,6 @@ const AccountSettings = () => {
     }
   }
 
-
   return (
     <>
         <h2>Account Settings</h2>
@@ -141,7 +143,10 @@ const AccountSettings = () => {
                     <h3>Subscription</h3>
                 </div>
                 <p>You are currenty on our <span>30-day trial</span>.Go Premium to enjoy our most-loved premium features.</p>
-                <button className='go-premiun-btn btn btn-primary'>Go Premium</button>
+                <button className='go-premiun-btn btn btn-primary' onClick={() => setSelectPlanModalIsOpen(true)}>Go Premium</button>
+                <Modal isOpen={selectPlanModalIsOpen}>
+                    <SelectPlan selectPlanIsOpen={selectPlanModalIsOpen} onsetselectPlanIsOpen={setSelectPlanModalIsOpen}/>
+                </Modal>
                 
             </section>
         </div>
