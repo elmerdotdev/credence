@@ -116,8 +116,9 @@
     i.icon-connection:before,
     i.icon-calendar:before,
     i.icon-note:before{
-        font-size:43px;
+        font-size:30px;
         display: flex;
+        color: $color-regal-blue;
     }
     .connection-box,
     .event-box,
@@ -162,11 +163,13 @@
         display: inline-block;
         width: 60px;
         height: 30px;
+        border-color:$color-science-blue;
     }
     .switch input{
         opacity: 0;
         width: 0;
         height: 0;
+        border-color:$color-science-blue;
     }
     input[type="checkbox"]{
         background-color: initial;
@@ -175,6 +178,7 @@
         margin: 3px 3px 3px 4px;
         padding: initial;
         border: initial;
+        border-color:$color-science-blue;
     }
     input:checked + .slider{
         background-color: $color-science-blue;
@@ -201,7 +205,7 @@
         width: 22px;
         left: 4px;
         bottom: 4px;
-        background-color: $color-white;
+        background-color: $color-white-lilac;
         transition: .4s;
     }
     //==========================================================
@@ -212,13 +216,16 @@
         grid-template-rows: 1fr 1fr;
         .title-icon{
             display: flex;
+            align-items: center;
+            margin-top: 16px;
         }
         i{
             font-size: 30px;
-            margin-top: 15px;
+            color: $color-regal-blue;
         }
         h3{
             margin-bottom: 0;
+            margin-top: 0;
             font-size: 20px;
             font-weight: 600;
             line-height: 24px;
@@ -227,8 +234,10 @@
             margin-top: 0;
             font-size: 14px;
             margin-left: 42px;
+            grid-column: 1 / 2;
+            grid-row: 2 / 3;
         }
-        .toggle-switch{
+        .switch{
             grid-column: 2 / 3;
             grid-row: 1 / -1;
             margin-top: auto;
@@ -241,18 +250,25 @@
     section.section-help{
         .title-icon{
             display: flex;
+            align-items: center;
+            margin-top: 16px;
         }
         .icon-security,
         .icon-subscription,
         .icon-profile,
-        .icon-help{
+        .icon-help,
+        .icon-info,
+        .icon-bell,
+        .icon-theme{
             font-size: 30px;
-            margin-top: 15px;
+            margin-top: 0;
+            color: $color-regal-blue;
         }
         h3{
             margin-bottom: 0;
             font-size: 20px;
             font-weight: 600;
+            margin-top: 0;
         }
         p{
             margin-top: 0;
@@ -340,6 +356,7 @@
         img[alt="user-img"]{
             width: 100px;
             height: 100px;
+            margin-right: 0;
         }
         .my-profile-box{
             margin-right: auto;
@@ -363,6 +380,7 @@
             align-items: flex-start;
             .title-icon{
                 align-items: center;
+                margin-top: 0;
                 i{
                     margin-top: 0;
                 }
@@ -386,7 +404,7 @@
                 grid-column: 1 / -1;
                 grid-row: 2 / 3;
             }
-            .toggle-switch{
+            .switch{
                 grid-row: 3 / 4;
                 grid-column: 1 / -1;
                 margin: 0;

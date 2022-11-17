@@ -15,7 +15,7 @@ const AppSettings = () => {
             <div className="app-setting-box">
                 <section className='section-theme'>
                     <div className="title-icon">
-                        <i className='icon-profile'></i>
+                        <i className='icon-theme'></i>
                         <h3>Theme</h3>
                     </div>
                     <p>Switch between light and dark mode</p>
@@ -27,7 +27,7 @@ const AppSettings = () => {
                 
                 <section className='section-notification'>
                     <div className="title-icon">
-                        <i className='icon-profile'></i>
+                        <i className='icon-bell'></i>
                         <h3>Notification</h3>
                     </div>
                     <p>Turn on the notifications to receive the latest updates</p>
@@ -39,7 +39,7 @@ const AppSettings = () => {
                 
                 <section className='section-aboutus'>
                     <div className="title-icon">
-                        <i className='icon-profile'></i>
+                        <i className='icon-info'></i>
                         <h3>About Us</h3>
                     </div>
                     <p>Learn more about The Planeteers</p>
