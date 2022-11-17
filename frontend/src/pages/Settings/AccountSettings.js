@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Modal from "react-modal"
 //Icon 
 import '../../fontello/css/credence.css';
+import EditProfile from './EditProfile';
 import SelectPlan from './SelectPlan';
 
 const AccountSettings = () => {
@@ -10,6 +11,7 @@ const AccountSettings = () => {
   const [ myNotes, setMyNotes ] = useState('')
   const [ myImg, setMyImg ] = useState('')
   const [selectPlanModalIsOpen, setSelectPlanModalIsOpen] = useState(false)
+  const [editProfileModalIsOpen, setEditProfileModalIsOpen] = useState(false)
 
   //get userID from Localstorage(user ID)
   const user = localStorage.getItem('user')
@@ -124,7 +126,10 @@ const AccountSettings = () => {
                   <p>Notes</p>
                 </div>
               </div>
-                <button className="edit-profile-btn btn btn-primary-reverse">Edit Profile</button>
+                <button className="edit-profile-btn btn btn-primary-reverse" onClick={() => setEditProfileModalIsOpen(true)}>Edit Profile</button>
+                <Modal isOpen={editProfileModalIsOpen}>
+                  <EditProfile onEditProfile={editProfileModalIsOpen} OnsetEditProfile={setEditProfileModalIsOpen}/>
+                </Modal>
             </section>
             
             <section className="section-passwordSecurity">
