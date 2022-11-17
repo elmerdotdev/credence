@@ -110,26 +110,28 @@ async function listMsgs(auth) {
       id: messages[i].id
       // format: 'raw'
     });
-        // console.log(res.data.payload.parts[0].body.data)
+        // console.log(res.data)
     
         let buff = new Buffer.from(res.data.payload.parts[0].body.data, 'base64');
         let text = buff.toString('utf-8');
         // console.log(text)
         res.data.payload.headers.forEach((header) => {
           if (header.name == 'From'){
-            console.log(header)
+            // console.log(header)
             msgObj.from = header.value
           }
           if (header.name == 'To'){
-            console.log(header)
+            // console.log(header)
             msgObj.to = header.value
           }
           if (header.name == 'Subject'){
-            console.log(header)
+            // console.log(header)
             msgObj.subject = header.value
           }
         })
         msgObj.snippet = res.data.snippet
+        msgObj.emailTime = res.data.internalDate
+        msgObj.gmail_id = messages[i].id
         retrievedMsgs.push(msgObj)
 
         // const simpleParser = require('mailparser').simpleParser;

@@ -214,8 +214,13 @@ const handleActiveCheckbox = async (e) => {
 // gmail integration
 const gmailIntegration =  async () => {
   const res = await fetch(`${process.env.REACT_APP_API_URL}/api/users/gmailauth/${userID}`);
-  const output = await res.json()
-  console.log(output)
+
+} 
+
+// gmail update
+const gmailUpdate =  async () => {
+  const res = await fetch(`${process.env.REACT_APP_API_URL}/api/gmails/${userID}`);
+  // const output = await res.json()
 
 } 
 
@@ -237,7 +242,8 @@ const openNotification = (message) => {
       <section className="page-connections" >
       <h2>All Connections</h2>
       <p><button className="openModalBtn" onClick={() => setShowAddModalIsOpen(true)}>Add</button></p>
-      <p><button onClick={gmailIntegration}>Intergrate with Gmail</button></p>
+      <p><button onClick={gmailIntegration}>Connect Gmail</button></p>
+      <p><button onClick={gmailUpdate}>Update Gmail</button></p>
       <Filter onPinFilter={pinFilter}/>
       <ModalComponent
         className="credence-modal modal-connection-detail"
