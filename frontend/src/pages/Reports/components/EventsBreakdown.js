@@ -85,6 +85,7 @@ const EventsBreakdown = () => {
             label: 'Meetings this Month',
             data: [january, february, march, april, may, june, july, august, september, october, november, december],
             fill: false,
+            backgroundColor: "#7DDBD9",
             borderColor: "#7DDBD9",
             tension: .1
         }]

@@ -31,6 +31,8 @@
     img.signup-img{
         display: block;
         margin: 15px auto 55px auto;
+        width: 60%;
+        height: auto;
     }
     label{
         display: block;
@@ -126,6 +128,8 @@
         img.signup-img{
             width:100%;
             height: auto;
+            max-height: 394.5px;
+            margin: 0;
         }
         input[for="firstname"],
         input[for="lastname"],
