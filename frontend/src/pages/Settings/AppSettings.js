@@ -19,24 +19,24 @@ const AppSettings = () => {
                         <h3>Theme</h3>
                     </div>
                     <p>Switch between light and dark mode</p>
-
-                    <div className="toggle-switch">
-                        <input type="checkbox" className='cb-toggle-switch'></input>
-                        <label htmlFor="cb-toggle-switch"></label>
-                    </div>
+                    <label className="switch">
+                        <input type="checkbox" />
+                        <span className="slider round"></span>
+                    </label>
                 </section>
+                
                 <section className='section-notification'>
                     <div className="title-icon">
                         <i className='icon-profile'></i>
                         <h3>Notification</h3>
                     </div>
                     <p>Turn on the notifications to receive the latest updates</p>
-
-                    <div className="toggle-switch">
-                        <input type="checkbox" className='cb-toggle-switch'></input>
-                        <label htmlFor="cb-toggle-switch"></label>
-                    </div>
+                    <label className="switch">
+                        <input type="checkbox" />
+                        <span className="slider round"></span>
+                    </label>
                 </section>
+                
                 <section className='section-aboutus'>
                     <div className="title-icon">
                         <i className='icon-profile'></i>
