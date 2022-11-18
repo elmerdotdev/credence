@@ -75,20 +75,24 @@
                 display: flex;
             }
         }
-        
         .btn{
             margin-top: 21px;
         }
     }
     .free-plan{
         background-color: $color-white-lilac;
+        max-width: 500px;
     }
     .premium-plan{
         background-color: $color-solitude;
+        max-width: 500px;
     }
     @media screen and (min-width:$screen-desktop){
         grid-template-columns: repeat(2, 1fr);
         gap: 61px;
+        margin: 51px auto;
+        height: 100vh;
+        max-width:1000px ;
         h2{
             font-weight: 700;
             font-size: 36px;    

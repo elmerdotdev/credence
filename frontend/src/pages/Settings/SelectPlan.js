@@ -14,8 +14,6 @@ const SelectPlan = (props) => {
         
         <h2>Select a Plan to Continue</h2>
 
-        <span></span>
-
         <section className='free-plan'>
             <h3>FREE PLAN</h3>
             <h4>Free for Indivisuals to try.</h4>
@@ -41,10 +39,8 @@ const SelectPlan = (props) => {
         </section>
 
         <section className='premium-plan'>
-        <h3>PREMIUM PLAN</h3>
+            <h3>PREMIUM PLAN</h3>
             <h4>Supercharge your efficiency.<br/>Start free.</h4>
-
-            <span></span>
 
             <div className="price-box">
                 <div className="cad">
@@ -65,7 +61,6 @@ const SelectPlan = (props) => {
                 </ul>
             </div>
             <button className="btn btn-primary">Start My 30-Day Trial</button>
-            
         </section>
         <button onClick={closepage} className='btn btn-primary-reverse'>Close</button>
     </div>
