@@ -15,7 +15,6 @@ const EditProfile = (props) => {
 
     //get userID from Localstorage(user ID)
     const userID = JSON.parse(localStorage.getItem('user'))._id
-    // console.log(userID)
 
     //page close in editModal
     const closepage = () => {
@@ -36,7 +35,6 @@ const EditProfile = (props) => {
         getProfile();
     },[])
     
-    console.log(photo)
     const fetchProfile = async () => {
       const res = await fetch(`${process.env.REACT_APP_API_URL}/api/users/${userID}`);
       const data = await res.json();  
@@ -70,30 +68,19 @@ const EditProfile = (props) => {
         }
     }
     
-    //edit submit function
+    //Edit submit function
     const handleSubmit = async (e) => {
         e.preventDefault()
 
         await editing(firstName, lastName, email, photo)
         console.log(`New Profile:` + firstName, lastName, email, photo)
 
-        // setFirstName('')
-        // setLastName('')
-        // setEmail('')
     }
+
     //picture upload
     const photoUpdate = (e) => {
-        // const reader = new FileReader();
-        // reader.onload = res => {
-        //     console.log(res.target.result); // Print file contents
-        //   }
-        // reader.readAsText(e.target.files[0])    
-        
-        // console.log(photo)
         const newphoto = URL.createObjectURL(e.target.files[0])
-       const slicing = JSON.stringify(newphoto.slice(5))
-       console.log(slicing)
-       setPhoto(newphoto)
+        setPhoto(newphoto)
     }
 
 
@@ -103,12 +90,11 @@ const EditProfile = (props) => {
         <form onSubmit={handleSubmit}>
             
             <div className="add-photo-area" >
-                <img src={photo} alt="user-img" />
-                <div className='background'></div>
-                {/* <p >+</p> */}
+                { !photo ? <div className="no-img-onprofile"><p>Add New Image</p></div> : <img src={ photo } alt="user-img" />}
             </div>
-            <p >Add New Image</p>
-            <input type="file" accept="image/*"  onChange={photoUpdate} />
+            <div className="choose-file-area">
+                <input type="file" accept="image/*"  onChange={photoUpdate} />
+            </div>
 
             <div className="input-area">
                 <label htmlFor="firstname" >First Name / Nickname</label>
@@ -142,14 +128,16 @@ const EditProfile = (props) => {
         </form>
 
             <Modal isOpen={editModal} className="submitted-editprofile-modal">
-                <h2>Your New Account</h2>
-                <img src={photo} alt="new-userimg" />
-                <div className="result-area">
-                    <p>First Name/ Nickname: {firstName}</p>
-                    <p>Last Name: {lastName}</p>
-                    <p>Email: {email}</p>
+                <div className="modal-box">
+                    <h2>Your New Account</h2>
+                    <img src={photo} alt="new-userimg" />
+                    <div className="result-area">
+                        <p>First Name/ Nickname: {firstName}</p>
+                        <p>Last Name: {lastName}</p>
+                        <p>Email: {email}</p>
+                    </div>
+                    <button onClick={closepage} className="submitted-editprofile-btn btn btn-primary-reverse">Close</button>
                 </div>
-                <button onClick={closepage} className="submitted-editprofile-btn btn btn-primary-reverse">Close</button>
             </Modal>
       
     </div>

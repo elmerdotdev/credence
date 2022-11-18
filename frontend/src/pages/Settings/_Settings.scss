@@ -4,43 +4,38 @@
     h2{
         text-align: center;
     }
+    .no-img-onprofile{
+        width: 148px;
+        height: 148px;
+        background-color: #9494947a ;
+        border-radius: 50% 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        p{
+            font-size: 14px;
+        }
+    }
     .add-photo-area{
         width: 148px;
         height: 148px;
         margin-right: auto;
         margin-left: auto;
-       
         position: relative;
         img[alt="user-img"]{
             width: 148px;
             height: 148px;
-            border-radius: 50% 50%;
-            z-index: -1;
+            border-radius: 50% 50%;    
         }
-        .background{
-            text-align: center;
-            width: 148px;
-            height: 148px;
-            border-radius: 50% 50%;
-            background-color: #9494947a ;
-            position: absolute;
-            top: 0;
+    }
+    .choose-file-area{
+        text-align: center;
+        display: flex;
+        flex-flow: column wrap;
+        align-content: center;
+        input{
+            text-align-last: left;
         }
-        p:nth-of-type(1){
-            display: flex;
-            align-items: center;
-            color: $color-regal-blue;
-            font-size: 50px;
-            height: 50px;
-            right:40%;
-            // margin-left: 50px;
-            position: absolute;
-            top:0;
-        }
-        .add-photo-area+p{
-            text-align: center;
-        }
-
     }
     .input-area{
         width: 100%;
@@ -71,17 +66,32 @@
  }
 //MODAL PAGE//Submitted Edit Profile (after click "Edit Profile" button) 
 .submitted-editprofile-modal{
+    height: 100vh;
     display: flex;
-    flex-flow: column;
+    justify-content: center;
     align-items: center;
-    img[alt="new-userimg"]{
-        width: 148px;
-        height: 148px;
-        border-radius: 50% 50%;
+    .modal-box{
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+        background-color:$color-white;
+        padding: 40px 20px;
+        width: 80%;
+        border: 1px solid $color-dusty-gray;
+        border-radius: 16px;
+        img[alt="new-userimg"]{
+            width: 148px;
+            height: 148px;
+            border-radius: 50% 50%;
+        }
+        h2{
+            margin-top: 25px;
+        }
+        .submitted-editprofile-btn{
+            margin-top: 50px;
+        }
     }
-    .submitted-editprofile-btn{
-        margin-top: 50px;
-    }
+    
 }
 
 
@@ -188,6 +198,20 @@
     .section-aboutus,
     .section-help{
         border-bottom: 1px solid $color-dusty-gray;
+    }
+    .no-img-onprofile{
+        width: 124px;
+        height: 125px;
+        border-radius: 199.789px;
+        background-color: #9494947a ;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        p{
+            font-size: 14px;
+            position: relative;
+            
+        }   
     }
     img[alt="user-img"]{
         width: 124px;

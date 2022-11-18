@@ -17,8 +17,6 @@ const AccountSettings = () => {
   const user = localStorage.getItem('user')
   const you = JSON.parse(user)
   const userID = you._id
-  console.log(userID)
-
   
   //1.Clients number
   useEffect(() => {
@@ -108,7 +106,7 @@ const AccountSettings = () => {
             <section className="section-profile-edit">
               <div className="my-profile-box">
             
-                <img src={ myImg } alt="user-img" />
+                { !myImg ? <div className="no-img-onprofile"><p>No image</p></div> : <img src={ myImg } alt="user-img" />}
             
                 <div className='connection-box'>
                   <i className='icon-connection'></i>
