@@ -4,7 +4,7 @@ const mongoose = require('mongoose')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const dotenv = require('dotenv')
-const {authorize, listLabels, CREDENTIALS_PATH} = require('./gmailAuthModule/gmail');
+const {authorize, listLabels, listMsgs, CREDENTIALS_PATH} = require('./gmailAuthModule/gmail');
 const { use } = require('../routes/user');
 
 // const { OAuth2Client } = require('google-auth-library')
@@ -53,6 +53,7 @@ const loginUser = async (req, res) => {
     } else {
             res.status(200).json({
                 _id: user._id,
+                lastLoggedIn: user.lastLoggedIn
             })
     }
 }
@@ -122,7 +123,8 @@ const gmailAuth = async (req, res) => {
 
     const client = await authorize().catch(console.error);
     // await listLabels(client)
-    console.log(client)
+    
+    // console.log(client)
     const content = await fs.readFile(CREDENTIALS_PATH);
     const keys = JSON.parse(content);
     const key = keys.installed || keys.web;
@@ -141,11 +143,32 @@ const gmailAuth = async (req, res) => {
     if (!user) {
         return res.status(404).json({ error: 'No such user' })
     }
+    // listMsgs(client).then(
+    //     (msgs) => {
+    //         res.status(200).json({
+    //             _id: user._id,
+    //             gmailAuth: user.gmailAuth,
+    //             retrievedMsgs: msgs
+        
+    //         })
+    //     }
+        
+    // )
+    const retrievedMsgs = await listMsgs(client)
+    if (retrievedMsgs) {
+        return res.status(200).json({
+            _id: user._id,
+            gmailAuth: user.gmailAuth,
+            retrievedMsgs: retrievedMsgs
+    
+        })
+    }
+    // res.status(200).json({
+    //     _id: user._id,
+    //     gmailAuth: user.gmailAuth,
+    //     retrievedMsgs: retrievedMsgs
 
-    res.status(200).json({
-        _id: user._id,
-        gmailAuth: user.gmailAuth
-    })
+    // })
 }
 
 module.exports = {
