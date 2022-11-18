@@ -2,7 +2,6 @@ import { useState } from 'react';
 import ConnectionAddImage from '../../../images/Connection/connection-add-photo.svg';
 
 const EditConnection = ({ onEdit, connection, onClose }) => {
-  // const [connection, setConnection] = useState({});
   const [firstname, setFirstname] = useState(connection.firstname);
   const [lastname, setLastname] = useState(connection.lastname);
   const [image, setImage] = useState('');
@@ -150,7 +149,7 @@ const EditConnection = ({ onEdit, connection, onClose }) => {
         <label> Location</label>
         <input
           type="text"
-          value={location}
+          defaultValue={connection.location}
           onChange={(e) => setLocation(e.target.value)}
         />
       </div>
