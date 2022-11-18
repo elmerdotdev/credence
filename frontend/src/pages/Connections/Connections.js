@@ -253,15 +253,12 @@ const openNotification = (message) => {
       <section className="connections-top-buttons">
         <button className="btn btn-primary openModalBtn" onClick={() => setShowAddModalIsOpen(true)}>Add</button>
         <div className="connections-filter-buttons">
-          <Filter onPinFilter={pinFilter} onTimeFilter={timeFilter} onAllFilter={allConnections}/>
+          <Filter onPinFilter={pinFilter} onTimeFilter={timeFilter} onAllFilter={allConnections} gmailupdate={gmailUpdate}/>
         </div>
       </section>
       <section className="page-connections" >
       <h2>All Connections</h2>
-      <p><button className="openModalBtn" onClick={() => setShowAddModalIsOpen(true)}>Add</button></p>
-      <p><button onClick={gmailIntegration}>Connect Gmail</button></p>
-      <p><button onClick={gmailUpdate}>Update Gmail</button></p>
-      <Filter onPinFilter={pinFilter}/>
+      <button onClick={gmailIntegration}>Connect Gmail</button>
       <ModalComponent
         className="credence-modal modal-connection-detail"
         isOpen={showDetailModal}
@@ -303,9 +300,9 @@ const openNotification = (message) => {
         />
       </Modal>
       {connections.length > 0 ? (
-        <div className="connection-content"><ClientCards
+        <ClientCards
         connections={connections} onToggle = {() => updateConnectionDataState}
-        /></div>
+        />
         ) : (
           <p className="error-message">
             <button>Add Your First Connection</button>

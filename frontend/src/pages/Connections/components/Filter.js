@@ -1,6 +1,6 @@
 
 
-const FilterConnections = ({onPinFilter, onTimeFilter, onAllFilter}) => {
+const FilterConnections = ({onPinFilter, onTimeFilter, onAllFilter, gmailUpdate}) => {
     return (
        
         <div className="connections-filter-btns">
@@ -8,6 +8,7 @@ const FilterConnections = ({onPinFilter, onTimeFilter, onAllFilter}) => {
             <button className="btn btn-primary-reverse" onClick={onPinFilter} >Pinned</button>
             <button className="btn btn-primary-reverse" onClick={onTimeFilter}>Most Recent</button>
             <button className="btn btn-primary-reverse" >Least Interacted</button>
+            <button className="btn btn-primary-reverse"onClick={gmailUpdate}>Update Gmail</button>
         </div>
 
     )
