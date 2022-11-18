@@ -8,7 +8,7 @@ const Reports = () => {
 
     return (
         <div className="reports">
-            <h2><i className="icon-reports"></i>Reports</h2>
+            <h2>Reports</h2>
             <div className="active-clients">
                 <ActiveClients />
             </div>
