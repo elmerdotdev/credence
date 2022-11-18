@@ -1,0 +1,109 @@
+.page-select-plan{
+    display: grid;
+    gap: 28px;
+    justify-items: center;
+    .free-plan,
+    .premium-plan{
+        display: flex;
+        align-items: center;
+        flex-flow: column wrap;
+        border: 1px solid $color-dusty-gray;
+        border-radius: 12px;
+        padding: 20px 24px 31px 24px;
+        
+        h2{
+            font-weight: 700;
+            font-size: 24px;
+            line-height: 32px;
+        }
+            h3{
+            color: $color-endeavour;
+            font-weight: 700;
+            font-size: 28px;
+            line-height: 36px;
+        }
+        h4{
+            margin-top: 20px;
+            padding-bottom: 16px;
+            border-bottom:1.50451px solid $color-endeavour;
+            font-style: normal;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 20px;
+            text-align: center;
+        }
+        .price-box{
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            margin: 24px 0;
+            .cad{
+                display: flex;
+                flex-flow: column wrap;
+                p:nth-of-type(1){
+                    font-weight: 600;
+                    font-size: 22.3905px;
+                    line-height: 30px;
+                    margin: 0;
+                }
+                p:nth-of-type(2){
+                    font-weight: 700;
+                    font-size: 9.74825px;
+                    line-height: 12px;
+                    margin: 0;
+                }
+            }
+            
+            p:nth-of-type(1){
+                font-weight: 600;
+                font-size: 42.1264px;
+                line-height: 52px;
+            }
+            p:nth-of-type(2){
+                font-weight: 400;
+                font-size: 17.0594px;
+                line-height: 22px;
+            }
+        
+        }
+        .contents-box{
+            text-align: left;
+            li{
+                margin-top: 16px;
+            }
+            li:nth-of-type(4){
+                display: flex;
+            }
+        }
+        
+        .btn{
+            margin-top: 21px;
+        }
+    }
+    .free-plan{
+        background-color: $color-white-lilac;
+    }
+    .premium-plan{
+        background-color: $color-solitude;
+    }
+    @media screen and (min-width:$screen-desktop){
+        grid-template-columns: repeat(2, 1fr);
+        gap: 61px;
+        h2{
+            font-weight: 700;
+            font-size: 36px;    
+            line-height: 44px;
+            grid-column: 1 / -1;
+        }
+        .free-plan{
+            grid-column: 1 / 2;
+        }
+        .premium-plan{
+         grid-column: 2 / 3;
+        }
+        .btn{
+            grid-column: 1 / -1;
+            grid-row: 4 / 5;
+        }
+    }
+}

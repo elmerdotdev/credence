@@ -11,50 +11,63 @@ const SelectPlan = (props) => {
 
   return (
     <div className='page-select-plan'>
-        <div className='page-select-plan header-arrow'>
-            <p>return</p>
-            <p>delete</p>
-        </div>
-        <h1>Select a Plan</h1>
+        
+        <h2>Select a Plan to Continue</h2>
+
+        <span></span>
 
         <section className='free-plan'>
-            <h2>FREE PLAN</h2>
-            <h3>Free for Indivisuals to try.</h3>
-            <p>$</p>
-            <p>CAD</p>
+            <h3>FREE PLAN</h3>
+            <h4>Free for Indivisuals to try.</h4>
+            <div className="price-box">
+                <div className="cad">
+                    <p>$</p>
+                    <p>CAD</p>
+                </div>
+                <p>0</p>
+                <p>/Free Forever</p>
+            </div>
 
-            <p>0</p>
-            <p>/Free Forever</p>
-
-            <h3>You can enjoy:</h3>
-            <ul>
-                <li><b>Up to 8</b> Connections to manage</li>
-                <li><b>Up to 50</b> Note Entries</li>
-                <li><b>Up to 50</b> Calender Entries</li>
-                <li>Search Connection Information <b>by Name Only</b></li>
-            </ul>
-            <button><Link to="/" >Start for Free</Link></button>
+            <div className="contents-box">
+                <p>You can enjoy:</p>
+                <ul>
+                    <li><i className='icon-check'></i><b>Up to 8</b> Connections to manage</li>
+                    <li><i className='icon-check'></i><b>Up to 50</b> Note Entries</li>
+                    <li><i className='icon-check'></i><b>Up to 50</b> Calender Entries</li>
+                    <li><i className='icon-check'></i>Search Connection Information <b>by Name Only</b></li>
+                </ul>
+            </div>
+            <button className='btn btn-primary-reverse'>Start for Free</button>
         </section>
 
         <section className='premium-plan'>
-        <h2>PREMIUM PLAN</h2>
-            <h3>Supercharge your efficiency.<b/>Start free.</h3>
-            <p>$</p>
-            <p>CAD</p>
+        <h3>PREMIUM PLAN</h3>
+            <h4>Supercharge your efficiency.<br/>Start free.</h4>
 
-            <p>19.95</p>
-            <p>/month</p>
+            <span></span>
 
-            <h3>You can enjoy:</h3>
-            <ul>
-                <li><b>Unlimited</b> Connections to manage</li>
-                <li><b>Unlimited</b> Note Entries</li>
-                <li><b>Unlimited</b>Schedule Entries</li>
-                <li>Search Connection Information <b>by Keywords from Events, Connection, Emails, and Notes</b></li>
-            </ul>
-            <button><Link to="/" >Start My 30-Day Trial</Link></button>
-            <button onClick={closepage}>Close</button>
+            <div className="price-box">
+                <div className="cad">
+                    <p>$</p>
+                    <p>CAD</p>
+                </div>
+                <p>19.95</p>
+                <p>/month</p>
+            </div>
+
+            <div className="contents-box">
+                <p>You can enjoy:</p>
+                <ul>
+                    <li><i className='icon-check'></i><span><b>Unlimited</b> Connections to manage</span></li>
+                    <li><i className='icon-check'></i><span><b>Unlimited</b> Note Entries</span></li>
+                    <li><i className='icon-check'></i><span><b>Unlimited</b>Schedule Entries</span></li>
+                    <li><i className='icon-check'></i><span>Search Connection Information <b>by Keywords from Events, Connection, Emails, and Notes</b></span></li>
+                </ul>
+            </div>
+            <button className="btn btn-primary">Start My 30-Day Trial</button>
+            
         </section>
+        <button onClick={closepage} className='btn btn-primary-reverse'>Close</button>
     </div>
   )
 }
