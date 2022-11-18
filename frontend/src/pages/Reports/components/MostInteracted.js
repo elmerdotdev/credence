@@ -18,13 +18,14 @@ const MostInteracted = () => {
 
         const getNotes = async () => {
             const notes = await fetchNotes();
-            const notesByClient = notes.reduce((map, val) => {
-                if(!map[val.client_id]) {
-                    map[val.client_id] = [];
-                }
-                map[val.client_id].push(val.client_id);
-                return map
-            })
+            // const notesByClient = notes.reduce((map, val) => {
+            //     if(!map[val.client_id]) {
+            //         map[val.client_id] = [];
+            //     }
+            //     map[val.client_id].push(val.client_id);
+            //     return map
+            // })
+            const notesByClient = notes.map()
             setNotes(notes);
             console.log(notesByClient)
         }
