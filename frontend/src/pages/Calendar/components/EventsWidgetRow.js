@@ -22,8 +22,11 @@ const EventsWidgetRow = (props) => {
                 </div>
             )}
 
-            <div>
+            <div className="eventRow-details">
                 <h4 onClick={() => navigate(`/calendar/?eventId=${props.event._id}`)}>{props.event.title}</h4>
+            </div>
+
+            <div className="eventRow-connections">
                 {props.event.client_id[0] && props.event.client_id.map((client, i) => (
                     <Link key={i} to={`/connections/?connectionId=${client.value}`} className="event-client" style={{ backgroundColor: colorArray[i] }}>{client.label}</Link>
                 ))}
