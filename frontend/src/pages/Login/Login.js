@@ -7,8 +7,6 @@ import { useLogin } from '../Signup/hooks/useLogin'
 import '../../fontello/css/credence.css';
 import logo from '../../images/logo.svg';
 import loginimage from'../../images/Register/loginimage.svg';
-// import GoogleLoginButton from '../../components/GoogleLoginButton'
-
 
 const Login = () => {
   //Email
@@ -17,8 +15,8 @@ const Login = () => {
   const [password, setPassword] = useState('');
   //Password display( hide or show )
   const [pwShow, setPwShow] = useState(false);
-  //Error checker and functions
-  const {login, error, isLoading, addLoginDate} = useLogin();
+  //Error checker and functions from useLogin.js
+  const {login, error, lastday} = useLogin();
   
   
   useEffect(() => {
@@ -26,22 +24,42 @@ const Login = () => {
     document.querySelector('body').classList.add('no-sidebar')
   }, [])
 
-   
   const navigate = useNavigate()
+
   //Login submit action
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-   //ここで入れる
-    await  login(email, password)
+   //Login here
+    await login(email, password)
     
     setEmail('')
     setPassword('')
 
-    if (localStorage.getItem('user')) {  
-      console.log('Successs Login!')
-      navigate('/dashboard')
-    } else {
+    const yourData = localStorage.getItem('user')
+    const dataInLocal = JSON.parse(yourData)
+    const lastLoggedIn = dataInLocal.lastLoggedIn
+
+    //Delete lastLoggedIn from localstorage 
+    const deleteLocalDate = () => {
+      const userID = dataInLocal._id
+      const loginDate = { _id: userID }  
+      localStorage.clear()
+      localStorage.setItem('user', JSON.stringify(loginDate))
+    }
+    
+
+    if (yourData && (lastLoggedIn === null)) {
+      console.log('Success Login. First time to Login!')
+      await lastday()
+      navigate('/onboarding')
+      deleteLocalDate()
+    } else if (yourData && !(lastLoggedIn === null)) {  
+      console.log('Success Login. Welcome back!')
+      await lastday()
+       navigate('/dashboard')
+       deleteLocalDate()
+    } else if (!yourData) {
       console.log(' No user in localstorage')
     }
   }
@@ -92,8 +110,6 @@ const Login = () => {
               <div className="fgt-pwd-box">
                 <Link className="forget-pw-link">Forgotten your password?</Link>
               </div>
-            {/* <div>OR</div> */}
-            {/* <GoogleLoginButton/> */}
           
             <p className="move-to-signup-link">Don't have an account? <Link to='/signup'>Sign up here</Link></p>
           </div>

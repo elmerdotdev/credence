@@ -14,6 +14,7 @@ const HeaderSearch = () => {
     const [searchEventParams] = useState(["title", "type"]);
     const [searchNoteParams] = useState(["title", "content"]);
     const [sortedAllResults, setSortedAllResults] = useState([]);
+    const [quickAddShow, setQuickAddShow] = useState(false)
 
     const userID = "63645e4850049bfd1e89637a";
     const navigate = useNavigate();
@@ -167,11 +168,18 @@ const HeaderSearch = () => {
             <SearchResults filteredConnections={filteredConnections} filteredEvents={filteredEvents}  filteredNotes={filteredNotes} onToggleEvent= {toggleEvent} onToggleConn = {toggleConnDetail} onToggleNote = {toggleNoteDetail} sortedAllResults={sortedAllResults}/>
             
 
- 
-            <button className="header-quick-add">
-                <span>Quick Add</span>
-                <i className="icon-plus"></i>
-            </button>
+            <div className="quick-add-wrapper">
+                <button className="header-quick-add" onClick={() => setQuickAddShow(!quickAddShow)}>
+                    <span>Quick Add</span>
+                    <i className="icon-plus"></i>
+                </button>
+
+                <ul className={quickAddShow && 'quick-add-visible'}>
+                    <li><i className="icon-calendar"></i>New Event</li>
+                    <li><i className="icon-connection"></i>New Connection</li>
+                    <li><i className="icon-note"></i>New Note</li>
+                </ul>
+            </div>
         </div>
     )
 }

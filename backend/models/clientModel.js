@@ -28,9 +28,6 @@ const clientSchema = new Schema({
     address: {
         type: String
     },
-    description: {
-        type: String
-    },
     active: {
         type: Boolean,
         default: true
