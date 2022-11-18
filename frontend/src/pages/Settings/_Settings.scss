@@ -1,3 +1,90 @@
+//MODAL PAGE//Edit Profile
+ .editProfile-modal{
+    padding: 20px;
+    h2{
+        text-align: center;
+    }
+    .add-photo-area{
+        width: 148px;
+        height: 148px;
+        margin-right: auto;
+        margin-left: auto;
+       
+        position: relative;
+        img[alt="user-img"]{
+            width: 148px;
+            height: 148px;
+            border-radius: 50% 50%;
+            z-index: -1;
+        }
+        .background{
+            text-align: center;
+            width: 148px;
+            height: 148px;
+            border-radius: 50% 50%;
+            background-color: #9494947a ;
+            position: absolute;
+            top: 0;
+        }
+        p:nth-of-type(1){
+            display: flex;
+            align-items: center;
+            color: $color-regal-blue;
+            font-size: 50px;
+            height: 50px;
+            right:40%;
+            // margin-left: 50px;
+            position: absolute;
+            top:0;
+        }
+        .add-photo-area+p{
+            text-align: center;
+        }
+
+    }
+    .input-area{
+        width: 100%;
+        margin-top: 28px;
+        label{
+            font-style: normal;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 16px;
+            color: $color-regal-blue;
+            
+        }
+        input{
+            display: block;
+            border: none;
+            border-bottom: 1px solid $color-dusty-gray;
+            color: rgba(0, 0, 0, 0.4);
+            width: 100%;
+        }
+    }
+    .edit-btn-area{
+        text-align: center;
+        .edit-profile-btn{
+            margin-top: 50px;
+        }
+    }
+    
+ }
+//MODAL PAGE//Submitted Edit Profile (after click "Edit Profile" button) 
+.submitted-editprofile-modal{
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    img[alt="new-userimg"]{
+        width: 148px;
+        height: 148px;
+        border-radius: 50% 50%;
+    }
+    .submitted-editprofile-btn{
+        margin-top: 50px;
+    }
+}
+
+
 //MODAL PAGE//Subscribe Premium section 
 .subscribe-modal-premium{
     height: 100vh;
