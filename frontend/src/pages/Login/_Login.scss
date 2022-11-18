@@ -36,7 +36,7 @@
     label{
         display: block;
         color:$color-regal-blue;
-        font-size: 14px;
+        @include fontSize(14);
         margin-bottom: 8px;
     }
     label:nth-of-type(2){
@@ -60,7 +60,7 @@
     }
     .icon-hide,
     .icon-show{
-        font-size: 16px;
+        @include fontSize(16);
     }
     input[value="Login"]{
         margin-top: 33px;
@@ -78,7 +78,7 @@
         color:$color-regal-blue;
         font-style: normal;
         font-weight: 400;
-        font-size: 16px;
+        @include fontSize(16);
         line-height: 20px;
         border-bottom: 1px solid $color-regal-blue;
     }
@@ -120,12 +120,12 @@
         }
         .icon-close:before{
             margin: 0;
-            font-size: 42px;
+            @include fontSize(42);
         }
         h3{
             margin-top: 0;
             font-weight: 700;
-            font-size: 36px;
+            @include fontSize(36);
             line-height: 44px;
             
             img.credence-logo{
@@ -148,7 +148,7 @@
         }
         .icon-hide,
         .icon-show{
-        font-size: 26px;
+            @include fontSize(26);
     }
     }
 }

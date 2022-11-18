@@ -19,7 +19,7 @@
             align-items: center;
             margin:auto;
             i{
-                font-size: 50px;
+                @include fontSize(50);
                 color: $color-white;
             }
         }
