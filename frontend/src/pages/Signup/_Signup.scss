@@ -37,7 +37,7 @@
     label{
         display: block;
         color:$color-regal-blue;
-        font-size: 14px;
+        @include fontSize(14);
         font-weight: 400;
         line-height: 16px;
         margin-bottom: 8px;
@@ -50,7 +50,7 @@
         border: none;
         border-bottom: 1px solid $color-gray;
         margin-bottom: 32px;
-        font-size: 16px;
+        @include fontSize(16);
         line-height: 20px;
         font-weight: 400;
     }
@@ -58,7 +58,7 @@
         width: 100%;
         background-color: $color-white;
         border: none;
-        font-size: 16px;
+        @include fontSize(16);
         line-height: 20px;
         font-weight: 400;
     }
@@ -69,7 +69,7 @@
     }
     .icon-hide,
     .icon-show{
-        font-size: 16px;
+        @include fontSize(16);
         color:#202533;
     }
     .required-star{
@@ -103,10 +103,10 @@
         }
         .icon-close:before{
             margin: 0;
-            font-size: 42px;
+            @include fontSize(42);
         }
         h3{
-            font-size: 36px;
+            @include fontSize(36);
             line-height: 44px;
             margin-top: 0;
 
@@ -139,7 +139,7 @@
         }
         .icon-hide,
         .icon-show{
-            font-size: 26px;
+            @include fontSize(26);
         }
         button.submit-signup-btn.btn.btn-primary{
             margin: 32px 0 0 0;
