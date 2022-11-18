@@ -46,7 +46,11 @@ const AppSettings = () => {
                         <h3>About Us</h3>
                     </div>
                     <p>Learn more about The Planeteers</p>
-                    <button onClick={() => setAboutusModalIsOpen(true)} className='learnmore btn btn-primary-reverse'>Learn More <i className='icon-arrow-right'></i></button>
+                    <button onClick={() => setAboutusModalIsOpen(true)} 
+                            className='learnmore btn btn-primary-reverse'>
+                            Learn More 
+                            <i className='icon-arrow-right'></i>
+                    </button>
                     <Modal  isOpen={aboutusModalIsOpen} 
                             className="aboutus-page-modal-modal"
                     >
@@ -67,7 +71,7 @@ const AppSettings = () => {
                             Contact Us 
                             <i className='icon-arrow-right'></i>
                     </button>
-                    <Modal isOpen={contactusmodalIsOpen}>
+                    <Modal isOpen={contactusmodalIsOpen} className="contactus-modal-modal">
                         <div className="contactus-modal">
                             <h2>Contact Us</h2>
                             <img src={ThePlaneteers} alt="The planeteers" />

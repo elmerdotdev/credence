@@ -16,13 +16,15 @@ const SelectPlan = (props) => {
 
         <section className='free-plan'>
             <h3>FREE PLAN</h3>
-            <h4>Free for Indivisuals to try.</h4>
+            <h4 className='free-subtitle'>Free for Indivisuals to try.</h4>
             <div className="price-box">
                 <div className="cad">
                     <p>$</p>
                     <p>CAD</p>
                 </div>
-                <p>0</p>
+                <div className='nbr'>
+                    <p>0</p>
+                </div>
                 <p>/Free Forever</p>
             </div>
 
@@ -31,11 +33,11 @@ const SelectPlan = (props) => {
                 <ul>
                     <li><i className='icon-check'></i><span><b>Up to 8</b> Connections to manage</span></li>
                     <li><i className='icon-check'></i><span><b>Up to 50</b> Note Entries</span></li>
-                    <li><i className='icon-check'></i><span><b>Up to 50</b> Calender Entries</span></li>
+                    <li><i className='icon-check'></i><span><b>Up to 50</b> Calendar Entries</span></li>
                     <li><i className='icon-check'></i><span>Search Connection Information <b>by Name Only</b></span></li>
                 </ul>
             </div>
-            <button className='btn btn-primary-reverse'>Start for Free</button>
+            <button className='free-btn btn btn-primary-reverse'>Start for Free</button>
         </section>
 
         <section className='premium-plan'>
@@ -47,7 +49,9 @@ const SelectPlan = (props) => {
                     <p>$</p>
                     <p>CAD</p>
                 </div>
-                <p>19.95</p>
+                <div className='nbr'>
+                    <p>19.95</p>
+                </div>
                 <p>/month</p>
             </div>
 

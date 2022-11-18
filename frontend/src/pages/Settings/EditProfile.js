@@ -15,10 +15,15 @@ const EditProfile = (props) => {
     //get userID from Localstorage(user ID)
     const userID = JSON.parse(localStorage.getItem('user'))._id
 
-    //page close in editModal
+    //page Open & close in editModal
+    //1.Click Submit to edit
+    const submitOpenClosePage = () => {
+        setEditModal(true)
+    }
+    //2. Return to setting page
     const closepage = () => {
-        OnsetEditProfile(false)
         setEditModal(false)
+        OnsetEditProfile(false)
     }
 
     //Fetch original user Info
@@ -128,7 +133,7 @@ const EditProfile = (props) => {
 
             <div className="edit-btn-area">
                 <button type="submit" 
-                        onClick={() => setEditModal(true)} 
+                        onClick={submitOpenClosePage} 
                         className="edit-profile-btn btn btn-primary">
                         Edit Profile
                 </button>
@@ -144,7 +149,10 @@ const EditProfile = (props) => {
                         <p>Last Name: {lastName}</p>
                         <p>Email: {email}</p>
                     </div>
-                    <button onClick={closepage} className="submitted-editprofile-btn btn btn-primary-reverse">Close</button>
+                    <button onClick={closepage} 
+                            className="submitted-editprofile-btn btn btn-primary-reverse">
+                            Close
+                    </button>
                 </div>
             </Modal>
       

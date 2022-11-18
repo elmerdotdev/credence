@@ -47,15 +47,15 @@ const Aboutus = (props) => {
             <div className="member">
                 <img src={Joanne} alt="joanne Cho" className='image'/>
                 <h3>Joanne Cho</h3>
-                <p>Visual Designer</p>
+                <p>Graphic & Product Designer</p>
                 <div className="links-box">
-                    <div><img src={LinkedIn} alt="linkedIn-icon" /><p> Joanne-k-cho</p></div>
+                    <div><img src={LinkedIn} alt="linkedIn-icon" /><p> joanne-k-cho</p></div>
                 </div>
             </div>
             <div className="member">
                 <img src={Herlan} alt="herlan wijaya" className='image'/>
                 <h3>Herlan Wijaya</h3>
-                <p>UI Lead</p>
+                <p>UI Lead/Product Designer</p>
                 <div className="links-box">
                     <div><img src={LinkedIn} alt="linkedIn-icon" /><p> herlanwijaya</p></div>
                 </div>
@@ -63,7 +63,7 @@ const Aboutus = (props) => {
             <div className="member">
                 <img src={Danika} alt="danika enad" className='image'/>
                 <h3>Danika Enad</h3>
-                <p>PM/Full Stack Dev</p>
+                <p>Project Manager/Full Stack Developer</p>
                 <div className="links-box">
                     <div><img src={LinkedIn} alt="linkedIn-icon" /><p> danikaenad</p></div>
                     <div><img src={Github} alt="github-icon" /><p> denad00</p></div>
@@ -72,7 +72,7 @@ const Aboutus = (props) => {
             <div className="member">
                 <img src={Elmer} alt="elmer balbin" className='image'/>
                 <h3>Elmer Balbin</h3>
-                <p>Dev Lead/Full Stack Dev</p>
+                <p>Development Lead/Full Stack Developer</p>
                 <div className="links-box">
                     <div><img src={LinkedIn} alt="linkedIn-icon" /><p> elmzarnsi</p></div>
                     <div><img src={Github} alt="github-icon" /><p> elmerdotdev</p></div>
@@ -82,7 +82,7 @@ const Aboutus = (props) => {
             <div className="member">
                 <img src={Keiko} alt="keiko shimizu" className='image'/>
                 <h3>Keiko Shimizu</h3>
-                <p>Full Stack Dev</p>
+                <p>Full Stack Developer</p>
                 <div className="links-box">
                     <div><img src={LinkedIn} alt="linkedIn-icon" /><p> keikoshimizu</p></div>
                     <div><img src={Github} alt="github-icon" /><p> keikoshimizu</p></div>
@@ -91,10 +91,10 @@ const Aboutus = (props) => {
             <div className="member">
                 <img src={Iris} alt="iris chen" className='image'/>
                 <h3>Iris Chen</h3>
-                <p>Full Stack Dev</p>
+                <p>Full Stack Developer</p>
                 <div className="links-box">
-                        <div><img src={LinkedIn} alt="linkedIn-icon" /><p> iris-jamin-chen</p></div>
-                        <div><img src={Github} alt="github-icon" /><p> jiaminitaa</p></div>
+                        <div><img src={LinkedIn} alt="linkedIn-icon" /><p> iris-jiamin-chen</p></div>
+                        <div><img src={Github} alt="github-icon" /><p> jaminitaa</p></div>
                 </div>
             </div>
         </div>

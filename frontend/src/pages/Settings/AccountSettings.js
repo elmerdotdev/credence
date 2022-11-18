@@ -100,7 +100,7 @@ const AccountSettings = () => {
   }
 
   return (
-    <>
+    <div className='account-modal'>
         <h2>Account Settings</h2>
         <div className="account-setting-box">
             <section className="section-profile-edit">
@@ -125,7 +125,7 @@ const AccountSettings = () => {
                 </div>
               </div>
                 <button className="edit-profile-btn btn btn-primary-reverse" onClick={() => setEditProfileModalIsOpen(true)}>Edit Profile</button>
-                <Modal isOpen={editProfileModalIsOpen}>
+                <Modal isOpen={editProfileModalIsOpen} className="edit-profile-modal-modal">
                   <EditProfile onEditProfile={editProfileModalIsOpen} OnsetEditProfile={setEditProfileModalIsOpen}/>
                 </Modal>
             </section>
@@ -153,7 +153,7 @@ const AccountSettings = () => {
                 
             </section>
         </div>
-    </>
+    </div>
   )
 }
 
