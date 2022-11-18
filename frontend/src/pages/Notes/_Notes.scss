@@ -1,0 +1,59 @@
+.page-notes {
+    font-size: 1rem;
+}
+
+.modal-notes-view,
+.modal-notes-edit {
+    width: 100%;
+    max-width: 800px;
+
+    .single-note-btns {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        
+        .modal-control-buttons {
+            display: flex;
+            flex-direction: row;
+            gap: .5rem;
+        }
+    }
+
+    h2 {
+        @include fontSize(32);
+        font-weight: 600;
+    }
+
+    .modal-notes-content {
+        padding: 0 3rem;
+    }
+
+    .input-wrapper {
+        display: flex;
+        gap: 5px;
+        flex-direction: column;
+        padding: 0.75rem 0;
+
+        label {
+            color: $color-regal-blue;
+        }
+
+        input[type="text"],
+        textarea {
+            padding: 0.2rem 0;
+            background: none;
+            border: none;
+            border-bottom: 1px solid $color-gray;
+
+            &:focus {
+                outline: 0;
+            }
+        }
+    }
+
+    .submit-btn-wrapper {
+        flex-direction: row;
+        gap: 1rem;
+        margin-top: 1rem;
+    }
+}
