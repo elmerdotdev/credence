@@ -145,8 +145,9 @@ const processImage = async (image) => {
         <input
           required
           type="text"
-          placeholder="(000)000-000"
+          placeholder="000-000-0000"
           value={phone}
+          pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
           onChange={(e) => setPhone(e.target.value)}
         />
       </div>
