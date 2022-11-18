@@ -1,13 +1,13 @@
 
 import React from 'react';
 import { useState } from 'react';
+import ConnectionAddImage from '../../../images/Connection/connection-add-photo.svg';
 
 const AddConnection = ({ onAdd, onClose }) => {
 
   const [firstname, setFirstname] = useState('');
   const [lastname, setLastname] = useState('');
   const [image, setImage] = useState('');
-  const [imageUrl, setImageUrl] = useState('');
   const [previewImage, setPreviewImage] = useState('');
   const [position, setPosition] = useState('');
   const [company, setCompany] = useState('');
@@ -42,7 +42,7 @@ const onSubmit = (e) => {
   e.preventDefault();
 
   if (!image) {
-    alert("Need image")
+    alert("Need image for connection")
     return false
   }
 
@@ -59,7 +59,7 @@ const onSubmit = (e) => {
   .then(resp => resp.json())
   .then(data => {
     const photo = data.url
-    onAdd({ firstname, lastname, position, company, email, phone, active, pinned, labels, photo, user_id });
+    onAdd({ firstname, lastname, position, company, email, phone, location, active, pinned, labels, photo, user_id });
   })
   .catch(err => console.log(err))
 
@@ -94,35 +94,40 @@ const processImage = async (image) => {
 
   return (
     <div>
-    <h2 className="modal-title">New Connection</h2>
-   
     <form className="add-form" onSubmit={onSubmit}>
-      <div className="input-wrapper">
-        <label>First Name / Nickname*</label>
-        <input
-          required
-          className="form-input"
-          type="text"
-          placeholder="Name"
-          value={firstname}
-          onChange={(e) => setFirstname(e.target.value)}
-        />
-      </div>
-      <div className="input-wrapper">
-        <label>Last Name*</label>
-        <input
-          required
-          type="text"
-          placeholder="Last Name"
-          value={lastname}
-          onChange={(e) => setLastname(e.target.value)}
-        />
-      </div>
-      <div className="input-wrapper">
-        <input type="file" onChange= {(e)=> processImage(e.target.files[0])}></input>
-        {previewImage &&
-          <img src={previewImage} alt="New connection" />
-        }
+      <div className="connection-form-top">
+        <div className="connection-form-top-fields">
+          <h2 className="modal-title">New Connection</h2>
+          <div className="input-wrapper">
+            <label>First Name / Nickname*</label>
+            <input
+              required
+              className="form-input"
+              type="text"
+              placeholder="Name"
+              value={firstname}
+              onChange={(e) => setFirstname(e.target.value)}
+            />
+          </div>
+          <div className="input-wrapper">
+            <label>Last Name*</label>
+            <input
+              required
+              type="text"
+              placeholder="Last Name"
+              value={lastname}
+              onChange={(e) => setLastname(e.target.value)}
+            />
+          </div>
+        </div>
+        <div className="connection-form-top-photo">
+          <div className="input-wrapper">
+            <input id="connection-photo" type="file" onChange= {(e)=> processImage(e.target.files[0])} className="visually-hidden" />
+            <label htmlFor="connection-photo">
+              <img src={previewImage || ConnectionAddImage} alt="New connection" />
+            </label>
+          </div>
+        </div>
       </div>
       <h4>Contact Information</h4>
       <div className="input-wrapper">
@@ -140,8 +145,9 @@ const processImage = async (image) => {
         <input
           required
           type="text"
-          placeholder="(000)000-000"
+          placeholder="000-000-0000"
           value={phone}
+          pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
           onChange={(e) => setPhone(e.target.value)}
         />
       </div>
