@@ -3,11 +3,14 @@ import React, { useState } from 'react'
 
 //page
 import Aboutus from "./Aboutus"
+//image
+import ThePlaneteers from '../../images/Setting/ThePlaneteers.svg'
 
 const AppSettings = () => {
   
     const [aboutusModalIsOpen, setAboutusModalIsOpen]= useState(false)
     const [subscmodalIsOpen, setSubscModalIsOpen] = useState(false)
+    const [contactusmodalIsOpen, setContactusModalIsOpen] = useState(false)
     return (
     <>
         <section className='page-appsettings'>
@@ -55,7 +58,18 @@ const AppSettings = () => {
                         <h3>Help</h3>
                     </div>
                     <p>Contact us for help or assistance</p>
-                    <button className='contactus btn btn-primary-reverse'>Contact Us <i className='icon-arrow-right'></i></button>
+                    <button onClick={() => setContactusModalIsOpen(true)} className='contactus btn btn-primary-reverse'>Contact Us <i className='icon-arrow-right'></i></button>
+                    <Modal isOpen={contactusmodalIsOpen}>
+                        <div className="contactus-modal">
+                            <h2>Contact Us</h2>
+                            <img src={ThePlaneteers} alt="The planeteers" />
+                            <h3>Langara College</h3>
+                            <p>Web and Mobile App Design and Development</p>
+                            <p>100 West 49th Avenue, Vancouver, BC Canada V5Y 2Z6</p>
+                            <p>ThePlaneteers.com</p>
+                            <button className="contactus-btn btn btn-primary-reverse" onClick={() => setContactusModalIsOpen(false)}>Close</button>
+                        </div>
+                    </Modal>
                 </section>
             </div>
         </section>

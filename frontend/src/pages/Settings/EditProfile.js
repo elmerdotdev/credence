@@ -93,7 +93,10 @@ const EditProfile = (props) => {
                 { !photo ? <div className="no-img-onprofile"><p>Add New Image</p></div> : <img src={ photo } alt="user-img" />}
             </div>
             <div className="choose-file-area">
-                <input type="file" accept="image/*"  onChange={photoUpdate} />
+                <input  type="file" 
+                        accept="image/*"  
+                        onChange={photoUpdate} 
+                />
             </div>
 
             <div className="input-area">
@@ -124,7 +127,13 @@ const EditProfile = (props) => {
                 />
             </div>
 
-            <div className="edit-btn-area"><button type="submit" onClick={() => setEditModal(true)} className="edit-profile-btn btn btn-primary">Edit Profile</button></div>
+            <div className="edit-btn-area">
+                <button type="submit" 
+                        onClick={() => setEditModal(true)} 
+                        className="edit-profile-btn btn btn-primary">
+                        Edit Profile
+                </button>
+            </div>
         </form>
 
             <Modal isOpen={editModal} className="submitted-editprofile-modal">
@@ -132,7 +141,7 @@ const EditProfile = (props) => {
                     <h2>Your New Account</h2>
                     <img src={photo} alt="new-userimg" />
                     <div className="result-area">
-                        <p>First Name/ Nickname: {firstName}</p>
+                        <p>First Name / Nickname: {firstName}</p>
                         <p>Last Name: {lastName}</p>
                         <p>Email: {email}</p>
                     </div>
