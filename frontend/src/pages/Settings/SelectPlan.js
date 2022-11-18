@@ -29,10 +29,10 @@ const SelectPlan = (props) => {
             <div className="contents-box">
                 <p>You can enjoy:</p>
                 <ul>
-                    <li><i className='icon-check'></i><b>Up to 8</b> Connections to manage</li>
-                    <li><i className='icon-check'></i><b>Up to 50</b> Note Entries</li>
-                    <li><i className='icon-check'></i><b>Up to 50</b> Calender Entries</li>
-                    <li><i className='icon-check'></i>Search Connection Information <b>by Name Only</b></li>
+                    <li><i className='icon-check'></i><span><b>Up to 8</b> Connections to manage</span></li>
+                    <li><i className='icon-check'></i><span><b>Up to 50</b> Note Entries</span></li>
+                    <li><i className='icon-check'></i><span><b>Up to 50</b> Calender Entries</span></li>
+                    <li><i className='icon-check'></i><span>Search Connection Information <b>by Name Only</b></span></li>
                 </ul>
             </div>
             <button className='btn btn-primary-reverse'>Start for Free</button>

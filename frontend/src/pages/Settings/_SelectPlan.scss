@@ -2,6 +2,7 @@
     display: grid;
     gap: 28px;
     justify-items: center;
+    justify-content: center;
     .free-plan,
     .premium-plan{
         display: flex;
@@ -10,16 +11,16 @@
         border: 1px solid $color-dusty-gray;
         border-radius: 12px;
         padding: 20px 24px 31px 24px;
-        
+        max-width: 407px;
         h2{
             font-weight: 700;
-            font-size: 24px;
+            @include fontSize(24);
             line-height: 32px;
         }
             h3{
             color: $color-endeavour;
             font-weight: 700;
-            font-size: 28px;
+            @include fontSize(28);
             line-height: 36px;
         }
         h4{
@@ -28,7 +29,7 @@
             border-bottom:1.50451px solid $color-endeavour;
             font-style: normal;
             font-weight: 400;
-            font-size: 16px;
+            @include fontSize(16);
             line-height: 20px;
             text-align: center;
         }
@@ -58,11 +59,13 @@
                 font-weight: 600;
                 font-size: 42.1264px;
                 line-height: 52px;
+                margin: 0;
             }
             p:nth-of-type(2){
                 font-weight: 400;
                 font-size: 17.0594px;
                 line-height: 22px;
+                margin: 0;
             }
         
         }
@@ -81,11 +84,9 @@
     }
     .free-plan{
         background-color: $color-white-lilac;
-        max-width: 500px;
     }
     .premium-plan{
         background-color: $color-solitude;
-        max-width: 500px;
     }
     @media screen and (min-width:$screen-desktop){
         grid-template-columns: repeat(2, 1fr);
@@ -95,19 +96,21 @@
         max-width:1000px ;
         h2{
             font-weight: 700;
-            font-size: 36px;    
+            @include fontSize(36);
             line-height: 44px;
             grid-column: 1 / -1;
         }
         .free-plan{
             grid-column: 1 / 2;
+            width: 450px;
         }
         .premium-plan{
          grid-column: 2 / 3;
+         width: 450px;
         }
         .btn{
             grid-column: 1 / -1;
-            grid-row: 4 / 5;
+            grid-row: 3 / 4;
         }
     }
 }
