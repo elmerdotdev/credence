@@ -47,8 +47,12 @@ const AppSettings = () => {
                     </div>
                     <p>Learn more about The Planeteers</p>
                     <button onClick={() => setAboutusModalIsOpen(true)} className='learnmore btn btn-primary-reverse'>Learn More <i className='icon-arrow-right'></i></button>
-                    <Modal isOpen={aboutusModalIsOpen} className="aboutus-page-modal-modal">
-                        <Aboutus aboutusIsOpen={aboutusModalIsOpen} onsetAboutusIsOpen={setAboutusModalIsOpen}/>
+                    <Modal  isOpen={aboutusModalIsOpen} 
+                            className="aboutus-page-modal-modal"
+                    >
+                        <Aboutus    aboutusIsOpen={aboutusModalIsOpen} 
+                                    onsetAboutusIsOpen={setAboutusModalIsOpen}
+                        />
                     </Modal>
                 </section>
 
@@ -58,7 +62,11 @@ const AppSettings = () => {
                         <h3>Help</h3>
                     </div>
                     <p>Contact us for help or assistance</p>
-                    <button onClick={() => setContactusModalIsOpen(true)} className='contactus btn btn-primary-reverse'>Contact Us <i className='icon-arrow-right'></i></button>
+                    <button onClick={() => setContactusModalIsOpen(true)} 
+                            className='contactus btn btn-primary-reverse'>
+                            Contact Us 
+                            <i className='icon-arrow-right'></i>
+                    </button>
                     <Modal isOpen={contactusmodalIsOpen}>
                         <div className="contactus-modal">
                             <h2>Contact Us</h2>
@@ -67,7 +75,10 @@ const AppSettings = () => {
                             <p>Web and Mobile App Design and Development</p>
                             <p>100 West 49th Avenue, Vancouver, BC Canada V5Y 2Z6</p>
                             <p>ThePlaneteers.com</p>
-                            <button className="contactus-btn btn btn-primary-reverse" onClick={() => setContactusModalIsOpen(false)}>Close</button>
+                            <button className="contactus-btn btn btn-primary-reverse" 
+                                    onClick={() => setContactusModalIsOpen(false)}>
+                                    Close
+                            </button>
                         </div>
                     </Modal>
                 </section>
@@ -87,12 +98,18 @@ const AppSettings = () => {
                     <p>/ month</p>
                 </div>
                 
-                <button onClick={() => setSubscModalIsOpen(true)} className='btn btn-primary'>Subscribe</button>
+                <button onClick={() => setSubscModalIsOpen(true)} 
+                        className='btn btn-primary'>
+                        Subscribe
+                </button>
                 <Modal isOpen={subscmodalIsOpen} className="subscribe-modal-premium">
                     <div className="subsc-modal">
                         <h2>Thank you for Subscribing!</h2>
                         <p>Now you subscribe our Premium Plan</p>
-                        <button className="btn btn-primary-reverse" onClick={() => setSubscModalIsOpen(false)}>Close</button>
+                        <button className="btn btn-primary-reverse" 
+                                onClick={() => setSubscModalIsOpen(false)}>
+                                Close
+                        </button>
                     </div>
                 </Modal>
             </div>

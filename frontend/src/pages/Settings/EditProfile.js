@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import Modal from "react-modal"
 
-
 const EditProfile = (props) => {
     //Modal before submit
     const {onEditProfile, OnsetEditProfile} = props;
