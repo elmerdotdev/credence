@@ -2,7 +2,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import AddConnection from './components/AddConnection';
-// import Modal from './Modal';
 import Modal from 'react-modal';
 import ClientCards from './components/ClientCards';
 import ConnectionDetail from './components/ConnectionDetail';
@@ -50,6 +49,7 @@ const Connections = () => {
   const [currParams, setCurrParams] = useState('');
   const [notificationOpen, setNotificationOpen] = useState(false)
   const [notificationMessage, setNotificationMessage] = useState('')
+  const [connectionTitle, setConnectionTitle] = useState('All Connections')
   
 
   const userID = JSON.parse(localStorage.getItem('user'))._id
@@ -59,7 +59,7 @@ const Connections = () => {
   useEffect(() => {
     const getConnections = async () => {
       const res = await fetchConnections();
-      setConnections(res);
+      setConnections(res.sort((a, b) => a.firstname.localeCompare(b.firstname)))
     };
 
     getConnections() 
@@ -181,13 +181,30 @@ const pinFilter = async () => {
     )
   const new_list = connections.filter((connection) => {if (connection.pinned) {return connection}})
   setPinFilterStatus(true)
+  setConnectionTitle("Pinned Connections")
 }
   
   else {
     const res = await fetchConnections();
     setConnections(res);
     setPinFilterStatus(false)
+    setConnectionTitle("All Connections")
   }
+}
+
+// Time Filter
+const timeFilter = async () => {
+  const res = await fetchConnections();
+  setConnections(res.sort(({ updateAt: a }, {updateAt: b }) => a > b ? 1 : a < b ? -1 : 0))
+  setConnectionTitle("Most Recent Connections")
+}
+
+// all Connections
+const allConnections = async  () => {
+  const res = await fetchConnections();
+    setPinFilterStatus(false)
+    setConnections(res.sort((a, b) => a.firstname.localeCompare(b.firstname)))
+    setConnectionTitle("All Connections")
 }
 
 //Active Button
@@ -236,7 +253,7 @@ const openNotification = (message) => {
       <section className="connections-top-buttons">
         <button className="btn btn-primary openModalBtn" onClick={() => setShowAddModalIsOpen(true)}>Add</button>
         <div className="connections-filter-buttons">
-          <Filter onPinFilter={pinFilter}/>
+          <Filter onPinFilter={pinFilter} onTimeFilter={timeFilter} onAllFilter={allConnections}/>
         </div>
       </section>
       <section className="page-connections" >
@@ -287,7 +304,7 @@ const openNotification = (message) => {
       </Modal>
       {connections.length > 0 ? (
         <div className="connection-content"><ClientCards
-        connections={connections}  onToggle = {() => updateConnectionDataState}
+        connections={connections} onToggle = {() => updateConnectionDataState}
         /></div>
         ) : (
           <p className="error-message">
