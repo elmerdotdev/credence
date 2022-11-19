@@ -274,6 +274,8 @@ const openNotification = (message) => {
         onPinBtn={pinConnection}
         onClose={() => {setShowDetailModal(); navigate(`/connections`)}}
         openNotification={openNotification}
+        gmailIntegration={gmailIntegration}
+        gmailUpdate={gmailUpdate}
         />    
       </ModalComponent>
 

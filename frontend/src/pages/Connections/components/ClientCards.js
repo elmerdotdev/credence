@@ -9,8 +9,8 @@ const ClientCards = ({ connections, onToggle, connection }) => {
      // Group by first letter
      let data = sortedConnections.reduce((r, e)  => {
         let group = e.firstname[0];
-        if(!r[group]) r[group] = {group, children: [e]}
-        else r[group].children.push(e);
+        if(!r[group]) r[group] = {group, groupedConn: [e]}
+        else r[group].groupedConn.push(e);
         return r      
      },{})
 
@@ -26,7 +26,7 @@ const ClientCards = ({ connections, onToggle, connection }) => {
         {result.map((item) => (
             <div className="connection-content" >
             <h3>{item.group}</h3>
-            {item.children.map((connection) => (
+            {item.groupedConn.map((connection) => (
                 <ClientCard key={connection._id} connection={connection} onToggle={onToggle(connection._id)}/> 
             )) } 
              </div>       
