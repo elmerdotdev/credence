@@ -1,6 +1,5 @@
 import Modal from "react-modal"
 import React, { useState } from 'react'
-
 //page
 import Aboutus from "./Aboutus"
 //image

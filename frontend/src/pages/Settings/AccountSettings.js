@@ -12,6 +12,7 @@ const AccountSettings = () => {
   const [ myImg, setMyImg ] = useState('')
   const [selectPlanModalIsOpen, setSelectPlanModalIsOpen] = useState(false)
   const [editProfileModalIsOpen, setEditProfileModalIsOpen] = useState(false)
+  const [manageModalIsOpen, setManageModalIsOpen ] =useState(false)
 
   //get userID from Localstorage(user ID)
   const user = localStorage.getItem('user')
@@ -124,9 +125,16 @@ const AccountSettings = () => {
                   <p>Notes</p>
                 </div>
               </div>
-                <button className="edit-profile-btn btn btn-primary-reverse" onClick={() => setEditProfileModalIsOpen(true)}>Edit Profile</button>
-                <Modal isOpen={editProfileModalIsOpen} className="edit-profile-modal-modal">
-                  <EditProfile onEditProfile={editProfileModalIsOpen} OnsetEditProfile={setEditProfileModalIsOpen}/>
+                <button className="edit-profile-btn btn btn-primary-reverse" 
+                        onClick={() => setEditProfileModalIsOpen(true)}>
+                        Edit Profile
+                </button>
+                <Modal  isOpen={editProfileModalIsOpen} 
+                        className="edit-profile-modal-modal"
+                >
+                  <EditProfile  onEditProfile={editProfileModalIsOpen} 
+                                OnsetEditProfile={setEditProfileModalIsOpen}
+                  />
                 </Modal>
             </section>
             
@@ -136,7 +144,22 @@ const AccountSettings = () => {
                     <h3>Password & Security</h3>
                 </div>
                 <p>Manage your info, privacy and security to make Credence work better for you.</p>
-                <button className='manage-security-btn btn btn-primary-reverse'>Manage</button>
+                <button className='manage-security-btn btn btn-primary-reverse'
+                        onClick={() => setManageModalIsOpen(true)}>
+                        Manage
+                </button>
+                <Modal  isOpen={manageModalIsOpen}
+                        className="manage-modal-modal"
+                >
+                  <div className="manage-modal">
+                    <h2>Password & Security</h2>
+                    <p>Privacy and Security to make Credence works better for you.</p>
+                    <button onClick={() => setManageModalIsOpen(false)}
+                            className='manage-close-btn btn btn-primary-reverse'>
+                            Close
+                    </button>
+                  </div>
+                </Modal>
                 
             </section>
             
@@ -146,9 +169,14 @@ const AccountSettings = () => {
                     <h3>Subscription</h3>
                 </div>
                 <p>You are currenty on our <span>30-day trial</span>.Go Premium to enjoy our most-loved premium features.</p>
-                <button className='go-premiun-btn btn btn-primary' onClick={() => setSelectPlanModalIsOpen(true)}>Go Premium</button>
+                <button className='go-premiun-btn btn btn-primary' 
+                        onClick={() => setSelectPlanModalIsOpen(true)}>
+                        Go Premium
+                </button>
                 <Modal isOpen={selectPlanModalIsOpen}>
-                    <SelectPlan selectPlanIsOpen={selectPlanModalIsOpen} onsetselectPlanIsOpen={setSelectPlanModalIsOpen}/>
+                    <SelectPlan selectPlanIsOpen={selectPlanModalIsOpen} 
+                                onsetselectPlanIsOpen={setSelectPlanModalIsOpen}
+                    />
                 </Modal>
                 
             </section>

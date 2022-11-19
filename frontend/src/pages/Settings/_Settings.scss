@@ -111,7 +111,30 @@
         }
     }
 }
-
+//MODAL PAGE//Password & security
+.manage-modal-modal{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .manage-modal{
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+        background-color:$color-white;
+        padding: 40px 20px;
+        width: 60%;
+        border: 1px solid $color-dusty-gray;
+        border-radius: 16px;
+        text-align: center;
+        .manage-close-btn{
+            margin-top: 20px;
+        }
+        @media screen and (min-width:$screen-desktop){
+            width: 30%;
+        }
+    }
+}
 
 //MODAL PAGE//Subscribe Premium section 
 .subscribe-modal-premium{
@@ -129,6 +152,7 @@
         margin: auto;
     }
 }
+
 //MODAL PAGE//About us
 .aboutus-page-modal-modal{
     background-color: $color-white;
@@ -208,6 +232,7 @@
         }
     } 
 }
+
 //MODAL PAGE//Help contact up
 .contactus-modal-modal{
     height: 100vh;
@@ -237,6 +262,7 @@
         }
     }
 }
+
 //Setting Main Page
 .page-settings {
     font-size: 1rem;

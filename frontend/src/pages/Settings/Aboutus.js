@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 
 //Credence img & LonkedIn & GitHub & World
 import LinkedIn from "../../images/Setting/LinkedIn.svg";
