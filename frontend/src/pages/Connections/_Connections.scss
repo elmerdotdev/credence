@@ -41,19 +41,42 @@
         grid-template-columns: repeat(4, 1fr);
       }
     }
+}
 
-    .client-card {
-      background-color: $color-mystic;
-      border-radius: 10px;
-      padding: 1.5rem;
-      color: $color-shark;
+// Client card
+.client-card {
+  background-color: $color-mystic;
+  border-radius: 10px;
+  padding: 1.5rem;
+  color: $color-shark;
+  cursor: pointer;
+
+  &:hover {
+      background-color: $color-hawkes-blue;
       cursor: pointer;
+  }
 
-      &:hover {
-          background-color: $color-hawkes-blue;
-          cursor: pointer;
+  .connection-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+
+    &-photo {
+      width: 77px;
+      height: 77px;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 50%;
       }
+    }
 
+    &-text {
+      flex: 1;
+      
       h4 {
         @include fontSize(20);
         margin: 0;
@@ -68,14 +91,15 @@
             font-weight: 600;
           }
       }
-
-      .connection-interaction {
-          margin-top: 1rem;
-          padding-top: 1rem;
-          text-align: center;
-          border-top: 1px solid $color-shark;
-      }
     }
+  }
+
+  .connection-interaction {
+      margin-top: 1rem;
+      padding-top: 1rem;
+      text-align: center;
+      border-top: 1px solid $color-shark;
+  }
 }
 
 // Active button
@@ -374,7 +398,7 @@
   }
 }
 
-.add-note-form {
+.add-note-form , .new-note-form{
   .input-wrapper {
     display: flex;
     gap: 5px;
