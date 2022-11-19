@@ -3,8 +3,8 @@ import { useEffect, useState } from 'react'
 // import { useNavigate, useLocation } from 'react-router-dom';
 import EmailDetails from './components/EmailDetails'
 
-const Emails = ( {connection} ) => {
-  const [emails, setEmails] = useState(null)
+const Emails = ( {connection, gmailIntegration, gmailUpdate} ) => {
+  const [emails, setEmails] = useState([])
   const [connectionId, setConnectionId ] = useState(connection._id)
 //   const [currParams, setCurrParams] = useState('');
 
@@ -28,10 +28,11 @@ const userID = JSON.parse(localStorage.getItem('user'))._id
       const response = await fetch(`${process.env.REACT_APP_API_URL}/api/gmails/${userID}/${connectionId}`)
       const data = await response.json()
 
-      if (response.ok) {
           return data
-      }
+  
     }
+
+    
 
 
  
@@ -39,10 +40,22 @@ const userID = JSON.parse(localStorage.getItem('user'))._id
     <section>
 
       <div className="emails">
-      <EmailDetails
-          emails = {emails}
-          connection = {connection}
-        />
+      {emails.length > 0 ? (
+        <div><button className="btn btn-primary-reverse"onClick={gmailUpdate}>Update Gmail</button>
+         <EmailDetails
+         emails = {emails}
+         connection = {connection}
+       />
+       </div>
+         ) : (
+         <div>
+          <p>You haven’t connected your Gmail account yet.</p>
+          <p className="error-message">
+              <button className="btn btn-primary-reverse" onClick={gmailIntegration}>Connect Gmail</button>
+          </p>
+          </div>
+          )}   
+     
       </div>
     </section>
   )
