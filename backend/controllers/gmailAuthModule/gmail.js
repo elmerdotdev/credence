@@ -4,6 +4,7 @@ const process = require('process');
 const {authenticate} = require('@google-cloud/local-auth');
 const {google} = require('googleapis');
 
+
 // If modifying these scopes, delete token.json.
 const SCOPES = ['https://www.googleapis.com/auth/gmail.readonly'];
 // The file token.json stores the user's access and refresh tokens, and is
@@ -19,11 +20,12 @@ const CREDENTIALS_PATH = path.join(process.cwd(), 'credentials.json');
  */
 async function loadSavedCredentialsIfExist() {
   try {
-    //TODO: change to read token from database
+    //TODO: change to read token from databasee3 
     const content = await fs.readFile(TOKEN_PATH);
     const credentials = JSON.parse(content);
     return google.auth.fromJSON(credentials);
   } catch (err) {
+    console.log(err)
     return null;
   }
 }
@@ -52,6 +54,7 @@ async function saveCredentials(client) {
  *
  */
 async function authorize() {
+
   let client = await loadSavedCredentialsIfExist();
   if (client) {
     // console.log('client exists: ', client)
@@ -64,7 +67,6 @@ async function authorize() {
   if (client.credentials) {
     await saveCredentials(client);
   }
-  // console.log('client: ', client)
   return client;
 }
 
