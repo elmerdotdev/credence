@@ -25,14 +25,13 @@ async function loadSavedCredentialsIfExist(user_id) {
     //TODO: change to read token from database
     // const content = await fs.readFile(TOKEN_PATH);
     // const credentials = JSON.parse(content);
-    console.log(user_id)
     const currUser = await User.findById(user_id)
     const credentials = currUser.gmailAuth
     console.log('credentials: ', credentials)
     console.log('credentials exists in mongodb')
     return google.auth.fromJSON(credentials);
   } catch (err) {
-    console.log(err)
+    console.error(err)
     return null;
   }
 }
