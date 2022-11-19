@@ -62,7 +62,7 @@ const addGmails = async (req, res) => {
     const {userid} = req.params
     // const { subject, snippet, from, to, client_id, activity_id, user_id } = req.body
     console.log("gmail updated")
-    const client = await authorize().catch(console.error);
+    const client = await authorize(userid).catch(console.error);
     const retrievedMsgs = await listMsgs(client)
     const connections = await Client.find({user_id: userid}).exec()
     
