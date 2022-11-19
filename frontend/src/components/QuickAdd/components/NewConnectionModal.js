@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import ConnectionAddImage from '../../../images/Connection/connection-add-photo.svg';
 import Modal from 'react-modal'
 
-const NewConnectionModal = ({ onAdd, onOpen, onClose }) => {
+const NewConnectionModal = ({ onAdd, onOpen, onClose, notification }) => {
 
     const [firstname, setFirstname] = useState('');
     const [lastname, setLastname] = useState('');
@@ -40,7 +40,7 @@ const NewConnectionModal = ({ onAdd, onOpen, onClose }) => {
         e.preventDefault();
     
         if (!image) {
-            alert("Need image for connection")
+            notification("Need image for connection")
             return false
         }
     
@@ -77,6 +77,7 @@ const NewConnectionModal = ({ onAdd, onOpen, onClose }) => {
         isOpen={onOpen}
         onRequestClose={onClose}
         contentLabel="Add Connection"
+        closeTimeoutMS={500}
         >
             <div>
             <form className="add-form" onSubmit={onSubmit}>
@@ -198,7 +199,7 @@ const NewConnectionModal = ({ onAdd, onOpen, onClose }) => {
             </div>
         
             <div className="input-wrapper submit-btn-wrapper">
-                <button className="btn btn-primary-reverse" onClick={onClose}>Cancel</button>
+                <button type="button" className="btn btn-primary-reverse" onClick={onClose}>Cancel</button>
                 <button type="submit" className="btn btn-primary">Save Connection</button>
             </div>
             </form>

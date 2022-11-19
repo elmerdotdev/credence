@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Modal from 'react-modal'
 import Select from 'react-select'
 
-const NewNoteModal = ({ onAdd, onOpen, onClose, fetchClients, userId }) => {
+const NewNoteModal = ({ onAdd, onOpen, onClose, fetchClients, notification, userId }) => {
     const [title, setTitle] = useState('')
     const [content, setContent] = useState('')
     const [client_id, setClientId] = useState('')
@@ -26,6 +26,11 @@ const NewNoteModal = ({ onAdd, onOpen, onClose, fetchClients, userId }) => {
 
     const onSubmit = (e) => {
         e.preventDefault()
+
+        if (!content) {
+            notification('Enter note content')
+            return false
+        }
 
         onAdd({
             title: title,
@@ -69,7 +74,7 @@ const NewNoteModal = ({ onAdd, onOpen, onClose, fetchClients, userId }) => {
                     />
                 </div>
                 <div className="input-wrapper submit-btn-wrapper">
-                    <button className="btn btn-primary-reverse" onClick={onClose}>Cancel</button>
+                    <button type="button"  className="btn btn-primary-reverse" onClick={onClose}>Cancel</button>
                     <button type="submit" className="btn btn-primary">Save Note</button>
                 </div>
             </form>

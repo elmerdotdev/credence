@@ -6,6 +6,7 @@ import NewNoteModal from './components/NewNoteModal'
 
 const QuickAdd = () => {
     const [quickAddShow, setQuickAddShow] = useState(false)
+    const [notificationSuccess, setNotificationSuccess] = useState(false)
     const [notificationOpen, setNotificationOpen] = useState(false)
     const [notificationMessage, setNotificationMessage] = useState('')
     const [userID, setUserID] = useState('63645e4850049bfd1e89637a');
@@ -16,7 +17,8 @@ const QuickAdd = () => {
     const [eventModal, setEventModal] = useState(false)
 
     // Open notification
-    const openNotification = (message) => {
+    const openNotification = (message, success) => {
+        setNotificationSuccess(success)
         setNotificationMessage(message)
         setNotificationOpen(true)
     }
@@ -32,7 +34,7 @@ const QuickAdd = () => {
         })
 
         setNoteModal(false)
-        openNotification('Note added')
+        openNotification('Note added', true)
     }
 
     // Add Connection
@@ -46,7 +48,7 @@ const QuickAdd = () => {
         })
 
         setConnectionModal(false)
-        openNotification('Connection added')
+        openNotification('Connection added', true)
     }
 
     // Add Event
@@ -60,7 +62,7 @@ const QuickAdd = () => {
         })
 
         setEventModal(false)
-        openNotification('Event added')
+        openNotification('Event added', true)
     }
 
     // Get clients
@@ -87,14 +89,14 @@ const QuickAdd = () => {
             </div>
 
             {notificationOpen && 
-            <Notification message={notificationMessage} onClose={() => setNotificationOpen(false)} />
+            <Notification success={notificationSuccess} message={notificationMessage} onClose={() => setNotificationOpen(false)} />
             }
 
-            <NewNoteModal onAdd={addNote} onOpen={noteModal} onClose={() => setNoteModal(false)} fetchClients={fetchClients} userId={userID} />
+            <NewNoteModal onAdd={addNote} onOpen={noteModal} onClose={() => setNoteModal(false)} fetchClients={fetchClients} notification={openNotification} userId={userID} />
             
-            <NewConnectionModal onAdd={addConnection} onOpen={connectionModal} onClose={() => setConnectionModal(false)} />
+            <NewConnectionModal onAdd={addConnection} onOpen={connectionModal} onClose={() => setConnectionModal(false)} notification={openNotification} />
 
-            <NewEventModal onAdd={addEvent} onOpen={eventModal} onClose={() => setEventModal(false)} fetchClients={fetchClients} userId={userID} />
+            <NewEventModal onAdd={addEvent} onOpen={eventModal} onClose={() => setEventModal(false)} fetchClients={fetchClients} notification={openNotification} userId={userID} />
         </>
     )
 }
