@@ -23,10 +23,10 @@ const AddEvent = (props) => {
     const fetchClients = props.fetchClients
 
     const alertMsgs = {
-        invalid: "Enter a valid start/end date",
-        pastDate: "Start date must not be in the past",
-        futureDate: "End date must be after start date",
-        needClient: "Specify at least one connection"
+        invalid: "Enter a valid date",
+        pastDate: "Start date in the past",
+        futureDate: "Set future end date",
+        needClient: "Need at least one connection"
     }
     
     useEffect(() => {
@@ -65,22 +65,22 @@ const AddEvent = (props) => {
         e.preventDefault()
 
         if (!start || !end) {
-            alert(alertMsgs.invalid)
+            props.openNotification(alertMsgs.invalid, false)
             return false
         }
 
         if (start < new Date()) {
-            alert(alertMsgs.pastDate)
+            props.openNotification(alertMsgs.pastDate, false)
             return false
         }
 
         if (end < start) {
-            alert(alertMsgs.futureDate)
+            props.openNotification(alertMsgs.futureDate, false)
             return false
         }
 
         if (!clientId) {
-            alert(alertMsgs.needClient)
+            props.openNotification(alertMsgs.needClient, false)
             return false
         }
 
@@ -111,7 +111,7 @@ const AddEvent = (props) => {
 
         props.onAddState(data)
         props.onToggle(false)
-        props.openNotification('Event added')
+        props.openNotification('Event added', true)
     }
 
     return (
@@ -121,6 +121,7 @@ const AddEvent = (props) => {
                 onRequestClose={() => props.onToggle(false)}
                 className="credence-modal modal-event-add"
                 contentLabel="Add Event"
+                closeTimeoutMS={500}
             >
                 <div className="addEventForm">
                     <h2>New Event</h2>
@@ -168,7 +169,7 @@ const AddEvent = (props) => {
                             <textarea id="description" value={description} onChange={e => setDescription(e.target.value)} />
                         </div>
                         <div className="input-wrapper submit-btn-wrapper">
-                            <button className="btn btn-primary-reverse" onClick={() => props.onToggle(false)}>Cancel</button>
+                            <button type="button" className="btn btn-primary-reverse" onClick={() => props.onToggle(false)}>Cancel</button>
                             <button type="submit" className="btn btn-primary">Save Event</button>
                         </div>
                     </form>

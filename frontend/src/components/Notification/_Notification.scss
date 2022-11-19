@@ -18,6 +18,10 @@
         bottom: 0;
     }
 
+    &.notification-fail {
+        background-color: red;
+    }
+
     .icon-close {
         @include fontSize(24);
         margin-left: 1rem;

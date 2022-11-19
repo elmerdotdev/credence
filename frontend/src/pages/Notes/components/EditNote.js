@@ -16,7 +16,7 @@ import Modal from 'react-modal'
 
 Modal.setAppElement("body");
 
-const EditNote = ({ modalOpen, toggle, onEdit, clientId, noteId }) => {
+const EditNote = ({ modalOpen, toggle, onEdit, clientId, noteId, openNotification }) => {
     const [note, setNote] = useState({})
     const [title, setTitle] = useState('')
     const [content, setContent] = useState('')
@@ -39,8 +39,8 @@ const EditNote = ({ modalOpen, toggle, onEdit, clientId, noteId }) => {
         e.preventDefault();
 
         if(!content) {
-            alert('Please update content');
-            return;
+            openNotification('Enter note content', false);
+            return false;
         }
 
         onEdit(noteId, title, content);
@@ -50,6 +50,7 @@ const EditNote = ({ modalOpen, toggle, onEdit, clientId, noteId }) => {
         <Modal
             isOpen = {modalOpen}
             className = "credence-modal modal-notes-edit"
+            closeTimeoutMS={500}
         >
         <h2>Edit Note</h2>
         <form className='edit-note' onSubmit={onSubmit}>
@@ -72,7 +73,7 @@ const EditNote = ({ modalOpen, toggle, onEdit, clientId, noteId }) => {
                 />
             </div>
             <div className="input-wrapper submit-btn-wrapper">
-                <button className="btn btn-primary-reverse" onClick={() => toggle(false)}>Close</button>
+                <button type="button" className="btn btn-primary-reverse" onClick={() => toggle(false)}>Close</button>
                 <button type="submit" className="btn btn-primary" onClick={onSubmit}>Save Note</button>
             </div>
         </form>
