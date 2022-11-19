@@ -39,7 +39,7 @@
     }
 }
 
-.active-clients, .industry-type, .events-breakdown {
+.active-clients, .industry-type, .events-breakdown, .most-interacted {
     max-width: 100%;
     
     h3 {
@@ -71,6 +71,10 @@
         canvas {
             align-items: center;
         }
+    }
+
+    .most-interacted{
+        grid-column: 1/-1;
     }
 
 }
