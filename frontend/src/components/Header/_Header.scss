@@ -1,0 +1,104 @@
+header {
+    display: flex;
+    gap: 1rem;
+    height: 50px;
+
+    @media screen and (min-width: $screen-desktop) {
+        padding-right: .5rem;
+        height: 75px;
+    }
+
+    .logo {
+        display: flex;
+        justify-content: center;
+        flex: 1 0 100%;
+
+        @media screen and (min-width: $screen-desktop) {
+            flex: 0 1 285px;
+            margin-top: 1rem;
+        }
+
+        a {
+            display: flex;
+            align-items: center;
+        }
+
+        path {
+            stroke-linecap: round;
+            stroke-width: 1px;
+                
+            &.trace {
+                stroke-dashoffset: 0 !important;
+                transition:
+                    stroke-dashoffset 1s linear,
+                    stroke-dasharray 1s linear,
+                    fill .5s linear .1s;
+            }
+        }
+    }
+
+    .search {
+        flex: 1;
+        display: none;
+
+        @media screen and (min-width: $screen-desktop) {
+            display: block;
+            margin: auto;
+        }
+    }
+
+    .mobile-menu {
+        @media screen and (min-width: $screen-desktop) {
+            display: none;
+        }
+        
+        .burger {
+            position: fixed;
+            top: 10px;
+            right: 1.5rem;
+            width: 20px;
+            height: 18px;
+
+            span {
+                width: 100%;
+                height: 2px;
+                background-color: $color-shark;
+                display: block;
+                border-radius: 3px;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                opacity: 1;
+                transform: translate(-50%, -50%);
+                transition: all .2s linear;
+
+                &:first-child {
+                    width: 80%;
+                    transform: translate(-50%, -7px) rotate(0);
+                }
+
+                &:last-child {
+                    width: 80%;
+                    transform: translate(-50%, 5px) rotate(0);
+                }
+
+                .mobile-menu-visible & {
+                    &:first-child {
+                        width: 100%;
+                        transform: translate(-50%, -50%) rotate(45deg);
+                    }
+
+                    &:nth-child(2) {
+                        opacity: 0;
+                    }
+
+                    &:last-child {
+                        width: 100%;
+                        transform: translate(-50%, -50%) rotate(-45deg);
+                    }
+                }
+            }
+        }
+        
+    }
+}

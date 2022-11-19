@@ -1,0 +1,110 @@
+.header-search-qa {
+    display: flex;
+    gap: 1.2rem;
+    margin: auto;
+    width: 100%;
+    max-width: 710px;
+}
+
+.header-search-form {
+    flex: 1;
+    display: flex;
+
+    input {
+        flex: 1;
+        padding: .5rem 1rem;
+        border: 1px solid $color-dusty-gray;
+        border-right: none;
+        border-radius: .5rem 0 0 .5rem;
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    button {
+        padding: 0 .5rem;
+        background-color: $color-white;
+        color: $color-science-blue;
+        border: 1px solid $color-dusty-gray;
+        border-left: none;
+        border-radius: 0 .5rem .5rem 0;
+        cursor: pointer;
+        transition: background-color .2s ease-in-out;
+
+        &:hover {
+            background-color: $color-white-lilac;
+        }
+
+        i {
+            font-size: 2rem;
+        }
+    }
+}
+
+.search-result {
+    position: absolute;
+    top:50px;
+    background-color: $color-white;
+    width: 100%;
+    max-width: 710px;
+    border-radius: 8px;
+    border: $color-dusty-gray 1px solid;
+    z-index: 100;
+}
+
+.search-type-button {
+    border-radius: 6px;
+    border: $color-french-gray 1px solid;
+    background-color: $color-white;
+    color: $color-french-gray;
+}
+
+.search-single-grey-text {
+    color: $color-gray;
+}
+
+.search-type-button-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.search-single {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    border-bottom: $color-french-gray 1px solid;
+    margin: .5rem;
+
+}
+
+.search-single:hover {
+    background-color: #B4D1FD;
+    padding: .2rem;
+    cursor: pointer;
+    border-radius: 6px;
+}
+
+.header-search-qa {
+    position: relative;
+}
+
+.header-quick-add {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    padding: .5rem 1rem .5rem 1.5rem;
+    background-color: $color-science-blue;
+    color: $color-white;
+    border: none;
+    border-radius: .5rem;
+    transition: background-color .2s ease-in-out;
+
+    &:hover {
+        background-color: lighten($color-science-blue, 10%);
+    }
+
+    i {
+        font-size: 1.5rem;
+    }
+}

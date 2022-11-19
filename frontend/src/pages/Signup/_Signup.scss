@@ -1,0 +1,147 @@
+.page-signup {
+    background-color: $color-white;
+    .page-signup-area{
+        font-size: 1rem;
+        padding: 20px;
+        background-color: $color-white;
+        max-width: 1118px;
+        max-height: 720px;
+    }
+    .icon-close{
+        display: none;
+    }
+    h3{
+        font-style: normal;
+        font-size: 24px;
+        line-height: 32px;
+        color: #000000;
+        margin: 36px auto 0 auto;
+        // display: flex;
+        justify-content: center;
+        text-align: center;
+        align-items: center;
+
+        .credence-logo{
+            height: 24px;
+            margin: 0 5px;
+            position: relative;
+            bottom: -6px;
+        }
+    }
+    img.signup-img{
+        display: block;
+        margin: 15px auto 55px auto;
+    }
+    label{
+        display: block;
+        color:$color-regal-blue;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 16px;
+        margin-bottom: 8px;
+    }
+    input[for="firstname"],
+    input[for="lastname"],
+    input[for="email"]{
+        width: 100%;
+        background-color: $color-white;
+        border: none;
+        border-bottom: 1px solid $color-gray;
+        margin-bottom: 32px;
+        font-size: 16px;
+        line-height: 20px;
+        font-weight: 400;
+    }
+    input[for="password"]{
+        width: 100%;
+        background-color: $color-white;
+        border: none;
+        font-size: 16px;
+        line-height: 20px;
+        font-weight: 400;
+    }
+    .password-area{
+        display: flex;
+        border-bottom: 1px solid $color-boulder; 
+        margin-bottom: 32px;
+    }
+    .icon-hide,
+    .icon-show{
+        font-size: 16px;
+        color:#202533;
+    }
+    .required-star{
+        color: $color-guardsman-red;
+    }
+    .error{
+        color: $color-guardsman-red;
+    }
+    button.submit-signup-btn.btn.btn-primary{
+        margin: 56px 0 117px 0;
+        width: 100%;
+        justify-content: center;
+    }
+    @media screen and (min-width:$screen-desktop){
+        background-color:$color-dusty-gray;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 109px 35px;
+        height: 100vh;
+        .page-signup-area{
+            padding: 26px 53px 70px 53px;
+            border-radius: 24px;
+            width: 80%;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.25);
+            background-color: $color-white-lilac;
+        }
+        .icon-close{
+            display: block;
+            text-align: right;
+        }
+        .icon-close:before{
+            margin: 0;
+            font-size: 42px;
+        }
+        h3{
+            font-size: 36px;
+            line-height: 44px;
+            margin-top: 0;
+
+            .credence-logo{
+                height: 36px;
+                margin: 0 7px;
+                position: relative;
+                bottom: -9px;
+            }
+        }
+        .desktop-grid{
+            display: grid;
+            align-items: center;
+            gap: 100px;
+            grid-template-columns: 1.3fr 1fr;
+            margin-top: 52px;
+            width: 100%;
+        }
+        img.signup-img{
+            width:100%;
+            height: auto;
+        }
+        input[for="firstname"],
+        input[for="lastname"],
+        input[for="email"]
+        input[for="password"]{
+            background-color:$color-white-lilac;
+        }
+        .icon-hide,
+        .icon-show{
+            font-size: 26px;
+        }
+        button.submit-signup-btn.btn.btn-primary{
+            margin: 32px 0 0 0;
+        }
+    }
+
+
+
+}
