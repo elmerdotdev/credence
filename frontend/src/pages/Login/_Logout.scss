@@ -16,10 +16,11 @@
             width: 60px;
             height: 60px;
             display: flex;
+            justify-content: center;
             align-items: center;
             margin:auto;
             i{
-                @include fontSize(50);
+                font-size: 60px;
                 color: $color-white;
             }
         }

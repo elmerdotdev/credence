@@ -124,8 +124,8 @@ async function listMsgs(auth) {
     });
         // console.log(res.data)
     
-        // let buff = new Buffer.from(res.data.payload.parts[0].body.data, 'base64');
-        // let text = buff.toString('utf-8');
+        let buff = new Buffer.from(res.data.payload.parts[0].body.data, 'base64');
+        let text = buff.toString('utf-8');
         // console.log(text)
         res.data.payload.headers.forEach((header) => {
           if (header.name == 'From'){

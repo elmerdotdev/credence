@@ -267,7 +267,7 @@
 
                     &::before {
                         position: absolute;
-                        bottom: 3px;
+                        bottom: 0;
                         right: 0;
                         color: $color-regal-blue;
                         font-family: "credence";
@@ -290,11 +290,11 @@
                 }
 
                 .input-date .rdt::before {
-                    content: '\e80b';
+                    content: '\e814';
                 }
 
                 .input-time .rdt::before {
-                    content: '\e805';
+                    content: '\e819';
                 }
             }
         }

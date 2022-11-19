@@ -29,10 +29,10 @@ const getClient = async (req, res) => {
 
 // Create new client
 const createClient = async (req, res) => {
-    const { firstname, lastname, position, company, email, phone, location, active, pinned, labels, photo, user_id } = req.body
+    const { firstname, lastname, position, company, email, phone, active, pinned, labels, photo, user_id } = req.body
 
     try {
-        const client = await Client.create({ firstname, lastname, position, company, email, phone, location, active, pinned, labels, photo, user_id })
+        const client = await Client.create({ firstname, lastname, position, company, email, phone, active, pinned, labels, photo, user_id })
         res.status(200).json(client)
     } catch (error) {
         res.status(400).json({ error: error.message })
