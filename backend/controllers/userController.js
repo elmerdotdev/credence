@@ -6,6 +6,7 @@ const jwt = require('jsonwebtoken')
 const dotenv = require('dotenv')
 const {authorize, listLabels, listMsgs, CREDENTIALS_PATH} = require('./gmailAuthModule/gmail');
 const { use } = require('../routes/user');
+const gAuth = require('./gmailAuthModule/gmailAuthModel')
 
 // const { OAuth2Client } = require('google-auth-library')
 
@@ -121,12 +122,11 @@ const gmailAuth = async (req, res) => {
         return res.status(404).json({ error: 'No such user' })
     }
 
-    const client = await authorize().catch(console.error);
+    const client = await authorize(id).catch(console.error);
     // await listLabels(client)
     
     // console.log(client)
-    const content = await fs.readFile(CREDENTIALS_PATH);
-    const keys = JSON.parse(content);
+    const keys = await gAuth.findOne()
     const key = keys.installed || keys.web;
     const payload = 
     {
