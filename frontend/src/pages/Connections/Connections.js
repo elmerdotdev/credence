@@ -10,22 +10,7 @@ import Filter from './components/Filter'
 import { useNavigate, useSearchParams, Link, useLocation } from 'react-router-dom';
 import Notification from '../../components/Notification/Notification'
 
- //Modal Style
- const customStyles = {
-  content: {
-    // top: '50%',
-    // left: '50%',
-    // right: 'auto',
-    // bottom: 'auto',
-    // marginRight: '-50%',
-    // transform: 'translate(-50%, -50%',
-    position: "absolute",
-    top: "20px",
-    left: "20%",
-    right: "20%",
-    bottom: "20px"
-  },
-};
+
 
 const ConnectionDetailsModal = props => {
   const { isOpen } = props;
@@ -67,8 +52,6 @@ const Connections = () => {
     if (params.toString().length > 0) {
       updateConnectionDataState(params.get("connectionId"))
       setCurrParams(params.toString())
-      //set note id = asfdhasjfhlskj
-      //set isopennote = true
     }
   }, [location])
 
@@ -199,6 +182,12 @@ const timeFilter = async () => {
   setConnectionTitle("Most Recent Connections")
 }
 
+const TimeReverseFilter = async() => {
+  const res = await fetchConnections();
+  setConnections(res.sort(({ updateAt: a }, {updateAt: b }) => a > b ? -1 : a < b ? 1 : 0))
+  setConnectionTitle("Least Interacted Connections")
+}
+
 // all Connections
 const allConnections = async  () => {
   const res = await fetchConnections();
@@ -253,20 +242,17 @@ const openNotification = (message) => {
       <section className="connections-top-buttons">
         <button className="btn btn-primary openModalBtn" onClick={() => setShowAddModalIsOpen(true)}>Add</button>
         <div className="connections-filter-buttons">
-          <Filter onPinFilter={pinFilter} onTimeFilter={timeFilter} onAllFilter={allConnections} gmailupdate={gmailUpdate}/>
+          <Filter onPinFilter={pinFilter} onTimeFilter={timeFilter} onTimeReverseFilter={TimeReverseFilter} onAllFilter={allConnections} gmailupdate={gmailUpdate} />
         </div>
       </section>
       <section className="page-connections" >
-      <h2>All Connections</h2>
-      <button onClick={gmailIntegration}>Connect Gmail</button>
+      <h2>{connectionTitle}</h2>
       <ModalComponent
         className="credence-modal modal-connection-detail"
         isOpen={showDetailModal}
         onRequestClose={() => setShowDetailModal(false)}
       > 
         <ConnectionDetail 
-        // isOpenNote={Boolean}
-        // NoteId={id_from_state}
         connection={connection} 
         onEditBtn={() => {setShowEditModal(true)}} 
         onDeleteBtn={deleteConnection} 

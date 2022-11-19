@@ -18,7 +18,6 @@ const userID = JSON.parse(localStorage.getItem('user'))._id
     const getEmails = async () => {
       const res = await fetchEmails();
       setEmails(res);
-      console.log(res)
   };
     getEmails()
   }, []
