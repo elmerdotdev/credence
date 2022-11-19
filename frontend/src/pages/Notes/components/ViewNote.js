@@ -36,6 +36,7 @@ const ViewNote = ({ notes, modalOpen, onDelete, toggle, clientId, noteId, toggle
             <Modal
                 isOpen = {modalOpen}
                 className="credence-modal modal-notes-view"
+                closeTimeoutMS={500}
             >
             <div className="single-note-btns">
                 <div>
