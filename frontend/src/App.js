@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Routes, Route, NavLink } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, NavLink, Link } from 'react-router-dom';
 import Modal from "react-modal"
 
 // App pages
@@ -55,9 +55,10 @@ function App() {
                             <li onClick={toggleMobileMenu}><i className="icon-reports"></i><NavLink to="/reports">Reports</NavLink></li>
                             <li className="mister-spacer"></li>
                             <li onClick={toggleMobileMenu}><i className="icon-settings"></i> <NavLink to="/settings">Settings</NavLink></li>
-                            <li onClick={() => {toggleMobileMenu(); setModalIsOpen(true);}}><i className="icon-logout"></i>Log Out</li> 
-                            <Modal isOpen={modalIsOpen} className="logoutModal" ><Logout onModelIsOpen={modalIsOpen} onSetModalIsOpen={setModalIsOpen}/></Modal>
+                            <li onClick={() => {toggleMobileMenu(); setModalIsOpen(true);}}><i className="icon-logout"></i><Link to="#">Log Out</Link></li>
                         </ul>
+
+                        <Modal isOpen={modalIsOpen} className="logoutModal" ><Logout onModelIsOpen={modalIsOpen} onSetModalIsOpen={setModalIsOpen}/></Modal>
                     </nav>
                 </aside>
                 <div className="App-body">
