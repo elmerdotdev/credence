@@ -17,11 +17,8 @@ const getGmails = async (req, res) => {
 
 // Get gmails of one client
 const getClientGmails = async (req, res) => {
-    console.log(req.params)
     const { clientid, userid } = req.params
-
     const gmails = await Gmail.find({user_id: userid, client_id: clientid}).sort({createdAt: -1})
-    console.log(gmails)
     if (!gmails) {
         return res.status(404).json({ error: 'No gmails' })
     }
