@@ -107,7 +107,9 @@ aside {
         li {
             display: flex;
             align-items: center;
+            gap: 1rem;
             margin: 1rem 0;
+            font-weight: 600;
 
             @media screen and (min-width: $screen-desktop) {
                 justify-content: start;
@@ -204,6 +206,10 @@ aside {
         color: $color-regal-blue;
         font-size: 2rem;
     }
+}
+
+.ReactModal__Overlay {
+    z-index: 999;
 }
 
 /* BUTTONS */
