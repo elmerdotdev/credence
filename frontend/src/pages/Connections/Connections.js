@@ -226,6 +226,7 @@ const gmailIntegration =  async () => {
 // gmail update
 const gmailUpdate =  async () => {
   const res = await fetch(`${process.env.REACT_APP_API_URL}/api/gmails/${userID}`);
+  console.log('gmail updated')
   // const output = await res.json()
 
 } 
@@ -247,6 +248,7 @@ const openNotification = (message) => {
       </section>
       <section className="page-connections" >
       <h2>{connectionTitle}</h2>
+      <button className="btn btn-primary-reverse"onClick={gmailUpdate}>Update Gmail</button>
       <ModalComponent
         className="credence-modal modal-connection-detail"
         isOpen={showDetailModal}

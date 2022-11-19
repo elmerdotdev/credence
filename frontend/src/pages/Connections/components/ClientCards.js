@@ -27,7 +27,7 @@ const ClientCards = ({ connections, onToggle, connection }) => {
             <div className="connection-content" >
             <h3>{item.group}</h3>
             {item.groupedConn.map((connection) => (
-                <ClientCard key={connection._id} connection={connection} onToggle={onToggle(connection._id)}/> 
+                <ClientCard key={connection._id} connection={connection} onToggle={onToggle(connection._id) }/> 
             )) } 
              </div>       
         ))}
