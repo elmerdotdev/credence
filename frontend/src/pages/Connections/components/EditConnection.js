@@ -153,7 +153,7 @@ const EditConnection = ({ onEdit, connection, onClose }) => {
       </div>
 
       <div className="input-wrapper submit-btn-wrapper">
-        <button className="btn btn-primary-reverse" onClick={() => onClose(false)}>Cancel</button>
+        <button type="button" className="btn btn-primary-reverse" onClick={() => onClose(false)}>Cancel</button>
         <button type="submit" className="btn btn-primary">Update Connection</button>
       </div>
     </form>

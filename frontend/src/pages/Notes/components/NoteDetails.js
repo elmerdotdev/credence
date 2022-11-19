@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import AddNote from './AddNote'
 import NoteList from './NoteList'
 
-const NoteDetails = ({notes, onAdd, viewNote, noteId, connection }) => {
+const NoteDetails = ({notes, onAdd, viewNote, noteId, connection, openNotification }) => {
     // const [allClientNotes, setallClientNotes] = useState(null)
 
     // useEffect(() => {
@@ -34,6 +34,7 @@ const NoteDetails = ({notes, onAdd, viewNote, noteId, connection }) => {
                 <AddNote 
                     onAdd = {onAdd}
                     connection = {connection}
+                    openNotification = {openNotification}
                 />
             </section>
             <section className="note-details" >

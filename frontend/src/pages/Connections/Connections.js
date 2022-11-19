@@ -48,6 +48,7 @@ const Connections = () => {
   const [showDetailModal, setShowDetailModal] = useState(false);
   const ModalComponent = useConnectionDetailsModal ? ConnectionDetailsModal : Modal;
   const [currParams, setCurrParams] = useState('');
+  const [notificationSuccess, setNotificationSuccess] = useState(false)
   const [notificationOpen, setNotificationOpen] = useState(false)
   const [notificationMessage, setNotificationMessage] = useState('')
   
@@ -105,7 +106,7 @@ const editConnection = async (inputConnObj) => {
   setConnections(res);
   console.log('finish edit');
   setShowEditModal(false);
-  openNotification('Connection updated')
+  openNotification('Connection updated', true)
 };
 
 // Fetch Connections
@@ -135,7 +136,7 @@ const addConnection = async (newClient) => {
   const data = await res.json();
   setConnections([...connections, data]);
   setShowAddModalIsOpen(false);
-  openNotification('Connection added')
+  openNotification('Connection added', true)
 };
 
  // Delete Connection
@@ -144,7 +145,7 @@ const addConnection = async (newClient) => {
   await fetch(`${process.env.REACT_APP_API_URL}/api/clients/${id}`, {
     method: 'DELETE',
   });
-  openNotification('Connection deleted')
+  openNotification('Connection deleted', true)
   setConnections(connections.filter((connection) => connection._id !== id));
   setShowDetailModal(false)
 };
@@ -160,7 +161,6 @@ const pinConnection = async (e) => {
   } else if(connection.pinned){
   updConnection = { ...ConnectiontoPin, pinned: false };
   }
-
 
 await fetch(`${process.env.REACT_APP_API_URL}/api/clients/${id}`, {
   method: 'PATCH',
@@ -225,7 +225,8 @@ const gmailUpdate =  async () => {
 } 
 
 // Open notification
-const openNotification = (message) => {
+const openNotification = (message, success) => {
+  setNotificationSuccess(success)
   setNotificationMessage(message)
   setNotificationOpen(true)
 }
@@ -249,6 +250,7 @@ const openNotification = (message) => {
         className="credence-modal modal-connection-detail"
         isOpen={showDetailModal}
         onRequestClose={() => setShowDetailModal(false)}
+        closeTimeoutMS={500}
       > 
         <ConnectionDetail 
         // isOpenNote={Boolean}
@@ -267,6 +269,7 @@ const openNotification = (message) => {
         className="credence-modal modal-connection-edit"
         isOpen={showEditModal}
         onRequestClose={() => setShowEditModal(false)}
+        closeTimeoutMS={500}
       >
         <EditConnection 
         connection={connection}
@@ -279,10 +282,12 @@ const openNotification = (message) => {
         className="credence-modal modal-connection-add"
         isOpen={showAddModalIsOpen}
         onRequestClose={() => setShowAddModalIsOpen(false)}
+        closeTimeoutMS={500}
       >
         <AddConnection 
         onAdd={addConnection}
         onClose={setShowAddModalIsOpen}
+        openNotification={openNotification}
         />
       </Modal>
       {connections.length > 0 ? (
@@ -297,7 +302,7 @@ const openNotification = (message) => {
         </section>
 
         {notificationOpen && 
-          <Notification message={notificationMessage} onClose={() => setNotificationOpen(false)} />
+          <Notification success={notificationSuccess} message={notificationMessage} onClose={() => setNotificationOpen(false)} />
         }
   </div>
 

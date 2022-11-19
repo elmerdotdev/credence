@@ -2,7 +2,7 @@
 import React from 'react';
 import { useState } from 'react';
 
-const AddConnection = ({ onAdd, onClose }) => {
+const AddConnection = ({ onAdd, onClose, openNotification }) => {
 
   const [firstname, setFirstname] = useState('');
   const [lastname, setLastname] = useState('');
@@ -42,7 +42,11 @@ const onSubmit = (e) => {
   e.preventDefault();
 
   if (!image) {
+<<<<<<< HEAD
     alert("Need image")
+=======
+    openNotification("Need image for connection", false)
+>>>>>>> 21d08ede7c19195506a77ca0886172e02ec3799f
     return false
   }
 
@@ -207,7 +211,7 @@ const processImage = async (image) => {
       </div>
 
       <div className="input-wrapper submit-btn-wrapper">
-        <button className="btn btn-primary-reverse" onClick={() => onClose(false)}>Cancel</button>
+        <button type="button" className="btn btn-primary-reverse" onClick={() => onClose(false)}>Cancel</button>
         <button type="submit" className="btn btn-primary">Save Connection</button>
       </div>
     </form>
