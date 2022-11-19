@@ -77,26 +77,28 @@ const Dashboard = () => {
       <div className="dashboard-wrapper">
         <div className="dashboard-connection">
           <h2>Connections</h2>
-          {connections.filter((connection) => connection.pinned) &&
+          <div className="dashboard-connection-wrapper">
+            {connections.filter((connection) => connection.pinned) &&
+              <>
+                <div className="dashboard-connection-header">
+                  <h3>Pinned Connections</h3>
+                  <Link to="/connections">View All</Link>
+                </div>
+                <div className="dashboard-connection-content">
+                  <ClientCards connections={connections.filter((connection) => connection.pinned)} onToggle={() => onConnectionClick} />
+                </div>
+              </>
+            }          
             <>
               <div className="dashboard-connection-header">
-                <h3>Pinned Connections</h3>
+                <h3>Most Recent</h3>
                 <Link to="/connections">View All</Link>
               </div>
               <div className="dashboard-connection-content">
-                <ClientCards connections={connections.filter((connection) => connection.pinned)} onToggle={() => onConnectionClick} />
+                <ClientCards connections={connections.slice(0,3)} onToggle={() => onConnectionClick} />
               </div>
             </>
-          }          
-          <>
-            <div className="dashboard-connection-header">
-              <h3>Most Recent</h3>
-              <Link to="/connections">View All</Link>
-            </div>
-            <div className="dashboard-connection-content">
-              <ClientCards connections={connections.slice(0,3)} onToggle={() => onConnectionClick} />
-            </div>
-          </>
+          </div>
         </div>
 
         <div className="dashboard-upcoming">

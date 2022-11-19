@@ -21,6 +21,7 @@ const Calendar = () => {
   const [addDate, setAddDate] = useState()
   const [viewEventId, setViewEventId] = useState('')
   const [currParams, setCurrParams] = useState('');
+  const [notificationSuccess, setNotificationSuccess] = useState(false)
   const [notificationOpen, setNotificationOpen] = useState(false)
   const [notificationMessage, setNotificationMessage] = useState('')
   // console.log("searchParams: ", searchParams[0])
@@ -69,7 +70,7 @@ const Calendar = () => {
 
     setEvents(events.filter(event => event._id !== id))
     toggleViewModal(false)
-    openNotification('Event deleted')
+    openNotification('Event deleted', true)
   }
 
   // Get clients
@@ -124,7 +125,8 @@ const Calendar = () => {
   }
 
   // Open notification
-  const openNotification = (message) => {
+  const openNotification = (message, success) => {
+    setNotificationSuccess(success)
     setNotificationMessage(message)
     setNotificationOpen(true)
   }
@@ -164,16 +166,12 @@ const Calendar = () => {
 
       <EventsWidget events={events} currMonth={currentMonth} firstDay={monthFirstDay} lastDay={monthLastDay} onEventClick={handleEventClick} fetchClient={fetchClient} openAddModal={toggleAddModal} />
 
-      {modalAddOpen &&
-        <AddEvent modalOpen={modalAddOpen} onToggle={toggleAddModal} onDateClick={addDate} onAddState={addToEventsState} fetchClients={fetchClients} userId={userID} openNotification={openNotification} />
-      }
+      <AddEvent modalOpen={modalAddOpen} onToggle={toggleAddModal} onDateClick={addDate} onAddState={addToEventsState} fetchClients={fetchClients} userId={userID} openNotification={openNotification} />
 
-      {modalViewOpen &&
-        <ViewEvent modalOpen={modalViewOpen} onToggle={toggleViewModal} onDelete={deleteEvent} userId={userID} eventId={viewEventId} fetchClient={fetchClient} />
-      }
+      <ViewEvent modalOpen={modalViewOpen} onToggle={toggleViewModal} onDelete={deleteEvent} userId={userID} eventId={viewEventId} fetchClient={fetchClient} />
 
       {notificationOpen && 
-        <Notification message={notificationMessage} onClose={() => setNotificationOpen(false)} />
+        <Notification success={notificationSuccess} message={notificationMessage} onClose={() => setNotificationOpen(false)} />
       }
 
     </section>

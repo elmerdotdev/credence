@@ -132,6 +132,10 @@ const EditProfile = (props) => {
             </div>
 
             <div className="edit-btn-area">
+                <button onClick={() => OnsetEditProfile(false)}
+                        className="editprofile-close-btn btn btn-primary-reverse">
+                        Close
+                </button>
                 <button type="submit" 
                         onClick={submitOpenClosePage} 
                         className="edit-profile-btn btn btn-primary">
