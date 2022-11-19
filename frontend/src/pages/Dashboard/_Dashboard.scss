@@ -22,7 +22,7 @@
 
         .dashboard-connection {
             flex: 1;
-            padding: 1rem 2rem;
+            padding: 1rem .5rem 1rem 1rem;
             background-color: #FDFDFD;
             border: 1px solid #949494;
             border-radius: 14px;
@@ -31,6 +31,10 @@
                 @include fontSize(34);
                 margin: 0;
                 text-align: center;
+            }
+
+            &-wrapper {
+                padding: 0 2rem 1rem 1rem;
             }
 
             &-header {

@@ -40,8 +40,8 @@ const NewConnectionModal = ({ onAdd, onOpen, onClose }) => {
         e.preventDefault();
     
         if (!image) {
-        alert("Need image for connection")
-        return false
+            alert("Need image for connection")
+            return false
         }
     
         const data = new FormData()
@@ -60,23 +60,6 @@ const NewConnectionModal = ({ onAdd, onOpen, onClose }) => {
         onAdd({ firstname, lastname, position, company, email, phone, location, active, pinned, labels, photo, user_id });
         })
         .catch(err => console.log(err))
-    
-        setFirstname('');
-        setLastname('');
-        setPosition('');
-        setCompany('');
-        setEmail('');
-        setPhone('');
-        setLocation('');
-        setActive(false);
-        setLabels([ 
-        { text: "Technology", select: false },
-        { text: "Hospitality", select: false },
-        { text: "Finance", select: false },
-        { text: "Retail", select: false },
-        { text: "Art & Design", select: false },
-        { text: "Manufacturing", select: false },
-        { text: "Media", select: false }]);
     };
     
     const processImage = async (image) => {
@@ -215,7 +198,7 @@ const NewConnectionModal = ({ onAdd, onOpen, onClose }) => {
             </div>
         
             <div className="input-wrapper submit-btn-wrapper">
-                <button className="btn btn-primary-reverse" onClick={() => onClose(false)}>Cancel</button>
+                <button className="btn btn-primary-reverse" onClick={onClose}>Cancel</button>
                 <button type="submit" className="btn btn-primary">Save Connection</button>
             </div>
             </form>

@@ -4,12 +4,59 @@
     box-sizing: border-box;
 }
 
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: transparent; 
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: $color-iron;
+    border-radius: 20px;
+}
+
 body {
     margin: 0;
     padding: 0;
     background-color: $color-white-lilac;
     font-family: $font;
     @include fontSize(16);
+
+    @media screen and (min-width: $screen-desktop) {
+        &:not(.no-sidebar) {
+            overflow-y: hidden;
+
+            .container {
+                height: calc(100vh - 75px);
+
+                .dashboard-wrapper {
+                    height: 100%;
+                }
+
+                .dashboard-connection {
+                    overflow: hidden;
+                }
+
+                .page-connections {
+                    height: 0;
+                }
+
+                .page-connections > div {
+                    overflow-y: auto;
+                }
+
+                .dashboard-connection-wrapper,
+                .dashboard-upcoming {
+                    height: 100%;
+                    overflow-y: auto;
+                }
+            }
+        }
+    }
 }
 
 img {
@@ -210,6 +257,16 @@ aside {
 
 .ReactModal__Overlay {
     z-index: 999;
+    opacity: 0;
+    transition: opacity 500ms ease-in-out;
+}
+
+.ReactModal__Overlay--after-open{
+    opacity: 1;
+}
+
+.ReactModal__Overlay--before-close{
+    opacity: 0;
 }
 
 /* BUTTONS */

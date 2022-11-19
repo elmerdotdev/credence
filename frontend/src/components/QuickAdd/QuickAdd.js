@@ -21,6 +21,20 @@ const QuickAdd = () => {
         setNotificationOpen(true)
     }
 
+    // Add Note
+    const addNote = async (newNote) => {
+        await fetch(`${process.env.REACT_APP_API_URL}/api/notes`, {
+            method: 'POST',
+            headers: {
+                'Content-type':'application/json'
+            },
+            body: JSON.stringify(newNote)
+        })
+
+        setNoteModal(false)
+        openNotification('Note added')
+    }
+
     // Add Connection
     const addConnection = async (newClient) => {
         await fetch(`${process.env.REACT_APP_API_URL}/api/clients`, {
@@ -75,6 +89,8 @@ const QuickAdd = () => {
             {notificationOpen && 
             <Notification message={notificationMessage} onClose={() => setNotificationOpen(false)} />
             }
+
+            <NewNoteModal onAdd={addNote} onOpen={noteModal} onClose={() => setNoteModal(false)} fetchClients={fetchClients} userId={userID} />
             
             <NewConnectionModal onAdd={addConnection} onOpen={connectionModal} onClose={() => setConnectionModal(false)} />
 
