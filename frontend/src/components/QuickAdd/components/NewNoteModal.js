@@ -22,7 +22,7 @@ const NewNoteModal = ({ onAdd, onOpen, onClose, fetchClients, userId }) => {
         }
         
         getClients()
-    }, [])
+    }, [fetchClients])
 
     const onSubmit = (e) => {
         e.preventDefault()
