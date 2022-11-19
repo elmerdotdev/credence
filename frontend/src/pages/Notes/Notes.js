@@ -87,7 +87,7 @@ const addNote = async (note) => {
 
   setNotes([data, ...notes ])
 
-  openNotification('Note added')
+  openNotification('Note added', true)
 }
 
 // Edit Note
@@ -111,7 +111,7 @@ const editNote = async(id, title, content ) => {
   setNotes(res);
   setEditNoteIsOpen(false)
   setViewNoteIsOpen(false)
-  openNotification('Note updated')
+  openNotification('Note updated', true)
 }
 
 //Delete Note
@@ -122,7 +122,7 @@ const deleteNote = async () => {
 
   setNotes(notes.filter((note) => note._id !== singleNoteId ))
   setViewNoteIsOpen(false)
-  openNotification('Note deleted')
+  openNotification('Note deleted', true)
 }
 
  
@@ -137,6 +137,7 @@ const deleteNote = async () => {
           onAdd = {addNote}
           connection = {connection}
           userID = {userID}
+          openNotification = {openNotification}
         />
 
         {viewNoteIsOpen &&
@@ -159,6 +160,7 @@ const deleteNote = async () => {
           noteId = {singleNoteId}
           onEdit = {editNote}
           onDelete = {deleteNote}
+          openNotification = {openNotification}
         />
         }
       </div>
