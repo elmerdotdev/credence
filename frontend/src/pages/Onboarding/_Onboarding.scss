@@ -1,0 +1,146 @@
+.modal-onboarding{  
+    padding:17px 20px 20px;
+    font-family: $font;  
+    .onboarding-page{
+        .header-close,
+        .header-arrow{
+            display: none;
+        }
+        
+        h2{
+            font-style: normal;
+            font-weight: 700;
+            font-size: 36px;
+            line-height: 44px;
+            text-align: center;
+            color: $color-black;
+            margin-top: 0;
+        }
+        p{
+            font-weight: 400;
+            font-size: 20px;
+            line-height: 24px;
+            text-align: center;
+            color: $color-black;
+            margin: 47px auto 66px;
+        }
+        .design{
+            width: 80%;
+            margin:0 auto 100px auto;
+            display: flex;
+            justify-content: center;
+        }
+        .buttons{
+            display: flex;
+            gap: 21px;
+            margin: 0 auto 36px auto;
+            justify-content: space-between;
+            button,
+            a>button{
+                width: 100%;
+                justify-content: center;
+            }
+            a{
+                width: 100%;
+            }
+        }
+        .buttons-last{
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            gap: 16px;
+            .gmail-btn,
+            .dash-btn{
+                width: 100%;
+                justify-content: center;
+            }
+        }
+        img.flow-circles{
+            display: block;
+            margin: 36px auto 99px auto;
+            height: 17px;
+        }
+    }
+    
+    @media screen and (min-width:$screen-desktop){
+            background-color:$color-dusty-gray;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 0;
+        .onboarding-page{
+            padding: 62px 53px 53px 53px;
+            border-radius: 24px;
+            width: 80%;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.25);
+            background-color: $color-white-lilac;
+            .header-close{
+                display: flex;
+                justify-content: flex-end;
+                .icon-close::before{
+                    font-size: 42px;
+                    margin: 0;
+                }
+            }
+            .header-arrow{
+                display: flex;
+                justify-content: space-between;
+                .icon-arrow-left::before,
+                .icon-close::before{
+                    font-size: 42px;
+                    margin: 0;
+                }
+            }
+            .grid-box{
+                display: grid;
+                grid-template-columns:1.2fr 1fr;
+                grid-template-rows: 1fr .25fr;
+                align-items: center;
+                .title-grid{
+                    grid-column: 2 / 3;
+                    grid-row: 1 / 2;
+                    h2{
+                        margin:85px auto 0 auto;
+                    }
+                    p{
+                        margin:17px auto 244px auto;
+                    }
+                    .page4-p{
+                        margin:17px auto 194px auto;
+                    }
+                }
+                .design{
+                    grid-column: 1 / 2;
+                    grid-row: 1 / -1;
+                    margin: 0;
+                    padding-right: 28px;
+                    width: 100%;
+                }
+                .btn-grid{
+                    grid-column: 2 / 3;
+                    grid-row: 2 / 3;
+                    .buttons{
+                       margin-bottom: 0;
+                       width: 70%;
+                    }
+                    .buttons-last{
+                        align-items: center;
+                        a{
+                            width: 80%;
+                            text-align: center;
+                        }
+                        .gmail-btn,
+                        .dash-btn{
+                            width: 80%;
+                        }
+                    }
+                    img.flow-circles{
+                        margin: 63px auto 0 auto;
+                        height: 17px;
+                    }
+                }
+            }
+        } 
+    }
+}

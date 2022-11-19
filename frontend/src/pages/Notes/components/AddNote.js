@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 
-const AddNote = ({ onAdd, connection }) => {
+const AddNote = ({ onAdd, connection, openNotification }) => {
     const [title, setTitle] = useState('')
     const [content, setContent] = useState('')
-    const [client_id, setClientId] = useState(connection.connection._id)
+    const [client_id, setClientId] = useState(connection._id)
     const [user_id, setUserId] = useState('63645e4850049bfd1e89637a')
     const [activity_id, setActivityId] = useState('')
 
@@ -12,8 +12,8 @@ const AddNote = ({ onAdd, connection }) => {
         e.preventDefault()
 
         if (!content){
-            alert('Please add content to note')
-            return
+            openNotification('Enter note content', false)
+            return false
         }
 
         onAdd({ title, content, client_id, user_id, activity_id })

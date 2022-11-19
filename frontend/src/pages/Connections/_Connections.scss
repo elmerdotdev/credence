@@ -32,6 +32,9 @@
     }
 
     .connection-content {
+      h3{
+        grid-column: 1/-1;
+      }
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: .5rem;
@@ -41,19 +44,42 @@
         grid-template-columns: repeat(4, 1fr);
       }
     }
+}
 
-    .client-card {
-      background-color: $color-mystic;
-      border-radius: 10px;
-      padding: 1.5rem;
-      color: $color-shark;
+// Client card
+.client-card {
+  background-color: $color-mystic;
+  border-radius: 10px;
+  padding: 1.5rem;
+  color: $color-shark;
+  cursor: pointer;
+
+  &:hover {
+      background-color: $color-hawkes-blue;
       cursor: pointer;
+  }
 
-      &:hover {
-          background-color: $color-hawkes-blue;
-          cursor: pointer;
+  .connection-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+
+    &-photo {
+      width: 77px;
+      height: 77px;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 50%;
       }
+    }
 
+    &-text {
+      flex: 1;
+      
       h4 {
         @include fontSize(20);
         margin: 0;
@@ -68,14 +94,15 @@
             font-weight: 600;
           }
       }
-
-      .connection-interaction {
-          margin-top: 1rem;
-          padding-top: 1rem;
-          text-align: center;
-          border-top: 1px solid $color-shark;
-      }
     }
+  }
+
+  .connection-interaction {
+      margin-top: 1rem;
+      padding-top: 1rem;
+      text-align: center;
+      border-top: 1px solid $color-shark;
+  }
 }
 
 // Active button
@@ -170,11 +197,12 @@
   padding: 2rem;
 
   @media screen and (min-width: $screen-desktop) {
-      padding: 2rem 10rem 6rem;
+      padding: 4rem 10rem 6rem;
   }
 
   h2 {
       @include fontSize(32);
+      margin-top: 0;
       font-weight: 600;
   }
 
@@ -280,15 +308,26 @@
     padding: 0 3rem;
 
     &.detail-info {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+
       h2 {
         @include fontSize(32);
         margin-bottom: 1rem;
         font-weight: 600;
       }
 
-      div {
+      .connection-detail-info {
+        flex: 1;
         display: flex;
-        align-items: center;
+        flex-direction: column;
+
+        > div {
+          display: flex;
+          align-items: center;
+        }
   
         p {
           margin: .6rem 0;
@@ -296,6 +335,19 @@
           &:first-child {
             flex-basis: 160px;
           }
+        }
+      }
+
+      .connection-photo {
+        width: 225px;
+        height: 225px;
+
+        img {
+          object-fit: cover;
+          width: 100%;
+          height: 100%;
+          border-radius: 50%;
+          border: 1px solid $color-mystic;
         }
       }
 
@@ -349,7 +401,7 @@
   }
 }
 
-.add-note-form {
+.add-note-form , .new-note-form{
   .input-wrapper {
     display: flex;
     gap: 5px;
@@ -378,6 +430,48 @@
         justify-content: end;
         gap: 1rem;
         margin-top: 1rem;
+    }
+  }
+}
+
+.connections-filter-btns {
+  display: flex;
+  gap: 1rem;
+}
+
+.connection-form-top {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: space-between;
+  align-items: center;
+  gap: 3rem;
+
+  @media screen and (min-width: $screen-desktop) {
+    flex-direction: row;
+  }
+
+  &-fields {
+    flex: 1;
+  }
+
+  &-photo {
+    label {
+      width: 215px;
+      height: 215px;
+    }
+
+    img {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+      border: 1px solid $color-mystic;
+      border-radius: 50%;
+      transition: opacity .3s ease-in-out;
+
+      &:hover {
+        opacity: .8;
+        cursor: pointer;
+      }
     }
   }
 }

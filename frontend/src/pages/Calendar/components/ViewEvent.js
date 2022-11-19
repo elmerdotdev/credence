@@ -29,6 +29,7 @@ const ViewEvent = (props) => {
                 onRequestClose={() => props.onToggle(false)}
                 className="credence-modal modal-event-view"
                 contentLabel="View Event"
+                closeTimeoutMS={500}
             >
                 <div className="viewModalButtons">
                     <div>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import SearchResults from './SearchResults';
 import { useNavigate, useSearchParams, Link } from 'react-router-dom';
-import Notes from '../../Notes/Notes'
+import QuickAdd from '../../../components/QuickAdd/QuickAdd'
 
 const HeaderSearch = () => {
     const [keyword, setKeyword ]= useState('');
@@ -165,11 +165,7 @@ const HeaderSearch = () => {
           
             <SearchResults filteredConnections={filteredConnections} filteredEvents={filteredEvents}  filteredNotes={filteredNotes} modalOpen={modalViewOpen} onToggleEvent= {toggleEvent} onToggleConn = {toggleConnDetail} onToggleNote = {toggleNoteDetail} sortedAllResults={sortedAllResults}/>
 
- 
-            <button className="header-quick-add">
-                <span>Quick Add</span>
-                <i className="icon-plus"></i>
-            </button>
+            <QuickAdd />
         </div>
     )
 }

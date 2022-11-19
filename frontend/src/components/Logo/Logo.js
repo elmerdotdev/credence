@@ -5,7 +5,6 @@ const Logo = () => {
         const delay = 0
         const paths = document.querySelectorAll('.logo path')
 
-        console.log(paths)
         paths.forEach((path, i) => {
             path.style.fill = "transparent"
             path.style.strokeDasharray = path.getTotalLength() + 1; 

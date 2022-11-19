@@ -6,17 +6,18 @@ import EditNote from './components/EditNote'
 import { useNavigate, useLocation } from 'react-router-dom';
 
 // TODO: accept isOpenNote and noteId as parameters
-const Notes = ( connection ) => {
+const Notes = ( {connection, openNotification} ) => {
   const [notes, setNotes] = useState(null)
   const [viewNoteIsOpen, setViewNoteIsOpen] = useState(false)
   const [editNoteIsOpen, setEditNoteIsOpen] = useState(false)
   const [singleNoteId, setSingleNoteId] = useState('')
   const [clientId, setClientId] = useState('')
-  const [connectionId, setConnectionId ] = useState(connection.connection._id)
+  const [connectionId, setConnectionId ] = useState(connection._id)
   const [currParams, setCurrParams] = useState('');
 
   const navigate = useNavigate()
   const location = useLocation()
+  const userID = JSON.parse(localStorage.getItem('user'))._id
 
   useEffect(() => {
     const getNotes = async () => {
@@ -25,7 +26,7 @@ const Notes = ( connection ) => {
   };
     getNotes()
       let params = (new URL(document.location)).searchParams;
-    if (params.toString().length > 0 && params.toString().search("noteId") != -1) {
+    if (params.toString().length > 0 && params.toString().search("noteId") !== -1) {
       viewNote(params.get("noteId"), params.get("connectionId"))
       setCurrParams(params.toString())
     }
@@ -33,7 +34,7 @@ const Notes = ( connection ) => {
 
     //Fetch All Notes For Client
     const fetchNotes = async () => {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/notes/63645e4850049bfd1e89637a/${connectionId}`)
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/notes/${userID}/${connectionId}`)
       const data = await response.json()
 
       if (response.ok) {
@@ -85,6 +86,8 @@ const addNote = async (note) => {
   const data = await response.json()
 
   setNotes([data, ...notes ])
+
+  openNotification('Note added', true)
 }
 
 // Edit Note
@@ -108,6 +111,7 @@ const editNote = async(id, title, content ) => {
   setNotes(res);
   setEditNoteIsOpen(false)
   setViewNoteIsOpen(false)
+  openNotification('Note updated', true)
 }
 
 //Delete Note
@@ -118,6 +122,7 @@ const deleteNote = async () => {
 
   setNotes(notes.filter((note) => note._id !== singleNoteId ))
   setViewNoteIsOpen(false)
+  openNotification('Note deleted', true)
 }
 
  
@@ -131,6 +136,8 @@ const deleteNote = async () => {
           notes = {notes}
           onAdd = {addNote}
           connection = {connection}
+          userID = {userID}
+          openNotification = {openNotification}
         />
 
         {viewNoteIsOpen &&
@@ -153,6 +160,7 @@ const deleteNote = async () => {
           noteId = {singleNoteId}
           onEdit = {editNote}
           onDelete = {deleteNote}
+          openNotification = {openNotification}
         />
         }
       </div>

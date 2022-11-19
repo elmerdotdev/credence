@@ -59,13 +59,21 @@ const IndustryType = () => {
           legend: {
             display: false,
           },
+          tooltip: {
+            yAlign: 'bottom'
+          }
         },
+        scales: {
+          x: {
+            ticks: {
+              display: false
+            }
+          }
+        }
       };
-      
-      const labels = ['Technology', 'Hospitality', 'Finance', 'Retail', 'Art & Design', 'Manufacturing', 'Media'];
-      
+            
     const data = {
-        labels,
+        labels:['Technology', 'Hospitality', 'Finance', 'Retail', 'Art & Design', 'Manufacturing', 'Media'],
         datasets: [
           {
             label: 'Clients in this Industry',

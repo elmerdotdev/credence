@@ -88,23 +88,3 @@
 .header-search-qa {
     position: relative;
 }
-
-.header-quick-add {
-    display: flex;
-    align-items: center;
-    gap: 1.2rem;
-    padding: .5rem 1rem .5rem 1.5rem;
-    background-color: $color-science-blue;
-    color: $color-white;
-    border: none;
-    border-radius: .5rem;
-    transition: background-color .2s ease-in-out;
-
-    &:hover {
-        background-color: lighten($color-science-blue, 10%);
-    }
-
-    i {
-        font-size: 1.5rem;
-    }
-}
