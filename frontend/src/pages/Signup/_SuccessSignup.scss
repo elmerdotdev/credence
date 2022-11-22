@@ -12,26 +12,26 @@
     }
     h3{
         font-style: normal;
-        font-weight: 700;
+        font-weight: 600;
         @include fontSize(24);
         line-height: 32px;
         text-align: center;
-        margin: 64px 0 59px 0;
+        margin: 64px 0 43px 0;
     }
     img.credence-logo{
-        height: 16px;
+        height: 20px;
         position: relative;
         bottom: -2px;
         margin-right: 3px;
     }
     p{
         text-align: center;
-        @include fontSize(16);
+        @include fontSize(20);
         line-height: 20px;
         display: flex;
         align-items: center;
         justify-content: center;
-        margin: 0;
+        margin: 0 0 10px 0;
         span{
             margin-right: 5px;
         }
@@ -40,12 +40,12 @@
         margin: 0;
     }
     img.signup-success-image{
-        margin: 85px auto 0 auto;
-        width: 60%;
+        margin: 47px auto 0 auto;
+        width: 80%;
     }    
     button.btn.btn-primary{
         display: block;
-        margin: 105px 0 177px 0;
+        margin: 60px 0 177px 0;
         width: 100%;
         justify-content: center;
         a[href="/login"]{
@@ -82,12 +82,13 @@
             line-height: 44px;
         }
         img.signup-success-image{
-            margin-top: 31px;
-            width: 30%;
+            margin-top: 25px;
+            max-width: 308px;
         }
         button.btn.btn-primary{
             width: 50%;
-            margin: 75px auto 0 auto;
+            max-width: 408px;
+            margin: 37px auto 0 auto;
         }
     }
 }
