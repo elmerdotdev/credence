@@ -20,7 +20,7 @@ const ViewEvent = (props) => {
         }
 
         fetchEvent()
-    }, [ props.userId, props.eventId ])
+    }, [ props.modalOpen, props.userId, props.eventId ])
 
     return (
         <div>
@@ -36,7 +36,7 @@ const ViewEvent = (props) => {
                         <i className="icon-close" onClick={() => props.onToggle(false)}></i>
                     </div>
                     <div>
-                        <button className="btn btn-primary-reverse">Edit <i className="icon-edit"></i></button>
+                        <button className="btn btn-primary-reverse" onClick={() => props.onToggleEdit(event)}>Edit <i className="icon-edit"></i></button>
                         <button className="btn btn-primary-reverse" onClick={() => props.onDelete(props.eventId)}>Delete <i className="icon-trash"></i></button>
                     </div>
                 </div>
