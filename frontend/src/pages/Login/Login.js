@@ -5,7 +5,6 @@ import { useLogin } from '../Signup/hooks/useLogin'
 
 //Icon & Logo
 import '../../fontello/css/credence.css';
-import logo from '../../images/logo.svg';
 import loginimage from'../../images/Register/loginimage.svg';
 
 const Login = () => {
@@ -75,7 +74,7 @@ const Login = () => {
       <section className="page-login-area">
         <Link to="/" ><i className='icon-close'></i></Link>
         
-        <h3><span>Sign into your</span><span><img src={logo} alt="credence-logo" className='credence-logo'/>Account</span></h3>
+        <h3>Sign into your Credence account</h3>
 
         <div className="desktop-grid">
           

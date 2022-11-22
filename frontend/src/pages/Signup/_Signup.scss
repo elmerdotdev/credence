@@ -4,8 +4,6 @@
         font-size: 1rem;
         padding: 20px;
         background-color: $color-white;
-        max-width: 1118px;
-        max-height: 720px;
     }
     .icon-close{
         display: none;
@@ -20,7 +18,7 @@
         justify-content: center;
         text-align: center;
         align-items: center;
-
+        font-weight: 600;
         .credence-logo{
             height: 24px;
             margin: 0 5px;
@@ -30,7 +28,7 @@
     }
     img.signup-img{
         display: block;
-        margin: 15px auto 55px auto;
+        margin: 11px auto 18px auto;
         width: 60%;
         height: auto;
     }
@@ -61,15 +59,18 @@
         @include fontSize(16);
         line-height: 20px;
         font-weight: 400;
+        height: 23px;
     }
     .password-area{
         display: flex;
         border-bottom: 1px solid $color-boulder; 
         margin-bottom: 32px;
+        height: 23px;
+        align-items: center;
     }
     .icon-hide,
     .icon-show{
-        @include fontSize(16);
+        @include fontSize(23);
         color:#202533;
     }
     .required-star{
@@ -96,6 +97,8 @@
             width: 80%;
             box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.25);
             background-color: $color-white-lilac;
+            max-width: 1118px;
+            max-height: 720px;
         }
         .icon-close{
             display: block;
@@ -133,9 +136,16 @@
         }
         input[for="firstname"],
         input[for="lastname"],
-        input[for="email"]
+        input[for="email"]{
+            background-color:$color-white-lilac;
+            height: 34.5px;
+        }
         input[for="password"]{
             background-color:$color-white-lilac;
+            height: 33.5px;
+        }
+        .password-area{
+            height: 34.5px;
         }
         .icon-hide,
         .icon-show{
