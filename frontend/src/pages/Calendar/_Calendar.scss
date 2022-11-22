@@ -208,12 +208,14 @@
     }
 }
 
-.modal-event-add {
+.modal-event-add,
+.modal-event-edit {
     @media screen and (min-width: $screen-desktop) {
         padding: 2rem 10rem 6rem;
     }
 
-    .addEventForm {
+    .addEventForm,
+    .editEventForm {
         display: grid;
         width: 650px;
         max-width: 100%;
