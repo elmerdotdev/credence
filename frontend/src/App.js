@@ -32,6 +32,7 @@ import './App.css';
 function App() {
     const [isMenuOpen, setIsMenuOpen] = useState(false)
     const [modalIsOpen, setModalIsOpen] = useState(false)
+    const [darkMode, setDarkMode] = useState(false)
 
     useEffect(() => {
         document.body.classList.toggle('mobile-menu-visible', isMenuOpen)
@@ -43,7 +44,7 @@ function App() {
 
     return (
         <BrowserRouter>
-        <div className="App">
+        <div className={`App ${darkMode ? 'theme-dark' : 'theme-light'}`}>
             <Header onToggleMenu={toggleMobileMenu}/>
             <section className="container">
                 <aside>
@@ -71,7 +72,7 @@ function App() {
                         <Route path="/calendar" element={<Calendar />} />
                         <Route path="/connections" element={<Connections />} />
                         <Route path="/search" element={<Search />} />
-                        <Route path="/settings" element={<Settings />} />
+                        <Route path="/settings" element={<Settings onDarkMode={darkMode} darkModeToggle={() => setDarkMode(!darkMode)} />} />
                         <Route path="/notes" element={<Notes />} />
                         <Route path="/login" element={<Login />} />
                         <Route path="/signup" element={<Signup />} />

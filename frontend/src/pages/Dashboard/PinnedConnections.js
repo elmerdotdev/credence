@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import moment from 'moment'
 
 const PinnedConnections = ({ connection, onToggle, fetchEmails }) => {
@@ -21,7 +22,7 @@ const PinnedConnections = ({ connection, onToggle, fetchEmails }) => {
   }, [connection, fetchEmails])
 
   return (
-        <div className="client-card">
+        <div className="client-card" onClick={() => onToggle(connection._id)}>
           <div className="connection-details">
               <div className="connection-details-photo">
                   <img src={connection.photo} alt={connection.firstname} />
