@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react'
 import Notes from '../../Notes/Notes';
+import Emails from '../../Emails/Emails';
 
 // TODO: accept isOpenNote and noteId as parameters
-const ConnectionDetail = ({connection, onEditBtn, onDeleteBtn, onPinBtn, changeActiveBtn, onClose, openNotification}) => {
+const ConnectionDetail = ({connection, onEditBtn, onDeleteBtn, onPinBtn, changeActiveBtn, onClose, openNotification, gmailIntegration, gmailUpdate}) => {
 
   return (
     <div>
@@ -78,6 +79,12 @@ const ConnectionDetail = ({connection, onEditBtn, onDeleteBtn, onPinBtn, changeA
               openNotification = {openNotification}
               // isOpenNote = true
               // noteId = asdjfaskjdfsf
+            />
+            <h3>Emails</h3>
+            <Emails 
+              connection = {connection}
+              gmailIntegration = {gmailIntegration}
+              gmailUpdate = {gmailUpdate}
             />
           </div>
         </div>

@@ -8,9 +8,6 @@ import page1_img from '../../images/Onboarding/page1_img.svg'
 import page2_img from '../../images/Onboarding/page2_img.svg'
 import page3_img from '../../images/Onboarding/page3_img.svg'
 import page4_img from '../../images/Onboarding/page4_img.svg'
-// import circle1_mobile from '../../images/Onboarding/page1_circle_mobile.svg'
-// import circle2_mobile from '../../images/Onboarding/page2_circle_mobile.svg'
-// import circle4_mobile from '../../images/Onboarding/page4_circle_mobile.svg'
 import circle1_desktop from '../../images/Onboarding/page1_circle_desktop.svg'
 import circle2_desktop from '../../images/Onboarding/page2_circle_desktop.svg'
 import circle3_desktop from '../../images/Onboarding/page3_circle_desktop.svg'
@@ -63,6 +60,7 @@ const Onboarding = () => {
 
     return (
     <section className="page-onboarding">
+        {/* 1 */}
         <Modal isOpen={FirstmodalIsOpen} className='modal-onboarding'>
             <div className="onboarding-page">
                 <Link to="/dashboard" className='header-close'><i className='icon-close'></i></Link>
@@ -84,7 +82,7 @@ const Onboarding = () => {
                 </div>
             </div>
         </Modal>
-
+        {/* 2 */}
         <Modal isOpen={SecondmodalIsOpen} className='modal-onboarding'>
             <div className="onboarding-page">
                 <div className='header-arrow'>
@@ -110,7 +108,7 @@ const Onboarding = () => {
                 </div>
             </div>
         </Modal>
-
+        {/* 3 */}
         <Modal isOpen={ThirdmodalIsOpen} className='modal-onboarding'>
             <div className="onboarding-page">
                 <div className='header-arrow'>
@@ -136,7 +134,7 @@ const Onboarding = () => {
                 </div>
             </div>
         </Modal>
-
+        {/* 4 */}
         <Modal isOpen={ForthmodalIsOpen} className='modal-onboarding'>
             <div className="onboarding-page">
                 <div className='header-arrow'>
@@ -154,8 +152,8 @@ const Onboarding = () => {
 
                     <div className="btn-grid">
                         <div className="buttons-last">
-                            <Link to=''><button className='btn btn-primary-reverse gmail-btn'>Connect Gmail</button></Link>
-                            <Link to='/dashboard'><button className='btn btn-primary dash-btn'>Go to Dashboard</button></Link>
+                            <Link to=''><button className='btn btn-primary dash-btn'>Connect Gmail</button></Link>
+                            <Link to='/dashboard'><button className='btn btn-primary-reverse gmail-btn'>Go to Dashboard</button></Link>
                         </div>
                         <img src={circle4_desktop} alt="page4" className='flow-circles'/>
                     </div>

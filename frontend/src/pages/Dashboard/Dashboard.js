@@ -3,7 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import moment from 'moment';
 import "react-datetime/css/react-datetime.css";
 
-import ClientCards from '../Connections/components/ClientCards';
+import PinnedConnections from './PinnedConnections';
 import EventsWidget from '../Calendar/components/EventsWidget';
 
 const Dashboard = () => {
@@ -63,6 +63,14 @@ const Dashboard = () => {
     navigate('/connections')
   }
 
+  //Fetch All Emails For Client
+  const fetchEmails = async (connectionId) => {
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/api/gmails/${userID}/${connectionId}`)
+    const data = await response.json()
+    
+    return data
+  }
+
   return (
     <section className="page-dashboard">
       <ul className="dashboard-tabs">
@@ -77,26 +85,36 @@ const Dashboard = () => {
       <div className="dashboard-wrapper">
         <div className="dashboard-connection">
           <h2>Connections</h2>
-          {connections.filter((connection) => connection.pinned) &&
+          <div className="dashboard-connection-wrapper">
+            {connections.filter((connection) => connection.pinned) &&
+              <>
+                <div className="dashboard-connection-header">
+                  <h3>Pinned Connections</h3>
+                  <Link to="/connections">View All</Link>
+                </div>
+                <div className="dashboard-connection-content">
+                  {connections.filter((connection) => connection.pinned).slice(0, 3).map((connection, i) => {
+                    return (
+                      <PinnedConnections key={i} connection={connection} fetchEmails={fetchEmails} onToggle={() => onConnectionClick} />
+                    )
+                  })}
+                </div>
+              </>
+            }          
             <>
               <div className="dashboard-connection-header">
-                <h3>Pinned Connections</h3>
+                <h3>Most Recent</h3>
                 <Link to="/connections">View All</Link>
               </div>
               <div className="dashboard-connection-content">
-                <ClientCards connections={connections.filter((connection) => connection.pinned)} onToggle={() => onConnectionClick} />
+                {connections.slice(0, 3).map((connection, i) => {
+                  return (
+                    <PinnedConnections key={i} connection={connection} fetchEmails={fetchEmails} onToggle={() => onConnectionClick} />
+                  )
+                })}
               </div>
             </>
-          }          
-          <>
-            <div className="dashboard-connection-header">
-              <h3>Most Recent</h3>
-              <Link to="/connections">View All</Link>
-            </div>
-            <div className="dashboard-connection-content">
-              <ClientCards connections={connections.slice(0,3)} onToggle={() => onConnectionClick} />
-            </div>
-          </>
+          </div>
         </div>
 
         <div className="dashboard-upcoming">

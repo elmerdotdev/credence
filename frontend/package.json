@@ -12,6 +12,7 @@
     "bcryptjs": "^2.4.3",
     "chart.js": "^3.9.1",
     "moment": "^2.29.4",
+    "moment-timezone": "^0.5.39",
     "node-sass": "^7.0.3",
     "react": "^18.2.0",
     "react-chartjs-2": "^4.3.1",

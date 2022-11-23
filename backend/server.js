@@ -9,6 +9,7 @@ const activityRoutes = require('./routes/activity')
 const clientRoutes = require('./routes/client')
 const noteRoutes = require('./routes/note')
 const userRoutes = require('./routes/user')
+const gmailRoutes = require('./routes/gmail')
 
 // Express App
 const app = express()
@@ -28,6 +29,7 @@ app.use('/api/activities', activityRoutes)
 app.use('/api/clients', clientRoutes)
 app.use('/api/notes', noteRoutes)
 app.use('/api/users', userRoutes)
+app.use('/api/gmails', gmailRoutes)
 
 // Connect to db
 mongoose.connect(process.env.MONGO_URI)

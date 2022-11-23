@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { Bar } from 'react-chartjs-2'
-import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend} from 'chart.js'
+import { PolarArea } from 'react-chartjs-2'
+import { Chart as ChartJS, RadialLinearScale, ArcElement, Title, Tooltip, Legend} from 'chart.js'
 
 ChartJS.register(
-    CategoryScale,
-    LinearScale,
-    BarElement,
+    RadialLinearScale,
+    ArcElement,
     Title,
     Tooltip,
     Legend,
@@ -59,16 +58,24 @@ const IndustryType = () => {
           legend: {
             display: false,
           },
+          tooltip: {
+            yAlign: 'bottom'
+          }
         },
+        scales: {
+          x: {
+            ticks: {
+              display: false
+            }
+          }
+        }
       };
-      
-      const labels = ['Technology', 'Hospitality', 'Finance', 'Retail', 'Art & Design', 'Manufacturing', 'Media'];
-      
+            
     const data = {
-        labels,
+        labels:['Technology', 'Hospitality', 'Finance', 'Retail', 'Art & Design', 'Manufacturing', 'Media'],
         datasets: [
           {
-            label: ['Technology', 'Hospitality', 'Finance', 'Retail', 'Art & Design', 'Manufacturing', 'Media'],
+            label: 'Clients in this Industry',
             data: [technology,hospitality,finance,retail,artAndDesign,manufacturing,media],
             backgroundColor: [
               "#88B2D8",
@@ -86,7 +93,7 @@ const IndustryType = () => {
     return (
         <div>
             <h3>Industries Represented</h3>
-            <div><Bar data={data} options={options}/></div>
+            <div><PolarArea data={data} options={options}/></div>
 
         </div>
 

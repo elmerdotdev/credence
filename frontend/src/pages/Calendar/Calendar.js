@@ -10,6 +10,7 @@ import { useNavigate, useSearchParams, Link, useLocation } from 'react-router-do
 // Components
 import EventsWidget from './components/EventsWidget'
 import AddEvent from './components/AddEvent'
+import EditEvent from './components/EditEvent'
 import ViewEvent from './components/ViewEvent'
 import Notification from '../../components/Notification/Notification'
 
@@ -20,7 +21,9 @@ const Calendar = () => {
   const [monthLastDay, setMonthLastDay] = useState()
   const [addDate, setAddDate] = useState()
   const [viewEventId, setViewEventId] = useState('')
+  const [eventToEdit, setEventToEdit] = useState('')
   const [currParams, setCurrParams] = useState('');
+  const [notificationSuccess, setNotificationSuccess] = useState(false)
   const [notificationOpen, setNotificationOpen] = useState(false)
   const [notificationMessage, setNotificationMessage] = useState('')
   // console.log("searchParams: ", searchParams[0])
@@ -48,10 +51,16 @@ const Calendar = () => {
     if (params.toString().length > 0) {
       setModalViewOpen(true)
       setViewEventId(params.get("eventId"))
-      console.log(viewEventId)
       setCurrParams(params.toString())
     }
   }, [location])
+
+  useEffect(() => {
+    if (eventToEdit) {
+      setModalEditOpen(true)
+      setModalViewOpen(false)
+    }
+  }, [eventToEdit])
 
   // Get all activities/events
   const fetchActivities = async () => {
@@ -59,6 +68,22 @@ const Calendar = () => {
     const data = await res.json()
 
     return data
+  }
+
+  // Edit activity/event
+  const editActivity = async (event) => {
+    await fetch(`${process.env.REACT_APP_API_URL}/api/activities/${event._id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-type': 'application/json'
+      },
+      body: JSON.stringify(event)
+    })
+
+    setEvents(events.filter(currEvent => currEvent._id !== event._id))
+    setEvents(current => [...current, event])
+    setModalEditOpen(false)
+    openNotification('Event updated', true)
   }
 
   // Delete activity/event
@@ -69,7 +94,7 @@ const Calendar = () => {
 
     setEvents(events.filter(event => event._id !== id))
     toggleViewModal(false)
-    openNotification('Event deleted')
+    openNotification('Event deleted', true)
   }
 
   // Get clients
@@ -91,6 +116,11 @@ const Calendar = () => {
   // Toggle Add modal
   const toggleAddModal = (status) => {
     setModalAddOpen(status)
+  }
+
+  // Toggle Edit modal
+  const toggleEditModal = (event) => {
+    setEventToEdit(event)
   }
 
   // Toggle View modal
@@ -124,7 +154,8 @@ const Calendar = () => {
   }
 
   // Open notification
-  const openNotification = (message) => {
+  const openNotification = (message, success) => {
+    setNotificationSuccess(success)
     setNotificationMessage(message)
     setNotificationOpen(true)
   }
@@ -164,16 +195,14 @@ const Calendar = () => {
 
       <EventsWidget events={events} currMonth={currentMonth} firstDay={monthFirstDay} lastDay={monthLastDay} onEventClick={handleEventClick} fetchClient={fetchClient} openAddModal={toggleAddModal} />
 
-      {modalAddOpen &&
-        <AddEvent modalOpen={modalAddOpen} onToggle={toggleAddModal} onDateClick={addDate} onAddState={addToEventsState} fetchClients={fetchClients} userId={userID} openNotification={openNotification} />
-      }
+      <AddEvent modalOpen={modalAddOpen} onToggle={toggleAddModal} onDateClick={addDate} onAddState={addToEventsState} fetchClients={fetchClients} userId={userID} openNotification={openNotification} />
 
-      {modalViewOpen &&
-        <ViewEvent modalOpen={modalViewOpen} onToggle={toggleViewModal} onDelete={deleteEvent} userId={userID} eventId={viewEventId} fetchClient={fetchClient} />
-      }
+      <EditEvent modalOpen={modalEditOpen} onToggle={() => setModalEditOpen(false)} onEdit={editActivity} event={eventToEdit} fetchClients={fetchClients} userId={userID} openNotification={openNotification} />
+
+      <ViewEvent modalOpen={modalViewOpen} onToggle={toggleViewModal} onToggleEdit={toggleEditModal} onDelete={deleteEvent} userId={userID} eventId={viewEventId} />
 
       {notificationOpen && 
-        <Notification message={notificationMessage} onClose={() => setNotificationOpen(false)} />
+        <Notification success={notificationSuccess} message={notificationMessage} onClose={() => setNotificationOpen(false)} />
       }
 
     </section>

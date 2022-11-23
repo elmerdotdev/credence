@@ -208,12 +208,14 @@
     }
 }
 
-.modal-event-add {
+.modal-event-add,
+.modal-event-edit {
     @media screen and (min-width: $screen-desktop) {
         padding: 2rem 10rem 6rem;
     }
 
-    .addEventForm {
+    .addEventForm,
+    .editEventForm {
         display: grid;
         width: 650px;
         max-width: 100%;
@@ -267,7 +269,7 @@
 
                     &::before {
                         position: absolute;
-                        bottom: 0;
+                        bottom: 3px;
                         right: 0;
                         color: $color-regal-blue;
                         font-family: "credence";
@@ -290,11 +292,11 @@
                 }
 
                 .input-date .rdt::before {
-                    content: '\e814';
+                    content: '\e80b';
                 }
 
                 .input-time .rdt::before {
-                    content: '\e819';
+                    content: '\e805';
                 }
             }
         }
