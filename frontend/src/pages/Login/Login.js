@@ -106,11 +106,12 @@ const Login = () => {
               <input type="submit" value="Login" className="submit-login-btn btn btn-primary" />
             </form>
           
+            <div className="link-wrapper">
               <div className="fgt-pwd-box">
                 <Link className="forget-pw-link">Forgotten your password?</Link>
               </div>
-          
-            <p className="move-to-signup-link">Don't have an account? <Link to='/signup'>Sign up here</Link></p>
+              <p className="move-to-signup-link">Don't have an account? <Link to='/signup'>Sign up here</Link></p>
+            </div>
           </div>
         </div>
       </section>

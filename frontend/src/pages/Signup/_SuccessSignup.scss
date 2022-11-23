@@ -4,8 +4,6 @@
         text-align: center;
         padding: 20px;
         background-color: $color-white;
-        max-width: 1118px;
-        max-height: 720px;
     }
     .header-arrow{
         display: none;
@@ -41,7 +39,7 @@
     }
     img.signup-success-image{
         margin: 47px auto 0 auto;
-        width: 80%;
+        width: 40%;
     }    
     button.btn.btn-primary{
         display: block;
@@ -65,12 +63,22 @@
         .page-successSignup-area{
             padding: 26px 53px 51px 53px;
             border-radius: 24px;
-            width: 80%;
+            width: 100%;
+            height: 643px;
+            max-width: 1118px;
+            max-height: 720px;
             box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.25);
         }
         .header-arrow{
             display: flex;
             justify-content: space-between;
+            a{
+                height: 42px;
+                width: 42px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
             .icon-arrow-left,
             .icon-close{
                 @include fontSize(42);
@@ -82,8 +90,9 @@
             line-height: 44px;
         }
         img.signup-success-image{
-            margin-top: 25px;
-            max-width: 308px;
+            // margin-top: 25px;
+            // max-width: 308px;
+            width: 25%;
         }
         button.btn.btn-primary{
             width: 50%;
