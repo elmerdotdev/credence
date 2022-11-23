@@ -109,20 +109,22 @@ const AccountSettings = () => {
             
                 { !myImg ? <div className="no-img-onprofile"><p>No image</p></div> : <img src={ myImg } alt="user-img" />}
             
-                <div className='connection-box'>
-                  <i className='icon-connection'></i>
-                  <p>{ myClients }</p>
-                  <p>Connections</p>
-                </div>
-                <div className="event-box">
-                  <i className='icon-calendar'></i>
-                  <p>{ myEvents }</p>
-                  <p>Events</p>
-                </div>
-                <div className="note-box">
-                  <i className='icon-note'></i>
-                  <p>{ myNotes }</p>
-                  <p>Notes</p>
+                <div className="number-display-box">
+                  <div className='connection-box'>
+                    <i className='icon-connection'></i>
+                    <p>{ myClients }</p>
+                    <p>Connections</p>
+                  </div>
+                  <div className="event-box">
+                    <i className='icon-calendar'></i>
+                    <p>{ myEvents }</p>
+                    <p>Events</p>
+                  </div>
+                  <div className="note-box">
+                    <i className='icon-note'></i>
+                    <p>{ myNotes }</p>
+                    <p>Notes</p>
+                  </div>
                 </div>
               </div>
                 <button className="edit-profile-btn btn btn-primary-reverse" 
