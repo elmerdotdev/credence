@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { Bar } from 'react-chartjs-2'
-import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend} from 'chart.js'
+import { PolarArea } from 'react-chartjs-2'
+import { Chart as ChartJS, RadialLinearScale, ArcElement, Title, Tooltip, Legend} from 'chart.js'
 
 ChartJS.register(
-    CategoryScale,
-    LinearScale,
-    BarElement,
+    RadialLinearScale,
+    ArcElement,
     Title,
     Tooltip,
     Legend,
@@ -94,7 +93,7 @@ const IndustryType = () => {
     return (
         <div>
             <h3>Industries Represented</h3>
-            <div><Bar data={data} options={options}/></div>
+            <div><PolarArea data={data} options={options}/></div>
 
         </div>
 
