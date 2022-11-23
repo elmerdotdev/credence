@@ -170,7 +170,7 @@ const AccountSettings = () => {
                     <i className='icon-subscription'></i>
                     <h3>Subscription</h3>
                 </div>
-                <p>You are currenty on our <span>30-day trial</span>.Go Premium to enjoy our most-loved premium features.</p>
+                <p>You are currenty on our <span>30-day trial</span>. Go Premium to enjoy our most-loved premium features.</p>
                 <button className='go-premiun-btn btn btn-primary' 
                         onClick={() => setSelectPlanModalIsOpen(true)}>
                         Go Premium
