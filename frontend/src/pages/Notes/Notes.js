@@ -142,6 +142,7 @@ const deleteNote = async () => {
 
         {viewNoteIsOpen &&
         <ViewNote
+          userID = {userID}
           notes = {notes}
           modalOpen = {viewNoteIsOpen}
           toggle = {toggleViewNoteModal}
