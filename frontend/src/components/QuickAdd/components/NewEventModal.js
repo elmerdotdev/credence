@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import Modal from 'react-modal'
 import Datetime from 'react-datetime';
-import moment from 'moment';
+import moment from 'moment-timezone';
 import Select from 'react-select'
 
-const NewEventModal = ({ onAdd, onOpen, onClose, fetchClients, userId }) => {
+const NewEventModal = ({ onAdd, onOpen, onClose, fetchClients, notification, userId }) => {
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
     const [start, setStart] = useState('')
@@ -18,10 +18,10 @@ const NewEventModal = ({ onAdd, onOpen, onClose, fetchClients, userId }) => {
     const [clientId, setClientId] = useState('')
 
     const alertMsgs = {
-        invalid: "Enter a valid start/end date",
-        pastDate: "Start date must not be in the past",
-        futureDate: "End date must be after start date",
-        needClient: "Specify at least one connection"
+        invalid: "Enter a valid date",
+        pastDate: "Start date in the past",
+        futureDate: "Set future end date",
+        needClient: "Need at least one connection"
     }
 
     useEffect(() => {
@@ -40,9 +40,9 @@ const NewEventModal = ({ onAdd, onOpen, onClose, fetchClients, userId }) => {
     }, [fetchClients])
 
     useEffect(() => {
-        setStart(moment(startDate).format("YYYY-MM-DD") + " " + moment(startTime).format("HH:mm:ss"))
+        setStart(moment(startDate).tz("America/Vancouver").format("YYYY-MM-DD") + " " + moment(startTime).tz("America/Vancouver").format("HH:mm:ss"))
 
-        setEnd(moment(endDate).format("YYYY-MM-DD") + " " + moment(endTime).format("HH:mm:ss"))
+        setEnd(moment(endDate).tz("America/Vancouver").format("YYYY-MM-DD") + " " + moment(endTime).tz("America/Vancouver").format("HH:mm:ss"))
     }, [
         startDate,
         startTime,
@@ -54,22 +54,22 @@ const NewEventModal = ({ onAdd, onOpen, onClose, fetchClients, userId }) => {
         e.preventDefault()
 
         if (!start || !end) {
-            alert(alertMsgs.invalid)
+            notification(alertMsgs.invalid, false)
             return false
         }
 
         if (start < new Date()) {
-            alert(alertMsgs.pastDate)
+            notification(alertMsgs.pastDate, false)
             return false
         }
 
         if (end < start) {
-            alert(alertMsgs.futureDate)
+            notification(alertMsgs.futureDate, false)
             return false
         }
 
         if (!clientId) {
-            alert(alertMsgs.needClient)
+            notification(alertMsgs.needClient, false)
             return false
         }
 
@@ -90,6 +90,7 @@ const NewEventModal = ({ onAdd, onOpen, onClose, fetchClients, userId }) => {
         isOpen={onOpen}
         onRequestClose={onClose}
         contentLabel="Add Event"
+        closeTimeoutMS={500}
         >
             <div className="addEventForm">
                 <h2>New Event</h2>
@@ -137,7 +138,7 @@ const NewEventModal = ({ onAdd, onOpen, onClose, fetchClients, userId }) => {
                         <textarea id="description" value={description} onChange={e => setDescription(e.target.value)} />
                     </div>
                     <div className="input-wrapper submit-btn-wrapper">
-                        <button className="btn btn-primary-reverse" onClick={onClose}>Cancel</button>
+                        <button type="button" className="btn btn-primary-reverse" onClick={onClose}>Cancel</button>
                         <button type="submit" className="btn btn-primary">Save Event</button>
                     </div>
                 </form>

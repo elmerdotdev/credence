@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from 'react'
 import Modal from "react-modal"
-
+//image
+import StaticAddImage from '../../images/Connection/connection-add-photo.svg';
+import '../../fontello/css/credence.css';
 const EditProfile = (props) => {
     //Modal before submit
     const {onEditProfile, OnsetEditProfile} = props;
@@ -11,6 +13,7 @@ const EditProfile = (props) => {
     const [lastName, setLastName] = useState('')
     const [email, setEmail] = useState('')
     const [photo, setPhoto] = useState('')
+    const [photoClicked, setPhotoClicked ] = useState(false)
 
     //get userID from Localstorage(user ID)
     const userID = JSON.parse(localStorage.getItem('user'))._id
@@ -78,29 +81,33 @@ const EditProfile = (props) => {
 
         await editing(firstName, lastName, email, photo)
         console.log(`New Profile:` + firstName, lastName, email, photo)
-
     }
 
     //picture upload
     const photoUpdate = (e) => {
         const newphoto = URL.createObjectURL(e.target.files[0])
         setPhoto(newphoto)
+        setPhotoClicked(true)
     }
-
 
   return (
     <div className='editProfile-modal'>
         <h2>Edit Profile</h2>
         <form onSubmit={handleSubmit}>
-            
-            <div className="add-photo-area" >
-                { !photo ? <div className="no-img-onprofile"><p>Add New Image</p></div> : <img src={ photo } alt="user-img" />}
-            </div>
             <div className="choose-file-area">
-                <input  type="file" 
-                        accept="image/*"  
-                        onChange={photoUpdate} 
-                />
+                <div className="choose-file-wrapper">
+                    
+                    <input  type="file"
+                            id="profile-user-photo"
+                            className="visually-hidden"
+                            accept="image/*"
+                            onChange={photoUpdate}
+                    />
+                    <label htmlFor="profile-user-photo">
+                        <div className={ photoClicked === false ? 'photo-wrapper' : 'visually-hidden'  }>Click Here</div>
+                       { !photo ? <img src={StaticAddImage} alt="no-user-img"/> : <img src={ photo } alt="user-img" />}
+                    </label>
+                </div>
             </div>
 
             <div className="input-area">
@@ -132,6 +139,10 @@ const EditProfile = (props) => {
             </div>
 
             <div className="edit-btn-area">
+                <button onClick={() => OnsetEditProfile(false)}
+                        className="editprofile-close-btn btn btn-primary-reverse">
+                        Close
+                </button>
                 <button type="submit" 
                         onClick={submitOpenClosePage} 
                         className="edit-profile-btn btn btn-primary">

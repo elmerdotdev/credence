@@ -24,8 +24,6 @@ const Aboutus = (props) => {
     return (
     <section className='modal-aboutus'>
       <h2>Team The Planeteers</h2>
-      
-
         <div className="members-box">
             <div className="member">
                 <img src={Gian} alt="giancarlo cochella" className='image'/>
@@ -96,8 +94,8 @@ const Aboutus = (props) => {
                         <div><img src={Github} alt="github-icon" /><p> jaminitaa</p></div>
                 </div>
             </div>
-        </div>
-
+        </div>    
+            
       <div className="close-btn"><button onClick={closepage} className="btn btn-primary-reverse">Close</button></div>
     </section>
   )
