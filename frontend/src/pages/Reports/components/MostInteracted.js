@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from 'react'
-import { Bubble } from 'react-chartjs-2'
-import { Chart as ChartJS, ArcElement, Tooltip, Legend} from 'chart.js'
+import { Bar } from 'react-chartjs-2'
+import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, } from 'chart.js';
 
 ChartJS.register(
+    CategoryScale,
+    LinearScale,
+    BarElement,
+    Title,
     Tooltip,
-    Legend,
-    ArcElement
-)
+    Legend
+  );
+
 const MostInteracted = () => {
     const [notes, setNotes] = useState('')
     const [events, setEvents] = useState('')
@@ -92,7 +96,7 @@ const MostInteracted = () => {
     return (
         <div>
             <h3>Most Interacted</h3>
-            <Bubble data={data} options={options}/>
+            <Bar data={data} options={options}/>
         </div>
 
     )
