@@ -48,7 +48,7 @@ const ViewNote = ({ notes, userID, modalOpen, onDelete, toggle, clientId, noteId
                 </div>
             </div>
             <div className="modal-notes-content">
-                <h3>Note</h3>
+                <h3><span>Note</span></h3>
                 <h2>{note.title}</h2>
                 <div className = "single-note-client-information">
                     <img src={client.photo} alt={client.firstname} />
