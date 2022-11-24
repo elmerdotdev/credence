@@ -12,13 +12,9 @@ ChartJS.register(
   );
 
 const MostInteracted = () => {
-    const [technology, setTechnology] = useState('')
-    const [hospitality, setHospitality] = useState('')
-    const [finance, setFinance] = useState('')
-    const [retail, setRetail] = useState('')
-    const [artAndDesign, setArtAndDesign] = useState('')
-    const [manufacturing, setManufacturing] = useState('')
-    const [media, setMedia] = useState('')
+    const [clientNames, setClientNames] = useState('')
+    const [notes, setNotes] = useState('')
+    const [events, setEvents] = useState('')
 
     const userID = JSON.parse(localStorage.getItem('user'))._id
 
@@ -26,24 +22,17 @@ const MostInteracted = () => {
     useEffect(() => {
       const getClients = async () => {
           const clients = await fetchClients();
-          const tech = clients.filter((client) => client.labels.some((label) => label.text === 'Technology' && label.select === true))
-          const hosp = clients.filter((client) => client.labels.some((label) => label.text === 'Hospitality' && label.select === true))
-          const fin = clients.filter((client) => client.labels.some((label) => label.text === 'Finance' && label.select === true))
-          const ret = clients.filter((client) => client.labels.some((label) => label.text === 'Retail' && label.select === true))
-          const art = clients.filter((client) => client.labels.some((label) => label.text === 'Art & Design' && label.select === true))
-          const manu = clients.filter((client) => client.labels.some((label) => label.text === 'Manufacturing' && label.select === true))
-          const med = clients.filter((client) => client.labels.some((label) => label.text === 'Media' && label.select === true))
-          
-          setTechnology(tech.length)
-          setHospitality(hosp.length)
-          setFinance(fin.length)
-          setRetail(ret.length)
-          setArtAndDesign(art.length)
-          setManufacturing(manu.length)
-          setMedia(med.length)
 
+          setClientNames(clients.map((client) => {return client.firstname + " " + client.lastname}));
       }
 
+      const getNotes = async() => {
+        const notes = await fetchNotes();
+
+        setNotes(notes);
+      }
+
+      getNotes();
       getClients();
   }, [])
 
@@ -54,7 +43,16 @@ const MostInteracted = () => {
       if (response.ok) {
           return data
       }
-  }
+    }
+
+    const fetchNotes = async () => {
+        const response = await fetch (`${process.env.REACT_APP_API_URL}/api/notes/${userID}`)
+        const data = await response.json()
+
+        if (response.ok) {
+            return data
+        }
+    }
 
     const options = {
         responsive: true,
@@ -69,9 +67,9 @@ const MostInteracted = () => {
         scales: {
             x: {
                 stacked: true,
-                ticks: {
-                    display: false,
-                },
+                // ticks: {
+                //     display: false,
+                // },
             },
             y: {
                 stacked: true,
@@ -80,11 +78,11 @@ const MostInteracted = () => {
       };
             
     const data = {
-        labels:['Technology', 'Hospitality', 'Finance', 'Retail', 'Art & Design', 'Manufacturing', 'Media'],
+        labels: clientNames,
         datasets: [
           {
             label: 'Clients in this Industry',
-            data: [technology,hospitality,finance,retail,artAndDesign,manufacturing,media],
+            data: [5,7,3,4,2,6,7],
             backgroundColor:"#88B2D8",
           },
           {
