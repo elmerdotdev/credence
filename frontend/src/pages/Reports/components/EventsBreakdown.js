@@ -27,6 +27,8 @@ const EventsBreakdown = () => {
     const [november, setNovember] = useState('')
     const [december, setDecember] = useState('')
 
+    const userID = JSON.parse(localStorage.getItem('user'))._id
+
     useEffect(() => {
         const getEvents = async () => {
             const events = await fetchEvents();
@@ -62,7 +64,7 @@ const EventsBreakdown = () => {
     }, [])
 
     const fetchEvents = async () => {
-        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/activities/63645e4850049bfd1e89637a`)
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/activities/${userID}`)
             const data = await response.json()
 
             if (response.ok) {
