@@ -1,34 +1,28 @@
 import React, { useEffect, useState } from 'react'
 import Modal from 'react-modal'
 
- //Modal Style
-//  const customStyles = {
-//     content: {
-//       top: '50%',
-//       left: '50%',
-//       right: 'auto',
-//       bottom: 'auto',
-//       marginRight: '-50%',
-//       transform: 'translate(-50%, -50%',
-//       borderRadius: '15px'
-//     },
-//   };
-
 Modal.setAppElement("body");
 
-const ViewNote = ({ notes, modalOpen, onDelete, toggle, clientId, noteId, toggleEdit }) => {
+const ViewNote = ({ notes, userID, modalOpen, onDelete, toggle, clientId, noteId, toggleEdit }) => {
     const [note, setNote] = useState({})
+    const [client, setClient] = useState('')
 
     useEffect(() => {
-        const fetchNote = async () => {
-            const res = await fetch(`${process.env.REACT_APP_API_URL}/api/notes/63645e4850049bfd1e89637a/${clientId}/${noteId}`);
-            const data = await res.json();
+        const fetchNoteClient = async () => {
+            const note = await fetch(`${process.env.REACT_APP_API_URL}/api/notes/${userID}/${clientId}/${noteId}`);
+            const noteData = await note.json();
 
-            setNote(data);
+            const res = await fetch(`${process.env.REACT_APP_API_URL}/api/clients/${userID}/${noteData.client_id}`);
+            const client = await res.json();
+
+            
+            setClient(client);
+            setNote(noteData);
         };
 
-        fetchNote();
+        fetchNoteClient();
     }, []);
+
 
 
     return (
@@ -36,6 +30,7 @@ const ViewNote = ({ notes, modalOpen, onDelete, toggle, clientId, noteId, toggle
             <Modal
                 isOpen = {modalOpen}
                 className="credence-modal modal-notes-view"
+                closeTimeoutMS={500}
             >
             <div className="single-note-btns">
                 <div>
@@ -53,7 +48,12 @@ const ViewNote = ({ notes, modalOpen, onDelete, toggle, clientId, noteId, toggle
                 </div>
             </div>
             <div className="modal-notes-content">
+                <h3><span>Note</span></h3>
                 <h2>{note.title}</h2>
+                <div className = "single-note-client-information">
+                    <img src={client.photo} alt={client.firstname} />
+                    <h4>{client.firstname} {client.lastname}</h4>
+                </div>
                 <p>{note.content}</p>
             </div>
             </Modal>

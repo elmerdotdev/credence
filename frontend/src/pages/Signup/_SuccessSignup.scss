@@ -13,7 +13,7 @@
     h3{
         font-style: normal;
         font-weight: 700;
-        font-size: 24px;
+        @include fontSize(24);
         line-height: 32px;
         text-align: center;
         margin: 64px 0 59px 0;
@@ -26,7 +26,7 @@
     }
     p{
         text-align: center;
-        font-size: 16px;
+        @include fontSize(16);
         line-height: 20px;
         display: flex;
         align-items: center;
@@ -73,12 +73,12 @@
             justify-content: space-between;
             .icon-arrow-left,
             .icon-close{
-                font-size: 42px;
+                @include fontSize(42);
             }
         }
         h3{
             margin: 0 auto 68px auto;
-            font-size: 36px;
+            @include fontSize(36);
             line-height: 44px;
         }
         img.signup-success-image{

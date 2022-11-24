@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import SearchResults from './SearchResults';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams, Link } from 'react-router-dom';
+import QuickAdd from '../../../components/QuickAdd/QuickAdd'
+import Notes from '../../Notes/Notes'
 
 const HeaderSearch = () => {
     const [keyword, setKeyword ]= useState('');
@@ -14,7 +16,6 @@ const HeaderSearch = () => {
     const [searchEventParams] = useState(["title", "type"]);
     const [searchNoteParams] = useState(["title", "content"]);
     const [sortedAllResults, setSortedAllResults] = useState([]);
-    const [quickAddShow, setQuickAddShow] = useState(false)
 
     const userID = "63645e4850049bfd1e89637a";
     const navigate = useNavigate();
@@ -165,8 +166,7 @@ const HeaderSearch = () => {
                 </button>
             </form>
           
-            <SearchResults filteredConnections={filteredConnections} filteredEvents={filteredEvents}  filteredNotes={filteredNotes} onToggleEvent= {toggleEvent} onToggleConn = {toggleConnDetail} onToggleNote = {toggleNoteDetail} sortedAllResults={sortedAllResults}/>
-            
+            <SearchResults filteredConnections={filteredConnections} filteredEvents={filteredEvents}  filteredNotes={filteredNotes} modalOpen={modalViewOpen} onToggleEvent= {toggleEvent} onToggleConn = {toggleConnDetail} onToggleNote = {toggleNoteDetail} sortedAllResults={sortedAllResults}/>
 
             <div className="quick-add-wrapper">
                 <button className="header-quick-add" onClick={() => setQuickAddShow(!quickAddShow)}>

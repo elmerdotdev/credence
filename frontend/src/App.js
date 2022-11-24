@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Routes, Route, NavLink } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, NavLink, Link } from 'react-router-dom';
 import Modal from "react-modal"
 
 // App pages
@@ -32,10 +32,15 @@ import './App.css';
 function App() {
     const [isMenuOpen, setIsMenuOpen] = useState(false)
     const [modalIsOpen, setModalIsOpen] = useState(false)
+    const [darkMode, setDarkMode] = useState(false)
 
     useEffect(() => {
         document.body.classList.toggle('mobile-menu-visible', isMenuOpen)
     } , [isMenuOpen])
+
+    useEffect(() => {
+        document.body.classList.toggle('body-theme-dark', darkMode)
+    } , [darkMode])
 
     const toggleMobileMenu = () => {
         setIsMenuOpen(!isMenuOpen)
@@ -43,7 +48,7 @@ function App() {
 
     return (
         <BrowserRouter>
-        <div className="App">
+        <div className={`App ${darkMode ? 'theme-dark' : 'theme-light'}`}>
             <Header onToggleMenu={toggleMobileMenu}/>
             <section className="container">
                 <aside>
@@ -55,9 +60,10 @@ function App() {
                             <li onClick={toggleMobileMenu}><i className="icon-reports"></i><NavLink to="/reports">Reports</NavLink></li>
                             <li className="mister-spacer"></li>
                             <li onClick={toggleMobileMenu}><i className="icon-settings"></i> <NavLink to="/settings">Settings</NavLink></li>
-                            <li onClick={() => {toggleMobileMenu(); setModalIsOpen(true);}}><i className="icon-logout"></i>Log Out</li> 
-                            <Modal isOpen={modalIsOpen} className="logoutModal" ><Logout onModelIsOpen={modalIsOpen} onSetModalIsOpen={setModalIsOpen}/></Modal>
+                            <li onClick={() => {toggleMobileMenu(); setModalIsOpen(true);}}><i className="icon-logout"></i><Link to="#">Log Out</Link></li>
                         </ul>
+
+                        <Modal isOpen={modalIsOpen} className="logoutModal" ><Logout onModelIsOpen={modalIsOpen} onSetModalIsOpen={setModalIsOpen}/></Modal>
                     </nav>
                 </aside>
                 <div className="App-body">
@@ -70,7 +76,7 @@ function App() {
                         <Route path="/calendar" element={<Calendar />} />
                         <Route path="/connections" element={<Connections />} />
                         <Route path="/search" element={<Search />} />
-                        <Route path="/settings" element={<Settings />} />
+                        <Route path="/settings" element={<Settings onDarkMode={darkMode} darkModeToggle={() => setDarkMode(!darkMode)} />} />
                         <Route path="/notes" element={<Notes />} />
                         <Route path="/login" element={<Login />} />
                         <Route path="/signup" element={<Signup />} />
