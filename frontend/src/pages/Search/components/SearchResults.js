@@ -14,9 +14,15 @@ const SearchResults = ({ filteredConnections, filteredEvents, filteredNotes, onT
     return (
         
         <div className={isShowClass ? "search-result" : "visually-hidden" }>
+            <div className="search-filter-btns">
+                <button className="btn btn-primary-reverse">All</button>
+                <button className="btn btn-primary-reverse">Connection</button>
+                <button className="btn btn-primary-reverse">Email</button>
+                <button className="btn btn-primary-reverse">Note</button>
+                <butto className="btn btn-primary-reverse"n>Event</butto>
+            </div>
         {sortedAllResults.map((item)=> {
             if(item.class == "connection"){
-                // console.log(item._id)
                 return <ConnSearchResult key={item._id} connection={item} onToggleConn={onToggleConn}/>
             }
             else if(item.class == "event"){

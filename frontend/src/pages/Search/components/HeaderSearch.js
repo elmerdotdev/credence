@@ -2,13 +2,13 @@ import React, { useState, useEffect } from 'react'
 import SearchResults from './SearchResults';
 import { useNavigate, useSearchParams, Link } from 'react-router-dom';
 import QuickAdd from '../../../components/QuickAdd/QuickAdd'
-import Notes from '../../Notes/Notes'
 
 const HeaderSearch = () => {
     const [keyword, setKeyword ]= useState('');
     const [events, setEvents] = useState([]);
     const [connections, setConnections] = useState([]);
     const [notes, setNotes] = useState(null)
+    const [modalViewOpen, setModalViewOpen] = useState(false)
     const [filteredConnections, setFilteredConnections] = useState([]);
     const [filteredEvents, setFilteredEvents] = useState([]);
     const [filteredNotes, setFilteredNotes] = useState([]);
@@ -82,7 +82,6 @@ const HeaderSearch = () => {
 
     const toggleConnDetail = (id) => {
         navigate(`connections/?connectionId=${id}`)
-        // console.log(id)
         console.log("connection clicked")
         setKeyword('')
         search('')
@@ -90,7 +89,6 @@ const HeaderSearch = () => {
 
     const toggleNoteDetail = (note_id, conn_id) => {
         navigate(`connections/?connectionId=${conn_id}&noteId=${note_id}`)
-        // open connection modal -> open note modal
         console.log("note clicked")
         setKeyword('')
         search('')
@@ -158,9 +156,6 @@ const HeaderSearch = () => {
         <div className="header-search-qa">
             <form className="header-search-form" autoComplete="off">
                 <input id="header-search-input" type="text" placeholder="Search" value={keyword} onChange={e => {setKeyword(e.target.value); search(e.target.value)}} />
-                <button className="button-reset" type="reset" >
-                    <i className="icon-close"></i>
-                </button>
                 <button type="submit">
                     <i className="icon-search"></i>
                 </button>
@@ -168,18 +163,7 @@ const HeaderSearch = () => {
           
             <SearchResults filteredConnections={filteredConnections} filteredEvents={filteredEvents}  filteredNotes={filteredNotes} modalOpen={modalViewOpen} onToggleEvent= {toggleEvent} onToggleConn = {toggleConnDetail} onToggleNote = {toggleNoteDetail} sortedAllResults={sortedAllResults}/>
 
-            <div className="quick-add-wrapper">
-                <button className="header-quick-add" onClick={() => setQuickAddShow(!quickAddShow)}>
-                    <span>Quick Add</span>
-                    <i className="icon-plus"></i>
-                </button>
-
-                <ul className={quickAddShow && 'quick-add-visible'}>
-                    <li><i className="icon-calendar"></i>New Event</li>
-                    <li><i className="icon-connection"></i>New Connection</li>
-                    <li><i className="icon-note"></i>New Note</li>
-                </ul>
-            </div>
+            <QuickAdd />
         </div>
     )
 }
