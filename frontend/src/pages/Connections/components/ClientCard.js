@@ -35,7 +35,6 @@ const ClientCard = ({ connection, onToggle}) => {
    //Fetch All Emails For Client
    const fetchEmails = async () => {
     const response = await fetch(`${process.env.REACT_APP_API_URL}/api/gmails/${userID}/${connection._id}`)
-    console.log(connection)
     const data = await response.json()
         return data
   }
