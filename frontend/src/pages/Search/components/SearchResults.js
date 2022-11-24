@@ -19,7 +19,7 @@ const SearchResults = ({ filteredConnections, filteredEvents, filteredNotes, onT
                 <button className="btn btn-primary-reverse">Connection</button>
                 <button className="btn btn-primary-reverse">Email</button>
                 <button className="btn btn-primary-reverse">Note</button>
-                <butto className="btn btn-primary-reverse"n>Event</butto>
+                <button className="btn btn-primary-reverse">Event</button>
             </div>
         {sortedAllResults.map((item)=> {
             if(item.class == "connection"){
