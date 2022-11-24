@@ -18,10 +18,12 @@ const ClientCard = ({ connection, onToggle}) => {
       d.setUTCSeconds(utcSeconds)
       let timedifference = (new Date()).getTime() - d;
       setDays(Math.ceil((((timedifference / 1000) / 60) / 60) / 24))
+      // console.log(emails)
       
   }
    //Last Interaction content
-   if (emails.length > 0) { if (days>0){setInteraction(`${days} days ago`)} else if (days=0){setInteraction("today")} } else {  setInteraction("no previous interaction")}};
+   if (emails.length > 0) { if (days>0){setInteraction(`${days} days ago`)} else if (days=0){setInteraction("today")} } else {  setInteraction("no previous interaction")}
+};
     getEmails()
 
   }, []
@@ -33,6 +35,7 @@ const ClientCard = ({ connection, onToggle}) => {
    //Fetch All Emails For Client
    const fetchEmails = async () => {
     const response = await fetch(`${process.env.REACT_APP_API_URL}/api/gmails/${userID}/${connection._id}`)
+    console.log(connection)
     const data = await response.json()
         return data
   }

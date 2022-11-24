@@ -89,6 +89,7 @@ const editConnection = async (inputConnObj) => {
   setConnections(res);
   console.log('finish edit');
   setShowEditModal(false);
+  setShowDetailModal(false);
   openNotification('Connection updated', true)
 };
 

@@ -11,6 +11,8 @@ const ActiveClients = () => {
     const [activeClients, setActiveClients] = useState('')
     const [inactiveClients, setInactiveClients] = useState('')
 
+    const userID = JSON.parse(localStorage.getItem('user'))._id
+
     useEffect(() => {
         const getClients = async () => {
             const clients = await fetchClients();
@@ -24,7 +26,7 @@ const ActiveClients = () => {
     }, [])
 
     const fetchClients = async () => {
-        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/clients/63645e4850049bfd1e89637a`)
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/clients/${userID}`)
         const data = await response.json()
 
         if (response.ok) {
