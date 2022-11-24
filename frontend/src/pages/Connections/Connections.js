@@ -9,6 +9,7 @@ import EditConnection from './components/EditConnection';
 import Filter from './components/Filter'
 import { useNavigate, useSearchParams, Link, useLocation } from 'react-router-dom';
 import Notification from '../../components/Notification/Notification'
+import Notes from '../Notes/Notes';
 
 
 
@@ -36,6 +37,7 @@ const Connections = () => {
   const [notificationOpen, setNotificationOpen] = useState(false)
   const [notificationMessage, setNotificationMessage] = useState('')
   const [connectionTitle, setConnectionTitle] = useState('All Connections')
+  const [notes, setNotes ] = useState([])
   
 
   const userID = JSON.parse(localStorage.getItem('user'))._id
@@ -97,6 +99,7 @@ const editConnection = async (inputConnObj) => {
 const fetchConnections = async () => {
   const res = await fetch(`${process.env.REACT_APP_API_URL}/api/clients/${userID}`);
   const data = await res.json();
+  // console.log(data);
   return data;
 };
 
@@ -104,6 +107,7 @@ const fetchConnections = async () => {
 const fetchConnection = async (id) => {
   const res = await fetch(`${process.env.REACT_APP_API_URL}/api/clients/${userID}/${id}`);
   const data = await res.json();
+  // console.log(data)
   return data;
 };
 
@@ -123,7 +127,7 @@ const addConnection = async (newClient) => {
   openNotification('Connection added', true)
 };
 
- // Delete Connection
+//delete Client
  const deleteConnection = async () => {
   const id = connection._id
   await fetch(`${process.env.REACT_APP_API_URL}/api/clients/${id}`, {
@@ -133,6 +137,43 @@ const addConnection = async (newClient) => {
   setConnections(connections.filter((connection) => connection._id !== id));
   setShowDetailModal(false)
 };
+
+// //=========== ここから
+//1.delete note
+    // const id = connection._id;
+    // useEffect (() => {
+    //   const getNotes = async () => {
+    //     const res = await fetchNotes();
+    //     console.log(res)
+    //     setNotes(res)
+    //   }; 
+    //   getNotes();
+    // }, [])
+    
+    const deleteNote = async () => {
+        console.log(connection._id)
+        const id = connection._id
+      // //delete client's notes
+        // const res = await fetch(`${process.env.REACT_APP_API_URL}/api/notes/${userID}/${id}`)
+        // const res = await fetch(`${process.env.REACT_APP_API_URL}/api/notes/${userID}/${id}`,{
+        //   method: 'DELETE',
+        //   headers: {
+        //     'Content-Type': 'application/json'
+        //   },
+        //   body: null
+        // });
+        // const data = await res.json();
+        //   console.log(data)
+          // const data = await res.json();
+          // console.log(data)
+          // const kore = data.filter((note) => note.client_id === id)
+          // console.log(kore)
+          // const yourNote = data.filter((note) => note.client_id === id)
+          // console.log(yourNote)
+    }
+    
+  //2.delete client name from activity array
+  //===========　ここまで
 
 // Pin Connection
 const pinConnection = async (e) => {
@@ -260,7 +301,7 @@ const openNotification = (message, success) => {
         <ConnectionDetail 
         connection={connection} 
         onEditBtn={() => {setShowEditModal(true)}} 
-        onDeleteBtn={deleteConnection} 
+        onDeleteBtn={() => {deleteConnection() ;deleteNote()}} 
         changeActiveBtn={handleActiveCheckbox}
         onPinBtn={pinConnection}
         onClose={() => {setShowDetailModal(); navigate(`/connections`)}}
