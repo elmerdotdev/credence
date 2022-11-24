@@ -5,8 +5,7 @@ import Aboutus from "./Aboutus"
 //image
 import ThePlaneteers from '../../images/Setting/ThePlaneteers.svg'
 
-const AppSettings = () => {
-  
+const AppSettings = ({ onDarkMode, darkModeToggle }) => {
     const [aboutusModalIsOpen, setAboutusModalIsOpen]= useState(false)
     const [subscmodalIsOpen, setSubscModalIsOpen] = useState(false)
     const [contactusmodalIsOpen, setContactusModalIsOpen] = useState(false)
@@ -21,8 +20,8 @@ const AppSettings = () => {
                         <h3>Theme</h3>
                     </div>
                     <p>Switch between light and dark mode</p>
-                    <label className="switch">
-                        <input type="checkbox" />
+                    <label className={`switch`}>
+                        <input type="checkbox" checked={onDarkMode} onChange={darkModeToggle} />
                         <span className="slider round"></span>
                     </label>
                 </section>

@@ -1,0 +1,65 @@
+body:not(.no-sidebar) {
+    .theme-dark {
+        background-color: $color-shark;
+
+        path.logo-letters {
+            fill: $color-white;
+            stroke: $color-white !important;
+        }
+
+        aside {
+            background-color: $color-shark;
+
+            i {
+                color: $color-white;
+            }
+
+            a {
+                color: $color-white;
+            }
+        }
+
+        .page-settings {
+            background-color: $color-lighter-shark;
+
+            h2 {
+                color: $color-white;
+            }
+
+            .section {
+                &-profile-edit,
+                &-passwordSecurity,
+                &-subscription,
+                &-theme,
+                &-notification {
+                    background-color: $color-mako;
+                    color: $color-white;
+
+                    i::before {
+                        color: $color-white;
+                    }
+                }
+
+                &-aboutus,
+                &-help {
+                    background-color: $color-mako;
+                    color: $color-white;
+
+                    .title-icon i {
+                        color: $color-white;
+                    }
+                }
+            }
+
+            .subscribe {
+                background-color: $color-slate-gray;
+                color: $color-white;
+
+                .blue-title,
+                .blue-price {
+                    color: $color-white;
+                }
+            }
+        }
+    }
+}
