@@ -10,6 +10,8 @@ const EmailList = ({emails}) => {
         <div className="single-email">
         <p className='email-time'> {<span>{moment(d).format("DD MMM YYYY, hh:mm a")}</span>}</p>
         <h4>{emails.subject}</h4>
+        <p><span className='email-from'>From</span> {emails.from}</p>
+        <p><span className='email-to'>To</span> {emails.to}</p>
         <p>{emails.snippet}</p>
         </div>
     )
