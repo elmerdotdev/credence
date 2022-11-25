@@ -12,7 +12,7 @@ ChartJS.register(
   );
 
 const MostInteracted = () => {
-    const [clientNames, setClientNames] = useState('')
+    const [clients, setClients] = useState('')
     const [notes, setNotes] = useState('')
     const [events, setEvents] = useState('')
 
@@ -23,7 +23,7 @@ const MostInteracted = () => {
       const getClients = async () => {
           const clients = await fetchClients();
 
-          setClientNames(clients.map((client) => {return client.firstname + " " + client.lastname}));
+          setClients(clients);
       }
 
       const getNotes = async() => {
@@ -33,6 +33,7 @@ const MostInteracted = () => {
       }
 
       getNotes();
+      console.log(notes)
       getClients();
   }, [])
 
@@ -53,6 +54,10 @@ const MostInteracted = () => {
             return data
         }
     }
+
+    const clientLabels = clients.map((client) => {return client.firstname + " " + client.lastname});
+    console.log()
+
 
     const options = {
         responsive: true,
@@ -78,7 +83,7 @@ const MostInteracted = () => {
       };
             
     const data = {
-        labels: clientNames,
+        labels: clientLabels,
         datasets: [
           {
             label: 'Clients in this Industry',
