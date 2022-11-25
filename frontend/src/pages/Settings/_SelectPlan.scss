@@ -92,7 +92,7 @@
     @media screen and (min-width:$screen-desktop){
         grid-template-columns: repeat(2, 1fr);
         gap: 61px;
-        margin: 51px auto;
+        margin: 0 auto;
         height: 100vh;
         max-width:1000px ;
         h2{

@@ -11,7 +11,7 @@ const Notification = ({ success, message, onClose} ) => {
             setTimeout(() => {
                 onClose()
             }, 1000)
-        }, 3000)
+        }, 2500)
     }, [onClose])
 
     const notificationOpen = (status) => {

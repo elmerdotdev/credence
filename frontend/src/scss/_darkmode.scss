@@ -1,5 +1,5 @@
 body:not(.no-sidebar) {
-    .theme-dark {
+    &.body-theme-dark {
         background-color: $color-shark;
 
         path.logo-letters {
@@ -60,6 +60,47 @@ body:not(.no-sidebar) {
                     color: $color-white;
                 }
             }
+        }
+
+        .edit-profile-modal-modal .editProfile-modal,
+        .manage-modal-modal .manage-modal,
+        .aboutus-page-modal-modal,
+        .select-plan-modal,
+        .contactus-modal-modal .contactus-modal,
+        .subscribe-modal-premium .subsc-modal {
+            background-color: $color-lighter-shark;
+
+            h2,
+            h3,
+            label,
+            p,
+            i {
+                color: $color-white;
+            }
+
+            input[type="text"],
+            input[type="email"] {
+                background: transparent;
+                color: $color-white;
+            }
+        }
+
+        .page-select-plan .free-plan,
+        .page-select-plan .premium-plan {
+            background-color: $color-mako;
+
+            h4 {
+                color: $color-white;
+                border-bottom-color: $color-white;
+            }
+
+            li {
+                color: $color-white;
+            }
+        }
+
+        .credence-modal {
+            background-color: $color-lighter-shark !important;
         }
     }
 }

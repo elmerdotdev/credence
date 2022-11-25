@@ -49,10 +49,10 @@ const userID = JSON.parse(localStorage.getItem('user'))._id
        </div>
          ) : (
          <div>
-          <p>You haven’t connected your Gmail account yet.</p>
-          <p className="error-message">
+          <p>You have no previous gmail interaction with {connection.firstname}</p>
+          {/* <p className="error-message">
               <button className="btn btn-primary-reverse" onClick={gmailIntegration}>Connect Gmail</button>
-          </p>
+          </p> */}
           </div>
           )}   
      
