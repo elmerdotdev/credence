@@ -133,6 +133,7 @@ const AccountSettings = () => {
                 </button>
                 <Modal  isOpen={editProfileModalIsOpen} 
                         className="edit-profile-modal-modal"
+                        closeTimeoutMS={500}
                 >
                   <EditProfile  onEditProfile={editProfileModalIsOpen} 
                                 OnsetEditProfile={setEditProfileModalIsOpen}
@@ -152,6 +153,7 @@ const AccountSettings = () => {
                 </button>
                 <Modal  isOpen={manageModalIsOpen}
                         className="manage-modal-modal"
+                        closeTimeoutMS={500}
                 >
                   <div className="manage-modal">
                     <h2>Password & Security</h2>
@@ -175,7 +177,11 @@ const AccountSettings = () => {
                         onClick={() => setSelectPlanModalIsOpen(true)}>
                         Go Premium
                 </button>
-                <Modal isOpen={selectPlanModalIsOpen}>
+                <Modal
+                  isOpen={selectPlanModalIsOpen}
+                  className="credence-modal select-plan-modal"
+                  closeTimeoutMS={500}
+                >
                     <SelectPlan selectPlanIsOpen={selectPlanModalIsOpen} 
                                 onsetselectPlanIsOpen={setSelectPlanModalIsOpen}
                     />
