@@ -21,7 +21,8 @@ const ClientCard = ({ connection, onToggle}) => {
       
   }
    //Last Interaction content
-   if (emails.length > 0) { if (days>0){setInteraction(`${days} days ago`)} else if (days=0){setInteraction("today")} } else {  setInteraction("no previous interaction")}};
+   if (emails.length > 0) { if (days>0){setInteraction(`${days} days ago`)} else if (days=0){setInteraction("today")} } else {  setInteraction("no previous interaction")}
+};
     getEmails()
 
   }, []

@@ -51,6 +51,7 @@ const AppSettings = ({ onDarkMode, darkModeToggle }) => {
                     </button>
                     <Modal  isOpen={aboutusModalIsOpen} 
                             className="aboutus-page-modal-modal"
+                            closeTimeoutMS={500}
                     >
                         <Aboutus    aboutusIsOpen={aboutusModalIsOpen} 
                                     onsetAboutusIsOpen={setAboutusModalIsOpen}
@@ -69,7 +70,10 @@ const AppSettings = ({ onDarkMode, darkModeToggle }) => {
                             Contact Us 
                             <i className='icon-arrow-right'></i>
                     </button>
-                    <Modal isOpen={contactusmodalIsOpen} className="contactus-modal-modal">
+                    <Modal
+                        isOpen={contactusmodalIsOpen} className="contactus-modal-modal"
+                        closeTimeoutMS={500}
+                    >
                         <div className="contactus-modal">
                             <h2>Contact Us</h2>
                             <img src={ThePlaneteers} alt="The planeteers" />
@@ -104,7 +108,10 @@ const AppSettings = ({ onDarkMode, darkModeToggle }) => {
                         className='btn btn-primary'>
                         Subscribe
                 </button>
-                <Modal isOpen={subscmodalIsOpen} className="subscribe-modal-premium">
+                <Modal
+                    isOpen={subscmodalIsOpen} className="subscribe-modal-premium"
+                    closeTimeoutMS={500}
+                >
                     <div className="subsc-modal">
                         <h2>Thank you for Subscribing!</h2>
                         <p>Now you subscribe our Premium Plan</p>
