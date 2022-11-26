@@ -24,7 +24,8 @@ const AddConnection = ({ onAdd, onClose, openNotification }) => {
     { text: "Manufacturing", select: false },
     { text: "Media", select: false }
   ]);
-  const [user_id, setUserId] = useState('63645e4850049bfd1e89637a');
+  const userID = JSON.parse(localStorage.getItem('user'))._id
+  const [user_id, setUserId] = useState(userID);
   const [pinned, setPinned] = useState(false);
 
 const checkboxes = [
