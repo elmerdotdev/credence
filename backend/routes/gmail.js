@@ -10,7 +10,7 @@ const {
 const router = express.Router()
 
 // Get all Gmails
-// router.get('/:userid', getGmails)
+router.get('/:userid/get', getGmails)
 
 // Add all Gmails
 router.get('/:userid', addGmails)

@@ -7,17 +7,20 @@ const HeaderSearch = () => {
     const [keyword, setKeyword ]= useState('');
     const [events, setEvents] = useState([]);
     const [connections, setConnections] = useState([]);
-    const [notes, setNotes] = useState(null)
+    const [notes, setNotes] = useState(null);
+    const [emails, setEmails] = useState(null)
     const [modalViewOpen, setModalViewOpen] = useState(false)
     const [filteredConnections, setFilteredConnections] = useState([]);
     const [filteredEvents, setFilteredEvents] = useState([]);
     const [filteredNotes, setFilteredNotes] = useState([]);
+    const [filteredEmails, setFilteredEmails] = useState([]);
     const [searchConnParams] = useState(["firstname", "lastname", "company", "position", "phone", "email"]);
     const [searchEventParams] = useState(["title", "type"]);
     const [searchNoteParams] = useState(["title", "content"]);
+    const [searchEmailParams] = useState(["subject", "snippet"]);
     const [sortedAllResults, setSortedAllResults] = useState([]);
 
-    const userID = "63645e4850049bfd1e89637a";
+    const userID = JSON.parse(localStorage.getItem('user'))._id
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -47,6 +50,15 @@ const HeaderSearch = () => {
     
         getNotes()
         }, [])
+    
+    useEffect(() => {
+        const getEmails = async () => {
+            const res = await fetchEmails();
+            setEmails(res);
+        }
+    
+        getEmails()
+        }, [])
 
 
     // Fetch Connections
@@ -74,6 +86,14 @@ const HeaderSearch = () => {
         }
       }
 
+        //Fetch All Emails For Client
+    const fetchEmails = async () => {
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/api/gmails/${userID}/get`)
+    const data = await response.json()
+        return data
+
+  }
+
     const toggleEvent = (id) => {
         navigate(`/calendar?eventId=${id}`)
         setKeyword('')
@@ -98,7 +118,7 @@ const HeaderSearch = () => {
 
     const search = (queryStr) => {
         if (queryStr === "") {
-            setFilteredConnections([]);setFilteredEvents([]); setFilteredNotes([]); setSortedAllResults([]);
+            setFilteredConnections([]);setFilteredEvents([]); setFilteredNotes([]); setFilteredEmails([]);setSortedAllResults([]);
         }else{
             let filteredConn = connections.filter((item) => {
                 return searchConnParams.some((searchConnParam) => {
@@ -127,7 +147,6 @@ const HeaderSearch = () => {
         filteredEve.map((event)=> event.class = "event") ;
         setFilteredEvents(filteredEve);
         
-        
         let filteredNts = notes.filter((item) => {
             return searchNoteParams.some((searchNoteParam) => {
                 return (          
@@ -140,8 +159,22 @@ const HeaderSearch = () => {
         });
         filteredNts.map((note)=> note.class = "note") ;
         setFilteredNotes(filteredNts);
+        
+        let filteredEmls = emails.filter((item) => {
+            return searchEmailParams.some((searchEmailParam) => {
+                return (          
+                    item[searchEmailParam]
+                        .toString()
+                        .toLowerCase()
+                        .indexOf(queryStr.toLowerCase()) > -1
+                    );
+                });
+        });
+        filteredEmls.map((email)=> email.class = "email") ;
+        setFilteredEmails(filteredEmls);
 
-        const allResults = [...filteredConn, ...filteredEve, ...filteredNts];    
+        
+        const allResults = [...filteredConn, ...filteredEve, ...filteredNts, ...filteredEmls];    
           
         allResults.sort((x, y) => {
             return new Date(x.updatedAt) <= new Date(y.updatedAt) ? 1 : -1
@@ -161,7 +194,7 @@ const HeaderSearch = () => {
                 </button>
             </form>
           
-            <SearchResults filteredConnections={filteredConnections} filteredEvents={filteredEvents}  filteredNotes={filteredNotes} modalOpen={modalViewOpen} onToggleEvent= {toggleEvent} onToggleConn = {toggleConnDetail} onToggleNote = {toggleNoteDetail} sortedAllResults={sortedAllResults}/>
+            <SearchResults filteredConnections={filteredConnections} filteredEvents={filteredEvents}  filteredNotes={filteredNotes} filteredEmails={filteredEmails} modalOpen={modalViewOpen} onToggleEvent= {toggleEvent} onToggleConn = {toggleConnDetail} onToggleNote = {toggleNoteDetail} sortedAllResults={sortedAllResults}/>
 
             <QuickAdd />
         </div>

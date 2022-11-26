@@ -1,14 +1,15 @@
 import ConnSearchResult from './ConnSearchResult';
 import EveSearchResult from './EveSearchResult';
 import NotesSearchResult from './NotesSearchResult';
+import EmailSearchResult from './EmailSearchResult';
 import { useState } from "react";
 
-const SearchResults = ({ filteredConnections, filteredEvents, filteredNotes, onToggleEvent, onToggleConn, onToggleNote, sortedAllResults }) => {
+const SearchResults = ({ filteredConnections, filteredEvents, filteredNotes, filteredEmails, onToggleEvent, onToggleConn, onToggleNote, sortedAllResults }) => {
     const [isShowClass, setShowClass] = useState(true);
  
-    if (filteredConnections.length == 0 && filteredEvents.length == 0 && filteredNotes.length == 0 && isShowClass){
+    if (filteredConnections.length == 0 && filteredEvents.length == 0 && filteredNotes.length == 0 && filteredEmails.length == 0 && isShowClass){
         setShowClass (false);
-    } else if ((filteredConnections.length > 0 || filteredEvents.length > 0 || filteredNotes.length > 0 ) && !isShowClass){
+    } else if ((filteredConnections.length > 0 || filteredEvents.length > 0 || filteredNotes.length > 0 || filteredEmails.length > 0) && !isShowClass){
         setShowClass (true);
     } 
     return (
@@ -30,6 +31,9 @@ const SearchResults = ({ filteredConnections, filteredEvents, filteredNotes, onT
             }
             else if(item.class == "note"){
                 return <NotesSearchResult key={item._id} note={item} onToggleNote={onToggleNote}/>
+            }
+            else if(item.class == "email"){
+                return <EmailSearchResult key={item._id} email={item} />
             }
         })
         }

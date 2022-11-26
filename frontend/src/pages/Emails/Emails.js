@@ -27,7 +27,7 @@ const userID = JSON.parse(localStorage.getItem('user'))._id
   const fetchEmails = async () => {
       const response = await fetch(`${process.env.REACT_APP_API_URL}/api/gmails/${userID}/${connectionId}`)
       const data = await response.json()
-
+      console.log(data)
           return data
   
     }
