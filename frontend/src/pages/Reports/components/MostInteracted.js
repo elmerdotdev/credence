@@ -15,16 +15,18 @@ const MostInteracted = () => {
     const [clients, setClients] = useState('')
     const [notes, setNotes] = useState('')
     const [events, setEvents] = useState('')
+    const [clientIds, setClientIds] = useState('')
 
     const userID = JSON.parse(localStorage.getItem('user'))._id
 
 
     useEffect(() => {
-      const getClients = async () => {
-          const clients = await fetchClients();
+      // const getClients = async () => {
+      //     const clients = await fetchClients();
 
-          setClients(clients);
-      }
+      //     setClients(clients.map((client) => {return client.firstname + " " + client.lastname}));
+      //     setClientIds(clients.map((client) => {return client._id}));
+      // }
 
       const getNotes = async() => {
         const notes = await fetchNotes();
@@ -33,18 +35,17 @@ const MostInteracted = () => {
       }
 
       getNotes();
-      console.log(notes)
-      getClients();
+      // getClients();
   }, [])
 
-    const fetchClients = async () => {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/clients/${userID}`)
-      const data = await response.json()
+    // const fetchClients = async () => {
+    //   const response = await fetch(`${process.env.REACT_APP_API_URL}/api/clients/${userID}`)
+    //   const data = await response.json()
 
-      if (response.ok) {
-          return data
-      }
-    }
+    //   if (response.ok) {
+    //       return data
+    //   }
+    // }
 
     const fetchNotes = async () => {
         const response = await fetch (`${process.env.REACT_APP_API_URL}/api/notes/${userID}`)
@@ -55,9 +56,7 @@ const MostInteracted = () => {
         }
     }
 
-    const clientLabels = clients.map((client) => {return client.firstname + " " + client.lastname});
-    console.log()
-
+    console.log(notes);
 
     const options = {
         responsive: true,
@@ -83,26 +82,20 @@ const MostInteracted = () => {
       };
             
     const data = {
-        labels: clientLabels,
+        labels: ['client 1', 'client 2', 'client 3', 'client 4'],
         datasets: [
           {
-            label: 'Clients in this Industry',
+            label: 'Notes',
             data: [5,7,3,4,2,6,7],
             backgroundColor:"#88B2D8",
           },
           {
-            label: 'Dataset 2',
+            label: 'Events',
             data: [5, 7, 4, 7, 8, 2, 4],
             backgroundColor: "#9CCC89"
           },
-          {
-            label: 'Dataset 3',
-            data: [5, 7, 4, 7, 8, 2, 4],
-            backgroundColor: "#9CCC34"
-          }
         ],
       };
-
 
     return (
         <div>
