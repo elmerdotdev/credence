@@ -7,17 +7,21 @@ const HeaderSearch = () => {
     const [keyword, setKeyword ]= useState('');
     const [events, setEvents] = useState([]);
     const [connections, setConnections] = useState([]);
-    const [notes, setNotes] = useState(null)
+    const [notes, setNotes] = useState(null);
+    const [emails, setEmails] = useState(null)
     const [modalViewOpen, setModalViewOpen] = useState(false)
     const [filteredConnections, setFilteredConnections] = useState([]);
     const [filteredEvents, setFilteredEvents] = useState([]);
     const [filteredNotes, setFilteredNotes] = useState([]);
+    const [filteredEmails, setFilteredEmails] = useState([]);
     const [searchConnParams] = useState(["firstname", "lastname", "company", "position", "phone", "email"]);
     const [searchEventParams] = useState(["title", "type"]);
     const [searchNoteParams] = useState(["title", "content"]);
+    const [searchEmailParams] = useState(["subject", "snippet"]);
     const [sortedAllResults, setSortedAllResults] = useState([]);
+    const [currentAllResults, setCurrentAllResults] = useState([]);
 
-    const userID = "63645e4850049bfd1e89637a";
+    const userID = JSON.parse(localStorage.getItem('user'))._id
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -47,6 +51,15 @@ const HeaderSearch = () => {
     
         getNotes()
         }, [])
+    
+    useEffect(() => {
+        const getEmails = async () => {
+            const res = await fetchEmails();
+            setEmails(res);
+        }
+    
+        getEmails()
+        }, [])
 
 
     // Fetch Connections
@@ -74,6 +87,15 @@ const HeaderSearch = () => {
         }
       }
 
+        //Fetch All Emails For Client
+    const fetchEmails = async () => {
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/api/gmails/${userID}/get`)
+    const data = await response.json()
+        return data
+
+  }
+
+
     const toggleEvent = (id) => {
         navigate(`/calendar?eventId=${id}`)
         setKeyword('')
@@ -82,7 +104,6 @@ const HeaderSearch = () => {
 
     const toggleConnDetail = (id) => {
         navigate(`connections/?connectionId=${id}`)
-        // console.log(id)
         console.log("connection clicked")
         setKeyword('')
         search('')
@@ -90,7 +111,6 @@ const HeaderSearch = () => {
 
     const toggleNoteDetail = (note_id, conn_id) => {
         navigate(`connections/?connectionId=${conn_id}&noteId=${note_id}`)
-        // open connection modal -> open note modal
         console.log("note clicked")
         setKeyword('')
         search('')
@@ -100,7 +120,7 @@ const HeaderSearch = () => {
 
     const search = (queryStr) => {
         if (queryStr === "") {
-            setFilteredConnections([]);setFilteredEvents([]); setFilteredNotes([]); setSortedAllResults([]);
+            setFilteredConnections([]);setFilteredEvents([]); setFilteredNotes([]); setFilteredEmails([]);setSortedAllResults([]);
         }else{
             let filteredConn = connections.filter((item) => {
                 return searchConnParams.some((searchConnParam) => {
@@ -129,7 +149,6 @@ const HeaderSearch = () => {
         filteredEve.map((event)=> event.class = "event") ;
         setFilteredEvents(filteredEve);
         
-        
         let filteredNts = notes.filter((item) => {
             return searchNoteParams.some((searchNoteParam) => {
                 return (          
@@ -142,17 +161,59 @@ const HeaderSearch = () => {
         });
         filteredNts.map((note)=> note.class = "note") ;
         setFilteredNotes(filteredNts);
+        
+        let filteredEmls = emails.filter((item) => {
+            return searchEmailParams.some((searchEmailParam) => {
+                return (          
+                    item[searchEmailParam]
+                        .toString()
+                        .toLowerCase()
+                        .indexOf(queryStr.toLowerCase()) > -1
+                    );
+                });
+        });
+        filteredEmls.map((email)=> email.class = "email") ;
+        setFilteredEmails(filteredEmls);
 
-        const allResults = [...filteredConn, ...filteredEve, ...filteredNts];    
+        
+        const allResults = [...filteredConn, ...filteredEve, ...filteredNts, ...filteredEmls];    
           
         allResults.sort((x, y) => {
             return new Date(x.updatedAt) <= new Date(y.updatedAt) ? 1 : -1
         })
         setSortedAllResults(allResults)
+        setCurrentAllResults(allResults)
+       
+         
     }
     }
 
+       //event filter
+       const EventSearchFilter = () =>  {
+        setCurrentAllResults(filteredEvents)
+    }
 
+        //connecion filter
+        const ConnectionSearchFilter = () =>  {
+        setCurrentAllResults(filteredConnections)
+        }
+
+        //note filter
+        const NoteSearchFilter = () =>  {
+        setCurrentAllResults(filteredNotes)
+        }
+
+        //email filter
+        const EmailSearchFilter = () =>  {
+        setCurrentAllResults(filteredEmails)
+        }
+ 
+        //all filter
+        const AllSearchFilter = () =>  {
+        setCurrentAllResults(sortedAllResults)
+        }
+       
+    
 
     return (
         <div className="header-search-qa">
@@ -163,7 +224,7 @@ const HeaderSearch = () => {
                 </button>
             </form>
           
-            <SearchResults filteredConnections={filteredConnections} filteredEvents={filteredEvents}  filteredNotes={filteredNotes} modalOpen={modalViewOpen} onToggleEvent= {toggleEvent} onToggleConn = {toggleConnDetail} onToggleNote = {toggleNoteDetail} sortedAllResults={sortedAllResults}/>
+            <SearchResults filteredConnections={filteredConnections} filteredEvents={filteredEvents}  filteredNotes={filteredNotes} filteredEmails={filteredEmails} modalOpen={modalViewOpen} onToggleEvent= {toggleEvent} onToggleConn = {toggleConnDetail} onToggleNote = {toggleNoteDetail} currentAllResults={currentAllResults} EventSearchFilter={EventSearchFilter} ConnectionSearchFilter={ConnectionSearchFilter} NoteSearchFilter={NoteSearchFilter} EmailSearchFilter={EmailSearchFilter} AllSearchFilter={AllSearchFilter}/>
 
             <QuickAdd />
         </div>

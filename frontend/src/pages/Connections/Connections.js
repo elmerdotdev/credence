@@ -229,7 +229,6 @@ const gmailUpdate =  async () => {
   const res = await fetch(`${process.env.REACT_APP_API_URL}/api/gmails/${userID}`);
   console.log('gmail updated')
   openNotification('Your gmail has been updated to the latest', true)
-  // const output = await res.json()
 
 } 
 
