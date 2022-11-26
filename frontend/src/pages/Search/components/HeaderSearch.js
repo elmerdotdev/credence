@@ -19,6 +19,7 @@ const HeaderSearch = () => {
     const [searchNoteParams] = useState(["title", "content"]);
     const [searchEmailParams] = useState(["subject", "snippet"]);
     const [sortedAllResults, setSortedAllResults] = useState([]);
+    const [currentAllResults, setCurrentAllResults] = useState([]);
 
     const userID = JSON.parse(localStorage.getItem('user'))._id
     const navigate = useNavigate();
@@ -93,6 +94,7 @@ const HeaderSearch = () => {
         return data
 
   }
+
 
     const toggleEvent = (id) => {
         navigate(`/calendar?eventId=${id}`)
@@ -180,10 +182,38 @@ const HeaderSearch = () => {
             return new Date(x.updatedAt) <= new Date(y.updatedAt) ? 1 : -1
         })
         setSortedAllResults(allResults)
+        setCurrentAllResults(allResults)
+       
+         
     }
     }
 
+       //event filter
+       const EventSearchFilter = () =>  {
+        setCurrentAllResults(filteredEvents)
+    }
 
+        //connecion filter
+        const ConnectionSearchFilter = () =>  {
+        setCurrentAllResults(filteredConnections)
+        }
+
+        //note filter
+        const NoteSearchFilter = () =>  {
+        setCurrentAllResults(filteredNotes)
+        }
+
+        //email filter
+        const EmailSearchFilter = () =>  {
+        setCurrentAllResults(filteredEmails)
+        }
+ 
+        //all filter
+        const AllSearchFilter = () =>  {
+        setCurrentAllResults(sortedAllResults)
+        }
+       
+    
 
     return (
         <div className="header-search-qa">
@@ -194,7 +224,7 @@ const HeaderSearch = () => {
                 </button>
             </form>
           
-            <SearchResults filteredConnections={filteredConnections} filteredEvents={filteredEvents}  filteredNotes={filteredNotes} filteredEmails={filteredEmails} modalOpen={modalViewOpen} onToggleEvent= {toggleEvent} onToggleConn = {toggleConnDetail} onToggleNote = {toggleNoteDetail} sortedAllResults={sortedAllResults}/>
+            <SearchResults filteredConnections={filteredConnections} filteredEvents={filteredEvents}  filteredNotes={filteredNotes} filteredEmails={filteredEmails} modalOpen={modalViewOpen} onToggleEvent= {toggleEvent} onToggleConn = {toggleConnDetail} onToggleNote = {toggleNoteDetail} currentAllResults={currentAllResults} EventSearchFilter={EventSearchFilter} ConnectionSearchFilter={ConnectionSearchFilter} NoteSearchFilter={NoteSearchFilter} EmailSearchFilter={EmailSearchFilter} AllSearchFilter={AllSearchFilter}/>
 
             <QuickAdd />
         </div>

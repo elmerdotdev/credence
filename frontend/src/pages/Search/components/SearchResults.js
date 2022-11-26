@@ -4,7 +4,7 @@ import NotesSearchResult from './NotesSearchResult';
 import EmailSearchResult from './EmailSearchResult';
 import { useState } from "react";
 
-const SearchResults = ({ filteredConnections, filteredEvents, filteredNotes, filteredEmails, onToggleEvent, onToggleConn, onToggleNote, sortedAllResults }) => {
+const SearchResults = ({ filteredConnections, filteredEvents, filteredNotes, filteredEmails, onToggleEvent, onToggleConn, onToggleNote, currentAllResults, EventSearchFilter, ConnectionSearchFilter, NoteSearchFilter, EmailSearchFilter, AllSearchFilter}) => {
     const [isShowClass, setShowClass] = useState(true);
  
     if (filteredConnections.length == 0 && filteredEvents.length == 0 && filteredNotes.length == 0 && filteredEmails.length == 0 && isShowClass){
@@ -16,13 +16,13 @@ const SearchResults = ({ filteredConnections, filteredEvents, filteredNotes, fil
         
         <div className={isShowClass ? "search-result" : "visually-hidden" }>
             <div className="search-filter-btns">
-                <button className="btn btn-primary-reverse">All</button>
-                <button className="btn btn-primary-reverse">Connection</button>
-                <button className="btn btn-primary-reverse">Email</button>
-                <button className="btn btn-primary-reverse">Note</button>
-                <button className="btn btn-primary-reverse">Event</button>
+                <button className="btn btn-primary-reverse" onClick={AllSearchFilter}>All</button>
+                <button className="btn btn-primary-reverse" onClick={ConnectionSearchFilter}>Connection</button>
+                <button className="btn btn-primary-reverse" onClick={EmailSearchFilter}>Email</button>
+                <button className="btn btn-primary-reverse" onClick={NoteSearchFilter}>Note</button>
+                <button className="btn btn-primary-reverse" onClick={EventSearchFilter}>Event</button>
             </div>
-        {sortedAllResults.map((item)=> {
+        {currentAllResults.map((item)=> {
             if(item.class == "connection"){
                 return <ConnSearchResult key={item._id} connection={item} onToggleConn={onToggleConn}/>
             }
