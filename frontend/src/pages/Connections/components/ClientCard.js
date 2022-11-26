@@ -18,7 +18,6 @@ const ClientCard = ({ connection, onToggle}) => {
       d.setUTCSeconds(utcSeconds)
       let timedifference = (new Date()).getTime() - d;
       setDays(Math.ceil((((timedifference / 1000) / 60) / 60) / 24))
-      // console.log(emails)
       
   }
    //Last Interaction content
