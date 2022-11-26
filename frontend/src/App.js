@@ -38,6 +38,10 @@ function App() {
         document.body.classList.toggle('mobile-menu-visible', isMenuOpen)
     } , [isMenuOpen])
 
+    useEffect(() => {
+        document.body.classList.toggle('body-theme-dark', darkMode)
+    } , [darkMode])
+
     const toggleMobileMenu = () => {
         setIsMenuOpen(!isMenuOpen)
     }

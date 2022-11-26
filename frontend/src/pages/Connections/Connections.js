@@ -89,6 +89,7 @@ const editConnection = async (inputConnObj) => {
   setConnections(res);
   console.log('finish edit');
   setShowEditModal(false);
+  setShowDetailModal(false);
   openNotification('Connection updated', true)
 };
 
@@ -227,6 +228,7 @@ const gmailIntegration =  async () => {
 const gmailUpdate =  async () => {
   const res = await fetch(`${process.env.REACT_APP_API_URL}/api/gmails/${userID}`);
   console.log('gmail updated')
+  openNotification('Your gmail has been updated to the latest', true)
   // const output = await res.json()
 
 } 
@@ -242,14 +244,12 @@ const openNotification = (message, success) => {
 
     <div className="clients-wrapper">
       <section className="connections-top-buttons">
-        <button className="btn btn-primary openModalBtn" onClick={() => setShowAddModalIsOpen(true)}>Add</button>
         <div className="connections-filter-buttons">
-          <Filter onPinFilter={pinFilter} onTimeFilter={timeFilter} onTimeReverseFilter={TimeReverseFilter} onAllFilter={allConnections} gmailupdate={gmailUpdate} />
+          <Filter onPinFilter={pinFilter} onTimeFilter={timeFilter} onTimeReverseFilter={TimeReverseFilter} onAllFilter={allConnections} gmailUpdate={gmailUpdate} />
         </div>
       </section>
       <section className="page-connections" >
       <h2>{connectionTitle}</h2>
-      <button className="btn btn-primary-reverse"onClick={gmailUpdate}>Update Gmail</button>
       <ModalComponent
         className="credence-modal modal-connection-detail"
         isOpen={showDetailModal}

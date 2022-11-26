@@ -22,9 +22,12 @@
 body {
     margin: 0;
     padding: 0;
-    background-color: $color-white-lilac;
+    background: linear-gradient(to bottom right, $color-shark 50%, $color-white-lilac 50%);
+    background-size: 200vw 200vh;
+    background-position: 100% 100%;
     font-family: $font;
     @include fontSize(16);
+    transition: background-position .6s ease-in-out;
 
     @media screen and (min-width: $screen-desktop) {
         &:not(.no-sidebar) {
@@ -52,9 +55,14 @@ body {
 
                 .dashboard-connection-wrapper,
                 .dashboard-upcoming,
+                .App-body > .reports,
                 .page-settings {
                     height: 100%;
                     overflow-y: auto;
+                }
+
+                .App-body > .reports {
+                    width: 100%;
                 }
             }
         }
@@ -118,7 +126,6 @@ aside {
     left: 0;
     width: 100vw;
     height: calc(100vh - 50px);
-    background: $color-white-lilac;
     z-index: 999;
     transform: translateX(100%);
     transition: transform .5s ease-in-out;
@@ -278,6 +285,7 @@ aside {
     align-items: center;
     gap: .5rem;
     padding: 8px 22px;
+    min-height: 40px;
     font-weight: 600;
     line-height: 1;
     border: 1px solid $color-gray;
