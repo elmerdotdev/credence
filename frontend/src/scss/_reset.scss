@@ -173,6 +173,7 @@ aside {
 
             i {
                 font-size: 2rem;
+                color: $color-shark;
             }
 
             &.mister-spacer {
@@ -187,6 +188,7 @@ aside {
         a {
             @include fontSize(20);
             position: relative;
+            color: $color-shark;
             font-weight: 600;
 
             &::before {
