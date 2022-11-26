@@ -118,7 +118,7 @@ const Dashboard = () => {
             }
             <>
               <div className="dashboard-connection-header">
-                <h3>Most Recent</h3>
+                <h3>Recent Connections</h3>
                 <Link to="/connections">View All</Link>
               </div>
               <div className="dashboard-connection-content">
