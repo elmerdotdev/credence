@@ -1,29 +1,16 @@
 import { useState, useEffect } from 'react';
 import Modal from 'react-modal'
 
- //Modal Style
-//  const customStyles = {
-//     content: {
-//       top: '50%',
-//       left: '50%',
-//       right: 'auto',
-//       bottom: 'auto',
-//       marginRight: '-50%',
-//       transform: 'translate(-50%, -50%',
-//       borderRadius: '15px'
-//     },
-//   };
-
 Modal.setAppElement("body");
 
-const EditNote = ({ modalOpen, toggle, onEdit, clientId, noteId, openNotification }) => {
+const EditNote = ({ modalOpen, toggle, onEdit, clientId, noteId, openNotification, userID }) => {
     const [note, setNote] = useState({})
     const [title, setTitle] = useState('')
     const [content, setContent] = useState('')
 
     useEffect(() => {
         const fetchNote = async () => {
-            const res = await fetch(`${process.env.REACT_APP_API_URL}/api/notes/63645e4850049bfd1e89637a/${clientId}/${noteId}`);
+            const res = await fetch(`${process.env.REACT_APP_API_URL}/api/notes/${userID}/${clientId}/${noteId}`);
             const data = await res.json();
 
             setNote(data);
