@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 
 const ClientCard = ({ connection, onToggle}) => {
   const [interaction, setInteraction] = useState("")
+  const [days, setDays] = useState(0)
 
   const userID = JSON.parse(localStorage.getItem('user'))._id
 
@@ -18,14 +19,14 @@ const ClientCard = ({ connection, onToggle}) => {
       d.setUTCSeconds(utcSeconds)
       let timedifference = (new Date()).getTime() - d;
       days = Math.ceil((((timedifference / 1000) / 60) / 60) / 24)
-
+      setDays(days)
       
   }
    //Last Interaction content
    if (emails.length > 0)  {
      if (days>0){setInteraction(`${days} days ago`)}
      else if (days=0){setInteraction("today")} }
-     else {  setInteraction("no previous interaction")}
+    //  else {  setInteraction("no previous interaction")}
 };
     getEmails()
 
@@ -54,8 +55,14 @@ const ClientCard = ({ connection, onToggle}) => {
             <p className="connection-company">{connection.company}</p>
           </div>
         </div>
+        <div className="connection-interaction">
+            {days > 0 ?
+              <span>Last interaction: <strong>{days} days ago</strong></span>
+            :
+              <em>No previous interaction</em>
+            }
+          </div>
 
-        <div className="connection-interaction">Last interaction: <strong>{interaction}</strong></div>
       </div>
     );
   };
