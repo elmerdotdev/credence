@@ -81,9 +81,11 @@ const Calendar = () => {
     })
 
     setEvents(events.filter(currEvent => currEvent._id !== event._id))
-    setEvents(current => [...current, event])
-    setModalEditOpen(false)
-    openNotification('Event updated', true)
+    setTimeout(() => {
+      setEvents(current => [...current, event])
+      setModalEditOpen(false)
+      openNotification('Event updated', true)
+    }, 500)
   }
 
   // Delete activity/event
