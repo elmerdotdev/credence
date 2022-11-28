@@ -9,9 +9,6 @@ import EditConnection from './components/EditConnection';
 import Filter from './components/Filter'
 import { useNavigate, useSearchParams, Link, useLocation } from 'react-router-dom';
 import Notification from '../../components/Notification/Notification'
-import Notes from '../Notes/Notes';
-import { connection } from 'mongoose';
-
 
 
 const ConnectionDetailsModal = props => {
@@ -38,7 +35,7 @@ const Connections = () => {
   const [notificationOpen, setNotificationOpen] = useState(false)
   const [notificationMessage, setNotificationMessage] = useState('')
   const [connectionTitle, setConnectionTitle] = useState('All Connections')
-  
+
 
   const userID = JSON.parse(localStorage.getItem('user'))._id
   const navigate = useNavigate()
@@ -99,7 +96,6 @@ const editConnection = async (inputConnObj) => {
 const fetchConnections = async () => {
   const res = await fetch(`${process.env.REACT_APP_API_URL}/api/clients/${userID}`);
   const data = await res.json();
-  // console.log(data);
   return data;
 };
 
@@ -139,48 +135,54 @@ const addConnection = async (newClient) => {
   setShowDetailModal(false)
 };
 
-// //=========== ここから
-//1.delete note
-    const deleteNote = async () => {
-      const res = await fetch(`${process.env.REACT_APP_API_URL}/api/notes/${userID}`)
-      const data = await res.json()
-      
-      const myNotes = data.filter((note)=> note.client_id === connection._id)
-    
-      myNotes.map(async (myNote) => {
-        const id = myNote._id;
-        await fetch(`${process.env.REACT_APP_API_URL}/api/notes/${id}`, {
+
+//delete all notes when user delete client
+const deleteNote = async () => {
+  const res = await fetch(`${process.env.REACT_APP_API_URL}/api/notes/${userID}`)
+  const data = await res.json()
+  
+  const myNotes = data.filter((note)=> note.client_id === connection._id)
+
+  myNotes.map(async (myNote) => {
+    const id = myNote._id;
+    await fetch(`${process.env.REACT_APP_API_URL}/api/notes/${id}`, {
+      method: 'DELETE',
+    });
+  })
+}
+
+//delete client name from activity array in Event when user delete client
+const deleteNameFromEvent = async () => {
+  const res = await fetch(`${process.env.REACT_APP_API_URL}/api/activities/${userID}`)
+  const data = await res.json()
+  data.map(async (nameEvent) => {
+    const nameList = nameEvent.client_id
+
+    for (let i = 0; 0 < nameList.length; i++){
+      if(nameList[i].value === connection._id && nameList.length === 1){
+        await fetch(`${process.env.REACT_APP_API_URL}/api/activities/${nameEvent._id}`,{
           method: 'DELETE',
-        });
-      })
-    }
-
-  //2.delete client name from activity array
-    const deleteNameFromEvent = async () => {
-      const res = await fetch(`${process.env.REACT_APP_API_URL}/api/activities/${userID}`)
-      const data = await res.json()
-
-      const clientsArray = data.client_id
-      console.log(clientsArray)
-      const namesInEvent = data.filter(activity => clientsArray.map((client) => client.value === connection._id ))
-      //1.これ何取れるか確認
-      console.log(namesInEvent)
-      console.log(namesInEvent._id)
-
-      namesInEvent.map(async (nameEvent) => {
-        const id = nameEvent._id;
-        for (let i = 0; 0 < namesInEvent.length; i ++){
-
-          const nbrInArray = id.client_id[i]
-
-          await fetch(`${process.env.REACT_APP_API_URL}/api/activities/${id}/${nbrInArray}`,{
-            method: 'DELETE',
-          })
+        })
+        console.log('deleted activity')
+      }else if(nameList[i].value === connection._id){
+        const nameArray = []
+        nameList.filter((oneName) => oneName.value === connection._id ? null: nameArray.push(oneName)); 
+          
+        const editCientName = async (client_id) => {
+          const res = await fetch(`${process.env.REACT_APP_API_URL}/api/activities/${nameEvent._id}`, {
+            method: 'PATCH',
+            headers: {'Content-type': 'application/json'},
+            body: JSON.stringify({client_id})
+          });
+            await res.json()
         }
-       
-      })
+        editCientName(nameArray)
+        console.log('deleted only this client name')
+      }
     }
-  //===========　ここまで
+  })
+}
+
 
 // Pin Connection
 const pinConnection = async (e) => {
