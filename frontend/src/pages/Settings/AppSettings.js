@@ -101,7 +101,7 @@ const AppSettings = ({ onDarkMode, darkModeToggle }) => {
                 <div className="price">
                     <p>$</p>
                     <p className='blue-price'>19.95</p>
-                    <p>/ month</p>
+                    <p><span>/ month</span></p>
                 </div>
                 
                 <button onClick={() => setSubscModalIsOpen(true)} 
@@ -126,9 +126,9 @@ const AppSettings = ({ onDarkMode, darkModeToggle }) => {
             <div className="desc-subsc">
                 <h3>You can enjoy:</h3>
                 <ul>
-                    <li><i className='icon-check'></i><span>Unlimited</span> Client Management</li>
+                    <li><i className='icon-check'></i><span>Unlimited</span> Connections to manage</li>
                     <li><i className='icon-check'></i><span>Unlimited</span> Note Entries</li>
-                    <li><i className='icon-check'></i>Create <span>Unlimited</span> Schedule entries</li>
+                    <li><i className='icon-check'></i><span>Unlimited</span> Schedule entries</li>
                     <li>
                         <i className='icon-check'></i>
                         <span>Search Connection information <span>by Keywords from Events, Connection, Emails, and Notes</span></span>

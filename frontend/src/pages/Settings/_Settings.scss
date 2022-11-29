@@ -284,10 +284,14 @@
 
 //Setting Main Page
 .page-settings {
-    font-size: 1rem;
-    padding: 17px 12px;
+    padding: 14px 20px;
     h2{
         text-align: center;
+        font-style: normal;
+        font-weight: 700;
+        font-size: 34px;
+        line-height: 44px;
+        margin: 0 0 24px 0;
     }
     .section-profile-edit,
     .section-passwordSecurity,
@@ -315,24 +319,26 @@
         width: 124px;
         height: 125px;
         border-radius: 199.789px;
-        margin-right: 20px; 
+        // margin-right: 20px; 
     }
     .my-profile-box{
         display: flex;
         justify-content: center;
         align-items: center;
+        gap: 11px;
         .number-display-box{
             display: flex;
             flex-grow: 1;
             justify-content: space-between;
         }
     }
-    i.icon-connection:before,
-    i.icon-calendar:before,
-    i.icon-note:before{
+    i.icon-connection,
+    i.icon-calendar,
+    i.icon-note{
         @include fontSize(30);
         display: flex;
         color: $color-regal-blue;
+        color: $color-shark;
     }
     .connection-box,
     .event-box,
@@ -341,17 +347,20 @@
         flex-direction: column;
         flex-wrap: nowrap;
         align-items: center;
+        gap: 4px;
         p:nth-of-type(1){
             margin: 0;
             font-weight: 700;
             @include fontSize(20);
             line-height: 24px;
+            font-style: normal;
         }
         p:nth-of-type(2){
             margin: 0;
             font-weight: 400;
             @include fontSize(16);
             line-height: 20px;
+            font-style: normal;
         }
     }
     span{
@@ -362,12 +371,12 @@
     button.go-premiun-btn,
     button.learnmore,
     button.contactus{
-        margin:39px 0 24px auto;
+        margin:39px 0 16px auto;
         display: flex;
     }
     .page-appsettings{
         h2{
-            margin-top: 32px;
+            margin-top: 63px;
         }
     }
     
@@ -446,7 +455,7 @@
         }
         p{
             margin-top: 0;
-            @include fontSize(14);
+            @include fontSize(16);
             margin-left: 42px;
             grid-column: 1 / 2;
             grid-row: 2 / 3;
@@ -485,12 +494,17 @@
             margin-bottom: 0;
             @include fontSize(20);
             font-weight: 600;
+            font-style: normal;
+            line-height: 24px;
             margin-top: 0;
         }
         p{
             margin-top: 0;
             margin-left: 42px;
-            @include fontSize(14);
+            @include fontSize(16);
+            line-height: 16px;
+            font-style: normal;
+            font-weight: 400;
         }
     }
     i.icon-bell::before,
@@ -498,73 +512,79 @@
         margin-left: 0;
     }
     section.subscribe{
-            background-color: $color-solitude;
-            border: 1px solid $color-science-blue;
-            padding: 26px 16px 19px 16px;
-            border-radius: 16px;
-            margin-top: 24px;
-            h2{
-                margin: 0;
-            }
-            h2,h2+p{
-                text-align: center;
-            }
-            .blue-title{
-                color: $color-science-blue;
-            }
-            .price-box{
+        background-color: $color-solitude;
+        border: 1px solid $color-science-blue;
+        padding: 26px 16px 19px 16px;
+        border-radius: 16px;
+        margin-top: 24px;
+        h2{
+            margin: 0;
+        }
+        h2,h2+p{
+            text-align: center;
+        }
+        .blue-title{
+            color: $color-science-blue;
+        }
+        .price-box{
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            .price{
                 display: flex;
                 align-items: center;
-                justify-content: space-around;
-                .price{
-                    display: flex;
-                    align-items: center;
-                    p:nth-of-type(1){
-                        margin-right: 8px;
-                    }
-                    .blue-price{
-                        color: $color-science-blue;
-                        font-weight: 700;
-                        @include fontSize(34);
-                        line-height: 44px;
-                    }
+                p:nth-of-type(1){
+                    margin-right: 8px;
+                }
+                .blue-price{
+                    color: $color-science-blue;
+                    font-weight: 700;
+                    @include fontSize(34);
+                    line-height: 44px;
                 }
             }
-            h3{
-                margin: 16px 0 20px 0;
-            }
-            li:before{
-                display: block;
-            }
-            li{
-               margin-bottom: 20px; 
-               i{
-                @include fontSize(20);
-               }
-            }
-            li:nth-of-type(4){
-                display: flex;
+        }
+        h3{
+            margin: 16px 0 20px 0;
+        }
+        li:before{
+            display: block;
+        }
+        li{
+           margin-bottom: 20px; 
+           i{
+            @include fontSize(20);
+           }
+        }
+        li:nth-of-type(4){
+            display: flex;
+            span{
+                font-weight: normal;
                 span{
-                    font-weight: normal;
-                    span{
-                        font-weight: bold;
-                    }
+                    font-weight: bold;
                 }
             }
+        }
     }
     
     @media screen and (min-width:$screen-desktop){
-        padding: 20px;
+        padding: 29px 16px 16px 16px;
         background-color: $color-white;
         border: 1px solid $color-dusty-gray;
         border-radius: 16px;
         display: grid;
         gap: 20px;
+        
         h2{
             @include fontSize(36);
             margin-top: 0;
             line-height: 44px;
+            font-style: normal;
+            font-weight: 700;
         }
+        .page-appsettings h2{
+            margin-top: 56px;
+        }    
         .account-setting-box{
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
@@ -575,6 +595,7 @@
             grid-template-columns: 1fr 1fr 1fr 1fr;
             gap: 24px;
         }
+        
         .section-profile-edit{
             display: flex;
             .my-profile-box{
@@ -589,19 +610,23 @@
                 }
                 .number-display-box{
                     width: 100%;
+                    i.icon-connection,
+                    i.icon-calendar,
+                    i.icon-note{
+                        font-size:38px;
+                    }        
                 }
-            }
+            }    
             @media screen and (min-width:1407px){
                 .my-profile-box{
                     flex-direction: row;
-                    gap: 10px;
+                    gap: 20px;
                     .number-display-box{
                         gap: 5px;
                     }
                 }
             }
-        }
-       
+        } 
         section.section-profile-edit,
         section.section-passwordSecurity,
         section.section-subscription,
@@ -623,60 +648,91 @@
                 margin-top: 0;
                 i{
                     margin-top: 0;
+                    font-size: 38px;
                 }
             }
-            h3{
-                margin-top: 0;
+                h3{
+                    font-style: normal;
+                    font-size: 28px;
+                    line-height: 36px;
+                    margin-top: 0;
+                }
+                p{
+                    margin-left: 4px;
+                    font-weight: 400;
+                    @include fontSize(16);
+                    line-height: 20px;
+                }
+            
+            section.section-theme,
+            section.section-notification{
+                grid-template-columns: 1fr;
+                grid-template-rows: auto auto 30px;
+                .title-icon{
+                    grid-column: 1 / -1;
+                    grid-row: 1 / 2;
+                }
+                p{
+                    grid-column: 1 / -1;
+                    grid-row: 2 / 3;
+                }
+                .switch{
+                    grid-row: 3 / 4;
+                    grid-column: 1 / -1;
+                    margin: 0;
+                }
             }
-            p{
-                margin-left: 0;
-            }
-        }
-        section.section-theme,
-        section.section-notification{
-            grid-template-columns: 1fr;
-            grid-template-rows: auto auto 30px;
-            .title-icon{
-                grid-column: 1 / -1;
-                grid-row: 1 / 2;
-            }
-            p{
-                grid-column: 1 / -1;
-                grid-row: 2 / 3;
-            }
-            .switch{
-                grid-row: 3 / 4;
-                grid-column: 1 / -1;
+            button.edit-profile-btn,
+            button.manage-security-btn,
+            button.go-premiun-btn,
+            button.contactus,
+            button.learnmore{
                 margin: 0;
             }
+            button.edit-profile-btn,
+            button.manage-security-btn,
+            button.go-premiun-btn{
+                margin-top: 52px;
+            }
         }
-        button.edit-profile-btn,
-        button.manage-security-btn,
-        button.go-premiun-btn,
-        button.contactus,
-        button.learnmore{
-            margin: 0;
-        }
-        button.edit-profile-btn,
-        button.manage-security-btn,
-        button.go-premiun-btn{
-            margin-top: 52px;
-        }
-        .subscribe{
+        section.subscribe{
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
             gap: 20px;
             align-items: center;
+            margin-top: 0;
+            h2+p{
+                margin-top: 16px;
+                font-weight: 600;
+                font-size: 20px;
+                line-height: 24px;
+            }
+            .desc-subsc{
+                h3{
+                    font-weight: 700;
+                    font-size: 20px;
+                    line-height: 24px;
+                }
+                li{
+                    margin-bottom: 8px;
+                }
+            }
             .price-box{
                 order: 3;
                 flex-direction: column;
                 flex-wrap: nowrap;
-                p{
-                    margin: 0 0 17px 0;
-                }
+                .price{
+                    p{
+                        margin: 0 0 17px 0;
+                    }
+                    .blue-price{
+                        @include fontSize(36);
+                        margin-right: 5px;
+                    }
+                } 
             }
         }
     }
+    
 }
-
 
