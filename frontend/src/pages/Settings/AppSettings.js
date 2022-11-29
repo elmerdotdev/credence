@@ -101,7 +101,7 @@ const AppSettings = ({ onDarkMode, darkModeToggle }) => {
                 <div className="price">
                     <p>$</p>
                     <p className='blue-price'>19.95</p>
-                    <p><span>/ month</span></p>
+                    <p>/ month</p>
                 </div>
                 
                 <button onClick={() => setSubscModalIsOpen(true)} 
