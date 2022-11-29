@@ -161,7 +161,7 @@ const deleteNameFromEvent = async () => {
         await fetch(`${process.env.REACT_APP_API_URL}/api/activities/${nameEvent._id}`,{
           method: 'DELETE',
         })
-        console.log('deleted activity')
+        // console.log('deleted activity')
       }else if(nameList[i].value === connection._id){
         const nameArray = []
         nameList.filter((oneName) => oneName.value === connection._id ? null: nameArray.push(oneName)); 
@@ -175,7 +175,7 @@ const deleteNameFromEvent = async () => {
             await res.json()
         }
         editCientName(nameArray)
-        console.log('deleted only this client name')
+        // console.log('deleted only this client name')
       }
     }
   })
