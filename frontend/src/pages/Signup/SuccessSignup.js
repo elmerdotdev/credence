@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import { Link } from 'react-router-dom'
 //Icon & Logo
 import '../../fontello/css/credence.css'
@@ -6,6 +6,12 @@ import logo from '../../images/logo.svg'
 import signupimage from '../../images/Register/signupimage.svg'
 
 const SuccessSignup = () => {
+
+  useEffect(() => {
+    document.querySelector('body').removeAttribute("class")
+    document.querySelector('body').classList.add('no-sidebar')
+  }, [])
+
   
   //delete user status:200 from localstorage when click "next btn" 
   const dlt200LocalStorage = () => {
@@ -20,7 +26,7 @@ const SuccessSignup = () => {
               <Link to="/"><i className='icon-close'></i></Link>
           </div>
       
-          <h3>Sign Up Complete!</h3>
+          <h3>Sign Up Completed!</h3>
           <p className='welcome-credence'><span>Welcome to</span><img src={logo} alt="credence-logo" className='credence-logo'/> !</p>
           <p>Thank you for taking the time to sign up. Keep up the good work!</p>
           

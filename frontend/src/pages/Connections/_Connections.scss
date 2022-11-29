@@ -32,13 +32,17 @@
     }
 
     .connection-content {
-      h3{
-        grid-column: 1/-1;
-      }
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: .5rem;
-      margin-bottom: 2rem;
+      margin-bottom: 1rem;
+
+      h3 {
+        @include fontSize(52);
+        grid-column: 1/-1;
+        margin: 1rem 0;
+        font-weight: 600;
+      }
 
       @media screen and (min-width: $screen-desktop) {
         grid-template-columns: repeat(4, 1fr);
@@ -385,6 +389,8 @@
   }
 
   .note-details {
+    display: flex;
+    flex-direction: column;
     margin-top: 2rem;
     padding-top: 2rem;
     border-top: 2px solid $color-gray;

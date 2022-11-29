@@ -1,35 +1,37 @@
 import { useState, useEffect } from 'react';
 
 const ClientCard = ({ connection, onToggle}) => {
-  const [emails, setEmails] = useState(0)
-  const [days, setDays] = useState(0)
   const [interaction, setInteraction] = useState("")
+  const [days, setDays] = useState(0)
 
   const userID = JSON.parse(localStorage.getItem('user'))._id
 
   useEffect(
     () => {
     const getEmails = async () => {
+      let emails = []
+      let days = -1
       const res = await fetchEmails();
-      setEmails(res)
       if(res.length>0) {
+      emails = res
       let utcSeconds = res[res.length-1].emailTime/1000;
       let d = new Date(0); 
       d.setUTCSeconds(utcSeconds)
       let timedifference = (new Date()).getTime() - d;
-      setDays(Math.ceil((((timedifference / 1000) / 60) / 60) / 24))
-      // console.log(emails)
+      days = Math.ceil((((timedifference / 1000) / 60) / 60) / 24)
+      setDays(days)
       
   }
    //Last Interaction content
-   if (emails.length > 0) { if (days>0){setInteraction(`${days} days ago`)} else if (days=0){setInteraction("today")} } else {  setInteraction("no previous interaction")}
+   if (emails.length > 0)  {
+     if (days>0){setInteraction(`${days} days ago`)}
+     else if (days=0){setInteraction("today")} }
+    //  else {  setInteraction("no previous interaction")}
 };
     getEmails()
 
   }, []
   )
-
-   
 
 
    //Fetch All Emails For Client
@@ -53,8 +55,14 @@ const ClientCard = ({ connection, onToggle}) => {
             <p className="connection-company">{connection.company}</p>
           </div>
         </div>
+        <div className="connection-interaction">
+            {days > 0 ?
+              <span>Last interaction: <strong>{days} days ago</strong></span>
+            :
+              <em>No previous interaction</em>
+            }
+          </div>
 
-        <div className="connection-interaction">Last interaction: <strong>{interaction}</strong></div>
       </div>
     );
   };
