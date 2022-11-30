@@ -4,6 +4,7 @@ import { NavHashLink } from 'react-router-hash-link'
 import Logo from '../../../components/Logo/Logo'
 import Modal from "react-modal"
 import AboutUs from '../../Settings/Aboutus'
+import TimeSaved from '../Graph/TimeSaved'
 
 // Images
 import HeroImage from '../../../images/Home/hero-image.png'
@@ -100,7 +101,7 @@ const Home = () => {
         <div className="section-wrapper">
 
           <div className="reports-image">
-            <img src={ReportsImage} alt="Credence Reports" />
+            <TimeSaved />
           </div>
 
           <div className="reports-text">
