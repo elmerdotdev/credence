@@ -46,6 +46,7 @@ const Login = () => {
       const loginDate = { _id: userID }  
       localStorage.clear()
       localStorage.setItem('user', JSON.stringify(loginDate))
+      window.dispatchEvent(new Event("storage"));
     }
     
 

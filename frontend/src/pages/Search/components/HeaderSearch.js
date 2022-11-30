@@ -20,11 +20,17 @@ const HeaderSearch = () => {
     const [searchEmailParams] = useState(["subject", "snippet"]);
     const [sortedAllResults, setSortedAllResults] = useState([]);
     const [currentAllResults, setCurrentAllResults] = useState([]);
+    const [userID, setUserID] = useState('')
 
-    const userID = JSON.parse(localStorage.getItem('user'))._id
     const navigate = useNavigate();
 
     useEffect(() => {
+        try{
+            setUserID(JSON.parse(localStorage.getItem('user'))._id)
+          } catch (error){
+            console.error(error);
+          }
+
         const getConnections = async () => {
             const res = await fetchConnections();
             setConnections(res);
@@ -32,6 +38,7 @@ const HeaderSearch = () => {
       
           getConnections();
         }, []);
+
 
     useEffect(() => {
         const getActivities = async () => {
@@ -41,7 +48,7 @@ const HeaderSearch = () => {
         }
     
         getActivities()
-        }, [])
+        }, [userID])
 
     useEffect(() => {
         const getNotes = async () => {
@@ -50,7 +57,7 @@ const HeaderSearch = () => {
         }
     
         getNotes()
-        }, [])
+        }, [userID])
     
     useEffect(() => {
         const getEmails = async () => {
@@ -59,7 +66,7 @@ const HeaderSearch = () => {
         }
     
         getEmails()
-        }, [])
+        }, [userID])
 
 
     // Fetch Connections
