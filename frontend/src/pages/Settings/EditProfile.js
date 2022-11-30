@@ -13,7 +13,7 @@ const EditProfile = (props) => {
     const [lastName, setLastName] = useState('')
     const [email, setEmail] = useState('')
     const [photo, setPhoto] = useState('')
-    const [photoClicked, setPhotoClicked ] = useState(false)
+    const [previewImage, setPreviewImage] = useState('');
 
     //get userID from Localstorage(user ID)
     const userID = JSON.parse(localStorage.getItem('user'))._id
@@ -76,19 +76,23 @@ const EditProfile = (props) => {
     }
     
     //Edit submit function
-    const handleSubmit = async (e) => {
+    //Dear Elmer: Here is the code to upload editing things in DB (the submit button is Line 149)
+    const handleSubmit = (e) => {
         e.preventDefault()
-
-        await editing(firstName, lastName, email, photo)
-        console.log(`New Profile:` + firstName, lastName, email, photo)
+            editing(firstName, lastName, email, photo)
+            console.log(`New Profile:` + firstName, lastName, email, photo) 
     }
-
     //picture upload
-    const photoUpdate = (e) => {
-        const newphoto = URL.createObjectURL(e.target.files[0])
-        setPhoto(newphoto)
-        setPhotoClicked(true)
+    //Dear Elmer: Here is the code to display image I choose(It doesn't work ㅠㅠㅠ).Thank you so much:-)
+    const photoUpdate = () => {
+        console.log(photo)
+        const reader = new FileReader()
+        reader.readAsDataURL(photo);
+        reader.addEventListener('load', (event) => {
+          console.log(reader.result)
+        });
     }
+   
 
   return (
     <div className='editProfile-modal'>
@@ -100,11 +104,10 @@ const EditProfile = (props) => {
                     <input  type="file"
                             id="profile-user-photo"
                             className="visually-hidden"
-                            accept="image/*"
-                            onChange={photoUpdate}
+                            // accept="image/*"
+                            onChange={(e) => photoUpdate(e.target.files[0])}
                     />
                     <label htmlFor="profile-user-photo">
-                        <div className={ photoClicked === false ? 'photo-wrapper' : 'visually-hidden'  }>Click Here</div>
                        { !photo ? <img src={StaticAddImage} alt="no-user-img"/> : <img src={ photo } alt="user-img" />}
                     </label>
                 </div>

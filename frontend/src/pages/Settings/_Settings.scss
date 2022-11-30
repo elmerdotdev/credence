@@ -36,7 +36,7 @@
             .photo-wrapper{
                 width: 215px;
                 height: 215px;
-                background-color: $color-dusty-gray ;
+                background-color: #9494945e;
                 border-radius: 50%;
                 position: absolute;
                 color: $color-regal-blue;
@@ -289,7 +289,7 @@
         text-align: center;
         font-style: normal;
         font-weight: 700;
-        font-size: 34px;
+        @include fontSize(34);
         line-height: 44px;
         margin: 0 0 24px 0;
     }
@@ -324,7 +324,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        gap: 11px;
+        gap: 10px;
         .number-display-box{
             display: flex;
             flex-grow: 1;
@@ -337,7 +337,6 @@
         @include fontSize(30);
         display: flex;
         color: $color-regal-blue;
-        color: $color-shark;
     }
     i::before{
         font-weight: 600;
@@ -613,11 +612,14 @@
                 width: 100%;
                 flex-direction: column;
                 justify-items: center;
-                gap: 10px;
                 img[alt="user-img"]{
                     width: 100px;
                     height: 100px;
                     margin-right: 0;
+                }
+                .no-img-onprofile{
+                    width: 100px;
+                    height: 100px;
                 }
                 .number-display-box{
                     width: 100%;
@@ -625,14 +627,13 @@
                     i.icon-connection,
                     i.icon-calendar,
                     i.icon-note{
-                        font-size:38px;
+                        @include fontSize(38);
                     }        
                 }
             }    
             @media screen and (min-width:1407px){
                 .my-profile-box{
                     flex-direction: row;
-                    gap: 20px;
                     .number-display-box{
                         gap: 5px;
                     }
@@ -668,7 +669,7 @@
             }
             h3{
                 font-style: normal;
-                @include fontSize(28);
+                @include fontSize(24);
                 line-height: 36px;
             }
             p{
@@ -726,16 +727,19 @@
             gap: 20px;
             align-items: center;
             margin-top: 0;
+            h2{
+                @include fontSize(36);
+            }
             h2+p{
                 margin-top: 16px;
                 font-weight: 600;
-                font-size: 20px;
+                @include fontSize(20);
                 line-height: 24px;
             }
             .desc-subsc{
                 h3{
                     font-weight: 700;
-                    font-size: 20px;
+                    @include fontSize(20);
                     line-height: 24px;
                 }
                 li{
