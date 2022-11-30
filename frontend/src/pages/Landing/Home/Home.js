@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import { NavHashLink } from 'react-router-hash-link'
 import Logo from '../../../components/Logo/Logo'
+import Modal from "react-modal"
+import AboutUs from '../../Settings/Aboutus'
 
 // Images
 import HeroImage from '../../../images/Home/hero-image.png'
@@ -14,6 +17,7 @@ import NewsletterImage from '../../../images/Home/newsletter-image.png'
 
 const Home = () => {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [aboutusModalIsOpen, setAboutusModalIsOpen]= useState(false)
 
   useEffect(() => {
     document.querySelector('body').removeAttribute("class")
@@ -28,21 +32,21 @@ const Home = () => {
         <div className="section-wrapper">
 
           <div className="logo">
-            <Link to="/#hero">
+            <NavHashLink smooth to="/#hero">
               <Logo />
-            </Link>
+            </NavHashLink>
           </div>
 
           <nav className="home-navigation">
             <ul className="nav-page-links">
               <li>
-                <Link to="#features">Features</Link>
+                <NavHashLink smooth to="#features">Features</NavHashLink>
               </li>
               <li>
-                <Link to="#pricing">Pricing</Link>
+                <NavHashLink smooth to="#pricing">Pricing</NavHashLink>
               </li>
               <li>
-                <Link to="#about">About Us</Link>
+                <NavHashLink smooth to="#about">About Us</NavHashLink>
               </li>
             </ul>
 
@@ -80,9 +84,9 @@ const Home = () => {
             <h2>Helping You <span>Build Relations</span> Beyond Numbers</h2>
             <p>We know connections are the heart of your business. Let us help you take good care of them.</p>
             <div>
-              <Link to="#">
+              <NavHashLink smooth to="#features">
                 <button className="btn btn-primary-reverse">Read More</button>
-              </Link>
+              </NavHashLink>
               <Link to="/signup">
                 <button className="btn btn-primary">Sign Up</button>
               </Link>
@@ -103,9 +107,9 @@ const Home = () => {
             <h2>Focus On <span>What Matters</span></h2>
             <p>Get all the information you need to keep track of your business and make it grow.</p>
             <div>
-              <Link to="#">
+              <NavHashLink smooth to="#features">
                 <button className="btn btn-primary-reverse">Read More</button>
-              </Link>
+              </NavHashLink>
             </div>
           </div>
 
@@ -145,6 +149,75 @@ const Home = () => {
         </div>
       </section>
 
+      <section id="pricing">
+        <div className="section-wrapper">
+
+          <h2>Our Plans</h2>
+          <div className="pricing-content">
+          <div className='page-select-plan'>
+      
+        <section className='free-plan'>
+            <h3>FREE PLAN</h3>
+            <h4 className='free-subtitle'>Free for Individuals to try.</h4>
+            <div className="price-box">
+                <div className="cad">
+                    <p>$</p>
+                    <p>CAD</p>
+                </div>
+                <div className='nbr'>
+                    <p>0</p>
+                </div>
+                <p>/Free Forever</p>
+            </div>
+
+            <div className="contents-box">
+                <p>You can enjoy:</p>
+                <ul>
+                    <li><i className='icon-check'></i><span><b>Up to 8</b> Connections to manage</span></li>
+                    <li><i className='icon-check'></i><span><b>Up to 50</b> Note Entries</span></li>
+                    <li><i className='icon-check'></i><span><b>Up to 50</b> Calendar Entries</span></li>
+                    <li><i className='icon-check'></i><span>Search Connection Information <b>by Name Only</b></span></li>
+                </ul>
+            </div>
+            <Link to="/signup">
+              <button className='free-btn btn btn-primary-reverse'>Start for Free</button>
+            </Link>
+        </section>
+
+        <section className='premium-plan'>
+            <h3>PREMIUM PLAN</h3>
+            <h4>Supercharge your efficiency.<br/>Start free.</h4>
+
+            <div className="price-box">
+                <div className="cad">
+                    <p>$</p>
+                    <p>CAD</p>
+                </div>
+                <div className='nbr'>
+                    <p>19.95</p>
+                </div>
+                <p>/month</p>
+            </div>
+
+            <div className="contents-box">
+                <p>You can enjoy:</p>
+                <ul>
+                    <li><i className='icon-check'></i><span><b>Unlimited</b> Connections to manage</span></li>
+                    <li><i className='icon-check'></i><span><b>Unlimited</b> Note Entries</span></li>
+                    <li><i className='icon-check'></i><span><b>Unlimited</b>Schedule Entries</span></li>
+                    <li><i className='icon-check'></i><span>Search Connection Information <b>by Keywords from Events, Connection, Emails, and Notes</b></span></li>
+                </ul>
+            </div>
+            <Link to="/signup">
+              <button className="btn btn-primary">Start My 30-Day Trial</button>
+            </Link>
+        </section>
+    </div>
+
+          </div>
+        </div>
+      </section>
+
       <section id="about">
         <div className="section-wrapper">
 
@@ -158,9 +231,17 @@ const Home = () => {
               <h3>Made with <span>Love</span></h3>
               <p>In Credence, we firmly believe that building meaningful relations is key to drive your business. Learn more about our dedicated team.</p>
               <div>
-                <Link to="#">
-                  <button className="btn btn-primary-reverse">Read More</button>
-                </Link>
+                <button onClick={() => setAboutusModalIsOpen(true)}className="btn btn-primary-reverse">Read More</button>
+                <Modal  
+                  isOpen={aboutusModalIsOpen} 
+                  className="aboutus-page-modal-modal"
+                >
+                  <AboutUs    
+                    aboutusIsOpen={aboutusModalIsOpen} 
+                    onsetAboutusIsOpen={setAboutusModalIsOpen}
+                  />
+                  <button onClick={() => setAboutusModalIsOpen(false)} className='btn btn-primary-reverse'>Close</button>
+                </Modal>
               </div>
             </div>
           </div>
