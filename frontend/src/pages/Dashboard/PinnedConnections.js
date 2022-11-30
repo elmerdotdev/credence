@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
 import moment from 'moment'
 
 const PinnedConnections = ({ connection, onToggle, fetchEmails }) => {
@@ -14,7 +13,7 @@ const PinnedConnections = ({ connection, onToggle, fetchEmails }) => {
         const today = moment(moment().valueOf())
         const emailDate = moment(res[res.length - 1].emailTime, 'x')
 
-        console.log(today.diff(emailDate, 'days'))
+        setDays(today.diff(emailDate, 'days'))
       }
     }
 
@@ -33,7 +32,13 @@ const PinnedConnections = ({ connection, onToggle, fetchEmails }) => {
                   <p className="connection-company">{connection.company}</p>
               </div>
           </div>
-          <div className="connection-interaction">Last interaction: <strong>0 days ago</strong></div>
+          <div className="connection-interaction">
+            {days > 0 ?
+              <span>Last interaction: <strong>{days} days ago</strong></span>
+            :
+              <em>No previous interaction</em>
+            }
+          </div>
         </div>
   )
 }
