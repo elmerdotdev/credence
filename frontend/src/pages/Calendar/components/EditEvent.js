@@ -63,9 +63,9 @@ const EditEvent = (props) => {
     ])
 
     useEffect(() => {
-        setStart(moment(startDate).tz("America/Vancouver").format("YYYY-MM-DD") + " " + moment(startTime, "hh:mm A").tz("America/Vancouver").format("HH:mm:ss"))
+        setStart(moment(moment(startDate).format("YYYY-MM-DD") + " " + moment(startTime, "hh:mm A").format("HH:mm:ss")).utc())
 
-        setEnd(moment(endDate).tz("America/Vancouver").format("YYYY-MM-DD") + " " + moment(endTime, "hh:mm A").tz("America/Vancouver").format("HH:mm:ss"))
+        setEnd(moment(moment(endDate).format("YYYY-MM-DD") + " " + moment(endTime, "hh:mm A").format("HH:mm:ss")).utc())
     }, [
         startDate,
         startTime,
