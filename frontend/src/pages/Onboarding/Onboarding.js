@@ -152,7 +152,6 @@ const Onboarding = () => {
 
                     <div className="btn-grid">
                         <div className="buttons-last">
-                            {/* <Link to=''><button className='btn btn-primary dash-btn'>Connect Gmail</button></Link> */}
                             <Link to='/dashboard'><button className='btn btn-primary dash-btn'>Go to Dashboard</button></Link>
                         </div>
                         <img src={circle4_desktop} alt="page4" className='flow-circles'/>
