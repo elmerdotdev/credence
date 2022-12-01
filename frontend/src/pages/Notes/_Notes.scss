@@ -57,3 +57,49 @@
         margin-top: 1rem;
     }
 }
+
+.modal-notes-content {
+    h3 {
+        color: $color-gray;
+        margin-bottom: 0;
+        @include fontSize(14);
+        font-weight: 400;
+
+        span {
+            padding-left: .5rem;
+            padding-right: .5rem;
+            border-bottom: 1px solid $color-gray;
+        }
+
+    }
+
+    h2 {
+        margin-top: .5rem;
+        margin-bottom: .5rem;
+    }
+
+    p {
+        margin-top: 2rem;
+    }
+
+    .single-note-client-information {
+        display: flex;
+        gap: .5rem;
+        flex-direction: row;
+        align-items: center;
+        height: 25px;
+    
+      
+            img {
+              width: 20px;
+              height: 20px;
+              object-fit: cover;
+              border-radius: 50%;
+            }
+        
+        h4 {
+            color: $color-science-blue;
+            @include fontSize(14);
+        }
+        }
+}

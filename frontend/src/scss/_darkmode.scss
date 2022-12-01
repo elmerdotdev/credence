@@ -1,0 +1,295 @@
+body:not(.no-sidebar) {
+    &.body-theme-dark {
+        background-position: 0 0;
+
+        path.logo-letters {
+            fill: $color-white;
+            stroke: $color-white !important;
+        }
+
+        aside {
+            i {
+                color: $color-white;
+            }
+
+            a {
+                color: $color-white;
+            }
+        }
+
+        .dashboard-connection {
+            background-color: $color-lighter-shark;
+
+            h2,
+            h3,
+            a {
+                color: $color-white;
+            }
+        }
+
+        .page-connections {
+            background-color: $color-lighter-shark;
+
+            h2 {
+                color: $color-white;
+            }
+
+            .connection-content {
+                h3 {
+                    color: $color-white;
+                }
+            }
+        }
+        
+        .client-card {
+            background-color: $color-mako !important;
+            color: $color-white !important;
+
+            .connection-interaction {
+                border-top-color: $color-white;
+            }
+        }
+
+        .page-calendar-view {
+            background-color: $color-lighter-shark;
+
+            .fc {
+                .fc-toolbar-title,
+                .fc-prev-button,
+                .fc-next-button {
+                    color: $color-white;
+                }
+
+                .fc-daygrid-day.fc-day-today {
+                    .fc-daygrid-day-frame {
+                        background-color: $color-french-gray;
+                        border-color: $color-french-gray;
+
+                        a {
+                            color: $color-shark;
+                        }
+                    }
+                }
+            }
+
+            .fc-theme-standard th,
+            .fc-theme-standard td {
+                background-color: $color-shark;
+
+                a {
+                    color: $color-white;
+                }
+
+                .fc-day:not(.fc-day-disabled) .fc-daygrid-day-frame {
+                    &:hover {
+                        a {
+                            color: $color-shark;
+                        }
+                    }
+                }
+            }
+        }
+
+        .page-calendar-widget {
+            background-color: $color-lighter-shark;
+
+            h2 {
+                color: $color-white;
+            }
+
+            h3 {
+                color: $color-white;
+            }
+
+            .eventRow {
+                background-color: $color-mako;
+                color: $color-white;
+
+                &:hover {
+                    background-color: lighten($color-mako, 10%);
+                }
+            }
+        }
+
+        .reports {
+            background-color: $color-lighter-shark;
+
+            h2 {
+                color: $color-white;
+            }
+
+            > div {
+                background-color: $color-mako !important;
+
+                h3 {
+                    color: $color-white;
+                }
+            }
+        }
+
+        .page-settings {
+            background-color: $color-lighter-shark;
+
+            h2 {
+                color: $color-white;
+            }
+
+            .section {
+                &-profile-edit,
+                &-passwordSecurity,
+                &-subscription,
+                &-theme,
+                &-notification {
+                    background-color: $color-mako;
+                    color: $color-white;
+
+                    i::before {
+                        color: $color-white;
+                    }
+                }
+
+                &-aboutus,
+                &-help {
+                    background-color: $color-mako;
+                    color: $color-white;
+
+                    .title-icon i {
+                        color: $color-white;
+                    }
+                }
+            }
+
+            .subscribe {
+                background-color: $color-slate-gray;
+                color: $color-white;
+
+                .blue-title,
+                .blue-price {
+                    color: $color-white;
+                }
+            }
+        }
+
+        .edit-profile-modal-modal .editProfile-modal,
+        .manage-modal-modal .manage-modal,
+        .aboutus-page-modal-modal,
+        .select-plan-modal,
+        .contactus-modal-modal .contactus-modal,
+        .subscribe-modal-premium .subsc-modal {
+            background-color: $color-lighter-shark;
+
+            h2,
+            h3,
+            label,
+            p,
+            i {
+                color: $color-white;
+            }
+
+            input[type="text"],
+            input[type="email"] {
+                background: transparent;
+                color: $color-white;
+            }
+        }
+
+        .page-select-plan .free-plan,
+        .page-select-plan .premium-plan {
+            background-color: $color-mako;
+
+            h4 {
+                color: $color-white;
+                border-bottom-color: $color-white;
+            }
+
+            li {
+                color: $color-white;
+            }
+        }
+
+        .credence-modal {
+            background-color: $color-lighter-shark !important;
+
+            h2,
+            h4,
+            label,
+            .slider-label-span,
+            input[type="text"],
+            input[type="email"],
+            input[type="tel"],
+            textarea,
+            .note-details {
+                color: $color-white;
+            }
+
+            h3 {
+                color: $color-white;
+                border-bottom-color: $color-white;
+            }
+
+            select {
+                color: $color-white;
+                
+                option {
+                    color: $color-black;
+                }
+            }
+
+            .rdt::before {
+                color: $color-white !important;
+            }
+
+            .icon-close {
+                color: $color-white;
+            }
+
+            .viewModalTable {
+                td {
+                    color: $color-white;
+                }
+            }
+
+            .modal-connection-detail-top {
+                background-color: $color-mako;
+                color: $color-white;
+            }
+
+            .modal-notes-content {
+                color: $color-white;
+
+                h4 {
+                    color: $color-gray;
+                }
+            }
+
+            .emails {
+                color: $color-white;
+            }
+        }
+
+        .logoutModal .page-logout {
+            background-color: $color-lighter-shark;
+            color: $color-white;
+        }
+
+        .search-result {
+            background-color: $color-lighter-shark;
+            color: $color-white;
+
+            .search-single {
+                &:hover {
+                    background-color: lighten($color-lighter-shark, 10%);
+                }
+
+                p,
+                .search-single-grey-text {
+                    color: $color-french-gray;
+                }
+
+                .search-type-button {
+                    background-color: transparent;
+                }
+            }
+        }
+    }
+}

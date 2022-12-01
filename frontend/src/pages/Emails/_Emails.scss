@@ -1,12 +1,19 @@
-.email-time {
+.email-time, .email-from, .email-to {
     color: $color-dusty-gray;
+    @include fontSize(16);
 }
 
 .single-email {
+    padding: 1rem 0;
     border-bottom: 1px solid $color-dusty-gray;
 }
 
 h4 {
     @include fontSize(20);
     font-weight: 600;
+    margin: .5rem;
+}
+
+p {
+    margin: .5rem;
 }

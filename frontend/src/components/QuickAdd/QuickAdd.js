@@ -9,7 +9,8 @@ const QuickAdd = () => {
     const [notificationSuccess, setNotificationSuccess] = useState(false)
     const [notificationOpen, setNotificationOpen] = useState(false)
     const [notificationMessage, setNotificationMessage] = useState('')
-    const [userID, setUserID] = useState('63645e4850049bfd1e89637a');
+    
+    const userID = JSON.parse(localStorage.getItem('user'))._id
 
     // Modal states
     const [noteModal, setNoteModal] = useState(false)

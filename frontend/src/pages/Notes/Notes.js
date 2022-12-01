@@ -42,15 +42,6 @@ const Notes = ( {connection, openNotification} ) => {
       }
     }
 
-    // Fetch Note
-    // const fetchNote= async (id) => {
-    //   const response = await fetch(`${process.env.REACT_APP_API_URL}/api/notes/633b6a81145c9d79405c54ea/${notes.client_id}/${notes.id}`);
-      
-    //   const data = await response.json();
-
-    //   return data;
-    // };
-
 //View Single Note Modal
   const toggleViewNoteModal = (status) => {
     setViewNoteIsOpen(status)
@@ -142,6 +133,7 @@ const deleteNote = async () => {
 
         {viewNoteIsOpen &&
         <ViewNote
+          userID = {userID}
           notes = {notes}
           modalOpen = {viewNoteIsOpen}
           toggle = {toggleViewNoteModal}
@@ -154,6 +146,7 @@ const deleteNote = async () => {
 
         {editNoteIsOpen &&
         <EditNote
+          userID={userID}
           toggle = {toggleEditNoteModal}
           modalOpen = {editNoteIsOpen}
           clientId = {clientId}

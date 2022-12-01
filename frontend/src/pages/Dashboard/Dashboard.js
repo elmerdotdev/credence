@@ -59,8 +59,8 @@ const Dashboard = () => {
   }
 
   // On Event Click
-  const onConnectionClick = (element) => {
-    navigate('/connections')
+  const onConnectionClick = (connectionId) => {
+    navigate(`/connections/?connectionId=${connectionId}`)
   }
 
   //Fetch All Emails For Client
@@ -95,21 +95,36 @@ const Dashboard = () => {
                 <div className="dashboard-connection-content">
                   {connections.filter((connection) => connection.pinned).slice(0, 3).map((connection, i) => {
                     return (
-                      <PinnedConnections key={i} connection={connection} fetchEmails={fetchEmails} onToggle={() => onConnectionClick} />
+                      <PinnedConnections key={i} connection={connection} fetchEmails={fetchEmails} onToggle={onConnectionClick} />
                     )
                   })}
                 </div>
               </>
-            }          
+            }
+            {connections.filter((connection) => connection.pinned) &&
+              <>
+                <div className="dashboard-connection-header">
+                  <h3>Active Connections</h3>
+                  <Link to="/connections">View All</Link>
+                </div>
+                <div className="dashboard-connection-content">
+                  {connections.filter((connection) => connection.active).slice(0, 3).map((connection, i) => {
+                    return (
+                      <PinnedConnections key={i} connection={connection} fetchEmails={fetchEmails} onToggle={onConnectionClick} />
+                    )
+                  })}
+                </div>
+              </>
+            }
             <>
               <div className="dashboard-connection-header">
-                <h3>Most Recent</h3>
+                <h3>Recent Connections</h3>
                 <Link to="/connections">View All</Link>
               </div>
               <div className="dashboard-connection-content">
                 {connections.slice(0, 3).map((connection, i) => {
                   return (
-                    <PinnedConnections key={i} connection={connection} fetchEmails={fetchEmails} onToggle={() => onConnectionClick} />
+                    <PinnedConnections key={i} connection={connection} fetchEmails={fetchEmails} onToggle={onConnectionClick} />
                   )
                 })}
               </div>

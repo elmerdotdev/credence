@@ -6,7 +6,7 @@ import Select from 'react-select'
 
 Modal.setAppElement('body');
 
-const AddEvent = (props) => {
+const EditEvent = (props) => {
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
     const [start, setStart] = useState('')
@@ -20,6 +20,7 @@ const AddEvent = (props) => {
     const [clientId, setClientId] = useState('')
 
     // Destructure
+    const fetchEvent = props.fetchEvent
     const fetchClients = props.fetchClients
 
     const alertMsgs = {
@@ -30,6 +31,17 @@ const AddEvent = (props) => {
     }
     
     useEffect(() => {
+        setTitle(props.event.title)
+        setDescription(props.event.description)
+        setStart(props.event.start_date)
+        setStartDate(moment(props.event.start_date).format("MM/DD/YYYY"))
+        setStartTime(moment(props.event.start_date).format("hh:mm A"))
+        setEnd(props.event.end_date)
+        setEndDate(moment(props.event.end_date).format("MM/DD/YYYY"))
+        setEndTime(moment(props.event.end_date).format("hh:mm A"))
+        setType(props.event.type)
+        setClientId(props.event.client_id)
+
         const getClients = async () => {
             const data = await fetchClients()
 
@@ -42,11 +54,11 @@ const AddEvent = (props) => {
         }
 
         getClients()
-        setStartDate(props.onDateClick)
-    }, [ 
+    }, [
+        props.event,
         props.userId,
         props.modalOpen,
-        props.onDateClick,
+        fetchEvent,
         fetchClients
     ])
 
@@ -84,7 +96,8 @@ const AddEvent = (props) => {
             return false
         }
 
-        const eventToAdd = {
+        console.log({
+            id: props.event._id,
             title: title,
             description: description || '',
             start_date: start,
@@ -92,43 +105,35 @@ const AddEvent = (props) => {
             type: type,
             client_id: clientId || '',
             user_id: props.userId
-        }
-
-        addEventToDB(eventToAdd)
-    }
-
-    const addEventToDB = async (event) => {
-        console.log(event)
-        const res = await fetch(`${process.env.REACT_APP_API_URL}/api/activities`, {
-            method: 'POST',
-            headers: {
-                'Content-type': 'application/json'
-            },
-            body: JSON.stringify(event)
         })
 
-        const data = await res.json()
-
-        props.onAddState(data)
-        props.onToggle(false)
-        props.openNotification('Event added', true)
+        props.onEdit({
+            _id: props.event._id,
+            title: title,
+            description: description || '',
+            start_date: start,
+            end_date: end,
+            type: type,
+            client_id: clientId || '',
+            user_id: props.userId
+        })
     }
 
     return (
         <div>
             <Modal
                 isOpen={props.modalOpen}
-                onRequestClose={() => props.onToggle(false)}
-                className="credence-modal modal-event-add"
-                contentLabel="Add Event"
+                onRequestClose={props.onToggle}
+                className="credence-modal modal-event-edit"
+                contentLabel="Edit Event"
                 closeTimeoutMS={500}
             >
-                <div className="addEventForm">
-                    <h2>New Event</h2>
+                <div className="editEventForm">
+                    <h2>Edit Event</h2>
                     <form onSubmit={submitForm}>
                         <div className="input-wrapper">
                             <label htmlFor="title">Subject</label>
-                            <input id="title" type="text" value={title} onChange={e => setTitle(e.target.value)} required />
+                            <input id="title" type="text" defaultValue={title} onChange={e => setTitle(e.target.value)} required />
                         </div>
                         <div className="input-wrapper">
                             <label htmlFor="eventtype">Category</label>
@@ -143,11 +148,11 @@ const AddEvent = (props) => {
                         <div className="input-wrapper start-date-time">
                             <div className="input-date">
                                 <label htmlFor="startdate">Start Date</label>
-                                <Datetime timeFormat={false} initialValue={props.onDateClick || startDate} onChange={date => setStartDate(date)} />
+                                <Datetime timeFormat={false} initialValue={startDate} onChange={date => setStartDate(date)} />
                             </div>
                             <div className="input-time">
                                 <label htmlFor="starttime">Start Time</label>
-                                <Datetime dateFormat={false} value={startTime} onChange={date => setStartTime(date)} />
+                                <Datetime dateFormat={false} initialValue={startTime} onChange={date => setStartTime(date)} />
                             </div>
                         </div>
                         <div className="input-wrapper end-date-time">
@@ -157,20 +162,20 @@ const AddEvent = (props) => {
                             </div>
                             <div className="input-time">
                                 <label htmlFor="endtime">End Time</label>
-                                <Datetime dateFormat={false} value={endTime} onChange={date => setEndTime(date)} />
+                                <Datetime dateFormat={false} initialValue={endTime} onChange={date => setEndTime(date)} />
                             </div>
                         </div>
                         <div className="input-wrapper">
                             <label htmlFor="clientlist">Connection</label>
-                            <Select options={clients} isMulti="true" value={clientId || ''} onChange={e => setClientId(e) || ''} />
+                            <Select options={clients} isMulti="true" defaultValue={clientId || ''} onChange={e => setClientId(e) || ''} />
                         </div>
                         <div className="input-wrapper">
                             <label htmlFor="description">Description</label>
-                            <textarea id="description" value={description} onChange={e => setDescription(e.target.value)} />
+                            <textarea id="description" defaultValue={description} onChange={e => setDescription(e.target.value)} />
                         </div>
                         <div className="input-wrapper submit-btn-wrapper">
-                            <button type="button" className="btn btn-primary-reverse" onClick={() => props.onToggle(false)}>Cancel</button>
-                            <button type="submit" className="btn btn-primary">Save Event</button>
+                            <button type="button" className="btn btn-primary-reverse" onClick={props.onToggle}>Cancel</button>
+                            <button type="submit" className="btn btn-primary">Update Event</button>
                         </div>
                     </form>
                 </div>
@@ -179,4 +184,4 @@ const AddEvent = (props) => {
     )
 }
 
-export default AddEvent
+export default EditEvent

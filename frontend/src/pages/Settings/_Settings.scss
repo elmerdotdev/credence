@@ -14,9 +14,9 @@
             text-align: center;
         }
         .no-img-onprofile{
-            width: 148px;
-            height: 148px;
-            background-color: #9494947a ;
+            width: 215px;
+            height: 215px;
+            background-color: $color-dusty-gray;
             border-radius: 50% 50%;
             display: flex;
             justify-content: center;
@@ -25,27 +25,40 @@
                 @include fontSize(14)
             }
         }
-        .add-photo-area{
-            width: 148px;
-            height: 148px;
-            margin-right: auto;
-            margin-left: auto;
-            position: relative;
-            img[alt="user-img"]{
-                width: 148px;
-                height: 148px;
-                border-radius: 50% 50%;    
-            }
-        }
-        .choose-file-area{
-            margin-top: 20px;
+        //picture area
+        .choose-file-wrapper{
             display: flex;
-            justify-content: center;
-            input{
-               text-align: center;
-               @include fontSize(14);
-               width: 200px;
+            align-items: center;
+            gap: 5px;
+            flex-direction: column;
+            padding: 0.75rem 0;
+            position: relative;
+            .photo-wrapper{
+                width: 215px;
+                height: 215px;
+                background-color: $color-dusty-gray ;
+                border-radius: 50%;
+                position: absolute;
+                color: $color-regal-blue;
+                @include fontSize(25);
+                display: flex;
+                justify-content: center;
+                align-items: center;
             }
+           label[for="profile-user-photo"]{
+            color: $color-regal-blue;
+            width: 215px;
+            height: 215px;
+            transition: opacity 0.3s ease-in-out;
+            img{
+                object-fit: cover;
+                width: 100%;
+                height: 100%;
+                border: 1px solid $color-mystic;
+                border-radius: 50%;
+                transition: opacity 0.3s ease-in-out;
+            }
+           }
         }
         .input-area{
             width: 100%;
@@ -223,10 +236,7 @@
             justify-content: center;
             margin-bottom: 1rem;  
         }
-        .credence-tag{
-            display: flex;
-            justify-content: center;
-        }
+       
         @media screen and (min-width:$screen-desktop){
             .members-box{
                 grid-template-columns: repeat(4, 1fr);
@@ -309,9 +319,13 @@
     }
     .my-profile-box{
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
         align-items: center;
-        gap: 5px;
+        .number-display-box{
+            display: flex;
+            flex-grow: 1;
+            justify-content: space-between;
+        }
     }
     i.icon-connection:before,
     i.icon-calendar:before,
@@ -464,6 +478,9 @@
             margin-top: 0;
             color: $color-regal-blue;
         }
+        i::before{
+            margin-left: 0;
+        }
         h3{
             margin-bottom: 0;
             @include fontSize(20);
@@ -475,6 +492,10 @@
             margin-left: 42px;
             @include fontSize(14);
         }
+    }
+    i.icon-bell::before,
+    i.icon-theme::before{
+        margin-left: 0;
     }
     section.subscribe{
             background-color: $color-solitude;
@@ -541,6 +562,7 @@
         gap: 20px;
         h2{
             @include fontSize(36);
+            margin-top: 0;
             line-height: 44px;
         }
         .account-setting-box{
@@ -553,15 +575,33 @@
             grid-template-columns: 1fr 1fr 1fr 1fr;
             gap: 24px;
         }
-        img[alt="user-img"]{
-            width: 100px;
-            height: 100px;
-            margin-right: 0;
+        .section-profile-edit{
+            display: flex;
+            .my-profile-box{
+                width: 100%;
+                flex-direction: column;
+                justify-items: center;
+                gap: 5px;
+                img[alt="user-img"]{
+                    width: 100px;
+                    height: 100px;
+                    margin-right: 0;
+                }
+                .number-display-box{
+                    width: 100%;
+                }
+            }
+            @media screen and (min-width:1407px){
+                .my-profile-box{
+                    flex-direction: row;
+                    gap: 10px;
+                    .number-display-box{
+                        gap: 5px;
+                    }
+                }
+            }
         }
-        .my-profile-box{
-            margin-right: auto;
-            margin-left: auto;
-        }
+       
         section.section-profile-edit,
         section.section-passwordSecurity,
         section.section-subscription,
