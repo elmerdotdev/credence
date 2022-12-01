@@ -40,6 +40,11 @@
             font-size: 2rem;
         }
     }
+
+    .button-reset {
+        border-right: 1px solid $color-dusty-gray;
+        border-radius: 0;
+    }
 }
 
 .search-result {
@@ -119,4 +124,12 @@
 
 .header-search-qa {
     position: relative;
+}
+
+.search-filter-btns {
+    margin: 1rem;
+
+    .btn {
+        margin: 0 .5rem
+    }
 }

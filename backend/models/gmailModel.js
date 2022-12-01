@@ -21,11 +21,11 @@ const gmailSchema = new Schema({
     },
     emailTime: {
         type: String,
-        // required: true
+        required: true
     },
     user_id: {
         type: String,
-        // required: true
+        required: true
     },
     client_id: {
         type: String
@@ -34,7 +34,7 @@ const gmailSchema = new Schema({
         type: String
     }
 }, {
-    // timestamps: true
+    timestamps: true
 })
 
 module.exports = mongoose.model('Gmail', gmailSchema)

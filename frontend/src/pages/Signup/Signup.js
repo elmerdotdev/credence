@@ -3,7 +3,6 @@ import { useNavigate, Link  } from 'react-router-dom'
 import { useSignup } from './hooks/useSignup'
 //Icon & Logo
 import '../../fontello/css/credence.css';
-import logo from '../../images/logo.svg';
 import signupimage from '../../images/Register/signupimage.svg';
 
 
@@ -61,7 +60,8 @@ const Signup = () => {
     <div className="page-signup">
       <section className="page-signup-area">
         <Link to="/" ><i className='icon-close'></i></Link>
-        <h3><span>Create a</span><span><img src={logo} alt="credence logo"  className='credence-logo'/>Account</span></h3>
+        
+        <h3>Create Credence Account</h3>
 
         <div className="desktop-grid">
             <img src={signupimage} alt="signup-img" className='signup-img'/>
