@@ -13,7 +13,7 @@ import FeaturesCalendar from '../../../images/Home/features-calendar.png'
 import FeaturesConnection from '../../../images/Home/features-connection.png'
 import FeaturesNotes from '../../../images/Home/features-notes.png'
 import FeaturesEmail from '../../../images/Home/features-email.png'
-import AboutImage from '../../../images/Home/about-image.png'
+import AboutImage from '../../../images/Home/about-image.jpeg'
 import NewsletterImage from '../../../images/Home/newsletter-image.png'
 
 const Home = () => {
