@@ -99,7 +99,7 @@
             }
             .grid-box{
                 display: grid;
-                grid-template-columns:1.2fr 1fr;
+                grid-template-columns:1fr .8fr;
                 grid-template-rows: 1fr .25fr;
                 align-items: center;
                 .title-grid{
@@ -120,7 +120,7 @@
                     grid-row: 1 / -1;
                     margin: 0;
                     padding-right: 28px;
-                    width: 100%;
+                    width: 80%;
                     img{
                         height: auto;
                     }
