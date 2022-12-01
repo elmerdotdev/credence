@@ -317,6 +317,19 @@
         }
     }
 
+    #pricing {
+        background-color: $color-solitude;
+
+        h2 {
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .page-select-plan {
+            height: auto;
+        }
+    }
+
     #about {
         background-color: $color-white;
         
