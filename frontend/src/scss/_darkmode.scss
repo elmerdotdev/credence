@@ -267,6 +267,13 @@ body:not(.no-sidebar) {
             }
         }
 
+        .connection-detail-info {
+            .detail-info-industry span {
+                color: $color-white !important;
+                border-color: $color-white !important;
+            }
+        }
+
         .logoutModal .page-logout {
             background-color: $color-lighter-shark;
             color: $color-white;
