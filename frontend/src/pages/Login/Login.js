@@ -5,7 +5,6 @@ import { useLogin } from '../Signup/hooks/useLogin'
 
 //Icon & Logo
 import '../../fontello/css/credence.css';
-import logo from '../../images/logo.svg';
 import loginimage from'../../images/Register/loginimage.svg';
 
 const Login = () => {
@@ -46,6 +45,7 @@ const Login = () => {
       const loginDate = { _id: userID }  
       localStorage.clear()
       localStorage.setItem('user', JSON.stringify(loginDate))
+      window.dispatchEvent(new Event("storage"));
     }
     
 
@@ -75,7 +75,7 @@ const Login = () => {
       <section className="page-login-area">
         <Link to="/" ><i className='icon-close'></i></Link>
         
-        <h3><span>Sign into your</span><span><img src={logo} alt="credence-logo" className='credence-logo'/>Account</span></h3>
+        <h3>Sign into your Credence account</h3>
 
         <div className="desktop-grid">
           
@@ -107,11 +107,12 @@ const Login = () => {
               <input type="submit" value="Login" className="submit-login-btn btn btn-primary" />
             </form>
           
+            <div className="link-wrapper">
               <div className="fgt-pwd-box">
                 <Link className="forget-pw-link">Forgotten your password?</Link>
               </div>
-          
-            <p className="move-to-signup-link">Don't have an account? <Link to='/signup'>Sign up here</Link></p>
+              <p className="move-to-signup-link">Don't have an account? <Link to='/signup'>Sign up here</Link></p>
+            </div>
           </div>
         </div>
       </section>

@@ -5,8 +5,7 @@ import Aboutus from "./Aboutus"
 //image
 import ThePlaneteers from '../../images/Setting/ThePlaneteers.svg'
 
-const AppSettings = () => {
-  
+const AppSettings = ({ onDarkMode, darkModeToggle }) => {
     const [aboutusModalIsOpen, setAboutusModalIsOpen]= useState(false)
     const [subscmodalIsOpen, setSubscModalIsOpen] = useState(false)
     const [contactusmodalIsOpen, setContactusModalIsOpen] = useState(false)
@@ -21,8 +20,8 @@ const AppSettings = () => {
                         <h3>Theme</h3>
                     </div>
                     <p>Switch between light and dark mode</p>
-                    <label className="switch">
-                        <input type="checkbox" />
+                    <label className={`switch`}>
+                        <input type="checkbox" checked={onDarkMode} onChange={darkModeToggle} />
                         <span className="slider round"></span>
                     </label>
                 </section>
@@ -52,6 +51,7 @@ const AppSettings = () => {
                     </button>
                     <Modal  isOpen={aboutusModalIsOpen} 
                             className="aboutus-page-modal-modal"
+                            closeTimeoutMS={500}
                     >
                         <Aboutus    aboutusIsOpen={aboutusModalIsOpen} 
                                     onsetAboutusIsOpen={setAboutusModalIsOpen}
@@ -70,7 +70,10 @@ const AppSettings = () => {
                             Contact Us 
                             <i className='icon-arrow-right'></i>
                     </button>
-                    <Modal isOpen={contactusmodalIsOpen} className="contactus-modal-modal">
+                    <Modal
+                        isOpen={contactusmodalIsOpen} className="contactus-modal-modal"
+                        closeTimeoutMS={500}
+                    >
                         <div className="contactus-modal">
                             <h2>Contact Us</h2>
                             <img src={ThePlaneteers} alt="The planeteers" />
@@ -105,7 +108,10 @@ const AppSettings = () => {
                         className='btn btn-primary'>
                         Subscribe
                 </button>
-                <Modal isOpen={subscmodalIsOpen} className="subscribe-modal-premium">
+                <Modal
+                    isOpen={subscmodalIsOpen} className="subscribe-modal-premium"
+                    closeTimeoutMS={500}
+                >
                     <div className="subsc-modal">
                         <h2>Thank you for Subscribing!</h2>
                         <p>Now you subscribe our Premium Plan</p>

@@ -13,7 +13,7 @@ const PinnedConnections = ({ connection, onToggle, fetchEmails }) => {
         const today = moment(moment().valueOf())
         const emailDate = moment(res[res.length - 1].emailTime, 'x')
 
-        console.log(today.diff(emailDate, 'days'))
+        setDays(today.diff(emailDate, 'days'))
       }
     }
 
@@ -21,7 +21,7 @@ const PinnedConnections = ({ connection, onToggle, fetchEmails }) => {
   }, [connection, fetchEmails])
 
   return (
-        <div className="client-card">
+        <div className="client-card" onClick={() => onToggle(connection._id)}>
           <div className="connection-details">
               <div className="connection-details-photo">
                   <img src={connection.photo} alt={connection.firstname} />
@@ -32,7 +32,13 @@ const PinnedConnections = ({ connection, onToggle, fetchEmails }) => {
                   <p className="connection-company">{connection.company}</p>
               </div>
           </div>
-          <div className="connection-interaction">Last interaction: <strong>0 days ago</strong></div>
+          <div className="connection-interaction">
+            {days > 0 ?
+              <span>Last interaction: <strong>{days} days ago</strong></span>
+            :
+              <em>No previous interaction</em>
+            }
+          </div>
         </div>
   )
 }

@@ -80,10 +80,10 @@ const ConnectionDetail = ({connection, onEditBtn, onDeleteBtn, onPinBtn, changeA
               // isOpenNote = true
               // noteId = asdjfaskjdfsf
             />
-            <h3>Emails</h3>
+            <h3 onClick={gmailIntegration}>Emails</h3>
             <Emails 
               connection = {connection}
-              gmailIntegration = {gmailIntegration}
+              // gmailIntegration = {gmailIntegration}
               gmailUpdate = {gmailUpdate}
             />
           </div>

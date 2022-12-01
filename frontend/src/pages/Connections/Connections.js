@@ -89,6 +89,7 @@ const editConnection = async (inputConnObj) => {
   setConnections(res);
   console.log('finish edit');
   setShowEditModal(false);
+  setShowDetailModal(false);
   openNotification('Connection updated', true)
 };
 
@@ -132,6 +133,53 @@ const addConnection = async (newClient) => {
   setConnections(connections.filter((connection) => connection._id !== id));
   setShowDetailModal(false)
 };
+
+//delete all notes when user delete client
+const deleteNote = async () => {
+  const res = await fetch(`${process.env.REACT_APP_API_URL}/api/notes/${userID}`)
+  const data = await res.json()
+  
+  const myNotes = data.filter((note)=> note.client_id === connection._id)
+
+  myNotes.map(async (myNote) => {
+    const id = myNote._id;
+    await fetch(`${process.env.REACT_APP_API_URL}/api/notes/${id}`, {
+      method: 'DELETE',
+    });
+  })
+}
+
+//delete client name from activity array in Event when user delete client
+const deleteNameFromEvent = async () => {
+  const res = await fetch(`${process.env.REACT_APP_API_URL}/api/activities/${userID}`)
+  const data = await res.json()
+  data.map(async (nameEvent) => {
+    const nameList = nameEvent.client_id
+
+    for (let i = 0; 0 < nameList.length; i++){
+      if(nameList[i].value === connection._id && nameList.length === 1){
+        await fetch(`${process.env.REACT_APP_API_URL}/api/activities/${nameEvent._id}`,{
+          method: 'DELETE',
+        })
+        // console.log('deleted activity')
+      }else if(nameList[i].value === connection._id){
+        const nameArray = []
+        nameList.filter((oneName) => oneName.value === connection._id ? null: nameArray.push(oneName)); 
+          
+        const editCientName = async (client_id) => {
+          const res = await fetch(`${process.env.REACT_APP_API_URL}/api/activities/${nameEvent._id}`, {
+            method: 'PATCH',
+            headers: {'Content-type': 'application/json'},
+            body: JSON.stringify({client_id})
+          });
+            await res.json()
+        }
+        editCientName(nameArray)
+        // console.log('deleted only this client name')
+      }
+    }
+  })
+}
 
 // Pin Connection
 const pinConnection = async (e) => {
@@ -227,7 +275,7 @@ const gmailIntegration =  async () => {
 const gmailUpdate =  async () => {
   const res = await fetch(`${process.env.REACT_APP_API_URL}/api/gmails/${userID}`);
   console.log('gmail updated')
-  // const output = await res.json()
+  openNotification('Your gmail has been updated to the latest', true)
 
 } 
 
@@ -242,14 +290,12 @@ const openNotification = (message, success) => {
 
     <div className="clients-wrapper">
       <section className="connections-top-buttons">
-        <button className="btn btn-primary openModalBtn" onClick={() => setShowAddModalIsOpen(true)}>Add</button>
         <div className="connections-filter-buttons">
-          <Filter onPinFilter={pinFilter} onTimeFilter={timeFilter} onTimeReverseFilter={TimeReverseFilter} onAllFilter={allConnections} gmailupdate={gmailUpdate} />
+          <Filter onPinFilter={pinFilter} onTimeFilter={timeFilter} onTimeReverseFilter={TimeReverseFilter} onAllFilter={allConnections} gmailUpdate={gmailUpdate} />
         </div>
       </section>
       <section className="page-connections" >
       <h2>{connectionTitle}</h2>
-      <button className="btn btn-primary-reverse"onClick={gmailUpdate}>Update Gmail</button>
       <ModalComponent
         className="credence-modal modal-connection-detail"
         isOpen={showDetailModal}
@@ -259,7 +305,7 @@ const openNotification = (message, success) => {
         <ConnectionDetail 
         connection={connection} 
         onEditBtn={() => {setShowEditModal(true)}} 
-        onDeleteBtn={deleteConnection} 
+        onDeleteBtn={() => {deleteConnection() ;deleteNote(); deleteNameFromEvent()}}  
         changeActiveBtn={handleActiveCheckbox}
         onPinBtn={pinConnection}
         onClose={() => {setShowDetailModal(); navigate(`/connections`)}}

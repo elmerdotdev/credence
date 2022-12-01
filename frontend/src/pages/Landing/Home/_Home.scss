@@ -78,6 +78,10 @@
             path {
                 stroke-linecap: round;
                 stroke-width: 1px;
+
+                &.logo-letters {
+                    fill: #22252D;
+                }
                     
                 &.trace {
                     stroke-dashoffset: 0 !important;
@@ -313,7 +317,22 @@
         }
     }
 
+    #pricing {
+        background-color: $color-solitude;
+
+        h2 {
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .page-select-plan {
+            height: auto;
+        }
+    }
+
     #about {
+        background-color: $color-white;
+        
         .section-wrapper {
             display: flex;
             flex-direction: column;

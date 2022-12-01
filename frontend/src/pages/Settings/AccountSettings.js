@@ -109,20 +109,22 @@ const AccountSettings = () => {
             
                 { !myImg ? <div className="no-img-onprofile"><p>No image</p></div> : <img src={ myImg } alt="user-img" />}
             
-                <div className='connection-box'>
-                  <i className='icon-connection'></i>
-                  <p>{ myClients }</p>
-                  <p>Connections</p>
-                </div>
-                <div className="event-box">
-                  <i className='icon-calendar'></i>
-                  <p>{ myEvents }</p>
-                  <p>Events</p>
-                </div>
-                <div className="note-box">
-                  <i className='icon-note'></i>
-                  <p>{ myNotes }</p>
-                  <p>Notes</p>
+                <div className="number-display-box">
+                  <div className='connection-box'>
+                    <i className='icon-connection'></i>
+                    <p>{ myClients }</p>
+                    <p>Connections</p>
+                  </div>
+                  <div className="event-box">
+                    <i className='icon-calendar'></i>
+                    <p>{ myEvents }</p>
+                    <p>Events</p>
+                  </div>
+                  <div className="note-box">
+                    <i className='icon-note'></i>
+                    <p>{ myNotes }</p>
+                    <p>Notes</p>
+                  </div>
                 </div>
               </div>
                 <button className="edit-profile-btn btn btn-primary-reverse" 
@@ -131,6 +133,7 @@ const AccountSettings = () => {
                 </button>
                 <Modal  isOpen={editProfileModalIsOpen} 
                         className="edit-profile-modal-modal"
+                        closeTimeoutMS={500}
                 >
                   <EditProfile  onEditProfile={editProfileModalIsOpen} 
                                 OnsetEditProfile={setEditProfileModalIsOpen}
@@ -150,6 +153,7 @@ const AccountSettings = () => {
                 </button>
                 <Modal  isOpen={manageModalIsOpen}
                         className="manage-modal-modal"
+                        closeTimeoutMS={500}
                 >
                   <div className="manage-modal">
                     <h2>Password & Security</h2>
@@ -168,12 +172,16 @@ const AccountSettings = () => {
                     <i className='icon-subscription'></i>
                     <h3>Subscription</h3>
                 </div>
-                <p>You are currenty on our <span>30-day trial</span>.Go Premium to enjoy our most-loved premium features.</p>
+                <p>You are currenty on our <span>30-day trial</span>. Go Premium to enjoy our most-loved premium features.</p>
                 <button className='go-premiun-btn btn btn-primary' 
                         onClick={() => setSelectPlanModalIsOpen(true)}>
                         Go Premium
                 </button>
-                <Modal isOpen={selectPlanModalIsOpen}>
+                <Modal
+                  isOpen={selectPlanModalIsOpen}
+                  className="credence-modal select-plan-modal"
+                  closeTimeoutMS={500}
+                >
                     <SelectPlan selectPlanIsOpen={selectPlanModalIsOpen} 
                                 onsetselectPlanIsOpen={setSelectPlanModalIsOpen}
                     />

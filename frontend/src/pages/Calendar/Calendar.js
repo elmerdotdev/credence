@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import interactionPlugin from '@fullcalendar/interaction'
@@ -33,7 +33,7 @@ const Calendar = () => {
   const [modalEditOpen, setModalEditOpen] = useState(false)
   const [modalViewOpen, setModalViewOpen] = useState(false)
 
-  const calendarRef = React.useRef()
+  const calendarRef = useRef()
 
   const userID = JSON.parse(localStorage.getItem('user'))._id
   const navigate = useNavigate()
@@ -80,8 +80,9 @@ const Calendar = () => {
       body: JSON.stringify(event)
     })
 
-    setEvents(events.filter(currEvent => currEvent._id !== event._id))
-    setEvents(current => [...current, event])
+    const res = await fetchActivities()
+    setEvents(res)
+
     setModalEditOpen(false)
     openNotification('Event updated', true)
   }
