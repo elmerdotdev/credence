@@ -18,8 +18,6 @@ const IndustryType = () => {
     const [manufacturing, setManufacturing] = useState('')
     const [media, setMedia] = useState('')
 
-    const userID = JSON.parse(localStorage.getItem('user'))._id
-
 
     useEffect(() => {
       const getClients = async () => {
@@ -46,7 +44,7 @@ const IndustryType = () => {
   }, [])
 
     const fetchClients = async () => {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/clients/${userID}`)
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/clients/63645e4850049bfd1e89637a`)
       const data = await response.json()
 
       if (response.ok) {
