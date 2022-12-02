@@ -1,7 +1,6 @@
 import ActiveClients from './components/ActiveClients'
 import IndustryType from './components/IndustryType'
 import EventsBreakdown from './components/EventsBreakdown'
-import MostInteracted from './components/MostInteracted'
 
 const Reports = () => {
 
@@ -17,10 +16,6 @@ const Reports = () => {
             </div>
             <div className="events-breakdown">
                 <EventsBreakdown />
-            </div>
-
-            <div className="most-interacted">
-                <MostInteracted />
             </div>
         </div>
     )
