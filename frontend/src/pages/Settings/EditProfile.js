@@ -13,8 +13,7 @@ const EditProfile = (props) => {
     const [lastName, setLastName] = useState('')
     const [email, setEmail] = useState('')
     const [photo, setPhoto] = useState('')
-    const [previewImage, setPreviewImage] = useState('');
-    
+
 
     //get userID from Localstorage(user ID)
     const userID = JSON.parse(localStorage.getItem('user'))._id
@@ -92,7 +91,6 @@ const EditProfile = (props) => {
         setPhoto(newphoto)
     }
     
-   console.log(photo)
 
   return (
     <div className='editProfile-modal'>
