@@ -4,6 +4,7 @@ import { useNavigate, useSearchParams, Link } from 'react-router-dom';
 import QuickAdd from '../../../components/QuickAdd/QuickAdd'
 
 const HeaderSearch = () => {
+    const userid = JSON.parse(localStorage.getItem('user'))._id
     const [keyword, setKeyword ]= useState('');
     const [events, setEvents] = useState([]);
     const [connections, setConnections] = useState([]);
@@ -20,7 +21,7 @@ const HeaderSearch = () => {
     const [searchEmailParams] = useState(["subject", "snippet"]);
     const [sortedAllResults, setSortedAllResults] = useState([]);
     const [currentAllResults, setCurrentAllResults] = useState([]);
-    const [userID, setUserID] = useState('')
+    const [userID, setUserID] = useState(userid)
 
     const navigate = useNavigate();
 
@@ -37,7 +38,7 @@ const HeaderSearch = () => {
           };
       
           getConnections();
-        }, []);
+        }, [userID]);
 
 
     useEffect(() => {

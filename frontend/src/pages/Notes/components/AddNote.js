@@ -1,12 +1,15 @@
 import React, { useState } from 'react'
 
 const AddNote = ({ onAdd, connection, openNotification }) => {
+    const userID = JSON.parse(localStorage.getItem('user'))._id
+    
     const [title, setTitle] = useState('')
     const [content, setContent] = useState('')
     const [client_id, setClientId] = useState(connection._id)
-    const [user_id, setUserId] = useState('63645e4850049bfd1e89637a')
+    const [user_id, setUserId] = useState(userID)
     const [activity_id, setActivityId] = useState('')
 
+  
 
     const onSubmit = (e) => {
         e.preventDefault()
