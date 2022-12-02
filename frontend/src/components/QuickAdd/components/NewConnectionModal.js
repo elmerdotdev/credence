@@ -3,6 +3,7 @@ import ConnectionAddImage from '../../../images/Connection/connection-add-photo.
 import Modal from 'react-modal'
 
 const NewConnectionModal = ({ onAdd, onOpen, onClose, notification }) => {
+    const userID = JSON.parse(localStorage.getItem('user'))._id
 
     const [firstname, setFirstname] = useState('');
     const [lastname, setLastname] = useState('');
@@ -23,7 +24,7 @@ const NewConnectionModal = ({ onAdd, onOpen, onClose, notification }) => {
         { text: "Manufacturing", select: false },
         { text: "Media", select: false }
     ]);
-    const [user_id, setUserId] = useState('63645e4850049bfd1e89637a');
+    const [user_id, setUserId] = useState(userID);
     const [pinned, setPinned] = useState(false);
 
     const checkboxes = [

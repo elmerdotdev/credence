@@ -13,7 +13,7 @@ const EditProfile = (props) => {
     const [lastName, setLastName] = useState('')
     const [email, setEmail] = useState('')
     const [photo, setPhoto] = useState('')
-    const [photoClicked, setPhotoClicked ] = useState(false)
+    const [image, setImage] = useState('');
 
     //get userID from Localstorage(user ID)
     const userID = JSON.parse(localStorage.getItem('user'))._id
@@ -79,15 +79,35 @@ const EditProfile = (props) => {
     const handleSubmit = async (e) => {
         e.preventDefault()
 
-        await editing(firstName, lastName, email, photo)
-        console.log(`New Profile:` + firstName, lastName, email, photo)
+        if (!image) {
+            editing(firstName, lastName, email, photo)
+        } else {
+            const data = new FormData()
+
+            data.append("file", image)
+            data.append("upload_preset", "credence-cloudinary-upload")
+            data.append("cloud_name","dp53wf7gb")
+
+            fetch("https://api.cloudinary.com/v1_1/dp53wf7gb/image/upload",{
+                method:"post",
+                body: data
+            })
+            .then(resp => resp.json())
+            .then(data => {
+                const photoURL = data.url
+                editing(firstName, lastName, email, photoURL)
+            })
+            .catch(err => console.log(err))
+        }
     }
 
-    //picture upload
-    const photoUpdate = (e) => {
-        const newphoto = URL.createObjectURL(e.target.files[0])
-        setPhoto(newphoto)
-        setPhotoClicked(true)
+    const processImage = async (image) => {
+        const reader = new FileReader()
+        reader.addEventListener('load', (event) => {
+            setImage(image)
+            setPhoto(event.target.result)
+        });
+        reader.readAsDataURL(image);
     }
 
   return (
@@ -96,16 +116,9 @@ const EditProfile = (props) => {
         <form onSubmit={handleSubmit}>
             <div className="choose-file-area">
                 <div className="choose-file-wrapper">
-                    
-                    <input  type="file"
-                            id="profile-user-photo"
-                            className="visually-hidden"
-                            accept="image/*"
-                            onChange={photoUpdate}
-                    />
+                    <input id="profile-user-photo" type="file" onChange= {(e)=> processImage(e.target.files[0])} className="visually-hidden" />
                     <label htmlFor="profile-user-photo">
-                        <div className={ photoClicked === false ? 'photo-wrapper' : 'visually-hidden'  }>Click Here</div>
-                       { !photo ? <img src={StaticAddImage} alt="no-user-img"/> : <img src={ photo } alt="user-img" />}
+                        <img src={photo} alt="User" />
                     </label>
                 </div>
             </div>
