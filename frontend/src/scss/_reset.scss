@@ -23,14 +23,14 @@ body {
     margin: 0;
     padding: 0;
     background: $color-white-lilac;
-    background-size: 200vw 200vh;
-    background-position: 100% 100%;
     font-family: $font;
     @include fontSize(16);
     transition: background-position .6s ease-in-out;
 
     @media screen and (min-width: $screen-desktop) {
         background: linear-gradient(to bottom right, $color-shark 50%, $color-white-lilac 50%);
+        background-size: 200vw 200vh;
+        background-position: 100% 100%;
 
         &:not(.no-sidebar) {
             overflow-y: hidden;
