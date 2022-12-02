@@ -346,7 +346,7 @@ const openNotification = (message, success) => {
         />
         ) : (
           <p className="error-message">
-            <button>Add Your First Connection</button>
+            <button className="btn btn-primary" onClick={() => setShowAddModalIsOpen(true)}>Add Your First Connection</button>
           </p>
         )}
         </section>

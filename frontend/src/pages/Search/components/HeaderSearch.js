@@ -4,6 +4,7 @@ import { useNavigate, useSearchParams, Link } from 'react-router-dom';
 import QuickAdd from '../../../components/QuickAdd/QuickAdd'
 
 const HeaderSearch = () => {
+    const userid = JSON.parse(localStorage.getItem('user'))._id
     const [keyword, setKeyword ]= useState('');
     const [events, setEvents] = useState([]);
     const [connections, setConnections] = useState([]);
@@ -20,7 +21,8 @@ const HeaderSearch = () => {
     const [searchEmailParams] = useState(["subject", "snippet"]);
     const [sortedAllResults, setSortedAllResults] = useState([]);
     const [currentAllResults, setCurrentAllResults] = useState([]);
-    const [userID, setUserID] = useState('')
+    const [activeBtn, setActiveBtn] = useState('all')
+    const [userID, setUserID] = useState(userid)
 
     const navigate = useNavigate();
 
@@ -37,7 +39,7 @@ const HeaderSearch = () => {
           };
       
           getConnections();
-        }, []);
+        }, [userID]);
 
 
     useEffect(() => {
@@ -127,7 +129,7 @@ const HeaderSearch = () => {
 
     const search = (queryStr) => {
         if (queryStr === "") {
-            setFilteredConnections([]);setFilteredEvents([]); setFilteredNotes([]); setFilteredEmails([]);setSortedAllResults([]);
+            setFilteredConnections([]);setFilteredEvents([]); setFilteredNotes([]); setFilteredEmails([]);setSortedAllResults([]); setActiveBtn('all')
         }else{
             let filteredConn = connections.filter((item) => {
                 return searchConnParams.some((searchConnParam) => {
@@ -198,26 +200,31 @@ const HeaderSearch = () => {
        //event filter
        const EventSearchFilter = () =>  {
         setCurrentAllResults(filteredEvents)
+        setActiveBtn('event')
     }
 
         //connecion filter
         const ConnectionSearchFilter = () =>  {
         setCurrentAllResults(filteredConnections)
+        setActiveBtn('connection')
         }
 
         //note filter
         const NoteSearchFilter = () =>  {
         setCurrentAllResults(filteredNotes)
+        setActiveBtn('note')
         }
 
         //email filter
         const EmailSearchFilter = () =>  {
         setCurrentAllResults(filteredEmails)
+        setActiveBtn('email')
         }
  
         //all filter
         const AllSearchFilter = () =>  {
         setCurrentAllResults(sortedAllResults)
+        setActiveBtn('all')
         }
        
     
@@ -225,13 +232,13 @@ const HeaderSearch = () => {
     return (
         <div className="header-search-qa">
             <form className="header-search-form" autoComplete="off">
-                <input id="header-search-input" type="text" placeholder="Search" value={keyword} onChange={e => {setKeyword(e.target.value); search(e.target.value)}} />
+                <input id="header-search-input" type="text" placeholder="Search" value={keyword} onChange={e => {setKeyword(e.target.value); search(e.target.value); setActiveBtn('all')}} />
                 <button type="submit">
                     <i className="icon-search"></i>
                 </button>
             </form>
           
-            <SearchResults filteredConnections={filteredConnections} filteredEvents={filteredEvents}  filteredNotes={filteredNotes} filteredEmails={filteredEmails} modalOpen={modalViewOpen} onToggleEvent= {toggleEvent} onToggleConn = {toggleConnDetail} onToggleNote = {toggleNoteDetail} currentAllResults={currentAllResults} EventSearchFilter={EventSearchFilter} ConnectionSearchFilter={ConnectionSearchFilter} NoteSearchFilter={NoteSearchFilter} EmailSearchFilter={EmailSearchFilter} AllSearchFilter={AllSearchFilter}/>
+            <SearchResults filteredConnections={filteredConnections} filteredEvents={filteredEvents}  filteredNotes={filteredNotes} filteredEmails={filteredEmails} modalOpen={modalViewOpen} onToggleEvent= {toggleEvent} onToggleConn = {toggleConnDetail} onToggleNote = {toggleNoteDetail} currentAllResults={currentAllResults} EventSearchFilter={EventSearchFilter} ConnectionSearchFilter={ConnectionSearchFilter} NoteSearchFilter={NoteSearchFilter} EmailSearchFilter={EmailSearchFilter} AllSearchFilter={AllSearchFilter} activeBtn={activeBtn}/>
 
             <QuickAdd />
         </div>

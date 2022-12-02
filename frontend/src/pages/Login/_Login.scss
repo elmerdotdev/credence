@@ -41,8 +41,7 @@
     }
     input[for="password"]{
         width: 100%;
-        background-color: $color-white;
-        
+        background-color: $color-white; 
         border: none;
     }
     .password-area{
@@ -74,7 +73,7 @@
         border-bottom: 1px solid $color-regal-blue;
     }
     .fgt-pwd-box{
-        margin-top: 18px;
+        margin-top: 23.68px;
         text-align: right;
     }
     .move-to-signup-link,
@@ -97,10 +96,10 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        padding: 109px 35px;
+        padding: 106.116px 35px;
         height: 100vh;
         .page-login-area{
-            padding: 26px 53px 24px 53px;
+            padding: 26px 53px 47.21px 53px;
             border-radius: 24px;
             max-width: 1118px;
             max-height: 720px;
@@ -164,17 +163,11 @@
         .link-wrapper{
             display: flex;
             flex-direction: column;
-            // flex-wrap: wrap;
             justify-content: space-between;
             height: 100px;
-            .fgt-pwd-box{
-                // margin:25px 0;
-            }
             p{
                 margin:20px 0;
             }
         }
-
-        
     }
 }
