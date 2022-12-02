@@ -14,7 +14,6 @@
         line-height: 32px;
         color: #000000;
         margin: 36px auto 0 auto;
-        // display: flex;
         justify-content: center;
         text-align: center;
         align-items: center;
@@ -47,7 +46,7 @@
         background-color: $color-white;
         border: none;
         border-bottom: 1px solid $color-gray;
-        margin-bottom: 32px;
+        margin-bottom: 22px;
         @include fontSize(16);
         line-height: 20px;
         font-weight: 400;
@@ -64,7 +63,7 @@
     .password-area{
         display: flex;
         border-bottom: 1px solid $color-boulder; 
-        margin-bottom: 32px;
+        margin-bottom: 22px;
         height: 23px;
         align-items: center;
     }
@@ -92,9 +91,8 @@
         padding: 109px 35px;
         height: 100vh;
         .page-signup-area{
-            padding: 26px 53px 51px 53px;
+            padding: 26px 53px 41.52px 53px;
             border-radius: 24px;
-            // width: 80%;
             box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.25);
             background-color: $color-white-lilac;
             max-width: 1118px;
@@ -126,7 +124,7 @@
             display: grid;
             align-items: center;
             gap: 100px;
-            grid-template-columns: 1.3fr 1fr;
+            grid-template-columns: 1.3fr 1.065fr;
             margin-top: 52px;
             width: 100%;
         }
@@ -140,24 +138,21 @@
         input[for="lastname"],
         input[for="email"]{
             background-color:$color-white-lilac;
-            height: 34.5px;
+            height: 34px;
         }
         input[for="password"]{
             background-color:$color-white-lilac;
-            height: 33.5px;
+            height: 33px;
         }
         .password-area{
-            height: 34.5px;
+            height: 34px;
         }
         .icon-hide,
         .icon-show{
             @include fontSize(26);
         }
         button.submit-signup-btn.btn.btn-primary{
-            margin: 32px 0 0 0;
+            margin: 28px 0 0 0;
         }
     }
-
-
-
 }
