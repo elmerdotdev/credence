@@ -73,15 +73,6 @@ const Dashboard = () => {
 
   return (
     <section className="page-dashboard">
-      <ul className="dashboard-tabs">
-        <li>
-          <button>Connection</button>
-        </li>
-        <li>
-          <button>Upcoming</button>
-        </li>
-      </ul>
-
       <div className="dashboard-wrapper">
         <div className="dashboard-connection">
           <h2>Connections</h2>
