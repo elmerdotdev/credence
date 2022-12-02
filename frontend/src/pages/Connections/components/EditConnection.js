@@ -2,6 +2,8 @@ import { useState } from 'react';
 import ConnectionAddImage from '../../../images/Connection/connection-add-photo.svg';
 
 const EditConnection = ({ onEdit, connection, onClose }) => {
+
+  const userID = JSON.parse(localStorage.getItem('user'))._id
   const [firstname, setFirstname] = useState(connection.firstname);
   const [lastname, setLastname] = useState(connection.lastname);
   const [image, setImage] = useState('');
@@ -21,7 +23,7 @@ const EditConnection = ({ onEdit, connection, onClose }) => {
     { text: "Manufacturing", select: false },
     { text: "Media", select: false }
   ]);
-  const [user_id, setUserId] = useState('63645e4850049bfd1e89637a');
+  const [user_id, setUserId] = useState(userID);
 
   const checkboxes = [
     { text: "Technology" },
@@ -33,6 +35,7 @@ const EditConnection = ({ onEdit, connection, onClose }) => {
     { text: "Media" }
   ];
 
+ 
 
   const onSubmit = (e) => {
     e.preventDefault();
