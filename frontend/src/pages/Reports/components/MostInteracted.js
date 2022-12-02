@@ -12,41 +12,43 @@ ChartJS.register(
   );
 
 const MostInteracted = () => {
+    const [clients, setClients] = useState('')
     const [notes, setNotes] = useState('')
     const [events, setEvents] = useState('')
-    const [dateCreated, setDateCreated] = useState('')
-    const [phone, setPhone] = useState('')
+    const [clientIds, setClientIds] = useState('')
+
+    const userID = JSON.parse(localStorage.getItem('user'))._id
+
 
     useEffect(() => {
+      // const getClients = async () => {
+      //     const clients = await fetchClients();
 
+      //     setClients(clients.map((client) => {return client.firstname + " " + client.lastname}));
+      //     setClientIds(clients.map((client) => {return client._id}));
+      // }
 
-        const getNotes = async () => {
-            const notes = await fetchNotes();
-            // const notesByClient = notes.reduce((map, val) => {
-            //     if(!map[val.client_id]) {
-            //         map[val.client_id] = [];
-            //     }
-            //     map[val.client_id].push(val.client_id);
-            //     return map
-            // })
-            const notesByClient = notes.map()
-            setNotes(notes);
-            console.log(notesByClient)
-        }
+      const getNotes = async() => {
+        const notes = await fetchNotes();
 
-        const getEvents = async () => {
-            const events = await fetchEvents();
-            setEvents(events);
-            console.log(events);
-        }
+        setNotes(notes);
+      }
 
-        getNotes();
-        getEvents();
-    }, [])
+      getNotes();
+      // getClients();
+  }, [])
 
+    // const fetchClients = async () => {
+    //   const response = await fetch(`${process.env.REACT_APP_API_URL}/api/clients/${userID}`)
+    //   const data = await response.json()
+
+    //   if (response.ok) {
+    //       return data
+    //   }
+    // }
 
     const fetchNotes = async () => {
-        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/notes/63645e4850049bfd1e89637a`)
+        const response = await fetch (`${process.env.REACT_APP_API_URL}/api/notes/${userID}`)
         const data = await response.json()
 
         if (response.ok) {
@@ -54,44 +56,46 @@ const MostInteracted = () => {
         }
     }
 
-    const fetchEvents = async () => {
-        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/activities/63645e4850049bfd1e89637a`)
-        const data = await response.json()
-
-        if (response.ok) {
-            return data
-        }
-    }
-
-    const xArray = dateCreated;
-    const yArray = phone - 1000;
-    const rArray = ["5", "6", "7", "9", "5", "5", "7", "10", "4", "3", "5", "6", "7", "9", "5", "5", "7", "10", "4", "3"]
-    const chartData = [];
-
-    // xArray.forEach(function(e, i) {
-    //     chartData.push({
-    //         x: parseFloat(e),
-    //         y: parseFloat(yArray[i]),
-    //         r: parseFloat(rArray[i]),
-    //     });
-    // });
-
-    const data = {
-        datasets: [{
-          label: 'First Dataset',
-          data: chartData,
-          backgroundColor: 'rgb(255, 99, 132)'
-        }]
-      };
+    console.log(notes);
 
     const options = {
+        responsive: true,
         plugins: {
-            legend: {
-                display: false,
-            }
-        }
-    }
-
+          legend: {
+            display: false,
+          },
+          tooltip: {
+            yAlign: 'bottom'
+          }
+        },
+        scales: {
+            x: {
+                stacked: true,
+                // ticks: {
+                //     display: false,
+                // },
+            },
+            y: {
+                stacked: true,
+            },
+        },
+      };
+            
+    const data = {
+        labels: ['client 1', 'client 2', 'client 3', 'client 4'],
+        datasets: [
+          {
+            label: 'Notes',
+            data: [5,7,3,4,2,6,7],
+            backgroundColor:"#88B2D8",
+          },
+          {
+            label: 'Events',
+            data: [5, 7, 4, 7, 8, 2, 4],
+            backgroundColor: "#9CCC89"
+          },
+        ],
+      };
 
     return (
         <div>
