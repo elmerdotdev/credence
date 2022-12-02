@@ -37,7 +37,7 @@ const HeaderSearch = () => {
           };
       
           getConnections();
-        }, []);
+        }, [userID]);
 
 
     useEffect(() => {
