@@ -1,3 +1,10 @@
-.page-pricing {
-    font-size: 1rem;
+.page-home #pricing {
+    // font-size: 1rem;
+    background-color: $color-white;
+
+    .section-wrapper{
+        h2{
+            text-align: center;
+        }
+    }
 }
