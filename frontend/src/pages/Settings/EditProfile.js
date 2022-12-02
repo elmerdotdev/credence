@@ -13,7 +13,11 @@ const EditProfile = (props) => {
     const [lastName, setLastName] = useState('')
     const [email, setEmail] = useState('')
     const [photo, setPhoto] = useState('')
+<<<<<<< HEAD
 
+=======
+    const [image, setImage] = useState('');
+>>>>>>> 751bde8e3bdd5ca5cbf385ad46704bb80919d614
 
     //get userID from Localstorage(user ID)
     const userID = JSON.parse(localStorage.getItem('user'))._id
@@ -80,15 +84,44 @@ const EditProfile = (props) => {
     const handleSubmit = async (e) => {
         e.preventDefault()
 
-        await editing(firstName, lastName, email, photo)
-        console.log(`New Profile:` + firstName, lastName, email, photo)
+        if (!image) {
+            editing(firstName, lastName, email, photo)
+        } else {
+            const data = new FormData()
+
+            data.append("file", image)
+            data.append("upload_preset", "credence-cloudinary-upload")
+            data.append("cloud_name","dp53wf7gb")
+
+            fetch("https://api.cloudinary.com/v1_1/dp53wf7gb/image/upload",{
+                method:"post",
+                body: data
+            })
+            .then(resp => resp.json())
+            .then(data => {
+                const photoURL = data.url
+                editing(firstName, lastName, email, photoURL)
+            })
+            .catch(err => console.log(err))
+        }
     }
+<<<<<<< HEAD
     
     //picture upload
     //Dear Elmer: Here is the code to display image I choose(It doesn't work ㅠㅠㅠ).Thank you so much:-)
     const photoUpdate = (e) => {
         const newphoto = URL.createObjectURL(e.target.files[0])
         setPhoto(newphoto)
+=======
+
+    const processImage = async (image) => {
+        const reader = new FileReader()
+        reader.addEventListener('load', (event) => {
+            setImage(image)
+            setPhoto(event.target.result)
+        });
+        reader.readAsDataURL(image);
+>>>>>>> 751bde8e3bdd5ca5cbf385ad46704bb80919d614
     }
     
 
@@ -98,15 +131,13 @@ const EditProfile = (props) => {
         <form onSubmit={handleSubmit}>
             <div className="choose-file-area">
                 <div className="choose-file-wrapper">
-                    
-                    <input  type="file"
-                            id="profile-user-photo"
-                            className="visually-hidden"
-                            accept="image/*"
-                            onChange={photoUpdate}
-                    />
+                    <input id="profile-user-photo" type="file" onChange= {(e)=> processImage(e.target.files[0])} className="visually-hidden" />
                     <label htmlFor="profile-user-photo">
+<<<<<<< HEAD
                        { !photo ? <img src={StaticAddImage} alt="no-user-img"/> : <img src={ photo } alt="user-img" />}
+=======
+                        <img src={photo} alt="User" />
+>>>>>>> 751bde8e3bdd5ca5cbf385ad46704bb80919d614
                     </label>
                 </div>
             </div>
