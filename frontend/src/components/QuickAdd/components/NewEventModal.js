@@ -40,9 +40,9 @@ const NewEventModal = ({ onAdd, onOpen, onClose, fetchClients, notification, use
     }, [fetchClients])
 
     useEffect(() => {
-        setStart(moment(startDate).tz("America/Vancouver").format("YYYY-MM-DD") + " " + moment(startTime).tz("America/Vancouver").format("HH:mm:ss"))
+        setStart(moment(moment(startDate).format("YYYY-MM-DD") + " " + moment(startTime).format("HH:mm:ss")).utc())
 
-        setEnd(moment(endDate).tz("America/Vancouver").format("YYYY-MM-DD") + " " + moment(endTime).tz("America/Vancouver").format("HH:mm:ss"))
+        setEnd(moment(moment(endDate).format("YYYY-MM-DD") + " " + moment(endTime).format("HH:mm:ss")).utc())
     }, [
         startDate,
         startTime,

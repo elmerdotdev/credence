@@ -134,6 +134,53 @@ const addConnection = async (newClient) => {
   setShowDetailModal(false)
 };
 
+//delete all notes when user delete client
+const deleteNote = async () => {
+  const res = await fetch(`${process.env.REACT_APP_API_URL}/api/notes/${userID}`)
+  const data = await res.json()
+  
+  const myNotes = data.filter((note)=> note.client_id === connection._id)
+
+  myNotes.map(async (myNote) => {
+    const id = myNote._id;
+    await fetch(`${process.env.REACT_APP_API_URL}/api/notes/${id}`, {
+      method: 'DELETE',
+    });
+  })
+}
+
+//delete client name from activity array in Event when user delete client
+const deleteNameFromEvent = async () => {
+  const res = await fetch(`${process.env.REACT_APP_API_URL}/api/activities/${userID}`)
+  const data = await res.json()
+  data.map(async (nameEvent) => {
+    const nameList = nameEvent.client_id
+
+    for (let i = 0; 0 < nameList.length; i++){
+      if(nameList[i].value === connection._id && nameList.length === 1){
+        await fetch(`${process.env.REACT_APP_API_URL}/api/activities/${nameEvent._id}`,{
+          method: 'DELETE',
+        })
+        // console.log('deleted activity')
+      }else if(nameList[i].value === connection._id){
+        const nameArray = []
+        nameList.filter((oneName) => oneName.value === connection._id ? null: nameArray.push(oneName)); 
+          
+        const editCientName = async (client_id) => {
+          const res = await fetch(`${process.env.REACT_APP_API_URL}/api/activities/${nameEvent._id}`, {
+            method: 'PATCH',
+            headers: {'Content-type': 'application/json'},
+            body: JSON.stringify({client_id})
+          });
+            await res.json()
+        }
+        editCientName(nameArray)
+        // console.log('deleted only this client name')
+      }
+    }
+  })
+}
+
 // Pin Connection
 const pinConnection = async (e) => {
   const id = connection._id
@@ -258,7 +305,7 @@ const openNotification = (message, success) => {
         <ConnectionDetail 
         connection={connection} 
         onEditBtn={() => {setShowEditModal(true)}} 
-        onDeleteBtn={deleteConnection} 
+        onDeleteBtn={() => {deleteConnection() ;deleteNote(); deleteNameFromEvent()}}  
         changeActiveBtn={handleActiveCheckbox}
         onPinBtn={pinConnection}
         onClose={() => {setShowDetailModal(); navigate(`/connections`)}}
@@ -299,7 +346,7 @@ const openNotification = (message, success) => {
         />
         ) : (
           <p className="error-message">
-            <button>Add Your First Connection</button>
+            <button className="btn btn-primary" onClick={() => setShowAddModalIsOpen(true)}>Add Your First Connection</button>
           </p>
         )}
         </section>

@@ -2,7 +2,6 @@ import React, {useEffect} from 'react'
 import { Link } from 'react-router-dom'
 //Icon & Logo
 import '../../fontello/css/credence.css'
-import logo from '../../images/logo.svg'
 import signupimage from '../../images/Register/signupimage.svg'
 
 const SuccessSignup = () => {
@@ -27,7 +26,7 @@ const SuccessSignup = () => {
           </div>
       
           <h3>Sign Up Completed!</h3>
-          <p className='welcome-credence'><span>Welcome to</span><img src={logo} alt="credence-logo" className='credence-logo'/> !</p>
+          <p className='welcome-credence'>Welcome to Credence!</p>
           <p>Thank you for taking the time to sign up. Keep up the good work!</p>
           
           <img src={signupimage} alt="signup-img" className='signup-success-image'/>

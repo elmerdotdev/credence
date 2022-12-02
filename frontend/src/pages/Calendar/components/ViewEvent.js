@@ -47,7 +47,7 @@ const ViewEvent = (props) => {
                         <tbody>
                             <tr>
                                 <th>Category</th>
-                                <td>{event.type}</td>
+                                <td className="viewEventType">{event.type}</td>
                             </tr>
                             <tr>
                                 <th>Date</th>
