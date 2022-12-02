@@ -80,7 +80,7 @@ const AppSettings = ({ onDarkMode, darkModeToggle }) => {
                             <h3>Langara College</h3>
                             <p>Web and Mobile App Design and Development</p>
                             <p>100 West 49th Avenue, Vancouver, BC Canada V5Y 2Z6</p>
-                            <p>ThePlaneteers.com</p>
+                            <p>credence.crm.app@gmail.com</p>
                             <button className="contactus-btn btn btn-primary-reverse" 
                                     onClick={() => setContactusModalIsOpen(false)}>
                                     Close

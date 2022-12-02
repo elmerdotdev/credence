@@ -14,6 +14,7 @@ const EditProfile = (props) => {
     const [email, setEmail] = useState('')
     const [photo, setPhoto] = useState('')
     const [previewImage, setPreviewImage] = useState('');
+    
 
     //get userID from Localstorage(user ID)
     const userID = JSON.parse(localStorage.getItem('user'))._id
@@ -77,22 +78,21 @@ const EditProfile = (props) => {
     
     //Edit submit function
     //Dear Elmer: Here is the code to upload editing things in DB (the submit button is Line 149)
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
-            editing(firstName, lastName, email, photo)
-            console.log(`New Profile:` + firstName, lastName, email, photo) 
+
+        await editing(firstName, lastName, email, photo)
+        console.log(`New Profile:` + firstName, lastName, email, photo)
     }
+    
     //picture upload
     //Dear Elmer: Here is the code to display image I choose(It doesn't work ㅠㅠㅠ).Thank you so much:-)
-    const photoUpdate = () => {
-        console.log(photo)
-        const reader = new FileReader()
-        reader.readAsDataURL(photo);
-        reader.addEventListener('load', (event) => {
-          console.log(reader.result)
-        });
+    const photoUpdate = (e) => {
+        const newphoto = URL.createObjectURL(e.target.files[0])
+        setPhoto(newphoto)
     }
-   
+    
+   console.log(photo)
 
   return (
     <div className='editProfile-modal'>
@@ -104,8 +104,8 @@ const EditProfile = (props) => {
                     <input  type="file"
                             id="profile-user-photo"
                             className="visually-hidden"
-                            // accept="image/*"
-                            onChange={(e) => photoUpdate(e.target.files[0])}
+                            accept="image/*"
+                            onChange={photoUpdate}
                     />
                     <label htmlFor="profile-user-photo">
                        { !photo ? <img src={StaticAddImage} alt="no-user-img"/> : <img src={ photo } alt="user-img" />}
@@ -142,7 +142,8 @@ const EditProfile = (props) => {
             </div>
 
             <div className="edit-btn-area">
-                <button onClick={() => OnsetEditProfile(false)}
+                <button type="button"
+                        onClick={() => OnsetEditProfile(false)}
                         className="editprofile-close-btn btn btn-primary-reverse">
                         Close
                 </button>
