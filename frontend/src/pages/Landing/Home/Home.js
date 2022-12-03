@@ -9,19 +9,11 @@ import TimeSaved from '../Graph/TimeSaved'
 // Images
 import HeroImage from '../../../images/Home/hero-image.png'
 import ReportsImage from '../../../images/Home/reports-graph.png'
-<<<<<<< HEAD
 import FeatureCalendar from '../../../images/Home/feature_calendar.svg'
 import FeatureConnection from '../../../images/Home/feature_connection.svg'
 import FeatureNotes from '../../../images/Home/feature_notes.svg'
 import FeatureEmail from '../../../images/Home/feature_email.svg'
-import AboutImage from '../../../images/Home/about-image.png'
-=======
-import FeaturesCalendar from '../../../images/Home/features-calendar.png'
-import FeaturesConnection from '../../../images/Home/features-connection.png'
-import FeaturesNotes from '../../../images/Home/features-notes.png'
-import FeaturesEmail from '../../../images/Home/features-email.png'
 import AboutImage from '../../../images/Home/about-image.jpeg'
->>>>>>> db675680096fea5260b911fc7f65bc09ada292e5
 import NewsletterImage from '../../../images/Home/newsletter-image.png'
 
 
