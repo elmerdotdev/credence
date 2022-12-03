@@ -9,12 +9,21 @@ import TimeSaved from '../Graph/TimeSaved'
 // Images
 import HeroImage from '../../../images/Home/hero-image.png'
 import ReportsImage from '../../../images/Home/reports-graph.png'
+<<<<<<< HEAD
+import FeatureCalendar from '../../../images/Home/feature_calendar.svg'
+import FeatureConnection from '../../../images/Home/feature_connection.svg'
+import FeatureNotes from '../../../images/Home/feature_notes.svg'
+import FeatureEmail from '../../../images/Home/feature_email.svg'
+import AboutImage from '../../../images/Home/about-image.png'
+=======
 import FeaturesCalendar from '../../../images/Home/features-calendar.png'
 import FeaturesConnection from '../../../images/Home/features-connection.png'
 import FeaturesNotes from '../../../images/Home/features-notes.png'
 import FeaturesEmail from '../../../images/Home/features-email.png'
 import AboutImage from '../../../images/Home/about-image.jpeg'
+>>>>>>> db675680096fea5260b911fc7f65bc09ada292e5
 import NewsletterImage from '../../../images/Home/newsletter-image.png'
+
 
 const Home = () => {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -123,25 +132,25 @@ const Home = () => {
           <h2>Our Features</h2>
           <div className="features-content">
             <div>
-              <img src={FeaturesCalendar} alt="Credence Calendar" />
+              <img src={FeatureCalendar} alt="Credence Calendar" />
               <h3>Calendar</h3>
               <p>Create events and tag your connections to let them know what's coming next.</p>
             </div>
 
             <div>
-              <img src={FeaturesConnection} alt="Credence Connection" />
+              <img src={FeatureConnection} alt="Credence Connection" />
               <h3>Connection</h3>
               <p>Create, update, and follow up with your clients and partners. All in one place</p>
             </div>
 
             <div>
-              <img src={FeaturesNotes} alt="Credence Notes" />
+              <img src={FeatureNotes} alt="Credence Notes" />
               <h3>Notes</h3>
               <p>Customize your meeting notes to never miss the most important details.</p>
             </div>
 
             <div>
-              <img src={FeaturesEmail} alt="Credence Email Integration" />
+              <img src={FeatureEmail} alt="Credence Email Integration" />
               <h3>Email Integration</h3>
               <p>Review and search for emails without having to leave the app.</p>
             </div>
