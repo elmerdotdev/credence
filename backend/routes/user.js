@@ -5,7 +5,8 @@ const {
     loginUser,
     googleLogin,
     createUser,
-    updateUser
+    updateUser,
+    gmailAuth
 } = require('../controllers/userController')
 
 const router = express.Router()
@@ -18,6 +19,8 @@ router.post('/login', loginUser)
 
 //Post Google login user (login)
 router.post('/googlelogin', googleLogin)
+
+router.get('/gmailauth/:id', gmailAuth)
 
 // Post a new userss (Signin)
 router.post('/signup', createUser)

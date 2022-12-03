@@ -26,6 +26,10 @@ header {
         path {
             stroke-linecap: round;
             stroke-width: 1px;
+
+            &.logo-letters {
+                fill: #22252D;
+            }
                 
             &.trace {
                 stroke-dashoffset: 0 !important;

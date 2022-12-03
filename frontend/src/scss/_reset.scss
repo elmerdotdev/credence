@@ -4,12 +4,71 @@
     box-sizing: border-box;
 }
 
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: transparent; 
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: $color-iron;
+    border-radius: 20px;
+}
+
 body {
     margin: 0;
     padding: 0;
-    background-color: $color-white-lilac;
+    background: $color-white-lilac;
     font-family: $font;
     @include fontSize(16);
+    transition: background-position .6s ease-in-out;
+
+    @media screen and (min-width: $screen-desktop) {
+        background: linear-gradient(to bottom right, $color-shark 50%, $color-white-lilac 50%);
+        background-size: 200vw 200vh;
+        background-position: 100% 100%;
+
+        &:not(.no-sidebar) {
+            overflow-y: hidden;
+
+            .container {
+                height: calc(100vh - 75px);
+
+                .dashboard-wrapper {
+                    height: 100%;
+                }
+
+                .dashboard-connection {
+                    overflow: hidden;
+                }
+
+                .page-connections {
+                    height: 0;
+                }
+
+                .page-calendar-widget,
+                .page-connections > div {
+                    overflow-y: auto;
+                }
+
+                .dashboard-connection-wrapper,
+                .dashboard-upcoming,
+                .App-body > .reports,
+                .page-settings {
+                    height: 100%;
+                    overflow-y: auto;
+                }
+
+                .App-body > .reports {
+                    width: 100%;
+                }
+            }
+        }
+    }
 }
 
 img {
@@ -69,8 +128,8 @@ aside {
     left: 0;
     width: 100vw;
     height: calc(100vh - 50px);
-    background: $color-white-lilac;
     z-index: 999;
+    background-color: $color-white-lilac;
     transform: translateX(100%);
     transition: transform .5s ease-in-out;
 
@@ -78,11 +137,12 @@ aside {
         position: static;
         height: calc(100vh - 75px);
         z-index: 0;
+        background-color: transparent;
         transform: translateX(0);
     }
 
     .mobile-menu-visible & {
-        transform: translateX(0)
+        transform: translateX(0);
     }
 }
 
@@ -107,7 +167,9 @@ aside {
         li {
             display: flex;
             align-items: center;
+            gap: 1rem;
             margin: 1rem 0;
+            font-weight: 600;
 
             @media screen and (min-width: $screen-desktop) {
                 justify-content: start;
@@ -115,6 +177,7 @@ aside {
 
             i {
                 font-size: 2rem;
+                color: $color-shark;
             }
 
             &.mister-spacer {
@@ -129,6 +192,7 @@ aside {
         a {
             @include fontSize(20);
             position: relative;
+            color: $color-shark;
             font-weight: 600;
 
             &::before {
@@ -206,6 +270,20 @@ aside {
     }
 }
 
+.ReactModal__Overlay {
+    z-index: 999;
+    opacity: 0;
+    transition: opacity 500ms ease-in-out;
+}
+
+.ReactModal__Overlay--after-open{
+    opacity: 1;
+}
+
+.ReactModal__Overlay--before-close{
+    opacity: 0;
+}
+
 /* BUTTONS */
 
 .btn {
@@ -213,6 +291,7 @@ aside {
     align-items: center;
     gap: .5rem;
     padding: 8px 22px;
+    min-height: 40px;
     font-weight: 600;
     line-height: 1;
     border: 1px solid $color-gray;

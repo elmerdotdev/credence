@@ -1,14 +1,16 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import AddNote from './AddNote'
 import NoteList from './NoteList'
 
-const NoteDetails = ({ notes, onAdd, viewNote, noteId }) => {
-   
+const NoteDetails = ({notes, onAdd, viewNote, noteId, connection, openNotification }) => {
+
     return (
         <div>
             <section className = "add-note">
                 <AddNote 
                     onAdd = {onAdd}
+                    connection = {connection}
+                    openNotification = {openNotification}
                 />
             </section>
             <section className="note-details" >

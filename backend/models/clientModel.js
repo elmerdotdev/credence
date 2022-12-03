@@ -25,10 +25,7 @@ const clientSchema = new Schema({
         type: String,
         required: true
     },
-    address: {
-        type: String
-    },
-    description: {
+    location: {
         type: String
     },
     active: {

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Routes, Route, NavLink } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, NavLink, Link } from 'react-router-dom';
+import Modal from "react-modal"
 
 // App pages
 import Dashboard from './pages/Dashboard/Dashboard';
@@ -8,11 +9,12 @@ import Connections from './pages/Connections/Connections';
 import Search from './pages/Search/Search';
 import Settings from './pages/Settings/Settings';
 import Notes from './pages/Notes/Notes';
-import Profile from './pages/Profile/Profile';
 import Login from './pages/Login/Login';
 import Signup from './pages/Signup/Signup';
 import SuccessSignup from './pages/Signup/SuccessSignup';
 import Reports from './pages/Reports/Reports';
+import Logout from './pages/Login/Logout';
+import Onboarding from './pages/Onboarding/Onboarding';
 
 // Landing Pages
 import Home from './pages/Landing/Home/Home';
@@ -22,7 +24,6 @@ import About from './pages/Landing/About/About';
 
 // Components
 import Header from './components/Header/Header';
-import Logout from './pages/Login/Logout';
 
 // CSS and scripts
 import './fontello/css/credence.css';
@@ -30,10 +31,16 @@ import './App.css';
 
 function App() {
     const [isMenuOpen, setIsMenuOpen] = useState(false)
+    const [modalIsOpen, setModalIsOpen] = useState(false)
+    const [darkMode, setDarkMode] = useState(false)
 
     useEffect(() => {
         document.body.classList.toggle('mobile-menu-visible', isMenuOpen)
     } , [isMenuOpen])
+
+    useEffect(() => {
+        document.body.classList.toggle('body-theme-dark', darkMode)
+    } , [darkMode])
 
     const toggleMobileMenu = () => {
         setIsMenuOpen(!isMenuOpen)
@@ -41,7 +48,7 @@ function App() {
 
     return (
         <BrowserRouter>
-        <div className="App">
+        <div className={`App ${darkMode ? 'theme-dark' : 'theme-light'}`}>
             <Header onToggleMenu={toggleMobileMenu}/>
             <section className="container">
                 <aside>
@@ -51,11 +58,12 @@ function App() {
                             <li onClick={toggleMobileMenu}><i className="icon-connection"></i> <NavLink to="/connections">Connection</NavLink></li>
                             <li onClick={toggleMobileMenu}><i className="icon-calendar"></i> <NavLink to="/calendar">Calendar</NavLink></li>
                             <li onClick={toggleMobileMenu}><i className="icon-reports"></i><NavLink to="/reports">Reports</NavLink></li>
-                            <li onClick={toggleMobileMenu}><i className="icon-profile"></i> <NavLink to="/profile">Profile</NavLink></li>
                             <li className="mister-spacer"></li>
                             <li onClick={toggleMobileMenu}><i className="icon-settings"></i> <NavLink to="/settings">Settings</NavLink></li>
-                            <Logout onToggleMenu={toggleMobileMenu}/>
+                            <li onClick={() => {toggleMobileMenu(); setModalIsOpen(true);}}><i className="icon-logout"></i><Link to="#">Log Out</Link></li>
                         </ul>
+
+                        <Modal isOpen={modalIsOpen} className="logoutModal" ><Logout onModelIsOpen={modalIsOpen} onSetModalIsOpen={setModalIsOpen}/></Modal>
                     </nav>
                 </aside>
                 <div className="App-body">
@@ -68,13 +76,13 @@ function App() {
                         <Route path="/calendar" element={<Calendar />} />
                         <Route path="/connections" element={<Connections />} />
                         <Route path="/search" element={<Search />} />
-                        <Route path="/profile" element={<Profile />} />
-                        <Route path="/settings" element={<Settings />} />
+                        <Route path="/settings" element={<Settings onDarkMode={darkMode} darkModeToggle={() => setDarkMode(!darkMode)} />} />
                         <Route path="/notes" element={<Notes />} />
                         <Route path="/login" element={<Login />} />
                         <Route path="/signup" element={<Signup />} />
                         <Route path="/successsignup" element={<SuccessSignup />} />
                         <Route path="/reports" element={<Reports />} />
+                        <Route path="/onboarding" element={<Onboarding />} />
                     </Routes>
                 </div>
             </section>

@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import Modal from 'react-modal'
 import Datetime from 'react-datetime';
-import moment from 'moment';
+import moment from 'moment-timezone';
+import Select from 'react-select'
 
 Modal.setAppElement('body');
 
@@ -22,16 +23,22 @@ const AddEvent = (props) => {
     const fetchClients = props.fetchClients
 
     const alertMsgs = {
-        invalid: "Enter a valid start/end date",
-        pastDate: "Start date must not be in the past",
-        futureDate: "End date must be after start date"
+        invalid: "Enter a valid date",
+        pastDate: "Start date in the past",
+        futureDate: "Set future end date",
+        needClient: "Need at least one connection"
     }
     
     useEffect(() => {
         const getClients = async () => {
             const data = await fetchClients()
 
-            setClients(data)
+            setClients(data.map((client) => {
+                return {
+                    value: client._id,
+                    label: `${client.firstname} ${client.lastname}`
+                }
+            }))
         }
 
         getClients()
@@ -44,9 +51,9 @@ const AddEvent = (props) => {
     ])
 
     useEffect(() => {
-        setStart(moment(startDate).format("YYYY-MM-DD") + " " + moment(startTime).format("HH:mm:ss"))
+        setStart(moment(moment(startDate).format("YYYY-MM-DD") + " " + moment(startTime, "hh:mm A").format("HH:mm:ss")).utc())
 
-        setEnd(moment(endDate).format("YYYY-MM-DD") + " " + moment(endTime).format("HH:mm:ss"))
+        setEnd(moment(moment(endDate).format("YYYY-MM-DD") + " " + moment(endTime, "hh:mm A").format("HH:mm:ss")).utc())
     }, [
         startDate,
         startTime,
@@ -58,17 +65,22 @@ const AddEvent = (props) => {
         e.preventDefault()
 
         if (!start || !end) {
-            alert(alertMsgs.invalid)
+            props.openNotification(alertMsgs.invalid, false)
             return false
         }
 
         if (start < new Date()) {
-            alert(alertMsgs.pastDate)
+            props.openNotification(alertMsgs.pastDate, false)
             return false
         }
 
         if (end < start) {
-            alert(alertMsgs.futureDate)
+            props.openNotification(alertMsgs.futureDate, false)
+            return false
+        }
+
+        if (!clientId) {
+            props.openNotification(alertMsgs.needClient, false)
             return false
         }
 
@@ -99,6 +111,7 @@ const AddEvent = (props) => {
 
         props.onAddState(data)
         props.onToggle(false)
+        props.openNotification('Event added', true)
     }
 
     return (
@@ -108,6 +121,7 @@ const AddEvent = (props) => {
                 onRequestClose={() => props.onToggle(false)}
                 className="credence-modal modal-event-add"
                 contentLabel="Add Event"
+                closeTimeoutMS={500}
             >
                 <div className="addEventForm">
                     <h2>New Event</h2>
@@ -148,19 +162,14 @@ const AddEvent = (props) => {
                         </div>
                         <div className="input-wrapper">
                             <label htmlFor="clientlist">Connection</label>
-                            <select id="clientlist" value={clientId || ''} onChange={e => setClientId(e.target.value) || ''}>
-                                <option value=""></option>
-                                {clients.map((client, i) => (
-                                    <option key={i} value={client._id}>{client.firstname} {client.lastname}</option>
-                                ))}
-                            </select>
+                            <Select options={clients} isMulti="true" value={clientId || ''} onChange={e => setClientId(e) || ''} />
                         </div>
                         <div className="input-wrapper">
                             <label htmlFor="description">Description</label>
                             <textarea id="description" value={description} onChange={e => setDescription(e.target.value)} />
                         </div>
                         <div className="input-wrapper submit-btn-wrapper">
-                            <button className="btn btn-primary-reverse" onClick={() => props.onToggle(false)}>Cancel</button>
+                            <button type="button" className="btn btn-primary-reverse" onClick={() => props.onToggle(false)}>Cancel</button>
                             <button type="submit" className="btn btn-primary">Save Event</button>
                         </div>
                     </form>

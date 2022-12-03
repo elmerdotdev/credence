@@ -3,9 +3,7 @@ import { useNavigate, Link  } from 'react-router-dom'
 import { useSignup } from './hooks/useSignup'
 //Icon & Logo
 import '../../fontello/css/credence.css';
-import logo from '../../images/logo.svg';
 import signupimage from '../../images/Register/signupimage.svg';
-// import GoogleLoginButton from '../../components/GoogleLoginButton'
 
 
 const Signup = () => {
@@ -21,7 +19,7 @@ const Signup = () => {
   //Password display( hide or show )
   const [pwShow, setPwShow] = useState(false)
   //lastLoggedIn
-  const [lastLoggedIn, setlastLoggedIn] = useState(null)
+  const [lastLoggedIn, setLastLoggedIn] = useState(null)
   //Error checker
   const {signup, error, isLoading} = useSignup()
 
@@ -62,7 +60,8 @@ const Signup = () => {
     <div className="page-signup">
       <section className="page-signup-area">
         <Link to="/" ><i className='icon-close'></i></Link>
-        <h3><span>Create a</span><span><img src={logo} alt="credence logo"  className='credence-logo'/>Account</span></h3>
+        
+        <h3>Create Credence Account</h3>
 
         <div className="desktop-grid">
             <img src={signupimage} alt="signup-img" className='signup-img'/>
@@ -111,23 +110,13 @@ const Signup = () => {
             </form>
           </div>
         </div>
-       
-        {/* <div>OR</div> */}
-        {/* <GoogleLoginButton/> */}
       </section>
     </div>
   )
 }
+export function useLastLogin() {
+  const [lastLoggedIn, setLastLoggedIn] = useState(null)
 
+  return{lastLoggedIn, setLastLoggedIn}
+}
 export default Signup
-
-
-
-
-
-
-
-
-
-
-

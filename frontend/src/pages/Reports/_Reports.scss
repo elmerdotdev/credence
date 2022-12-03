@@ -1,7 +1,7 @@
 
 .reports {
     background: $color-white;
-    padding: 2rem 1rem;
+    padding: 1rem;
     border: 1px solid $color-dusty-gray;
     border-radius: 15px;
     max-width: 100%;
@@ -23,12 +23,10 @@
     }
 
     @media screen and (min-width: $screen-desktop) {
-        grid-template-columns: repeat(3, 1fr);
-        padding: 2rem 2rem;
+        grid-template-columns: repeat(2, 1fr);
 
         h2 {
             grid-column: 1/-1;
-            justify-content: start;
             @include fontSize(32);
             padding-bottom: .5rem;
 
@@ -39,7 +37,7 @@
     }
 }
 
-.active-clients, .industry-type, .events-breakdown {
+.active-clients, .industry-type, .events-breakdown, .most-interacted {
     max-width: 100%;
     
     h3 {
@@ -71,6 +69,10 @@
         canvas {
             align-items: center;
         }
+    }
+
+    .events-breakdown {
+        grid-column: 1/-1;
     }
 
 }

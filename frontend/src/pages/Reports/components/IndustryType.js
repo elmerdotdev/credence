@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { Bar } from 'react-chartjs-2'
-import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend} from 'chart.js'
+import { PolarArea } from 'react-chartjs-2'
+import { Chart as ChartJS, RadialLinearScale, ArcElement, Title, Tooltip, Legend} from 'chart.js'
 
 ChartJS.register(
-    CategoryScale,
-    LinearScale,
-    BarElement,
+    RadialLinearScale,
+    ArcElement,
     Title,
     Tooltip,
     Legend,
@@ -18,6 +17,8 @@ const IndustryType = () => {
     const [artAndDesign, setArtAndDesign] = useState('')
     const [manufacturing, setManufacturing] = useState('')
     const [media, setMedia] = useState('')
+
+    const userID = JSON.parse(localStorage.getItem('user'))._id
 
 
     useEffect(() => {
@@ -45,7 +46,7 @@ const IndustryType = () => {
   }, [])
 
     const fetchClients = async () => {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/clients/63645e4850049bfd1e89637a`)
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/clients/${userID}`)
       const data = await response.json()
 
       if (response.ok) {
@@ -59,13 +60,21 @@ const IndustryType = () => {
           legend: {
             display: false,
           },
+          tooltip: {
+            yAlign: 'bottom'
+          }
         },
+        scales: {
+          x: {
+            ticks: {
+              display: false
+            }
+          }
+        }
       };
-      
-      const labels = ['Technology', 'Hospitality', 'Finance', 'Retail', 'Art & Design', 'Manufacturing', 'Media'];
-      
+            
     const data = {
-        labels,
+        labels:['Technology', 'Hospitality', 'Finance', 'Retail', 'Art & Design', 'Manufacturing', 'Media'],
         datasets: [
           {
             label: 'Clients in this Industry',
@@ -86,7 +95,7 @@ const IndustryType = () => {
     return (
         <div>
             <h3>Industries Represented</h3>
-            <div><Bar data={data} options={options}/></div>
+            <div><PolarArea data={data} options={options}/></div>
 
         </div>
 

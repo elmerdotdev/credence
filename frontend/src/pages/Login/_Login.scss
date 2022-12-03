@@ -4,8 +4,8 @@
         font-size: 1rem;
         padding: 20px;
         background-color: $color-white;
-        max-width: 1118px;
-        max-height: 720px;
+        // max-width: 1118px;
+        // max-height: 720px;
     }
     .icon-close{
         display: none;
@@ -17,26 +17,17 @@
         flex-wrap:wrap;
         justify-content: center;
         text-align: center;
-
-        span{
-            margin-bottom: .8px;   
-        }
-        img.credence-logo{
-            height: 24px;
-            position: relative;
-            bottom: -6px;
-            margin-right: 8px;
-            margin-left: 8px;
-        }
+        font-weight: 600;
     }
     img.login-img{
         display: block;
         margin: 21px auto 24px auto;
+        width: 40%;
     }
     label{
         display: block;
         color:$color-regal-blue;
-        font-size: 14px;
+        @include fontSize(14);
         margin-bottom: 8px;
     }
     label:nth-of-type(2){
@@ -50,8 +41,7 @@
     }
     input[for="password"]{
         width: 100%;
-        background-color: $color-white;
-        
+        background-color: $color-white; 
         border: none;
     }
     .password-area{
@@ -60,7 +50,7 @@
     }
     .icon-hide,
     .icon-show{
-        font-size: 16px;
+        @include fontSize(16);
     }
     input[value="Login"]{
         margin-top: 33px;
@@ -78,12 +68,12 @@
         color:$color-regal-blue;
         font-style: normal;
         font-weight: 400;
-        font-size: 16px;
+        @include fontSize(16);
         line-height: 20px;
         border-bottom: 1px solid $color-regal-blue;
     }
     .fgt-pwd-box{
-        margin-top: 18px;
+        margin-top: 23.68px;
         text-align: right;
     }
     .move-to-signup-link,
@@ -106,12 +96,13 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        padding: 109px 35px;
+        padding: 106.116px 35px;
         height: 100vh;
         .page-login-area{
-            padding: 26px 53px 24px 53px;
+            padding: 26px 53px 47.21px 53px;
             border-radius: 24px;
-            width: 80%;
+            max-width: 1118px;
+            max-height: 720px;
             box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.25);
         }
         .icon-close{
@@ -120,12 +111,12 @@
         }
         .icon-close:before{
             margin: 0;
-            font-size: 42px;
+            @include fontSize(42);
         }
         h3{
             margin-top: 0;
-            font-weight: 700;
-            font-size: 36px;
+            font-weight: 600;
+            @include fontSize(36);
             line-height: 44px;
             
             img.credence-logo{
@@ -146,9 +137,37 @@
             width:80%;
             height: auto;
         }
-        .icon-hide,
-        .icon-show{
-        font-size: 26px;
-    }
+        .right-box{
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .login-form{
+            input[for="email"],
+            input[for="password"]{
+                height: 34.5px;
+            }
+            label:nth-of-type(2){
+                margin-top: 40px;
+            }
+            .icon-hide,
+            .icon-show{
+                @include fontSize(26);
+            }
+            .submit-login-btn{
+                margin-top: 65px;
+            }
+        }
+        .link-wrapper{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100px;
+            p{
+                margin:20px 0;
+            }
+        }
     }
 }

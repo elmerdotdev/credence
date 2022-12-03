@@ -1,9 +1,13 @@
 import { useState } from 'react';
+import ConnectionAddImage from '../../../images/Connection/connection-add-photo.svg';
 
 const EditConnection = ({ onEdit, connection, onClose }) => {
-  // const [connection, setConnection] = useState({});
+
+  const userID = JSON.parse(localStorage.getItem('user'))._id
   const [firstname, setFirstname] = useState(connection.firstname);
   const [lastname, setLastname] = useState(connection.lastname);
+  const [image, setImage] = useState('');
+  const [previewImage, setPreviewImage] = useState(connection.photo);
   const [position, setPosition] = useState(connection.position);
   const [company, setCompany] = useState(connection.company);
   const [email, setEmail] = useState(connection.email);
@@ -19,7 +23,7 @@ const EditConnection = ({ onEdit, connection, onClose }) => {
     { text: "Manufacturing", select: false },
     { text: "Media", select: false }
   ]);
-  const [user_id, setUserId] = useState('63645e4850049bfd1e89637a');
+  const [user_id, setUserId] = useState(userID);
 
   const checkboxes = [
     { text: "Technology" },
@@ -31,41 +35,78 @@ const EditConnection = ({ onEdit, connection, onClose }) => {
     { text: "Media" }
   ];
 
+ 
 
   const onSubmit = (e) => {
     e.preventDefault();
 
-
-    onEdit({firstname, lastname, company, position, email, phone, location, active, labels, user_id});
-
+    if (!image) {
+      onEdit({firstname, lastname, position, company, email, phone, location, active, labels, user_id});
+    } else {
+      const data = new FormData()
     
+      data.append("file", image)
+      data.append("upload_preset", "credence-cloudinary-upload")
+      data.append("cloud_name","dp53wf7gb")
 
+      fetch("https://api.cloudinary.com/v1_1/dp53wf7gb/image/upload",{
+        method:"post",
+        body: data
+      })
+      .then(resp => resp.json())
+      .then(data => {
+        const photo = data.url
+        onEdit({firstname, lastname, position, company, email, phone, location, active, labels, photo, user_id});
+      })
+      .catch(err => console.log(err))
+      
+    }
   };
+
+  const processImage = async (image) => {
+    const reader = new FileReader()
+    reader.addEventListener('load', (event) => {
+      setImage(image)
+      setPreviewImage(event.target.result)
+    });
+    reader.readAsDataURL(image);
+  }
 
   return (
     <div>
-    <h2 className="modal-title">Edit Connection</h2>
-   
     <form className="edit-form" onSubmit={onSubmit}>
-      <div className="input-wrapper">
-        <label>First Name / Nickname*</label>
-        <input
-          required
-          type="text"
-          placeholder="First name"
-          defaultValue={connection.firstname}
-          onChange={(e) => setFirstname(e.target.value)}
-        />
-      </div>
-      <div className="input-wrapper">
-        <label>Last Name*</label>
-        <input
-          required
-          type="text"
-          placeholder="Last name"
-          defaultValue={connection.lastname}
-          onChange={(e) => setLastname(e.target.value)}
-        />
+      <div className="connection-form-top">
+        <div className="connection-form-top-fields">
+          <h2 className="modal-title">Edit Connection</h2>
+          <div className="input-wrapper">
+            <label>First Name / Nickname*</label>
+            <input
+              required
+              type="text"
+              placeholder="First name"
+              defaultValue={connection.firstname}
+              onChange={(e) => setFirstname(e.target.value)}
+            />
+          </div>
+          <div className="input-wrapper">
+            <label>Last Name*</label>
+            <input
+              required
+              type="text"
+              placeholder="Last name"
+              defaultValue={connection.lastname}
+              onChange={(e) => setLastname(e.target.value)}
+            />
+          </div>
+        </div>
+        <div className="connection-form-top-photo">
+          <div className="input-wrapper">
+            <input id="connection-photo" type="file" onChange= {(e)=> processImage(e.target.files[0])} className="visually-hidden" />
+            <label htmlFor="connection-photo">
+              <img src={previewImage || ConnectionAddImage} alt="New connection" />
+            </label>
+          </div>
+        </div>
       </div>
       <h4>Contact Information</h4>
       <div className="input-wrapper">
@@ -111,7 +152,7 @@ const EditConnection = ({ onEdit, connection, onClose }) => {
         <label> Location</label>
         <input
           type="text"
-          value={location}
+          defaultValue={connection.location}
           onChange={(e) => setLocation(e.target.value)}
         />
       </div>
@@ -153,7 +194,7 @@ const EditConnection = ({ onEdit, connection, onClose }) => {
       </div>
 
       <div className="input-wrapper submit-btn-wrapper">
-        <button className="btn btn-primary-reverse" onClick={() => onClose(false)}>Cancel</button>
+        <button type="button" className="btn btn-primary-reverse" onClick={() => onClose(false)}>Cancel</button>
         <button type="submit" className="btn btn-primary">Update Connection</button>
       </div>
     </form>

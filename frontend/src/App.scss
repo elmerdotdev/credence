@@ -9,18 +9,31 @@
 @import './pages/Calendar/Calendar';
 @import './pages/Search/Search';
 @import './pages/Search/components/HeaderSearch';
-@import './pages/Profile/Profile';
 @import './pages/Settings/Settings';
 @import './pages/Login/Login';
 @import './pages/Signup/Signup';
+@import './pages/Notes/Notes';
+@import './pages/Emails/Emails';
 @import './pages/Signup/SuccessSignup';
 @import './pages/Reports/Reports';
+@import './pages/Login/Logout';
+@import './pages/Onboarding/Onboarding';
+@import './pages/Settings/SelectPlan';
+
+
+/* Components */
+@import './components/Notification/Notification';
+@import './components/QuickAdd/QuickAdd';
 
 /* Landing pages */
 @import './pages/Landing/Home/Home';
 @import './pages/Landing/Features/Features';
 @import './pages/Landing/Pricing/Pricing';
 @import './pages/Landing/About/About';
+@import './pages/Landing/Graph/TimeSaved';
 
 /* Template */
 @import './components/Header/Header';
+
+/* Dark mode */
+@import './scss/darkmode';
