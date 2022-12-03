@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import Notes from '../../Notes/Notes';
 import Emails from '../../Emails/Emails';
+import Events from './ConnectionEvents';
 
 // TODO: accept isOpenNote and noteId as parameters
 const ConnectionDetail = ({connection, onEditBtn, onDeleteBtn, onPinBtn, changeActiveBtn, onClose, openNotification, gmailIntegration, gmailUpdate}) => {
@@ -86,6 +87,7 @@ const ConnectionDetail = ({connection, onEditBtn, onDeleteBtn, onPinBtn, changeA
               // gmailIntegration = {gmailIntegration}
               gmailUpdate = {gmailUpdate}
             />
+            <Events connectionID={connection._id} userID={connection.user_id} />
           </div>
         </div>
   </div>

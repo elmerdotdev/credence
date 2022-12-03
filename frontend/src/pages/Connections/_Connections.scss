@@ -392,12 +392,6 @@
     display: flex;
     flex-direction: column;
     margin-top: 2rem;
-    padding-top: 2rem;
-    border-top: 2px solid $color-gray;
-
-    > div {
-      margin: 1.5rem 0;
-    }
 
     h4 {
       @include fontSize(20);
@@ -478,6 +472,65 @@
         opacity: .8;
         cursor: pointer;
       }
+    }
+  }
+}
+
+.connection-events-list {
+  margin-top: 2rem;
+
+  table {
+    width: 100%;
+    padding: 1rem 0;
+    border-bottom: 1px dotted $color-dusty-gray;
+
+    th {
+      @include fontSize(20);
+      padding-bottom: .75rem;
+      color: $color-black;
+      font-weight: 500;
+      text-align: left;
+    }
+
+    td {
+      padding: 5px 0;
+      font-weight: 400;
+      text-align: left;
+      vertical-align: top;
+
+      p {
+        margin-top: 0;
+      }
+    }
+
+    .event-tbl-label {
+      color: $color-dusty-gray;
+
+      @media screen and (min-width: $screen-desktop) {
+          padding-right: 50px;
+          width: 170px;
+      }
+    }
+
+    .event-tbl-type {
+      text-transform: capitalize;
+    }
+
+    .viewEventDates {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .event-tbl-connection {
+      a {
+        @include fontSize(14);
+        display: inline-block;
+        margin-right: .5rem;
+        padding: 0.25rem 0.75rem;
+        background-color: $color-manhattan;
+        font-weight: 600;
+        border-radius: 14px;
+    }
     }
   }
 }

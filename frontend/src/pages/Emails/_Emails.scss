@@ -6,14 +6,14 @@
 .single-email {
     padding: 1rem 0;
     border-bottom: 1px solid $color-dusty-gray;
-}
 
-h4 {
-    @include fontSize(20);
-    font-weight: 600;
-    margin: .5rem;
-}
+    h4 {
+        @include fontSize(20);
+        font-weight: 600;
+        margin: .5rem;
+    }
 
-p {
-    margin: .5rem;
+    p {
+        margin: .5rem;
+    }
 }
