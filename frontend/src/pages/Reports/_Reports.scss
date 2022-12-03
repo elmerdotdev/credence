@@ -5,14 +5,12 @@
     border: 1px solid $color-dusty-gray;
     border-radius: 15px;
     max-width: 100%;
-    display: grid;
-    grid-gap: .5rem;
 
     h2 {
         display: flex;
         align-items: center;
         justify-content: center;
-        margin: 0;
+        margin: 0 0 2rem;
         @include fontSize(30);
 
         i::before {
@@ -23,8 +21,6 @@
     }
 
     @media screen and (min-width: $screen-desktop) {
-        grid-template-columns: repeat(2, 1fr);
-
         h2 {
             grid-column: 1/-1;
             @include fontSize(32);
@@ -33,6 +29,12 @@
             i::before {
                @include fontSize(32);
             }
+        }
+
+        .reports-wrapper {
+            display: grid;
+            grid-gap: .5rem;
+            grid-template-columns: repeat(3, 1fr);
         }
     }
 }
@@ -69,10 +71,6 @@
         canvas {
             align-items: center;
         }
-    }
-
-    .events-breakdown {
-        grid-column: 1/-1;
     }
 
 }

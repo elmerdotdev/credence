@@ -9,14 +9,16 @@ const Reports = () => {
     return (
         <div className="reports">
             <h2>Reports</h2>
-            <div className="active-clients">
-                <ActiveClients />
-            </div>
-            <div className="industry-type">
-                <IndustryType />
-            </div>
-            <div className="events-breakdown">
-                <EventsBreakdown />
+            <div className="reports-wrapper">
+                <div className="active-clients">
+                    <ActiveClients />
+                </div>
+                <div className="industry-type">
+                    <IndustryType />
+                </div>
+                <div className="events-breakdown">
+                    <EventsBreakdown />
+                </div>
             </div>
         </div>
     )
