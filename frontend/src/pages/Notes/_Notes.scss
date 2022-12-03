@@ -88,18 +88,32 @@
         flex-direction: row;
         align-items: center;
         height: 25px;
-    
-      
-            img {
-              width: 20px;
-              height: 20px;
-              object-fit: cover;
-              border-radius: 50%;
-            }
+
+        img {
+            width: 20px;
+            height: 20px;
+            object-fit: cover;
+            border-radius: 50%;
+        }
         
         h4 {
             color: $color-science-blue;
             @include fontSize(14);
         }
-        }
+    }
+}
+
+.notes-list-item {
+    padding: 1.5rem 0 3rem;
+    border-top: 1px solid $color-dusty-gray;
+    
+    span {
+        display: block;
+        margin-bottom: .5rem;
+        color: $color-dusty-gray;
+    }
+
+    p {
+        margin-bottom: 0;
+    }
 }
