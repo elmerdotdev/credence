@@ -39,14 +39,14 @@ body:not(.no-sidebar) {
                     color: $color-white;
                 }
             }
+        }
 
-            .connection-events-list {
-                color: $color-white;
+        .connection-events-list {
+            color: $color-white;
 
-                table {
-                    th {
-                        color: $color-white;
-                    }
+            table {
+                th {
+                    color: $color-white;
                 }
             }
         }
