@@ -18,10 +18,6 @@ const Reports = () => {
             <div className="events-breakdown">
                 <EventsBreakdown />
             </div>
-
-            <div className="most-interacted">
-                <MostInteracted />
-            </div>
         </div>
     )
 }
