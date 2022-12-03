@@ -300,7 +300,7 @@
             }
 
             @media screen and (min-width: $screen-desktop) {
-                grid-template-columns: repeat(4, 1fr);
+                grid-template-columns: repeat(auto-fit, minmax(255.75px, 1fr));
 
                 > div {
                     display: flex;
@@ -313,6 +313,45 @@
                     margin: 0;
                     padding: 0 2rem;
                 }
+            }
+        }
+    }
+    #features{
+        img[alt="Credence Calendar"],
+        img[alt="Credence Connection"],
+        img[alt="Credence Notes"],
+        img[alt="Credence Email Integration"]{
+            border: 0.747059px solid $color-regal-blue;
+            border-radius: 5.97647px;
+            padding: 10px;   
+        }
+
+        img[alt="Credence Calendar"]{
+            height: 64.078%;
+            width: 100%;
+        }
+
+        img[alt="Credence Connection"]{
+            height: 64.074%;
+            width: 100%;
+        }
+
+        img[alt="Credence Notes"]{
+            height: 70%;
+            width: 100%;
+        }
+
+        img[alt="Credence Email Integration"]{
+            height: 70%;
+            width: 100%;
+        }
+
+        @media screen and (min-width: $screen-desktop) {
+            img[alt="Credence Calendar"],
+            img[alt="Credence Connection"],
+            img[alt="Credence Notes"],
+            img[alt="Credence Email Integration"]{
+                height:50%;
             }
         }
     }
